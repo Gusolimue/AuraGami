@@ -5,14 +5,14 @@ public class Spawner : MonoBehaviour
     public GameObject[] targetsAndObstacles;
     public Transform[] spawnPoints;
     public float beatTime = (60/130)*2;
-    public float timer;
+    private float timer;
 
     void Update()
     {
         if (timer>beatTime)
         {
             // Instantiate objects in random positions.
-            GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], spawnPoints[Random.Range(0, 4)]);
+            GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], spawnPoints[Random.Range(0, 3)]);
 
             // Zeroing out objects in game.
             objects.transform.localPosition = Vector3.zero;

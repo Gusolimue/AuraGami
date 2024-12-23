@@ -12,7 +12,7 @@ public class TargetsAndObstacles : MonoBehaviour
 
     IEnumerator DestroyInstantObjects() // Destroys obstacles and missed targets.
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
         Destroy(this.gameObject);
     }
 }
