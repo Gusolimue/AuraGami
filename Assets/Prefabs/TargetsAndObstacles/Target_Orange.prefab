@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 7256396880851543048}
   - component: {fileID: 5332526742878242895}
   - component: {fileID: 2592685926355745422}
-  - component: {fileID: 5430572547579754721}
+  - component: {fileID: 812672363309759864}
+  - component: {fileID: 8174120775047264190}
+  - component: {fileID: 7133307737128465806}
   m_Layer: 0
   m_Name: OrangeTarget
-  m_TagString: Untagged
+  m_TagString: OrangeTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,8 +89,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5430572547579754721
-CapsuleCollider:
+--- !u!65 &812672363309759864
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,14 +104,52 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2.000001, z: 1.0000007}
+  m_Center: {x: 0.000000059604645, y: -0.000030517578, z: 0.0000008642673}
+--- !u!54 &8174120775047264190
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654265279436977274}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7133307737128465806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654265279436977274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645a3103b89ce0e46839c3c25d4fdc77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Crane
 --- !u!1 &3908524654858322513
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,9 +160,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4500710332488392083}
   - component: {fileID: 4931483504854944139}
+  - component: {fileID: 8533459112869631837}
   m_Layer: 0
   m_Name: Target_Orange
-  m_TagString: Untagged
+  m_TagString: OrangeTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,3 +196,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b572ecf7eba9f6941b88da12ee41215a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8533459112869631837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908524654858322513}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

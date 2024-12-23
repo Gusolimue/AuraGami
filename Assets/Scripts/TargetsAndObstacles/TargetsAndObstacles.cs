@@ -15,4 +15,19 @@ public class TargetsAndObstacles : MonoBehaviour
         yield return new WaitForSeconds(20f);
         Destroy(this.gameObject);
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (CompareTag("BlueTarget") && other.CompareTag("Snake"))
+        {
+            Debug.Log("Blue Hit!");
+            Destroy(gameObject);
+        }
+
+        if (CompareTag("OrangeTarget") && other.CompareTag("Crane"))
+        {
+            Debug.Log("Orange Hit!");
+            Destroy(gameObject);
+        }
+    }*/
 }
