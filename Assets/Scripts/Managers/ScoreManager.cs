@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        scoreNum = 0;
     }
 
     public void ChangeScore()

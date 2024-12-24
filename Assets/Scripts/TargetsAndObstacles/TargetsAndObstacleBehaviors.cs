@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class DestroyTarget : MonoBehaviour
+
+public class TargetsAndObstacleBehaviors : MonoBehaviour
 {
     public string playerTag;
 
@@ -8,6 +10,11 @@ public class DestroyTarget : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
+            if (CompareTag("RedObstacle"))
+            {
+                PlayerHealth.Instance.healthPoints--;
+                PlayerHealth.Instance.ChangeHealth();
+            }
             ScoreManager.Instance.scoreNum++;
             ScoreManager.Instance.ChangeScore();
             Destroy(gameObject);

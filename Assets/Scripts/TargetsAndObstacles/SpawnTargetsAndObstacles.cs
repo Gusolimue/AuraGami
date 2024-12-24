@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TargetsAndObstacles : MonoBehaviour
+public class SpawnTargetsAndObstacles : MonoBehaviour
 {
     void Update()
     {

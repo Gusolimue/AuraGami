@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
         if (timer>beatTime)
         {
             // Instantiate objects in random positions.
-            GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], spawnPoints[Random.Range(0, 3)]);
+            GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], spawnPoints[Random.Range(0, 2)]);
 
             // Zeroing out objects in game.
             objects.transform.localPosition = Vector3.zero;
