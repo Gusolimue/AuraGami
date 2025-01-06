@@ -3,10 +3,15 @@ using UnityEngine.UI;
 
 public class FrontEnd : MonoBehaviour
 {
-    [SerializeField] Button playerButton;
+    //[SerializeField] Button playerButton;
 
-    private void OnPlayButtonPressed()
+    public void OnPlayButtonPressed()
     {
         
+    }
+
+    public void OnQuitPressed() // Will exit game (works for builds only).
+    {
+        Application.Quit();
     }
 }
