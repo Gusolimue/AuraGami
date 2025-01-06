@@ -14,4 +14,9 @@ public class CanvasManager : MonoBehaviour
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE") as GameObject);
     }
+
+    public void ShowCanvasLevelSelect()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect") as GameObject);
+    }
 }

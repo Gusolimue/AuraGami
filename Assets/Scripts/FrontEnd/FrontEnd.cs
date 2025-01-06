@@ -10,7 +10,13 @@ public class FrontEnd : MonoBehaviour
         
     }
 
-    public void OnQuitPressed() // Will exit game (works for builds only).
+    public void OnLevelsButtonPressed()
+    {
+        CanvasManager.Instance.ShowCanvasLevelSelect();
+        Destroy(this.gameObject);
+    }
+
+    public void OnQuitButtonPressed() // Will exit game (works for builds only).
     {
         Application.Quit();
     }
