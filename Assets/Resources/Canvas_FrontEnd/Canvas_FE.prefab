@@ -935,9 +935,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
-    m_PressedColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+    m_NormalColor: {r: 0.4009434, g: 0.6406729, b: 1, a: 0.4392157}
+    m_HighlightedColor: {r: 0.32858673, g: 0.46954933, b: 0.9811321, a: 1}
+    m_PressedColor: {r: 0.1990477, g: 0.28053787, b: 0.6698113, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -957,7 +957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672715224677619055}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2049914966202178486}
+        m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
+        m_MethodName: OnLevelsButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5328541621594220322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,9 +1166,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
-    m_PressedColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+    m_NormalColor: {r: 0.4009434, g: 0.6406729, b: 1, a: 0.4392157}
+    m_HighlightedColor: {r: 0.32858673, g: 0.46954933, b: 0.9811321, a: 1}
+    m_PressedColor: {r: 0.1990477, g: 0.28053787, b: 0.6698113, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1179,7 +1191,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2049914966202178486}
         m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
-        m_MethodName: OnSettingsButtonPressed
+        m_MethodName: OnLevelsButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1326,9 +1338,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
-    m_PressedColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+    m_NormalColor: {r: 0.4009434, g: 0.6406729, b: 1, a: 0.4392157}
+    m_HighlightedColor: {r: 0.32858673, g: 0.46954933, b: 0.9811321, a: 1}
+    m_PressedColor: {r: 0.1990477, g: 0.28053787, b: 0.6698113, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1459,9 +1471,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
-    m_PressedColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    m_NormalColor: {r: 0.4009434, g: 0.6406729, b: 1, a: 0.4392157}
+    m_HighlightedColor: {r: 0.32858673, g: 0.46954933, b: 0.9811321, a: 1}
+    m_PressedColor: {r: 0.1990477, g: 0.28053787, b: 0.6698113, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1484,7 +1496,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2049914966202178486}
         m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
-        m_MethodName: OnQuitPressed
+        m_MethodName: OnLevelsButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
