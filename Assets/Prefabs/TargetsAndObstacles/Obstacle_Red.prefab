@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4827470004922365009}
   - component: {fileID: 175858771627858099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4542242642198502001}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.7346005, y: 0.96663046, z: 12.03228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4137777052177221520}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &175858771627858099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b572ecf7eba9f6941b88da12ee41215a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
 --- !u!1 &5420210627931808595
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,10 +57,10 @@ GameObject:
   - component: {fileID: 4137777052177221520}
   - component: {fileID: 5971613318315866399}
   - component: {fileID: 6138565383161227328}
-  - component: {fileID: 7806431781331039564}
   - component: {fileID: 603479370050216248}
   - component: {fileID: 4190878207408437271}
-  m_Layer: 0
+  - component: {fileID: 6861531766554721941}
+  m_Layer: 6
   m_Name: RedObstacle
   m_TagString: RedObstacle
   m_Icon: {fileID: 0}
@@ -76,9 +76,9 @@ Transform:
   m_GameObject: {fileID: 5420210627931808595}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.9296005, y: 0.4553696, z: -6.6665545}
-  m_LocalScale: {x: 1, y: 0.050000004, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.025000002, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4827470004922365009}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -135,29 +135,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7806431781331039564
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420210627931808595}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!65 &603479370050216248
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,12 +150,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000005, z: 1.0000005}
-  m_Center: {x: 0, y: -0.000030517578, z: 0.0000009536743}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4190878207408437271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,3 +168,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749f47de0ad753c459bc56842b9fee6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &6861531766554721941
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420210627931808595}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
