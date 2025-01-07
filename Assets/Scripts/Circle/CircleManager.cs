@@ -40,10 +40,8 @@ public class CircleManager : MonoBehaviour
         leftAvatar.transform.position = GetAvatarPos(false);
         if (true)
         {
-            Debug.Log("restricting right");
             rightAvatar.transform.position = 
                 RestrictPointToCircle(rightAvatar.transform.position, avatarCircTransform.position, avatarCircDiameter / 2);
-            Debug.Log("restricting left");
             leftAvatar.transform.position = 
                 RestrictPointToCircle(leftAvatar.transform.position, avatarCircTransform.position, avatarCircDiameter / 2);
             //if (Vector3.Distance(avatarCircTransform.position, rightAvatar.transform.position) > avatarCircDiameter / 2)
