@@ -29,7 +29,7 @@ public class FrontEnd : MonoBehaviour
 
     public void OnLevelsButtonPressed()
     {
-        AudioManager.Instance.playSong(AudioManager.Instance.songs[1]);
+        NewAudioManager.Instance.frontEndButtonSFX.Play();
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }

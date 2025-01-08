@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System;
 
-public enum eMixers { music, effects }
-public class AudioManager : MonoBehaviour
+//public enum eMixers { music, effects }
+public class AudioManagerNathan : MonoBehaviour
 {
-    public static AudioManager Instance;
+    public static AudioManagerNathan Instance;
     public AudioSource audioSource;
     public AudioClip[] songs;
     //[NamedArray(typeof(eMixers))] public AudioMixerGroup[] mixers;
