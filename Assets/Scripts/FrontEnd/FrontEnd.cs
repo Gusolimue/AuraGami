@@ -3,11 +3,10 @@ using UnityEngine.UI;
 
 public class FrontEnd : MonoBehaviour
 {
-    //[SerializeField] Button playerButton;
-
     public void OnPlayButtonPressed()
     {
-        
+        SceneTransitionManager.Instance.SceneTransitionSplash();
+        SceneMgr.Instance.SceneTransition();
     }
 
     public void OnLevelsButtonPressed()
