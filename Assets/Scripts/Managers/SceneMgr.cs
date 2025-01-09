@@ -11,9 +11,14 @@ public class SceneMgr : MonoBehaviour
         Instance = this;
     }
 
-    public void SceneTransition() // Basic transition scene transition method that will be called when Play is pressed 
+    public void IntoLevelSceneTransition() // Basic transition scene transition method that will be called when Play is pressed 
                                   // in the FrontEnd.
     {
         SceneManager.LoadScene("TargetPrototypeScene - Nathan");
+    }
+
+    public void IntoFrontEndSceneTransition() 
+    {
+        SceneManager.LoadScene("FrontEndPrototypeScene - Nathan");
     }
 }

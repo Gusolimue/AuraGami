@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class SceneTransitionManager : MonoBehaviour
+public class FrontEndSceneTransitionManager : MonoBehaviour
 {
-    public static SceneTransitionManager Instance;
+    public static FrontEndSceneTransitionManager Instance;
     [SerializeField] Image transitionSplash;
 
     public float fadeInDuration;
@@ -14,7 +14,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         Instance = this;
         //transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g, transitionSplash.color.b,0);
-        StartCoroutine(TransitionFadeOut(1));
+        //StartCoroutine(TransitionFadeOut(1));
     }
 
     public void SceneTransitionSplash()
@@ -34,12 +34,12 @@ public class SceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-        SceneMgr.Instance.SceneTransition();
+        SceneMgr.Instance.IntoLevelSceneTransition();
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
         alpha = 1f;
-        fadeOutDuration = 3f;
+        fadeOutDuration = 1f;
 
         while (alpha > 0f)
         {

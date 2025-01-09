@@ -44,9 +44,10 @@ public class FrontEnd : MonoBehaviour
     {
         playButton_BG_OnPressed_Anim.enabled = true;
         playButton_BG_OnPressed_Anim.SetTrigger("OnPlayButtonPressed");
+        Debug.Log("Play Level!");
 
         NewAudioManager.Instance.frontEndButtonSFX.Play();
-        SceneTransitionManager.Instance.SceneTransitionSplash();
+        FrontEndSceneTransitionManager.Instance.SceneTransitionSplash();
     }
 
     public void OnLevelsButtonPressed()

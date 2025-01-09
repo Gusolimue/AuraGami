@@ -10,7 +10,9 @@ public class CanvasManager : MonoBehaviour
         ShowCanvasFE();
     }
 
-    public void ShowCanvasFE()
+    //When called, instantiates the FrontEnd canvas, all other methods act similarly for their respective canvas'.
+    //FRONT END CANVAS'
+    public void ShowCanvasFE() 
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE") as GameObject);
     }
@@ -23,5 +25,12 @@ public class CanvasManager : MonoBehaviour
     public void ShowCanvasSettings()
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_Settings") as GameObject);
+    }
+
+    //PAUSE MENU CAVAS'
+
+    public void ShowCanvasPauseMenu()
+    {
+        Instantiate(Resources.Load("Canvas_PauseMenu/" + "Canvas_PauseMenu") as GameObject);
     }
 }
