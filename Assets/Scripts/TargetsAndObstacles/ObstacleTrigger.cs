@@ -6,7 +6,7 @@ public class ObstacleTrigger : MonoBehaviour
     {
         if (other.CompareTag("Snake") || other.CompareTag("Crane"))
         {
-            GetComponentInParent<TargetBehavior>().ObstacleTriggered();
+            GetComponentInParent<TargetBehavior>().TargetTriggered();
             //PlayerHealth.Instance.healthPoints--;
             //PlayerHealth.Instance.ChangeHealth();
 

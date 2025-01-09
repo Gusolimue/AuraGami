@@ -3,7 +3,10 @@ using System.Collections;
 
 public class TargetBehavior : MonoBehaviour
 {
+    [Header("Variables to Adjust")]
     public int moveSpeed;
+    //[Header("Variables to Set")]
+    //[Header("Variables to Call")]
 
     void Update()
     {
@@ -11,20 +14,9 @@ public class TargetBehavior : MonoBehaviour
         transform.position += Time.deltaTime * transform.forward * moveSpeed;
         //StartCoroutine(DestroyInstantObjects());
     }
-    public void TargetTriggered()
+    public virtual void TargetTriggered()
     {
-        ScoreManager.Instance.scoreNum++;
-        ScoreManager.Instance.ChangeScore();
-        Destroy(gameObject);
-    }
-    public void ObstacleTriggered()
-    {
-        PlayerHealth.Instance.healthPoints--;
-        PlayerHealth.Instance.ChangeHealth();
-
-        ScoreManager.Instance.scoreNum--;
-        ScoreManager.Instance.ChangeScore();
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     public void CircleCollision()
