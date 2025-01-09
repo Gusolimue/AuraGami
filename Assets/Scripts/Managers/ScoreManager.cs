@@ -3,18 +3,28 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    [Header("Variables to Adjust")]
+    public int maxStreak = 6;
+    //[Header("Variables to Set")]
+    [Header("Variables to Call")]
     public static ScoreManager Instance;
-    public int scoreNum;
-    [SerializeField] TextMeshProUGUI scoreTXT;
+    public int currentStreak;
 
     private void Awake()
     {
         Instance = this;
-        scoreNum = 0;
+        ResetStreak();
     }
 
-    public void ChangeScore()
+    public void AddStreak()
     {
-        scoreTXT.text = "Score: " + scoreNum;
+        currentStreak++;
+        Hud.Instance.SetStreakText();
+    }
+
+    public void ResetStreak()
+    {
+        currentStreak = 0;
+        Hud.Instance.SetStreakText();
     }
 }
