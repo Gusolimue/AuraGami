@@ -7,31 +7,47 @@ public class SceneTransitionManager : MonoBehaviour
     public static SceneTransitionManager Instance;
     [SerializeField] Image transitionSplash;
 
-    public float fadeDuration = 10f;
+    public float fadeInDuration;
+    public float fadeOutDuration;
 
     private void Awake()
     {
         Instance = this;
-        transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g, transitionSplash.color.b,
-            0);
+        //transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g, transitionSplash.color.b,0);
+        StartCoroutine(TransitionFadeOut(1));
     }
 
     public void SceneTransitionSplash()
     {
-        StartCoroutine(TransitionFade(0));
+        StartCoroutine(TransitionFadeIn(0));
     }
 
-    public IEnumerator TransitionFade(float alpha)
+    public IEnumerator TransitionFadeIn(float alpha)
     {
         alpha = 0f;
+        fadeInDuration = 1f;
 
         while (alpha < 1f)
         {
-            alpha += Time.deltaTime / fadeDuration;
+            alpha += Time.deltaTime / fadeInDuration;
             transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g,
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
         SceneMgr.Instance.SceneTransition();
     }
+    public IEnumerator TransitionFadeOut(float alpha)
+    {
+        alpha = 1f;
+        fadeOutDuration = 3f;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime / fadeOutDuration;
+            transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g,
+                transitionSplash.color.b, alpha); // Updates alpha 
+            yield return null; // Wait for the next frame
+        }
+    }
+
 }
