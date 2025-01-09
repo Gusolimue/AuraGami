@@ -31,7 +31,6 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnEnter_Anim.enabled = true;
         playButton_BG_OnEnter_Anim.SetTrigger("OnPlayButtonEnter");
         playButton_BG.color = new Color(1f, 1f, 1f, 1f);
-        //StartCoroutine(PlayButtonBGColorChangeOnEnter(.3f, .5f, .9f, .7f));
     }
     public void OnPlayButtonExit()
     {
@@ -70,7 +69,7 @@ public class FrontEnd : MonoBehaviour
         Application.Quit();
     }
 
-    public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
+    /*public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
     {
         red = .3f;
         green = .5f;
@@ -87,5 +86,5 @@ public class FrontEnd : MonoBehaviour
             playButton_BG.color = new Color(red, green, blue, alpha); // Updates colors 
             yield return null; // Wait for the next frame
         }
-    }
+    }*/
 }

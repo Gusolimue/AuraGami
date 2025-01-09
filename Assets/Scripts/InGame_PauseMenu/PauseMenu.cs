@@ -23,20 +23,21 @@ public class PauseMenu : MonoBehaviour
 
     public void OnLevelsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        //NewAudioManager.Instance.frontEndButtonSFX.Play();
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }
 
     public void OnSettingsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        //NewAudioManager.Instance.frontEndButtonSFX.Play();
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
 
     public void OnMainMenuButtonPressed()
     {
-        SceneMgr.Instance.IntoFrontEndSceneTransition();
+        //SceneMgr.Instance.IntoFrontEndSceneTransition();
+        SceneMgr.Instance.LoadScene(eScene.frontEnd);
     }
 }

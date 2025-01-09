@@ -11,6 +11,16 @@ public class SceneMgr : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     public void IntoLevelSceneTransition() // Basic transition scene transition method that will be called when Play is pressed 
                                   // in the FrontEnd.
     {
@@ -20,5 +30,26 @@ public class SceneMgr : MonoBehaviour
     public void IntoFrontEndSceneTransition() 
     {
         SceneManager.LoadScene("FrontEndPrototypeScene - Nathan");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch((eScene)scene.buildIndex)
+        {
+            case eScene.frontEnd:
+                //CanvasManager.Instance.ShowCanvasFE();
+                break;
+
+            case eScene.levelOne:
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void LoadScene(eScene scene)
+    {
+        SceneManager.LoadScene((int)scene);
     }
 }
