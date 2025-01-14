@@ -1,50 +1,73 @@
 using UnityEngine;
-public enum eTargetType { left, right, obstacle }
+public enum eTargetType {none, left, right, obstacle }
+public enum eTargetPositions {topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight,
+    middleUpperRight, middleUpperLeft, middleBottomLeft, middleBottomRight }
+[System.Serializable]
+public class Level
+{
+    public Board[] boards;
+}
+
+[System.Serializable]
+public class Board
+{
+    public eTargetType topLeftTarget;
+    public eTargetType bottomLeftTarget;
+    public eTargetType topRightTarget;
+    public eTargetType bottomRightTarget;
+}
 public class SpawnerBehavior : MonoBehaviour
 {
+    [Header("Variables to Adjust")]
+    public Level level;
+    [Header("Variables to Set")]
+    public GameObject leftTargetPrefab;
+    public GameObject rightTargetPrefab;
+    public GameObject obstaclePrefab;
+    public GameObject boardPrefab;
+    [Header("Variables to Call")]
     public GameObject[] targetsAndObstacles;
     public Transform[] spawnPoints;
     public float beatTime = (60/130)*2;
-    private float timer;
-
+    int boardCount = 0;
     void Update()
     {
-        //if (timer>beatTime)
-        //{
-        //    // Instantiate objects in random positions.
-        //    GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], spawnPoints[Random.Range(0, 2)]);
 
-        //    // Zeroing out objects in game.
-        //    objects.transform.localPosition = Vector3.zero;
+    }
+    public void SpawnBoard()
+    {
+        // Instantiate board (write exception to stop when index is out of range of array)
+        // for each variable in board script...
+        SpawnTarget(level.boards[boardCount].topLeftTarget, null);
+        SpawnTarget(level.boards[boardCount].bottomLeftTarget, null);
+        SpawnTarget(level.boards[boardCount].topRightTarget, null);
+        SpawnTarget(level.boards[boardCount].bottomRightTarget, null);
 
-        //    // Will rotate spawnPoints (which will rotate objects) at different angles.
-        //    //objects.transform.Rotate(transform.forward, 90 * Random.Range(0, 4));
-        //    timer -= beatTime;
-        //}
-        //timer += Time.deltaTime;
+        boardCount++;
     }
 
-    public void SpawnTarget(/*eTargetType _targetType*/)
+    public void SpawnTarget(eTargetType _targetType, Transform _spawnPosition)
     {
-        //switch (_targetType)
-        //{
-        //    case eTargetType.left:
-        //        break;
-        //    case eTargetType.right:
-        //        break;
-        //    case eTargetType.obstacle:
-        //        break;
-        //    default:
-        //        break;
-        //}
 
-        // Instantiate objects in random positions.
-        Transform tmpTransform = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        GameObject objects = Instantiate(targetsAndObstacles[Random.Range(0, 2)], tmpTransform.position, tmpTransform.rotation);
+        switch (_targetType)
+        {
+            case eTargetType.left:
+                //instantiate correct prefab at _spawnPosition
+                break;
+            case eTargetType.right:
+                //instantiate correct prefab at _spawnPosition
+                break;
+            case eTargetType.obstacle:
+                //instantiate correct prefab at _spawnPosition
+                break;
+            default:
+                break;
+        }
 
-        // Zeroing out objects in game.
+        //script that 
+    }
+    public void GetSpawnPosition()
+    {
 
-        // Will rotate spawnPoints (which will rotate objects) at different angles.
-        //objects.transform.Rotate(transform.forward, 90 * Random.Range(0, 4));
     }
 }
