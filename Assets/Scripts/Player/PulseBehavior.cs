@@ -32,7 +32,6 @@ public class PulseBehavior : MonoBehaviour
     public void StartPulse()
     {
         count = 0;
-        Debug.Log("attempting pulse");
        pulseScale = 1f + (ScoreManager.Instance.currentStreak * scaleAmount);
         if (ScoreManager.Instance.currentStreak > 0)
         {

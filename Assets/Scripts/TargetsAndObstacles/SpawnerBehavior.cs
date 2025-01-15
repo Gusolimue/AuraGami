@@ -1,35 +1,31 @@
 using UnityEngine;
 public enum eTargetType {none, left, right, obstacle }
-public enum eTargetPositions {topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight,
-    middleUpperRight, middleUpperLeft, middleBottomLeft, middleBottomRight }
-[System.Serializable]
-public class Level
-{
-    public Board[] boards;
-}
-
 [System.Serializable]
 public class Board
 {
-    public eTargetType topLeftTarget;
-    public eTargetType bottomLeftTarget;
-    public eTargetType topRightTarget;
-    public eTargetType bottomRightTarget;
+    public Target[] targets;
+    public int waitTime;
+}
+[System.Serializable]
+public class Target
+{
+    public eTargetType targetType;
+    public eTargetPositions targetPosition;
 }
 public class SpawnerBehavior : MonoBehaviour
 {
     [Header("Variables to Adjust")]
-    public Level level;
+    public SoLevel level;
     [Header("Variables to Set")]
     public GameObject leftTargetPrefab;
     public GameObject rightTargetPrefab;
     public GameObject obstaclePrefab;
     public GameObject boardPrefab;
-    [Header("Variables to Call")]
-    public GameObject[] targetsAndObstacles;
-    public Transform[] spawnPoints;
-    public float beatTime = (60/130)*2;
+
+    BoardBehavior currentBoard;
     int boardCount = 0;
+    int waitCount = 0;
+    //[Header("Variables to Call")]
     void Update()
     {
 
@@ -38,36 +34,37 @@ public class SpawnerBehavior : MonoBehaviour
     {
         // Instantiate board (write exception to stop when index is out of range of array)
         // for each variable in board script...
-        SpawnTarget(level.boards[boardCount].topLeftTarget, null);
-        SpawnTarget(level.boards[boardCount].bottomLeftTarget, null);
-        SpawnTarget(level.boards[boardCount].topRightTarget, null);
-        SpawnTarget(level.boards[boardCount].bottomRightTarget, null);
-
-        boardCount++;
+        if (boardCount < level.boards.Length && waitCount >= level.boards[boardCount].waitTime)
+        {
+            currentBoard = Instantiate(boardPrefab, transform.position, transform.rotation).GetComponent<BoardBehavior>();
+            foreach (var Target in level.boards[boardCount].targets)
+            {
+                SpawnTarget(Target);
+            }
+            waitCount = 0;
+            boardCount++;
+        }
+        waitCount++;
     }
 
-    public void SpawnTarget(eTargetType _targetType, Transform _spawnPosition)
+    public void SpawnTarget(Target _target)
     {
+        float tmpRadius = /*CircleManager.Instance.avatarCircDiameter*/ 1.85f / 2f;
 
-        switch (_targetType)
+        GameObject tmpObject;
+        switch (_target.targetType)
         {
             case eTargetType.left:
-                //instantiate correct prefab at _spawnPosition
+                tmpObject = Instantiate(leftTargetPrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
                 break;
             case eTargetType.right:
-                //instantiate correct prefab at _spawnPosition
+                tmpObject = Instantiate(rightTargetPrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
                 break;
             case eTargetType.obstacle:
-                //instantiate correct prefab at _spawnPosition
+                tmpObject = Instantiate(obstaclePrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
                 break;
             default:
                 break;
         }
-
-        //script that 
-    }
-    public void GetSpawnPosition()
-    {
-
     }
 }
