@@ -46,7 +46,7 @@ public class FrontEnd : MonoBehaviour
         Debug.Log("Play Level!");
 
         NewAudioManager.Instance.frontEndButtonSFX.Play();
-        FrontEndSceneTransitionManager.Instance.SceneTransitionSplash();
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
     public void OnLevelsButtonPressed()
