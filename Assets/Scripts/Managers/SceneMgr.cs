@@ -5,6 +5,7 @@ public enum eScene { frontEnd, levelOne } // Will contain list of levels. Not in
 public class SceneMgr : MonoBehaviour
 {
     public static SceneMgr Instance;
+    public int whichScene;
 
     private void Awake()
     {
@@ -37,10 +38,11 @@ public class SceneMgr : MonoBehaviour
         switch((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
-                //CanvasManager.Instance.ShowCanvasFE();
+                whichScene = 0;
                 break;
 
             case eScene.levelOne:
+                whichScene = 1;
                 break;
 
             default:

@@ -12,20 +12,18 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
+        //SceneFadeOutTransitionSplash();
     }
 
-    public void SceneTransitionSplash()
+    public void SceneFadeInTransitionSplash()
     {
         StartCoroutine(TransitionFadeIn(0));
-        //StartCoroutine(TransitionFadeOut(1));
+    }
+
+    public void SceneFadeOutTransitionSplash()
+    {
+        StartCoroutine(TransitionFadeOut(1));
     }
 
     //COROUTINES WILL NO FUNCTION UPON RELOADING SCENE,
@@ -41,7 +39,8 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-        SceneMgr.Instance.LoadScene(eScene.levelOne);
+        if (SceneMgr.Instance.whichScene == 0) SceneMgr.Instance.LoadScene(eScene.levelOne);
+        if (SceneMgr.Instance.whichScene == 1) SceneMgr.Instance.LoadScene(eScene.frontEnd);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {

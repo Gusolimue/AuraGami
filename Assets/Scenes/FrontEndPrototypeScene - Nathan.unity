@@ -654,8 +654,8 @@ GameObject:
   m_Component:
   - component: {fileID: 613676096}
   - component: {fileID: 613676102}
-  - component: {fileID: 613676103}
   - component: {fileID: 613676104}
+  - component: {fileID: 613676105}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -692,21 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56526e15ad1e54e458a97455b646aea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &613676103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613676094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be5687402cac5543a49807adf07117d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionSplash: {fileID: 1889067098}
-  fadeInDuration: 10
-  fadeOutDuration: 20
+  whichScene: 0
 --- !u!114 &613676104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +703,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d7db134f2656e40bef965e4817a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &613676105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613676094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2057e81792bdf4a9d1d631301e7121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &756192406
@@ -1661,6 +1659,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1941756598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941756600}
+  - component: {fileID: 1941756599}
+  m_Layer: 0
+  m_Name: TransitionScreenManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1941756599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941756598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be5687402cac5543a49807adf07117d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionSplash: {fileID: 1889067098}
+  fadeInDuration: 10
+  fadeOutDuration: 20
+--- !u!4 &1941756600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941756598}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1699.6239, y: 719.48334, z: 602.0977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958586999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,3 +1912,4 @@ SceneRoots:
   - {fileID: 1968489854}
   - {fileID: 613676096}
   - {fileID: 1595968772}
+  - {fileID: 1941756600}
