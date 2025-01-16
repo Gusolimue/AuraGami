@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeGameButtonPressed()
     {
+        PauseManager.Instance.isPaused = false;
         Destroy(this.gameObject);
     }
 
@@ -38,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuButtonPressed()
     {
         //SceneMgr.Instance.IntoFrontEndSceneTransition();
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
         SceneMgr.Instance.LoadScene(eScene.frontEnd);
     }
 }
