@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeGameButtonPressed()
     {
+        PauseManager.Instance.isPaused = false;
         Destroy(this.gameObject);
     }
 

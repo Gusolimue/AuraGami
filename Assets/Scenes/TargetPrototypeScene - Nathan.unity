@@ -694,6 +694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ec34ba327f2d49ada4aef28991f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level:
+    boards: []
+  leftTargetPrefab: {fileID: 0}
+  rightTargetPrefab: {fileID: 0}
+  obstaclePrefab: {fileID: 0}
+  boardPrefab: {fileID: 0}
   targetsAndObstacles:
   - {fileID: 8115143063326862121, guid: 8d11be1076985e948ba7157a24322206, type: 3}
   - {fileID: 4542242642198502001, guid: 72a09e5345fd5964f968524f7ef02bc4, type: 3}
@@ -750,8 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cfe50e61a38794dbdb0678d0ca7663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreNum: 0
-  scoreTXT: {fileID: 1086905349}
+  maxStreak: 6
+  currentStreak: 0
 --- !u!114 &613676098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,8 +770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152d5cf3bbb900142ace578c2295c1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPointsTXT: {fileID: 1630177575}
-  healthPoints: 0
+  startingHealth: 4
+  currentHealth: 0
 --- !u!82 &613676099
 AudioSource:
   m_ObjectHideFlags: 0
@@ -890,6 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcafea4a806f9c4b9992443ab536c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openPauseMenuAction: {fileID: -1671955593117125952, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  isPaused: 0
 --- !u!114 &613676102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1452,6 +1460,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0ec34ba327f2d49ada4aef28991f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level:
+    boards: []
+  leftTargetPrefab: {fileID: 0}
+  rightTargetPrefab: {fileID: 0}
+  obstaclePrefab: {fileID: 0}
+  boardPrefab: {fileID: 0}
   targetsAndObstacles:
   - {fileID: 3908524654858322513, guid: f906210401417ce4fae3039cd2eab33d, type: 3}
   - {fileID: 4542242642198502001, guid: 72a09e5345fd5964f968524f7ef02bc4, type: 3}
