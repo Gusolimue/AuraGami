@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        /*if (Instance != null && Instance != this)
         {
             Debug.Log("Destroy New GameManager");
             Destroy(this.gameObject);
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
-        }
+        }*/
+        Instance = this;
     }
 }

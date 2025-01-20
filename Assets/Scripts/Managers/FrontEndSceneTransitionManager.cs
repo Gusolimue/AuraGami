@@ -13,7 +13,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //SceneFadeOutTransitionSplash();
+        SceneFadeOutTransitionSplash();
     }
 
     public void SceneFadeInTransitionSplash()
@@ -39,8 +39,8 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-        if (SceneMgr.Instance.whichScene == 0) SceneMgr.Instance.LoadScene(eScene.levelOne);
-        if (SceneMgr.Instance.whichScene == 1) SceneMgr.Instance.LoadScene(eScene.frontEnd);
+         LoadManager.Instance.LoadScene(eScene.levelOne);
+        //if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
