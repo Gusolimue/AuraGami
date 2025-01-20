@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum eScene { frontEnd, levelOne } // Will contain list of levels. Not in use currently!
-public class SceneMgr : MonoBehaviour
+public class LoadManager : MonoBehaviour
 {
-    public static SceneMgr Instance;
+    public static LoadManager Instance;
     public int whichScene;
 
     private void Awake()
