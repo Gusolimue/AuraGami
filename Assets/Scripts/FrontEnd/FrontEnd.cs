@@ -40,15 +40,13 @@ public class FrontEnd : MonoBehaviour
     {
         playButton_BG_OnEnter_Anim.enabled = true;
         playButton_BG_OnEnter_Anim.SetTrigger("OnPlayButtonEnter");
-        //StartCoroutine(PlayButtonBGColorChangeOnEnter(.3f, .5f, .9f, .7f));
-        OnEnterColorChange();
-        //playButton_BG.color = new Color(1f, 1f, 1f, 1f);
+        StartCoroutine(PlayButtonBGColorChangeOnEnter());
     }
     public void OnPlayButtonExit()
     {
         playButton_BG_OnExit_Anim.enabled = true;
         playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
-        //playButton_BG.color = new Color(.3f, .5f, .9f, .7f);
+        StartCoroutine(PlayButtonBGColorChangeOnExit());
     }
 
     public void OnPlayButtonPressed()
@@ -81,28 +79,34 @@ public class FrontEnd : MonoBehaviour
         Application.Quit();
     }
 
-    public void OnEnterColorChange()
+
+    public IEnumerator PlayButtonBGColorChangeOnEnter()
     {
         currentColor = whiteColor;
-        playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f);
-    }
+        float numGoal = 1f;
+        float numStart = 0f;
 
-    public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
-    {
-        red = .3f;
-        green = .5f;
-        blue = .9f;
-        alpha = .7f;
-
-        while (red < 1f && green < 1f && blue < 1f && alpha < 1f)
+        while (numStart < numGoal)
         {
-            red += Time.deltaTime / colorChangeDuration;
-            green += Time.deltaTime / colorChangeDuration;
-            blue += Time.deltaTime / colorChangeDuration;
-            alpha += Time.deltaTime / colorChangeDuration;
+            numStart += .01f;
 
-            playButton_BG.color = new Color(red, green, blue, alpha); // Updates colors 
+            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
             yield return null; // Wait for the next frame
         }
     }
+    public IEnumerator PlayButtonBGColorChangeOnExit()
+    {
+        currentColor = blueColor;
+        float numGoal = 1f;
+        float numStart = 0f;
+
+        while (numStart < numGoal)
+        {
+            numStart += .01f;
+
+            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
+            yield return null; // Wait for the next frame
+        }
+    }
+
 }
