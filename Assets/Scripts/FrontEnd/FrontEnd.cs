@@ -8,6 +8,11 @@ public class FrontEnd : MonoBehaviour
     [SerializeField] Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
     [SerializeField] GameObject playButton_BG_OnPressed;
+    [Space]
+    [Header("Play Button BG Colors")]
+    public Color whiteColor;
+    public Color blueColor;
+    private Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
     private Animator playButton_BG_OnExit_Anim;
@@ -17,26 +22,33 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
+        // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnPressed_Anim = playButton_BG_OnPressed.GetComponent<Animator>();
 
+        //Ensuring the animations don't play on awake.
         playButton_BG_OnEnter_Anim.enabled = false;
         playButton_BG_OnExit_Anim.enabled = false;
         playButton_BG_OnPressed_Anim.enabled = false;
+
+        currentColor = blueColor;
+        playButton_BG.color = currentColor;
     }
 
     public void OnPlayButtonEnter()
     {
         playButton_BG_OnEnter_Anim.enabled = true;
         playButton_BG_OnEnter_Anim.SetTrigger("OnPlayButtonEnter");
-        playButton_BG.color = new Color(1f, 1f, 1f, 1f);
+        //StartCoroutine(PlayButtonBGColorChangeOnEnter(.3f, .5f, .9f, .7f));
+        OnEnterColorChange();
+        //playButton_BG.color = new Color(1f, 1f, 1f, 1f);
     }
     public void OnPlayButtonExit()
     {
         playButton_BG_OnExit_Anim.enabled = true;
         playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
-        playButton_BG.color = new Color(.3f, .5f, .9f, .7f);
+        //playButton_BG.color = new Color(.3f, .5f, .9f, .7f);
     }
 
     public void OnPlayButtonPressed()
@@ -69,7 +81,13 @@ public class FrontEnd : MonoBehaviour
         Application.Quit();
     }
 
-    /*public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
+    public void OnEnterColorChange()
+    {
+        currentColor = whiteColor;
+        playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f);
+    }
+
+    public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
     {
         red = .3f;
         green = .5f;
@@ -86,5 +104,5 @@ public class FrontEnd : MonoBehaviour
             playButton_BG.color = new Color(red, green, blue, alpha); // Updates colors 
             yield return null; // Wait for the next frame
         }
-    }*/
+    }
 }
