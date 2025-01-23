@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
-
-public class ScoreManager : MonoBehaviour
+//sets and tracks the player's streak
+public class StreakManager : MonoBehaviour
 {
     [Header("Variables to Adjust")]
-    public int maxStreak = 6;
+    [SerializeField]
+    int maxStreak = 6;
     //[Header("Variables to Set")]
     [Header("Variables to Call")]
-    public static ScoreManager Instance;
+    public static StreakManager Instance;
     public int currentStreak;
 
     private void Awake()
@@ -15,13 +16,16 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
         ResetStreak();
     }
-
+    //adds to the player streak
     public void AddStreak()
     {
-        currentStreak++;
+        if (currentStreak < maxStreak)
+        {
+            currentStreak++;
+        }
         Hud.Instance.SetStreakText();
     }
-
+    //resets the player streak
     public void ResetStreak()
     {
         currentStreak = 0;

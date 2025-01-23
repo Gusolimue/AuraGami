@@ -1,17 +1,20 @@
 using UnityEngine;
 public enum eTargetType {none, left, right, obstacle }
+// a class to hold one "plane" of interactables
 [System.Serializable]
 public class Board
 {
     public Target[] targets;
     public int waitTime;
 }
+//an interactable to be set for a board
 [System.Serializable]
 public class Target
 {
     public eTargetType targetType;
     public eTargetPositions targetPosition;
 }
+//spawns boards from the level variable through a method called by beatmanager
 public class SpawnerBehavior : MonoBehaviour
 {
     [Header("Variables to Adjust")]
@@ -26,14 +29,10 @@ public class SpawnerBehavior : MonoBehaviour
     int boardCount = 0;
     int waitCount = 0;
     //[Header("Variables to Call")]
-    void Update()
-    {
 
-    }
+    //spawns a board with its targets when called
     public void SpawnBoard()
     {
-        // Instantiate board (write exception to stop when index is out of range of array)
-        // for each variable in board script...
         if (boardCount < level.boards.Length && waitCount >= level.boards[boardCount].waitTime)
         {
             currentBoard = Instantiate(boardPrefab, transform.position, transform.rotation).GetComponent<BoardBehavior>();
@@ -46,11 +45,9 @@ public class SpawnerBehavior : MonoBehaviour
         }
         waitCount++;
     }
-
+    //called to spawn every individual target when a board is spawned
     public void SpawnTarget(Target _target)
     {
-        float tmpRadius = /*CircleManager.Instance.avatarCircDiameter*/ 1.85f / 2f;
-
         GameObject tmpObject;
         switch (_target.targetType)
         {

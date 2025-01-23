@@ -10,14 +10,14 @@ public class TargetTrigger : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
-            GetComponentInParent<TargetBehavior>().TargetTriggered();
+            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
             //ScoreManager.Instance.scoreNum++;
             //ScoreManager.Instance.ChangeScore();
             //Destroy(gameObject);
         }
         if (other.CompareTag("Circle"))
         {
-            GetComponentInParent<TargetBehavior>().CircleCollision();
+            GetComponentInParent<BaseInteractableBehavior>().CircleCollision();
         }
     }
 }
