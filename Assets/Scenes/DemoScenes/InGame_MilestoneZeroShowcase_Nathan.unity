@@ -819,6 +819,8 @@ GameObject:
   - component: {fileID: 613676101}
   - component: {fileID: 613676099}
   - component: {fileID: 613676102}
+  - component: {fileID: 613676103}
+  - component: {fileID: 613676104}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1065,6 +1067,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStreak: 6
   currentStreak: 0
+--- !u!114 &613676103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613676094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcafea4a806f9c4b9992443ab536c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPauseMenuAction: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  isPaused: 0
+--- !u!114 &613676104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613676094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d7db134f2656e40bef965e4817a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &625652329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1407,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 63
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

@@ -41,7 +41,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         }
         //LoadManager.Instance.LoadScene(eScene.levelOne);
         if (LoadManager.Instance.whichScene == 0) LoadManager.Instance.LoadScene(eScene.levelOne);
-        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
+        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); PauseManager.Instance.PauseGame(false);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
