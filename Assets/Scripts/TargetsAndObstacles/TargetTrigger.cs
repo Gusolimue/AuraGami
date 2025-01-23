@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class NoteTrigger : MonoBehaviour
+public class TargetTrigger : MonoBehaviour
 {
     public string playerTag;
 
