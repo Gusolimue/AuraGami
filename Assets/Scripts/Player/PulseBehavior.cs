@@ -1,11 +1,12 @@
 using UnityEngine;
-
+//Sets and scales the pulse model depending on the player's streak size
 public class PulseBehavior : MonoBehaviour
 {
     [Header("Variables to Adjust")]
-    public float scaleAmount = .2f;
-    public float pulseSpeed = 5f;
-    public float maxStreakScaleMinAmount = 1.1f;
+    [SerializeField]
+    float scaleAmount = .2f;
+    [SerializeField]
+    float pulseSpeed = 5f;
     [Header("Variables to Set")]
     public GameObject pulseObject;
     //[Header("Variables to Call")]
@@ -17,26 +18,17 @@ public class PulseBehavior : MonoBehaviour
     {
         originScale = pulseObject.transform.localScale;
     }
+    //scales the pulse model to the new target smoothly
     void Update()
     {
-        pulseScale = 1f + (ScoreManager.Instance.currentStreak * scaleAmount);
+        pulseScale = 1f + (StreakManager.Instance.currentStreak * scaleAmount);
         count += Time.deltaTime;
         pulseObject.transform.localScale = Vector3.Lerp(pulseObject.transform.localScale, originScale * pulseScale, count * pulseSpeed);
-        //if (pulseObject.activeSelf == true)
-        //{
-        //    pulseObject.transform.localScale = Vector3.Lerp(transform.localScale, originScale, Time.deltaTime);
-        //    if (pulseObject.transform.localScale == originScale) pulseObject.SetActive(false);
-        //}
     }
-
+    //sets a new target for the player model to scale to
     public void StartPulse()
     {
-        count = 0;
-        Debug.Log("attempting pulse");
-       pulseScale = 1f + (ScoreManager.Instance.currentStreak * scaleAmount);
-        if (ScoreManager.Instance.currentStreak > 0)
-        {
-            //pulseObject.SetActive(true);
-        }
+       count = 0;
+       pulseScale = 1f + (StreakManager.Instance.currentStreak * scaleAmount);
     }
 }
