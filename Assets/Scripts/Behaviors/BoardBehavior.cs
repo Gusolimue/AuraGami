@@ -3,7 +3,8 @@ using UnityEngine;
 public enum eTargetPositions
 {
     topLeft, topCenter, topRight, bottomLeft, bottomCenter, bottomRight,
-    middleUpperRight, middleUpperLeft, middleBottomLeft, middleBottomRight
+    middleUpperRight, middleUpperLeft, middleBottomLeft, middleBottomRight,
+    farLeft, farRight, middleCenter
 }
 public class BoardBehavior : MonoBehaviour
 {
