@@ -3,25 +3,39 @@ using UnityEngine.UI;
 public enum eControlType {restrictZ, free };
 public class CircleManager : MonoBehaviour
 {
-    public static CircleManager Instance;
-    public bool restrictedToCircle = true;
-
+    //Sets the size of the player's interaction circle and the avatar's movement circle. Moves avatars according to the player controllers
+    //relative to the size of the circles. Provides a reference point for instantiation around the circle.
+    [Header("Variables to Adjust")]
     public float playerCircDiameter;
     public float avatarCircDiameter;
 
-    public RectTransform playerCircRectTransform;
-    public RectTransform avatarCircRectTransform;
+    [Header("Variables to Set")]
+    [SerializeField]
+    RectTransform playerCircRectTransform;
+    [SerializeField]
+    RectTransform avatarCircRectTransform;
 
-    public Transform playerCircTransform;
-    public Transform avatarCircTransform;
+    [SerializeField]
+    Transform playerCircTransform;
+    [SerializeField]
+    Transform avatarCircTransform;
+    
+    [SerializeField]
+    Transform rightControllerTransform;
+    [SerializeField]
+    Transform leftControllerTransform;
 
-    public Transform rightControllerTransform;
-    public Transform leftControllerTransform;
+    [SerializeField]
+    GameObject rightAvatar;
+    [SerializeField]
+    GameObject leftAvatar;
 
-    public GameObject rightAvatar;
-    public GameObject leftAvatar;
+    [Header("Variables to Call")]
+    public static CircleManager Instance;
+
 
     float scaleMult;
+
     private void Awake()
     {
         Instance = this;
@@ -38,53 +52,26 @@ public class CircleManager : MonoBehaviour
     {
         rightAvatar.transform.position = GetAvatarPos(true);
         leftAvatar.transform.position = GetAvatarPos(false);
-        if (true)
-        {
-            rightAvatar.transform.position = 
-                RestrictPointToCircle(rightAvatar.transform.position, avatarCircTransform.position, avatarCircDiameter / 2);
-            leftAvatar.transform.position = 
-                RestrictPointToCircle(leftAvatar.transform.position, avatarCircTransform.position, avatarCircDiameter / 2);
-            //if (Vector3.Distance(avatarCircTransform.position, rightAvatar.transform.position) > avatarCircDiameter / 2)
-            //{
-            //}
-            //if (Vector3.Distance(avatarCircTransform.position, leftAvatar.transform.position) > avatarCircDiameter / 2)
-            //{
-            //}
-        }
     }
-    public static Vector3 RestrictPointToCircle(Vector3 point, Vector3 circleCenter, float radius)
-
-    {
-        float diffX = point.x - circleCenter.x;
-        float diffY = point.y - circleCenter.y;
-        float distance = Mathf.Sqrt(diffX * diffX + diffY * diffY);
-
-        if (distance > radius)
-        {
-            float normalizedX = diffX / distance;
-            float normalizedY = diffY / distance;
-
-            point.x = circleCenter.x + normalizedX * radius;
-            point.y = circleCenter.y + normalizedY * radius;
-        }
-        return point;
-    }
+    //Given a bool to determine which controller. Returns a vector3 of the position the avatar will be set to that update
     Vector3 GetAvatarPos(bool right)
     {
-        Vector3 returnPos;
+        Vector3 tmpPos;
         if(right)
         {
-            returnPos = avatarCircTransform.position;
-            returnPos += (rightControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
-            returnPos = new Vector3(returnPos.x, returnPos.y, avatarCircTransform.position.z);
-            return returnPos;
+            tmpPos = avatarCircTransform.position;
+            tmpPos += (rightControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
+            tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
+            return tmpPos;
         }
         else
         {
-            returnPos = avatarCircTransform.position;
-            returnPos += (leftControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
-            returnPos = new Vector3(returnPos.x, returnPos.y, avatarCircTransform.position.z);
-            return returnPos;
+            tmpPos = avatarCircTransform.position;
+            tmpPos += (leftControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
+            tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
+            return tmpPos;
         }
     }
+
+    
 }

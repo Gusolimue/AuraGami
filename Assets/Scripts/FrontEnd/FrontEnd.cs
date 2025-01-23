@@ -8,6 +8,11 @@ public class FrontEnd : MonoBehaviour
     [SerializeField] Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
     [SerializeField] GameObject playButton_BG_OnPressed;
+    [Space]
+    [Header("Play Button BG Colors")]
+    public Color whiteColor;
+    public Color blueColor;
+    private Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
     private Animator playButton_BG_OnExit_Anim;
@@ -17,26 +22,31 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
+        // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnPressed_Anim = playButton_BG_OnPressed.GetComponent<Animator>();
 
+        //Ensuring the animations don't play on awake.
         playButton_BG_OnEnter_Anim.enabled = false;
         playButton_BG_OnExit_Anim.enabled = false;
         playButton_BG_OnPressed_Anim.enabled = false;
+
+        currentColor = blueColor;
+        playButton_BG.color = currentColor;
     }
 
     public void OnPlayButtonEnter()
     {
         playButton_BG_OnEnter_Anim.enabled = true;
         playButton_BG_OnEnter_Anim.SetTrigger("OnPlayButtonEnter");
-        playButton_BG.color = new Color(1f, 1f, 1f, 1f);
+        StartCoroutine(PlayButtonBGColorChangeOnEnter());
     }
     public void OnPlayButtonExit()
     {
         playButton_BG_OnExit_Anim.enabled = true;
         playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
-        playButton_BG.color = new Color(.3f, .5f, .9f, .7f);
+        StartCoroutine(PlayButtonBGColorChangeOnExit());
     }
 
     public void OnPlayButtonPressed()
@@ -69,22 +79,34 @@ public class FrontEnd : MonoBehaviour
         Application.Quit();
     }
 
-    /*public IEnumerator PlayButtonBGColorChangeOnEnter(float red, float green, float blue, float alpha)
+
+    public IEnumerator PlayButtonBGColorChangeOnEnter()
     {
-        red = .3f;
-        green = .5f;
-        blue = .9f;
-        alpha = .7f;
+        currentColor = whiteColor;
+        float numGoal = 1f;
+        float numStart = 0f;
 
-        while (red < 1f && green < 1f && blue < 1f && alpha < 1f)
+        while (numStart < numGoal)
         {
-            red += Time.deltaTime / colorChangeDuration;
-            green += Time.deltaTime / colorChangeDuration;
-            blue += Time.deltaTime / colorChangeDuration;
-            alpha += Time.deltaTime / colorChangeDuration;
+            numStart += .01f;
 
-            playButton_BG.color = new Color(red, green, blue, alpha); // Updates colors 
+            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
             yield return null; // Wait for the next frame
         }
-    }*/
+    }
+    public IEnumerator PlayButtonBGColorChangeOnExit()
+    {
+        currentColor = blueColor;
+        float numGoal = 1f;
+        float numStart = 0f;
+
+        while (numStart < numGoal)
+        {
+            numStart += .01f;
+
+            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
+            yield return null; // Wait for the next frame
+        }
+    }
+
 }

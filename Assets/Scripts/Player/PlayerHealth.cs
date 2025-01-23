@@ -24,6 +24,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= _amount;
         Hud.Instance.SetHealthText();
-        ScoreManager.Instance.ResetStreak();
+        StreakManager.Instance.ResetStreak();
     }
 }
