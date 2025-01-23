@@ -21,36 +21,18 @@ public class BeatManager : MonoBehaviour
 public class Intervals
 {
     [SerializeField] private float steps;
-    [SerializeField] float offsetStep;
     [SerializeField] UnityEvent trigger;
     int lastInterval;
-    bool offset = false;
     public float GetIntervalLength(float _bpm)
     {
-        if (offsetStep > 0)
-        {
-            offset = true;
-            return 60f / (_bpm * offsetStep);
-        }
-        else
-        {
-            return 60f / (_bpm * steps);
-        }
+        return 60f / (_bpm * steps);
     }
     public void CheckForNewInterval (float interval)
     {
         if (Mathf.FloorToInt(interval) != lastInterval)         
         {
             lastInterval = Mathf.FloorToInt(interval);
-            if (offset)
-            {
-                offsetStep = 0;
-                offset = false;
-            }
-            else
-            {
-                trigger.Invoke();
-            }
+            trigger.Invoke();
         }
     }
 }
