@@ -1,5 +1,7 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PauseManager : MonoBehaviour
 {
@@ -7,9 +9,14 @@ public class PauseManager : MonoBehaviour
     public InputActionReference openPauseMenuAction;
     public bool isPaused = false;
 
+    [Header("Unpause Elements")]
+    [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
+    public int countdownTimer = 3;
+
     private void Awake()
     {
         Instance = this;
+        countdownTimer_TXT.gameObject.SetActive(false);
         PauseGame(false);
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
@@ -59,5 +66,30 @@ public class PauseManager : MonoBehaviour
                 openPauseMenuAction.action.performed += OnPauseButtonPressed;
                 break;
         }
+    }
+
+    string timerCountdown(float time)
+    {
+        int seconds = Mathf.FloorToInt(time % 60f);
+        return string.Format("{0}", seconds);
+    }
+
+
+    public IEnumerator UnpauseCountdown()
+    {
+        countdownTimer = 3;
+        countdownTimer_TXT.gameObject.SetActive(true);
+        PauseGame(false);
+        while (countdownTimer > -1)
+        {
+            Debug.Log("Starting UnPause Countdown");
+            countdownTimer_TXT.text = timerCountdown(countdownTimer);
+            countdownTimer -= 1;
+            yield return new WaitForSecondsRealtime(1f);
+            yield return null; // Wait for the next frame
+        }
+        countdownTimer_TXT.gameObject.SetActive(false);
+
+        isPaused = false;
     }
 }
