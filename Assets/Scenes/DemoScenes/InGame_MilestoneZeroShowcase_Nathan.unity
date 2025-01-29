@@ -425,7 +425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleAmount: 0.05
   pulseSpeed: 0.33
-  maxStreakScaleMinAmount: 1.1
   pulseObject: {fileID: 581968599}
 --- !u!1 &248432202
 GameObject:
@@ -811,6 +810,8 @@ GameObject:
   - component: {fileID: 613676100}
   - component: {fileID: 613676101}
   - component: {fileID: 613676099}
+  - component: {fileID: 613676103}
+  - component: {fileID: 613676102}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -845,8 +846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cfe50e61a38794dbdb0678d0ca7663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStreak: 6
-  currentStreak: 0
 --- !u!114 &613676098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,9 +969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6f55cc4e1c3ba4db54daf9ac661642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 613676099}
   songs:
   - {fileID: 8300000, guid: 3c1ca2921c293cd4a8a1897093d728e0, type: 3}
+  audioSource: {fileID: 613676099}
 --- !u!114 &613676101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +988,6 @@ MonoBehaviour:
   audioSource: {fileID: 613676099}
   intervals:
   - steps: 0.25
-    offsetStep: 0
     trigger:
       m_PersistentCalls:
         m_Calls:
@@ -1006,7 +1004,6 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - steps: 0.5
-    offsetStep: 0
     trigger:
       m_PersistentCalls:
         m_Calls:
@@ -1046,6 +1043,32 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &613676102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613676094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcafea4a806f9c4b9992443ab536c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openPauseMenuAction: {fileID: -1671955593117125952, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  isPaused: 0
+--- !u!114 &613676103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613676094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d7db134f2656e40bef965e4817a980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &625652329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,7 +1809,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleAmount: 0.05
   pulseSpeed: 0.33
-  maxStreakScaleMinAmount: 1.1
   pulseObject: {fileID: 625652329}
 --- !u!4 &1603122768 stripped
 Transform:
