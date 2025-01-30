@@ -39,9 +39,9 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-         //LoadManager.Instance.LoadScene(eScene.levelOne);
-        if (LoadManager.Instance.whichScene >= 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
+        //LoadManager.Instance.LoadScene(eScene.levelOne);
         if (LoadManager.Instance.whichScene == 0) LoadManager.Instance.LoadScene(eScene.levelOne);
+        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); PauseManager.Instance.PauseGame(false);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {

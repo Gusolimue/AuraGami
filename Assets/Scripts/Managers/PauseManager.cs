@@ -23,6 +23,11 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
+    private void Update()
+    {
+        OnPauseKeyPressed();
+    }
+
     private void OnDestroy()
     {
         openPauseMenuAction.action.Disable();
@@ -51,6 +56,28 @@ public class PauseManager : MonoBehaviour
             PauseMenu.Instance.OnResumeGameButtonPressed();
             Debug.Log("Is Unpaused!");
         }
+    }
+
+    public void OnPauseKeyPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isPaused == false)
+            {
+                CanvasManager.Instance.ShowCanvasPauseMenu();
+                isPaused = true;
+                PauseGame(true);
+                Debug.Log("Is Paused!");
+            }
+            else if (isPaused == true)
+            {
+                isPaused = false;
+                PauseGame(false);
+                PauseMenu.Instance.OnResumeGameButtonPressed();
+                Debug.Log("Is Unpaused!");
+            }
+        }
+        
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)

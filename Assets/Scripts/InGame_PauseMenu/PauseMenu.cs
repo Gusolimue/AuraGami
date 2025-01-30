@@ -41,8 +41,6 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuButtonPressed()
     {
         //SceneMgr.Instance.IntoFrontEndSceneTransition();
-        PauseManager.Instance.PauseGame(false);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
-        LoadManager.Instance.LoadScene(eScene.frontEnd);
     }
 }
