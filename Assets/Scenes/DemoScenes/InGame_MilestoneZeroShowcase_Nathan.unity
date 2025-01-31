@@ -856,6 +856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c2841d1669ff24dbf8aab4a86550fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxStreak: 6
+  currentStreak: 0
 --- !u!114 &613676098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1083,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openPauseMenuAction: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   isPaused: 0
+  countdownTimer_TXT: {fileID: 0}
+  countdownTimer: 3
 --- !u!114 &613676104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,6 +2840,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6326459198398141481, guid: cba571676f2bf044d9f2f028f0b940e4, type: 3}
+      propertyPath: leftTargetPrefab
+      value: 
+      objectReference: {fileID: 8115143063326862121, guid: 8d11be1076985e948ba7157a24322206, type: 3}
+    - target: {fileID: 6326459198398141481, guid: cba571676f2bf044d9f2f028f0b940e4, type: 3}
+      propertyPath: rightTargetPrefab
+      value: 
+      objectReference: {fileID: 3908524654858322513, guid: f906210401417ce4fae3039cd2eab33d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        countdownTimer_TXT.gameObject.SetActive(false);
+        //countdownTimer_TXT.gameObject.SetActive(false);
         PauseGame(false);
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
@@ -110,10 +110,9 @@ public class PauseManager : MonoBehaviour
         while (countdownTimer > -1)
         {
             Debug.Log("Starting UnPause Countdown");
-            countdownTimer_TXT.text = timerCountdown(countdownTimer);
-            countdownTimer -= 1;
             yield return new WaitForSecondsRealtime(1f);
-            yield return null; // Wait for the next frame
+            countdownTimer_TXT.text = countdownTimer.ToString();
+            countdownTimer -= 1;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
 
