@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //countdownTimer_TXT.gameObject.SetActive(false);
+        countdownTimer_TXT.gameObject.SetActive(false);
         PauseGame(false);
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
