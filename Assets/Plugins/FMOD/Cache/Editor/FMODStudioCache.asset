@@ -53,15 +53,15 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -1882684308146411747}
-  - {fileID: -2885513681345201492}
+  - {fileID: 7311590139729070584}
+  - {fileID: 6031156426567345643}
   EditorEvents:
-  - {fileID: 2470070438699567317}
+  - {fileID: 8009124518649529001}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -2885513681345201492}
+  - {fileID: 6031156426567345643}
   StringsBanks:
-  - {fileID: -1882684308146411747}
+  - {fileID: 7311590139729070584}
   cacheTime: 638740991412487095
   cacheVersion: 131622
 --- !u!114 &2470070438699567317
@@ -84,6 +84,73 @@ MonoBehaviour:
     Data4: 489049943
   Banks:
   - {fileID: -2885513681345201492}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 229497
+--- !u!114 &6031156426567345643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../AuragamiFmod/Auragami/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638740991412472129
+  FileSizes:
+  - Name: Desktop
+    Value: 2248704
+  Exists: 1
+--- !u!114 &7311590139729070584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638740991412487095
+  FileSizes:
+  - Name: Desktop
+    Value: 762
+  Exists: 1
+--- !u!114 &8009124518649529001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music Freedom
+  m_EditorClassIdentifier: 
+  Path: event:/Music Freedom
+  Guid:
+    Data1: -1014673978
+    Data2: 1172892062
+    Data3: -1242862152
+    Data4: 489049943
+  Banks:
+  - {fileID: 6031156426567345643}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
