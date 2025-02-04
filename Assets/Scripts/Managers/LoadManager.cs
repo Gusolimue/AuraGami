@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum eScene { frontEnd, levelOne } // Will contain list of levels. Not in use currently!
+public enum eScene { frontEnd, levelFreedom } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -41,7 +41,7 @@ public class LoadManager : MonoBehaviour
                 whichScene = 0;
                 break;
 
-            case eScene.levelOne:
+            case eScene.levelFreedom:
                 whichScene = 1;
                 break;
 

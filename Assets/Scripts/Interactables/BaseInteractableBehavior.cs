@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections;
 //Base Script to source for all in game interactables (targets and hazards)
-
+public enum eSide { left, right }
 public class BaseInteractableBehavior : MonoBehaviour
 {
-    [Header("Variables to Adjust")]
     public int moveSpeed;
-    //[Header("Variables to Set")]
-    //[Header("Variables to Call")]
+    eSide side;
+
+    public virtual void InitInteractable(eSide _eSide)
+    {
+        side = _eSide;
+        
+    }
 
     void Update()
     {
@@ -24,5 +28,21 @@ public class BaseInteractableBehavior : MonoBehaviour
     public void CircleCollision()
     {
         Destroy(this.gameObject, 2f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.GetComponent<PulseBehavior>())
+        {
+            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
+            //ScoreManager.Instance.scoreNum++;
+            //ScoreManager.Instance.ChangeScore();
+            //Destroy(gameObject);
+        }
+        if (other.CompareTag("Circle"))
+        {
+            GetComponentInParent<BaseInteractableBehavior>().CircleCollision();
+        }
     }
 }

@@ -4,7 +4,7 @@ public class LevelSelect : MonoBehaviour
 {
    public void OnBackButtonPressed() // When pressed, destroys Canvas_LevelSelect and instantiates Canvas_FrontEnd.
    {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasFE();
         Destroy(this.gameObject);
    }

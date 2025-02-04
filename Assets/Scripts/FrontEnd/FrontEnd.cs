@@ -55,28 +55,27 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnPressed_Anim.enabled = true;
         playButton_BG_OnPressed_Anim.SetTrigger("OnPlayButtonPressed");
         Debug.Log("Play Level!");
-
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
     public void OnLevelsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }
 
     public void OnSettingsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
 
     public void OnQuitButtonPressed() // Will exit game (works for builds only).
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Application.Quit();
     }
 
