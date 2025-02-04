@@ -9,10 +9,14 @@ public class APManager : MonoBehaviour
     [SerializeField] Slider sigilTwo;
     [SerializeField] Slider sigilThree;
     [Space]
-    [Header("Sigil Variables")]
+    [Header("Sigil Values")]
     public float ap = .1f;
     public float curAP = 0f;
+    [Space]
+    [Header("Multiplier Values")]
     public float multBuildUp;
+    public float maxMult = .5f;
+    public float apIncrease = .1f;
 
     public int curSigil;
     public bool isMaxMult = false;
@@ -59,8 +63,8 @@ public class APManager : MonoBehaviour
     {
         if (multBuildUp >= 1f) 
         {
-            if (isMaxMult == false) ap += .1f;
-            else ap = .5f;
+            if (isMaxMult == false) ap += apIncrease;
+            else ap = maxMult;
             multBuildUp = 0f;
         }
 
