@@ -3,8 +3,10 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public Level level;
-
     public static LevelManager Instance;
+    [Header("Level Attributes"), Space]
+    public float spawnDistance;
+    public int beatsToPlayer;
 
     private void Awake()
     {

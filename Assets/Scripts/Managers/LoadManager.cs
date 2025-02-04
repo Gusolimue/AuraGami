@@ -35,13 +35,16 @@ public class LoadManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        switch((eScene)scene.buildIndex)
+        Debug.Log("<color=yellow>SceneLoaded " + scene.name + "</color>");
+        switch ((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 0;
                 break;
 
             case eScene.levelFreedom:
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 1;
                 break;
 

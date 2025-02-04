@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 public enum eControlType {restrictZ, free };
-public class CircleManager : MonoBehaviour
+public class AvatarManager : MonoBehaviour
 {
     //Sets the size of the player's interaction circle and the avatar's movement circle. Moves avatars according to the player controllers
     //relative to the size of the circles. Provides a reference point for instantiation around the circle.
@@ -31,7 +31,7 @@ public class CircleManager : MonoBehaviour
     GameObject leftAvatar;
 
     [Header("Variables to Call")]
-    public static CircleManager Instance;
+    public static AvatarManager Instance;
 
 
     float scaleMult;

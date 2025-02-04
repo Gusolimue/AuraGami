@@ -10,14 +10,18 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField]
     EventReference music;
-    public TimelineInfo timelineInfo = null;
-    GCHandle timelineHandle;
-
-    private FMOD.Studio.EVENT_CALLBACK beatCallback;
     private void Awake()
     {
         Instance = this;
+        musicInstance = RuntimeManager.CreateInstance(music);
+        musicInstance.start();
     }
+    public TimelineInfo timelineInfo = null;
+    GCHandle timelineHandle;
+
+    private FMOD.Studio.EventInstance musicInstance;
+    private FMOD.Studio.EVENT_CALLBACK beatCallback;
+
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
     {
@@ -29,13 +33,15 @@ public class BeatManager : MonoBehaviour
         timelineInfo = new TimelineInfo();
         beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
         timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
-        AudioManager.Instance.currentMusicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
-        AudioManager.Instance.currentMusicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
+        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
             | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
     }
     public void OnDestroy()
     {
-        AudioManager.Instance.currentMusicInstance.setUserData(IntPtr.Zero);
+        musicInstance.setUserData(IntPtr.Zero);
+        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicInstance.release();
         timelineHandle.Free();
     }
 

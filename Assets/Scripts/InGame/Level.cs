@@ -37,7 +37,17 @@ public class Level : MonoBehaviour
     [SerializeField]
     void ShowLevel()
     {
-        SpawnBoard();
+        if (levelPreview != null)
+        {
+            DestroyImmediate(levelPreview);
+        }
+        levelPreview = new GameObject("Level Preview");
+        levelPreview.transform.parent = this.transform;
+        levelPreview.transform.position = Vector3.zero;
+        for (int i = 0; i < stage1.Count; i++)
+        {
+            SpawnBoard(i);
+        }
     }
     private void Awake()
     {
@@ -47,47 +57,51 @@ public class Level : MonoBehaviour
         }
     }
     //spawns a board with its targets when called
-    int boardCount;
     GameObject currentBoard;
     public GameObject levelPreview;
-    public void SpawnBoard()
+    public void SpawnBoard(int num)
     {
-        if(levelPreview != null)
+        currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
+            as GameObject, levelPreview.transform);
+        currentBoard.transform.position += new Vector3(0, 0, .2f * num);
+        foreach (var Target in stage1[num].interactables)
         {
-            DestroyImmediate(levelPreview);
-        }
-        levelPreview = new GameObject("Level Preview");
-        levelPreview.transform.parent = this.transform;
-        levelPreview.transform.position = Vector3.zero;
-        for (int i = 0; i < stage1.Count; i++)
-        {
-            currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
-                as GameObject, levelPreview.transform);
-            currentBoard.transform.position += new Vector3(0, 0, .2f * i);
-            //foreach (var Target in currentBoard.GetComponent<Board>().interactables)
-            //{
-            //    SpawnTarget(Target);
-            //}
+            SpawnTarget(Target);
         }
     }
+
     //called to spawn every individual target when a board is spawned
     public void SpawnTarget(Interactable _target)
     {
-        //GameObject tmpObject;
-        //switch (_target.interactableType)
-        //{
-        //    case eTargetType.left:
-        //        tmpObject = Instantiate(leftTargetPrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
-        //        break;
-        //    case eTargetType.right:
-        //        tmpObject = Instantiate(rightTargetPrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
-        //        break;
-        //    case eTargetType.obstacle:
-        //        tmpObject = Instantiate(obstaclePrefab, currentBoard.spawnPositions[(int)_target.targetPosition].transform);
-        //        break;
-        //    default:
-        //        break;
-        //}
+        GameObject tmpObject;
+        switch (_target.interactableType)
+        {
+            case eTargetType.regularTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, levelPreview.transform);
+                break;
+            case eTargetType.multihitTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, levelPreview.transform);
+                break;
+            case eTargetType.threadedTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, levelPreview.transform);
+                break;
+            case eTargetType.precisionTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, levelPreview.transform);
+                break;
+            case eTargetType.regularObstacle:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularObstaclePrefab")
+            as GameObject, levelPreview.transform);
+                break;
+            default:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, levelPreview.transform);
+                break;
+        }
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
     }
     [Header("Level Editing")]
     //fix the organization, also buttons are not showing where they should
@@ -170,6 +184,7 @@ public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisi
 public class Interactable
 {
     public eTargetType interactableType;
+    public eSide side;
     [Range(0, 359)]
     public int interactableAngle;
     [Range(0f, 1f)]
@@ -179,20 +194,4 @@ public class Interactable
     [ShowField(nameof(interactableType), eTargetType.multihitTarget)] public eTargetPositions[] navPositions;
 
     [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public eTargetPositions[] endingPosition;
-
-
-    //public void InteractableTypeSet(eTargetType eTargetType)
-    //{
-    //    switch (eTargetType)
-    //    {
-    //        case eTargetType.multihitTarget:
-    //            multihitTargetCondition = true;
-    //            threadedTargetCondition = false;
-    //            break;
-    //        case eTargetType.threadedTarget:
-    //            multihitTargetCondition = false;
-    //            threadedTargetCondition = true;
-    //            break;
-    //    }
-    //}
 }

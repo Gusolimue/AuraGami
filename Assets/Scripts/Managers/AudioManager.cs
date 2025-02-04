@@ -67,7 +67,6 @@ public class AudioManager : MonoBehaviour
 
         Master = FMODUnity.RuntimeManager.GetBus("bus:/");
         SetVolumeMaster(.4f);
-        PlayMusic(music_menu_titlescreen, 0);
     }
 
     public void PlaySFX(EventReference sfxEvent)
