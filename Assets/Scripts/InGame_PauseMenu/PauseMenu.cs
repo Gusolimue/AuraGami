@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public void OnRestartGameButtonPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PauseManager.Instance.PauseGame(false); //Tmp
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
         Destroy(this.gameObject);
     }
