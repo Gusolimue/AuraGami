@@ -12,20 +12,19 @@ public class APManager : MonoBehaviour
     [Header("Sigil Variables")]
     public float ap = .1f;
     public float curAP = 0f;
-    //public int apMultiplier = 1;
     public float multBuildUp;
 
     public int curSigil;
+    public bool isMaxMult = false;
 
     private void Awake()
     {
         Instance = this;
-        curSigil = 1;    
+        curSigil = 1;  
     }
 
     public void IncreaseAP()
     {
-        //ap *= apMultiplier;
         curAP += ap;
         multBuildUp += .1f;
 
@@ -35,12 +34,10 @@ public class APManager : MonoBehaviour
 
         Debug.Log("AP Earned: " + ap);
         Debug.Log("Current AP Cumulation: " + curAP);
-        //Debug.Log("Mult: " + apMultiplier);
     }
 
     public void DecreaseAP()
     {
-        //apMultiplier = 1;
         curAP -= ap;
         ap = .1f;
         if (curSigil == 1) sigilOne.value -= ap;
@@ -62,12 +59,12 @@ public class APManager : MonoBehaviour
     {
         if (multBuildUp >= 1f) 
         {
-            //apMultiplier += 1;
-            ap += .1f;
+            if (isMaxMult == false) ap += .1f;
+            else ap = .5f;
             multBuildUp = 0f;
         }
 
         if (sigilOne.value == 2) curSigil = 2;
-        if (sigilTwo.value == 2) curSigil = 3;
+        if (sigilTwo.value == 4) curSigil = 3;
     }
 }
