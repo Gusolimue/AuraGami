@@ -9,9 +9,14 @@ public class PauseManager : MonoBehaviour
     public InputActionReference openPauseMenuAction;
     public bool isPaused = false;
 
+    [Header("Avatars")]
+    [SerializeField] GameObject naginiAvatar;
+    [SerializeField] GameObject yataAvatar;
+
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
-    public int countdownTimer = 3;
+    public float countdownTimer = 3;
+    public bool timerOn = false;
 
     private void Awake()
     {
@@ -26,6 +31,21 @@ public class PauseManager : MonoBehaviour
     private void Update()
     {
         OnPauseKeyPressed();
+
+        /*if (timerOn == true)
+        {
+            Debug.Log("Timer starts!");
+            countdownTimer_TXT.gameObject.SetActive(true);
+            countdownTimer -= Time.deltaTime;
+            timerCountdown(countdownTimer);
+            if (countdownTimer > 0f)
+            {
+                Debug.Log("Timer ends!");
+                timerOn = false;
+                countdownTimer = 0f;
+                countdownTimer_TXT.gameObject.SetActive(false);
+            }
+        }*/
     }
 
     private void OnDestroy()
@@ -45,6 +65,8 @@ public class PauseManager : MonoBehaviour
         if (isPaused == false)
         {
             CanvasManager.Instance.ShowCanvasPauseMenu();
+            naginiAvatar.SetActive(false);
+            yataAvatar.SetActive(false);
             isPaused = true;
             PauseGame(true);
             Debug.Log("Is Paused!");
@@ -54,6 +76,8 @@ public class PauseManager : MonoBehaviour
             isPaused = false;
             PauseGame(false);
             PauseMenu.Instance.OnResumeGameButtonPressed();
+            naginiAvatar.SetActive(true);
+            yataAvatar.SetActive(true);
             Debug.Log("Is Unpaused!");
         }
     }
@@ -73,6 +97,7 @@ public class PauseManager : MonoBehaviour
             {
                 isPaused = false;
                 PauseGame(false);
+                //StartCoroutine(Countdown(3));
                 PauseMenu.Instance.OnResumeGameButtonPressed();
                 Debug.Log("Is Unpaused!");
             }
@@ -95,27 +120,19 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    string timerCountdown(float time)
+    public IEnumerator Countdown(int seconds)
     {
-        int seconds = Mathf.FloorToInt(time % 60f);
-        return string.Format("{0}", seconds);
-    }
-
-
-    public IEnumerator UnpauseCountdown()
-    {
-        countdownTimer = 3;
+        countdownTimer = seconds;
         countdownTimer_TXT.gameObject.SetActive(true);
-        PauseGame(false);
-        while (countdownTimer > -1)
+        Time.timeScale = 1;
+
+        while (countdownTimer > 0)
         {
-            Debug.Log("Starting UnPause Countdown");
-            yield return new WaitForSecondsRealtime(1f);
             countdownTimer_TXT.text = countdownTimer.ToString();
-            countdownTimer -= 1;
+            Debug.Log(countdownTimer);
+            yield return new WaitForSecondsRealtime(1f);
+            countdownTimer--;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
-
-        isPaused = false;
     }
 }
