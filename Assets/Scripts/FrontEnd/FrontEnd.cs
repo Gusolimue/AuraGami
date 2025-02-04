@@ -22,7 +22,6 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
-        CanvasManager.Instance.ShowCanvasFE();
         // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();

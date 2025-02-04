@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -13,11 +14,16 @@ public class PauseMenu : MonoBehaviour
     public void OnRestartGameButtonPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
         Destroy(this.gameObject);
     }
 
     public void OnResumeGameButtonPressed()
     {
+        //StartCoroutine(PauseManager.Instance.UnpauseCountdown());
+        //PauseManager.Instance.timerOn = true;
+        PauseManager.Instance.PauseGame(false); //Tmp
+        //StartCoroutine(PauseManager.Instance.Countdown(3));
         PauseManager.Instance.isPaused = false;
         Destroy(this.gameObject);
     }
@@ -35,10 +41,11 @@ public class PauseMenu : MonoBehaviour
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
-
+    
     public void OnMainMenuButtonPressed()
     {
         //SceneMgr.Instance.IntoFrontEndSceneTransition();
+        PauseManager.Instance.PauseGame(false);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }
