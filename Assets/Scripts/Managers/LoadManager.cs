@@ -38,6 +38,7 @@ public class LoadManager : MonoBehaviour
         switch((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
+                CanvasManager.Instance.ShowCanvasFE();
                 whichScene = 0;
                 break;
 
