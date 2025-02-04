@@ -28,26 +28,6 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
-    private void Update()
-    {
-        OnPauseKeyPressed();
-
-        /*if (timerOn == true)
-        {
-            Debug.Log("Timer starts!");
-            countdownTimer_TXT.gameObject.SetActive(true);
-            countdownTimer -= Time.deltaTime;
-            timerCountdown(countdownTimer);
-            if (countdownTimer > 0f)
-            {
-                Debug.Log("Timer ends!");
-                timerOn = false;
-                countdownTimer = 0f;
-                countdownTimer_TXT.gameObject.SetActive(false);
-            }
-        }*/
-    }
-
     private void OnDestroy()
     {
         openPauseMenuAction.action.Disable();
@@ -76,33 +56,11 @@ public class PauseManager : MonoBehaviour
             isPaused = false;
             PauseGame(false);
             PauseMenu.Instance.OnResumeGameButtonPressed();
+            StartCoroutine(Countdown(3));
             naginiAvatar.SetActive(true);
             yataAvatar.SetActive(true);
             Debug.Log("Is Unpaused!");
         }
-    }
-
-    public void OnPauseKeyPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isPaused == false)
-            {
-                CanvasManager.Instance.ShowCanvasPauseMenu();
-                isPaused = true;
-                PauseGame(true);
-                Debug.Log("Is Paused!");
-            }
-            else if (isPaused == true)
-            {
-                isPaused = false;
-                PauseGame(false);
-                //StartCoroutine(Countdown(3));
-                PauseMenu.Instance.OnResumeGameButtonPressed();
-                Debug.Log("Is Unpaused!");
-            }
-        }
-        
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)

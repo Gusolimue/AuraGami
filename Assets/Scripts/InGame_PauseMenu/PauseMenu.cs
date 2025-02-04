@@ -6,15 +6,19 @@ public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
 
+    public bool isRestarting;
+
     private void Awake()
     {
-        Instance = this;    
+        Instance = this;
+        isRestarting = false;
     }
 
     public void OnRestartGameButtonPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
         PauseManager.Instance.PauseGame(false); //Tmp
+        isRestarting = true;
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
         Destroy(this.gameObject);
     }

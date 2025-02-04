@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FrontEndSceneTransitionManager : MonoBehaviour
 {
@@ -31,7 +33,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
     {
         alpha = 0f;
         fadeInDuration = 1f;
-
+        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
         while (alpha < 1f)
         {
             alpha += Time.deltaTime / fadeInDuration;
@@ -41,7 +43,9 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         }
         //LoadManager.Instance.LoadScene(eScene.levelOne);
         if (LoadManager.Instance.whichScene == 0) LoadManager.Instance.LoadScene(eScene.levelOne);
-        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); //PauseManager.Instance.PauseGame(false);
+        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
+        if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //PauseManager.Instance.PauseGame(false);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
