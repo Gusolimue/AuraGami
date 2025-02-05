@@ -8,9 +8,5 @@ public class HazardTrigger : MonoBehaviour
         {
             GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
         }
-        if (other.CompareTag("Circle"))
-        {
-            GetComponentInParent<BaseInteractableBehavior>().CircleCollision();
-        }
     }
 }

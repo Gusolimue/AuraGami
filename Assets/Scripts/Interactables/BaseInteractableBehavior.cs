@@ -7,13 +7,18 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Color leftColor;
     public Color rightColor;
     public Renderer interactableRenderer;
-    public int moveSpeed;
     eSide side;
 
+    float count;
     float originSpawnDistance;
-    float currentSpawnDistance;
+    public int currentBeat;
+    Vector3 originPos;
     Vector3 lastPos;
     Vector3 targetPos;
+    private void Awake()
+    {
+        originPos = transform.position;
+    }
     public virtual void InitInteractable(eSide _eSide)
     {
         side = _eSide;
@@ -30,30 +35,48 @@ public class BaseInteractableBehavior : MonoBehaviour
             default:
                 break;
         }
+
+    }
+
+    public void StartMovement()
+    {
+
+        currentBeat = 0;
+        BeatManager.beatUpdated += UpdateMovementTarget;
     }
 
     void UpdateMovementTarget()
     {
-
+        lastPos = transform.position;
+        currentBeat++;
+        targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.Instance.beatsToPlayer)*currentBeat;
+        if (currentBeat > LevelManager.Instance.beatsToPlayer + 1)
+        {
+            StopTarget();
+        }
+        count = 0;
     }
     void Update()
     {
         // Moves instantiated targets and obstacles foward
-
-        transform.position = Vector3.Lerp(lastPos, targetPos, 1f);
+        count += Time.deltaTime;
+        if(currentBeat > 0)
+        {
+            transform.position = Vector3.Lerp(lastPos, targetPos, 60f / LevelManager.Instance.level.soTrack.bpm * count);
+        }
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
     {
-        Destroy(this.gameObject);
+        StopTarget();
     }
 
-    //Method called when object's trigger collides with the avatar circle
-    public void CircleCollision()
+    private void StopTarget()
     {
-        Destroy(this.gameObject, 2f);
+        BeatManager.beatUpdated -= UpdateMovementTarget;
+        gameObject.SetActive(false);
+        
     }
-
     internal virtual void OnTriggerEnter(Collider other)
     {
 

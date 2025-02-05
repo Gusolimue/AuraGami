@@ -10,17 +10,27 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField]
     EventReference music;
+    public TimelineInfo timelineInfo = null;
+    GCHandle timelineHandle;
+
+    public delegate void BeatEventDelegate();
+    public static event BeatEventDelegate beatUpdated;
+
+    public delegate void MarkerEventDelegate();
+    public static event MarkerEventDelegate markerUpdated;
+
+    private FMOD.Studio.EventInstance musicInstance;
+    private FMOD.Studio.EVENT_CALLBACK beatCallback;
+
+    public static int lastBeat = 0;
+    public static string lastMarkerString = null;
+
     private void Awake()
     {
         Instance = this;
         musicInstance = RuntimeManager.CreateInstance(music);
         musicInstance.start();
     }
-    public TimelineInfo timelineInfo = null;
-    GCHandle timelineHandle;
-
-    private FMOD.Studio.EventInstance musicInstance;
-    private FMOD.Studio.EVENT_CALLBACK beatCallback;
 
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
@@ -43,6 +53,28 @@ public class BeatManager : MonoBehaviour
         musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         musicInstance.release();
         timelineHandle.Free();
+    }
+    private void Update()
+    {
+        if(lastMarkerString != timelineInfo.lastMarker)
+        {
+            lastMarkerString = timelineInfo.lastMarker;
+
+            if (markerUpdated != null)
+            {
+                markerUpdated();
+            }
+        }
+
+        if (lastBeat != timelineInfo.currentBeat)
+        {
+            lastBeat = timelineInfo.currentBeat;
+
+            if (beatUpdated != null)
+            {
+                beatUpdated();
+            }
+        }
     }
 
 #if UNITY_EDITOR

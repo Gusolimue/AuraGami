@@ -6,6 +6,8 @@ public class AvatarManager : MonoBehaviour
     //Sets the size of the player's interaction circle and the avatar's movement circle. Moves avatars according to the player controllers
     //relative to the size of the circles. Provides a reference point for instantiation around the circle.
     [Header("Variables to Adjust")]
+    public float playerDiameter;
+    public float avatarDiameter;
     public static float playerCircDiameter;
     public static float avatarCircDiameter;
 
@@ -39,6 +41,8 @@ public class AvatarManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerCircDiameter = playerDiameter;
+        avatarCircDiameter = avatarDiameter;
     }
     private void Start()
     {
