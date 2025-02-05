@@ -15,9 +15,5 @@ public class TargetTrigger : MonoBehaviour
             //ScoreManager.Instance.ChangeScore();
             //Destroy(gameObject);
         }
-        if (other.CompareTag("Circle"))
-        {
-            GetComponentInParent<BaseInteractableBehavior>().CircleCollision();
-        }
     }
 }
