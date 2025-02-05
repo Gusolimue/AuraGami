@@ -46,7 +46,8 @@ public class Level : MonoBehaviour
         levelPreview.transform.position = Vector3.zero;
         for (int i = 0; i < stage1.Count; i++)
         {
-            SpawnBoard(i);
+            SpawnBoard(i, levelPreview.transform);
+            currentBoard.transform.position += new Vector3(0, 0, .2f * i);
         }
     }
     private void Awake()
@@ -57,51 +58,59 @@ public class Level : MonoBehaviour
         }
     }
     //spawns a board with its targets when called
-    GameObject currentBoard;
+    [HideInInspector] public GameObject currentBoard;
     public GameObject levelPreview;
-    public void SpawnBoard(int num)
+    public void SpawnBoard(int num, Transform transform)
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
-            as GameObject, levelPreview.transform);
-        currentBoard.transform.position += new Vector3(0, 0, .2f * num);
+            as GameObject, transform);
         foreach (var Target in stage1[num].interactables)
         {
             SpawnTarget(Target);
         }
+        if(stage1[num].interactables.Length == 0)
+        {
+            currentBoard.name = "Empty Board";
+        }
     }
 
     //called to spawn every individual target when a board is spawned
-    public void SpawnTarget(Interactable _target)
+    void SpawnTarget(Interactable _target)
     {
         GameObject tmpObject;
         switch (_target.interactableType)
         {
             case eTargetType.regularTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
             case eTargetType.multihitTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
             case eTargetType.precisionTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
             case eTargetType.regularObstacle:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularObstaclePrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
             default:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, levelPreview.transform);
+            as GameObject, currentBoard.transform);
                 break;
         }
         tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
+        Quaternion tmpRot = new Quaternion();
+        tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
+        tmpObject.transform.localRotation *= tmpRot;
+        tmpObject.transform.Translate(Vector3.up) ;
+        tmpObject.transform.localRotation = Quaternion.identity;
     }
     [Header("Level Editing")]
     //fix the organization, also buttons are not showing where they should
@@ -133,6 +142,20 @@ public class Level : MonoBehaviour
                 if (stage3.Count < endIndex) tmpIndex = stage3.Count;
                 copiedSelection.AddRange(stage3.GetRange(startIndex, tmpIndex));
                 break;
+        }
+    }
+    public List<Board> GetStage(int _index)
+    {
+        switch (_index)
+        {
+            case 1:
+                return stage1;
+            case 2:
+                return stage2;
+            case 3:
+                return stage3;
+            default:
+                return stage1;
         }
     }
     [SerializeField] List<Board> copiedSelection;

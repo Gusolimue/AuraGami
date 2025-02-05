@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9195182517184519676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638742837881560921
+  FileSizes:
+  - Name: Desktop
+    Value: 2248704
+  Exists: 1
 --- !u!114 &-8200652529283417197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +85,33 @@ MonoBehaviour:
   lastModified: 638740991412472129
   FileSizes: []
   Exists: 1
+--- !u!114 &-5411953396893342640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music Freedom
+  m_EditorClassIdentifier: 
+  Path: event:/Music Freedom
+  Guid:
+    Data1: -1014673978
+    Data2: 1172892062
+    Data3: -1242862152
+    Data4: 489049943
+  Banks:
+  - {fileID: -9195182517184519676}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 229497
 --- !u!114 &-2885513681345201492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +152,26 @@ MonoBehaviour:
   - Name: Desktop
     Value: 762
   Exists: 1
+--- !u!114 &-614603595911658539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638742837881565919
+  FileSizes:
+  - Name: Desktop
+    Value: 762
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,16 +185,16 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7550620036946189989}
-  - {fileID: -7502760510489499389}
+  - {fileID: -614603595911658539}
+  - {fileID: -9195182517184519676}
   EditorEvents:
-  - {fileID: -8200652529283417197}
+  - {fileID: -5411953396893342640}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -7502760510489499389}
+  - {fileID: -9195182517184519676}
   StringsBanks:
-  - {fileID: -7550620036946189989}
-  cacheTime: 638740991412487095
+  - {fileID: -614603595911658539}
+  cacheTime: 638742837881565919
   cacheVersion: 131622
 --- !u!114 &2470070438699567317
 MonoBehaviour:
