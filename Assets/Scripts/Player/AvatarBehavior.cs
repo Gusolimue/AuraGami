@@ -5,7 +5,7 @@ public class AvatarBehavior : MonoBehaviour
 {
     //[Header("Variables to Adjust")]
     [Header("Variables to Set")]
-    [SerializeField] bool isOnRight;
+    public eSide side;
     [SerializeField] GameObject avatarPrefab;
     //[Header("Variables to Call")]
     

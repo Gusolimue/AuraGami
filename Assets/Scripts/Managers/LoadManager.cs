@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum eScene { frontEnd, levelOne } // Will contain list of levels. Not in use currently!
+public enum eScene { frontEnd, levelFreedom } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -35,14 +35,16 @@ public class LoadManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        switch((eScene)scene.buildIndex)
+        Debug.Log("<color=yellow>SceneLoaded " + scene.name + "</color>");
+        switch ((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
-                CanvasManager.Instance.ShowCanvasFE();
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 0;
                 break;
 
-            case eScene.levelOne:
+            case eScene.levelFreedom:
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 1;
                 break;
 
