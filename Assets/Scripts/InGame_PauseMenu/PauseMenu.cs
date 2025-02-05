@@ -16,7 +16,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRestartGameButtonPressed()
     {
-        
         PauseManager.Instance.PauseGame(false); //Tmp
         isRestarting = true;
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
@@ -25,10 +24,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeGameButtonPressed()
     {
-        //StartCoroutine(PauseManager.Instance.UnpauseCountdown());
-        //PauseManager.Instance.timerOn = true;
         PauseManager.Instance.PauseGame(false); //Tmp
-        //StartCoroutine(PauseManager.Instance.Countdown(3));
+        StartCoroutine(PauseManager.Instance.Countdown(3));
         PauseManager.Instance.isPaused = false;
         Destroy(this.gameObject);
     }
