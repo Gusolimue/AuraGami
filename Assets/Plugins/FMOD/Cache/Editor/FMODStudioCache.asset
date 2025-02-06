@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638743512397355740
+  lastModified: 638744469534104004
   FileSizes:
   - Name: Desktop
-    Value: 2248704
+    Value: 2264512
   Exists: 1
 --- !u!114 &-8200652529283417197
 MonoBehaviour:
@@ -85,6 +85,33 @@ MonoBehaviour:
   lastModified: 638740991412472129
   FileSizes: []
   Exists: 1
+--- !u!114 &-5657969783105924472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TempButtonSFX
+  m_EditorClassIdentifier: 
+  Path: event:/TempButtonSFX
+  Guid:
+    Data1: -1335558384
+    Data2: 1156839809
+    Data3: 113168257
+    Data4: -1848579889
+  Banks:
+  - {fileID: -9195182517184519676}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5411953396893342640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,10 +194,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638743512397355740
+  lastModified: 638744469534119069
   FileSizes:
   - Name: Desktop
-    Value: 762
+    Value: 818
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -189,12 +216,13 @@ MonoBehaviour:
   - {fileID: -9195182517184519676}
   EditorEvents:
   - {fileID: -5411953396893342640}
+  - {fileID: -5657969783105924472}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9195182517184519676}
   StringsBanks:
   - {fileID: -614603595911658539}
-  cacheTime: 638743512397355740
+  cacheTime: 638744469534119069
   cacheVersion: 131622
 --- !u!114 &2470070438699567317
 MonoBehaviour:

@@ -45,7 +45,6 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.levelFreedom:
-                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 1;
                 break;
 
