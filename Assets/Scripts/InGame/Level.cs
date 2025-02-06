@@ -212,9 +212,17 @@ public class Interactable
     public int interactableAngle;
     [Range(0f, 1f)]
     public float interactableDistance;
-    public eTargetPositions targetPosition;
 
-    [ShowField(nameof(interactableType), eTargetType.multihitTarget)] public eTargetPositions[] navPositions;
+    /*[ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty]*/ public TargetPoints[] multiPoints;
 
-    [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public eTargetPositions[] endingPosition;
+    [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public TargetPoints[] threadedPoints;
+}
+[System.Serializable]
+public class TargetPoints
+{
+    public int boardsMoved;
+    [Range(0, 359)]
+    public int interactableAngle;
+    [Range(0f, 1f)]
+    public float interactableDistance;
 }
