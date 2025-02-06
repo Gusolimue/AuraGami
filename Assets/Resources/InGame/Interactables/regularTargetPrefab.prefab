@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2547189862824949024}
   - component: {fileID: 9034317291128462121}
-  - component: {fileID: 8493652285417349637}
-  - component: {fileID: 2079126568936967568}
   m_Layer: 6
   m_Name: regularTargetPrefab
   m_TagString: BlueTarget
@@ -50,55 +48,8 @@ MonoBehaviour:
   leftColor: {r: 0.019607844, g: 0.34509805, b: 0.53333336, a: 1}
   rightColor: {r: 0.7264151, g: 0.27937594, b: 0, a: 1}
   interactableRenderer: {fileID: 3222719354804811677}
-  moveSpeed: 0
---- !u!65 &8493652285417349637
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115143063326862121}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2079126568936967568
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115143063326862121}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  side: 0
+  currentBeat: 0
 --- !u!1 &8744082952492454435
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +61,8 @@ GameObject:
   - component: {fileID: 6572872248978305597}
   - component: {fileID: 5980427062537253708}
   - component: {fileID: 3222719354804811677}
+  - component: {fileID: 5825460294253264845}
+  - component: {fileID: 5993731324176567086}
   m_Layer: 6
   m_Name: BlueTarget
   m_TagString: BlueTarget
@@ -185,3 +138,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5825460294253264845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744082952492454435}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 2.0000005, z: 1.0000005}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940699}
+--- !u!114 &5993731324176567086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744082952492454435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b820a2c4afcd34e4cb8b9b08b3998412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

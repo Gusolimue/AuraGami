@@ -7,6 +7,6 @@ public class TargetInteractableBehavior : BaseInteractableBehavior
         StreakManager.Instance.AddStreak();
         //APManager.Instance.IncreaseAP();
         //APManager.Instance.APBehavior();
-        Destroy(gameObject);
+        base.AvatarCollision();
     }
 }

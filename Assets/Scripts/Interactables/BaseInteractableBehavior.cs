@@ -7,7 +7,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Color leftColor;
     public Color rightColor;
     public Renderer interactableRenderer;
-    eSide side;
+    public eSide side;
 
     float count;
     float originSpawnDistance;
@@ -58,6 +58,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     }
     void Update()
     {
+        transform.position += Vector3.back * Time.deltaTime * 10;
         // Moves instantiated targets and obstacles foward
         count += Time.deltaTime;
         if(currentBeat > 0)
@@ -76,16 +77,5 @@ public class BaseInteractableBehavior : MonoBehaviour
         BeatManager.beatUpdated -= UpdateMovementTarget;
         gameObject.SetActive(false);
         
-    }
-    internal virtual void OnTriggerEnter(Collider other)
-    {
-
-        if (other.GetComponent<AvatarBehavior>())
-        {
-            if(other.GetComponent<AvatarBehavior>().side == side || other.GetComponent<AvatarBehavior>().side == eSide.any)
-            {
-                AvatarCollision();
-            }
-        }
     }
 }
