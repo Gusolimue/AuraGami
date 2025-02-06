@@ -100,20 +100,4 @@ public class PauseManager : MonoBehaviour
         countdownTimer_TXT.gameObject.SetActive(false);
         isPaused = false;
     }
-
-    /*void Update()
-    {
-        if (PauseManager.Instance.isPaused == false) TerrainMovement(true);
-    }
-
-    public void TerrainMovement(bool _on)
-    {
-        transform.Translate(Vector3.back * Time.deltaTime * tmpSpeed);
-
-        if (transform.position.z < startPos.z - repeatLength / 2)
-        {
-            transform.position = startPos;
-        }
-    }*/
-
 }
