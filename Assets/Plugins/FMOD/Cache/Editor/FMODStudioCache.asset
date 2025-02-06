@@ -20,6 +20,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 2264512
   Exists: 1
+--- !u!114 &-8616979762155718944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TempButtonSFX
+  m_EditorClassIdentifier: 
+  Path: event:/TempButtonSFX
+  Guid:
+    Data1: -1335558384
+    Data2: 1156839809
+    Data3: 113168257
+    Data4: -1848579889
+  Banks:
+  - {fileID: -3159947164981390029}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8200652529283417197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +112,33 @@ MonoBehaviour:
   lastModified: 638740991412472129
   FileSizes: []
   Exists: 1
+--- !u!114 &-5811892728218638402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music Freedom
+  m_EditorClassIdentifier: 
+  Path: event:/Music Freedom
+  Guid:
+    Data1: -1014673978
+    Data2: 1172892062
+    Data3: -1242862152
+    Data4: 489049943
+  Banks:
+  - {fileID: -3159947164981390029}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 229497
 --- !u!114 &-5657969783105924472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +193,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 229497
+--- !u!114 &-5186941689635463957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638744474969502051
+  FileSizes:
+  - Name: Desktop
+    Value: 818
+  Exists: 1
+--- !u!114 &-3159947164981390029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638744474969424915
+  FileSizes:
+  - Name: Desktop
+    Value: 2264512
+  Exists: 1
 --- !u!114 &-2885513681345201492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,17 +306,17 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -614603595911658539}
-  - {fileID: -9195182517184519676}
+  - {fileID: -5186941689635463957}
+  - {fileID: -3159947164981390029}
   EditorEvents:
-  - {fileID: -5411953396893342640}
-  - {fileID: -5657969783105924472}
+  - {fileID: -8616979762155718944}
+  - {fileID: -5811892728218638402}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -9195182517184519676}
+  - {fileID: -3159947164981390029}
   StringsBanks:
-  - {fileID: -614603595911658539}
-  cacheTime: 638744469534119069
+  - {fileID: -5186941689635463957}
+  cacheTime: 638744474969502051
   cacheVersion: 131622
 --- !u!114 &2470070438699567317
 MonoBehaviour:
