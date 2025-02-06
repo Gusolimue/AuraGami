@@ -78,6 +78,11 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    public void StartCountdown()
+    {
+        StartCoroutine(Countdown(3));
+    }
+
     public IEnumerator Countdown(int seconds)
     {
         countdownTimer = seconds;
@@ -92,5 +97,7 @@ public class PauseManager : MonoBehaviour
             countdownTimer--;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
+        isPaused = false;
     }
+
 }

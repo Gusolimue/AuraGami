@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine;
 
@@ -25,8 +26,7 @@ public class PauseMenu : MonoBehaviour
     public void OnResumeGameButtonPressed()
     {
         PauseManager.Instance.PauseGame(false); //Tmp
-        StartCoroutine(PauseManager.Instance.Countdown(3));
-        PauseManager.Instance.isPaused = false;
+        PauseManager.Instance.StartCountdown();
         Destroy(this.gameObject);
     }
 
