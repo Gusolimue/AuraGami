@@ -26,4 +26,5 @@ public class RepeatTerrainBehavior : MonoBehaviour
             transform.position = startPos;
         }
     }
+
 }
