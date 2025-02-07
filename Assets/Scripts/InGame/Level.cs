@@ -17,9 +17,13 @@ public class Level : MonoBehaviour
         tmpLength /= 60;
         tmpLength *= soTrack.bpm;
         stage1.Clear();
-        for (int i = 0; i < tmpLength; i++)
+        stage2.Clear();
+        stage3.Clear();
+        for (int i = 0; i < tmpLength/3; i++)
         {
             stage1.Add(new Board());
+            stage2.Add(new Board());
+            stage3.Add(new Board());
         }
         // button to set board amount based on bpm/time sig for song entered
         //stages should be separate lists
@@ -33,21 +37,39 @@ public class Level : MonoBehaviour
     List<Board> stage2;
     [SerializeField]
     List<Board> stage3;
-    [Button]
-    [SerializeField]
+    [Button, SerializeField]
     void ShowLevel()
     {
+        GameObject tmpLastBoard;
         if (levelPreview != null)
         {
             DestroyImmediate(levelPreview);
         }
         levelPreview = new GameObject("Level Preview");
         levelPreview.transform.parent = this.transform;
-        levelPreview.transform.position = Vector3.zero;
+        stage1Preview = new GameObject("Stage 1 Preview");
+        stage1Preview.transform.parent = levelPreview.transform;
+        stage2Preview = new GameObject("Stage 2 Preview");
+        stage2Preview.transform.parent = levelPreview.transform;
+        stage3Preview = new GameObject("Stage 3 Preview");
+        stage3Preview.transform.parent = levelPreview.transform;
+        stage3Preview.transform.position = levelPreview.transform.position = stage1Preview.transform.position = stage2Preview.transform.position = Vector3.zero;
         for (int i = 0; i < stage1.Count; i++)
         {
-            SpawnBoard(i, levelPreview.transform);
+            SpawnBoard(i, stage1, stage1Preview.transform);
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
+        }
+        tmpLastBoard = currentBoard;
+        for (int i = 0; i < stage1.Count; i++)
+        {
+            SpawnBoard(i, stage2, stage2Preview.transform);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
+        }
+        tmpLastBoard = currentBoard;
+        for (int i = 0; i < stage1.Count; i++)
+        {
+            SpawnBoard(i, stage3, stage3Preview.transform);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
     private void Awake()
@@ -60,7 +82,10 @@ public class Level : MonoBehaviour
     //spawns a board with its targets when called
     [HideInInspector] public GameObject currentBoard;
     public GameObject levelPreview;
-    public void SpawnBoard(int num, Transform transform)
+    GameObject stage1Preview;
+    GameObject stage2Preview;
+    GameObject stage3Preview;
+    public void SpawnBoard(int num, List<Board> _stage, Transform transform)
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
             as GameObject, transform);
