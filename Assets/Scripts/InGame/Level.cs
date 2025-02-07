@@ -89,11 +89,11 @@ public class Level : MonoBehaviour
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
             as GameObject, transform);
-        foreach (var Target in stage1[num].interactables)
+        foreach (var Target in _stage[num].interactables)
         {
             SpawnTarget(Target);
         }
-        if(stage1[num].interactables.Length == 0)
+        if(_stage[num].interactables.Length == 0)
         {
             currentBoard.name = "Empty Board";
         }
