@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619650185621051789}
   m_Layer: 0
-  m_Name: BirdPrefab
+  m_Name: BirdPrefab_Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,71 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8709382933695765114}
+  - {fileID: 2488381989897104822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &2666759080319027805
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 619650185621051789}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+      propertyPath: m_Name
+      value: AG_Bird_Idle_v001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+--- !u!4 &2488381989897104822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7dcefa2ab5d18924ca8d5653fc54b06a, type: 3}
+  m_PrefabInstance: {fileID: 2666759080319027805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9175882889369517457
 PrefabInstance:
   m_ObjectHideFlags: 0

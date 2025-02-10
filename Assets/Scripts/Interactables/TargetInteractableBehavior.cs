@@ -4,9 +4,9 @@ public class TargetInteractableBehavior : BaseInteractableBehavior
 {
     public override void AvatarCollision()
     {
-        StreakManager.Instance.AddStreak();
-        //APManager.Instance.IncreaseAP();
-        //APManager.Instance.APBehavior();
+        //StreakManager.Instance.AddStreak();
+        APManager.Instance.IncreaseAP();
+        APManager.Instance.APBehavior();
         base.AvatarCollision();
     }
 }

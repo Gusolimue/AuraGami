@@ -11,8 +11,8 @@ public class PauseManager : MonoBehaviour
     public bool isPaused = false;
 
     [Header("Avatars")]
-    [SerializeField] GameObject naginiAvatar;
-    [SerializeField] GameObject yataAvatar;
+    [SerializeField] public GameObject naginiAvatar;
+    [SerializeField] public GameObject yataAvatar;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
