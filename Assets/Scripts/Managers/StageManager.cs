@@ -31,6 +31,8 @@ public class StageManager : MonoBehaviour
         originPos = terrain.transform.position;
         currentPos = terrain.transform.position;
         targetPos = terrain.transform.position;
+
+        //StartCoroutine(COAscend(true));
     }
 
     // Moves the terrain to the target position over time.

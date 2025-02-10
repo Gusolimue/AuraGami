@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6572872248978305597}
   - {fileID: 4959305418887777797}
   m_Father: {fileID: 2547189862824949024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,6 +49,7 @@ MonoBehaviour:
   leftColor: {r: 0, g: 0, b: 0, a: 0}
   rightColor: {r: 0, g: 0, b: 0, a: 0}
   interactableRenderer: {fileID: 0}
+  side: 0
   currentBeat: 0
   damageAmount: 1
 --- !u!1 &6981141853791226029
@@ -229,7 +231,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6572872248978305597}
   - {fileID: 7250715682701951712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -248,6 +249,7 @@ MonoBehaviour:
   leftColor: {r: 0, g: 0, b: 0, a: 0}
   rightColor: {r: 0, g: 0, b: 0, a: 0}
   interactableRenderer: {fileID: 0}
+  side: 0
   currentBeat: 0
 --- !u!1 &8744082952492454435
 GameObject:
@@ -279,11 +281,11 @@ Transform:
   m_GameObject: {fileID: 8744082952492454435}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.016}
-  m_LocalScale: {x: 0.26675668, y: 0.013337836, z: 0.26675668}
+  m_LocalPosition: {x: 0.0067820298, y: -0.020739466, z: -0.0802478}
+  m_LocalScale: {x: 0.26675668, y: 0.013337837, z: 0.26675668}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2547189862824949024}
+  m_Father: {fileID: 7250715682701951712}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5980427062537253708
 MeshFilter:
