@@ -57,6 +57,8 @@ public class APManager : MonoBehaviour
             sigilThree.value -= ap;
             if (sigilThree.value <= -1) curSigil = 2;
         }
+
+        AuraFXBehavior.Instance.ResetAuraVFX();
     }
 
     public void APBehavior()
@@ -65,6 +67,8 @@ public class APManager : MonoBehaviour
         {
             if (isMaxMult == false) ap += apIncrease;
             else ap = maxMult;
+
+            AuraFXBehavior.Instance.IncreaseAuraVFX();
             multBuildUp = 0f;
         }
 
