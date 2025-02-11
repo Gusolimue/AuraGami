@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     }
     public void InitLevel()
     {
+        int tmp = 0;
         stage1Container = new GameObject("Stage 1 Preview");
         stage1Container.transform.parent = levelContainer.transform;
         stage2Container = new GameObject("Stage 2 Preview");
@@ -34,20 +35,21 @@ public class LevelManager : MonoBehaviour
             level.SpawnBoard(i, level.GetStage(1), stage1Container.transform);
             instantiatedLevel.Add(level.currentBoard);
             instantiatedLevel[i].SetActive(false);
-
+            tmp = i;
         }
         for (int i = 0; i < level.GetStage(2).Count; i++)
         {
             level.SpawnBoard(i, level.GetStage(2), stage1Container.transform);
             instantiatedLevel.Add(level.currentBoard);
-            instantiatedLevel[instantiatedLevel.Count].SetActive(false);
+            instantiatedLevel[i + level.GetStage(1).Count - 1].SetActive(false);
 
         }
+
         for (int i = 0; i < level.GetStage(3).Count; i++)
         {
             level.SpawnBoard(i, level.GetStage(2), stage3Container.transform);
             instantiatedLevel.Add(level.currentBoard);
-            instantiatedLevel[instantiatedLevel.Count].SetActive(false);
+            instantiatedLevel[i + level.GetStage(1).Count - 1 + level.GetStage(2).Count].SetActive(false);
 
         }
         BeatManager.beatUpdated += ActivateBoard;

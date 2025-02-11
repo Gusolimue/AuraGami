@@ -152,22 +152,8 @@ public class Level : MonoBehaviour
     {
         copiedSelection.Clear();
         int tmpIndex = endIndex;
-        switch (stageSelection)
-        {
-            //  please use copy to method for list you dummy
-            case 1:
-                if (stage1.Count < endIndex) tmpIndex = stage1.Count;
-                copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
-                break;
-            case 2:
-                if (stage2.Count < endIndex) tmpIndex = stage2.Count;
-                copiedSelection.AddRange(stage2.GetRange(startIndex, tmpIndex));
-                break;
-            case 3:
-                if (stage3.Count < endIndex) tmpIndex = stage3.Count;
-                copiedSelection.AddRange(stage3.GetRange(startIndex, tmpIndex));
-                break;
-        }
+        if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
+        copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
     }
     public List<Board> GetStage(int _index)
     {
@@ -189,26 +175,12 @@ public class Level : MonoBehaviour
     [SerializeField, HideInInspector] VoidStructure pasteButtonHolder;
     void PastePressed()
     {
-        int tmpIndex = endIndex;
-        switch (stageSelection)
+        for (int i = 0; i < copiedSelection.Count; i++)
         {
-            case 1:
-                for (int i = 0; i < copiedSelection.Count; i++)
-                {
-                    if(stage1.Count > startIndex + i)
-                    {
-                        stage1[startIndex + i] = copiedSelection[i];
-                    }
-                }
-                break;
-            case 2:
-                if (stage2.Count < endIndex) tmpIndex = stage2.Count;
-                copiedSelection.AddRange(stage2.GetRange(startIndex, tmpIndex));
-                break;
-            case 3:
-                if (stage3.Count < endIndex) tmpIndex = stage3.Count;
-                copiedSelection.AddRange(stage3.GetRange(startIndex, tmpIndex));
-                break;
+            if (GetStage(stageSelection).Count > startIndex + i)
+            {
+                GetStage(stageSelection)[startIndex + i] = copiedSelection[i];
+            }
         }
     }
     //[ButtonField(nameof(Undo))]
