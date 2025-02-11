@@ -9,7 +9,7 @@ public class HazardInteractableBehavior : BaseInteractableBehavior
 
     public override void AvatarCollision()
     {
-        PlayerHealth.Instance.TakeDamage(damageAmount);
+       // PlayerHealth.Instance.TakeDamage(damageAmount);
         Destroy(gameObject);
     }
 }

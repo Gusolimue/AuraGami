@@ -11,7 +11,7 @@ public class BaseInteractableBehavior : MonoBehaviour
 
     float count;
     float originSpawnDistance;
-    public int currentBeat;
+    public float currentBeat;
     Vector3 originPos;
     Vector3 lastPos;
     Vector3 targetPos;
@@ -58,7 +58,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     }
     void Update()
     {
-        transform.position += Vector3.back * Time.deltaTime * 10;
+        transform.position += Vector3.back * Time.deltaTime * 6;
         // Moves instantiated targets and obstacles foward
         count += Time.deltaTime;
         if(currentBeat > 0)

@@ -15,7 +15,7 @@ public class APManager : MonoBehaviour
     [Space]
     [Header("Multiplier Values")]
     public float multBuildUp;
-    public float maxMult = .5f;
+    public float maxMult = 0f;
     public float apIncrease = .1f;
 
     public int curSigil;
@@ -44,6 +44,7 @@ public class APManager : MonoBehaviour
     {
         curAP -= ap;
         ap = .1f;
+        maxMult = 0f;
         if (curSigil == 1) sigilOne.value -= ap;
 
         if (curSigil == 2) 
@@ -65,8 +66,17 @@ public class APManager : MonoBehaviour
     {
         if (multBuildUp >= 1f) 
         {
-            if (isMaxMult == false) ap += apIncrease;
-            else ap = maxMult;
+            maxMult += .1f;
+            if (maxMult >= .5f) 
+            {
+                isMaxMult = true;
+                maxMult = .5f;
+            }
+
+            if (isMaxMult == false) 
+            {
+                ap += apIncrease;
+            }
 
             AuraFXBehavior.Instance.IncreaseAuraVFX();
             multBuildUp = 0f;

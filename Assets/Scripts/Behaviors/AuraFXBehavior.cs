@@ -5,7 +5,7 @@ public class AuraFXBehavior : MonoBehaviour
 {
     public static AuraFXBehavior Instance;
     [SerializeField]
-    float maxSize;
+    float maxSize = .5f;
     [SerializeField]
     float maxAlpha;
     [SerializeField]
@@ -16,7 +16,7 @@ public class AuraFXBehavior : MonoBehaviour
     float initialSize;
     float initialAlpha;
     float initialParticlesSpawnRate;
-    int incrementCount;
+    float incrementCount;
     float sizeIncrement;
     float alphaIncrement;
     float particlesSpawnRateIncrement;
@@ -41,7 +41,7 @@ public class AuraFXBehavior : MonoBehaviour
         // Increases count, plays the VFX effect, and increases the size by the current count multiplied by an increment value
         if (incrementCount < maxIncrementCount)
         {
-            incrementCount++;
+            incrementCount += .4f;
             VFXInstance.Play();
             VFXInstance.SetFloat("Size", initialSize + (incrementCount * sizeIncrement));
             VFXInstance.SetFloat("Alpha", initialAlpha + (incrementCount * alphaIncrement));

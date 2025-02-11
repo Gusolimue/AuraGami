@@ -656,7 +656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -673.90247, y: -378.71}
+  m_AnchoredPosition: {x: -673.90247, y: -378.85}
   m_SizeDelta: {x: 50, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &546126302
@@ -1037,7 +1037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -673.43823, y: -378.71}
+  m_AnchoredPosition: {x: -673.43823, y: -378.85}
   m_SizeDelta: {x: 50, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962533833
@@ -1490,11 +1490,11 @@ MonoBehaviour:
   sigilOne: {fileID: 1952203637}
   sigilTwo: {fileID: 546126302}
   sigilThree: {fileID: 962533833}
-  ap: 0.1
+  ap: 0.01
   curAP: 0
   multBuildUp: 0
-  maxMult: 0.5
-  apIncrease: 0.1
+  maxMult: 0.1
+  apIncrease: 0.01
   curSigil: 0
   isMaxMult: 0
 --- !u!1 &1321158075
@@ -2225,7 +2225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -674.4097, y: -378.71}
+  m_AnchoredPosition: {x: -674.4097, y: -378.85}
   m_SizeDelta: {x: 50, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952203637
@@ -13044,6 +13044,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 408249900577215399, guid: c034a98089442814bbd124c813344de6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563274916660743979, guid: c034a98089442814bbd124c813344de6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 650066013838662157, guid: c034a98089442814bbd124c813344de6, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
       value: 0
@@ -13055,6 +13063,14 @@ PrefabInstance:
     - target: {fileID: 650066013838662157, guid: c034a98089442814bbd124c813344de6, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[4].m_Value
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949328022795620615, guid: c034a98089442814bbd124c813344de6, type: 3}
+      propertyPath: maxIncrementCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185262873793664671, guid: c034a98089442814bbd124c813344de6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4255356636365367071, guid: c034a98089442814bbd124c813344de6, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
@@ -16027,7 +16043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[4].interactables.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[5].interactables.Array.size
