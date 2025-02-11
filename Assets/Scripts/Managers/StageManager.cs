@@ -4,25 +4,28 @@ using System.Collections;
 // Controls the hight of the terrain and stage transitions
 public class StageManager : MonoBehaviour
 {
-    public static StageManager instance;
+    public static StageManager Instance;
 
+    
     [Header("Variables to Adjust")]
-    public float ascendFullDistance;
-    public float ascendCheckDistance;
-    public float ascendCheckTime;
+    public float ascendFullDistance; // Determines the height of the environment
+    public float ascendCheckDistance; // Height that environment moves to when you fail to beat the stage.
+    public float ascendCheckTime; // Amount time transitioning from checkDistance and moving down.
 
     [Header("Variables to Set")]
     public GameObject terrain;
 
-    int currentStage = 0;
+    public int currentStage = 1;
     Vector3 originPos;
     Vector3 currentPos;
     Vector3 targetPos;
     float count = 0f;
 
+    public float stageTimer = 0f; // Length of stage 
+
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     // Sets the starting positions for the terrain;
@@ -32,7 +35,7 @@ public class StageManager : MonoBehaviour
         currentPos = terrain.transform.position;
         targetPos = terrain.transform.position;
 
-        StartCoroutine(COAscend(true));
+        StartCoroutine(StageTimer(44));
     }
 
     // Moves the terrain to the target position over time.
@@ -41,14 +44,13 @@ public class StageManager : MonoBehaviour
         count += Time.deltaTime;
         terrain.transform.position = Vector3.Lerp(currentPos, targetPos, count);
         currentPos = terrain.transform.position;
-    }
 
-    // Takes the current sigil amount to check if it is high enough to clear the stage (passing the answer as a bool into COAscend())
-    void StageThresholdReached(APManager _currentSigilInfo)
-    {
-        StartCoroutine(COAscend(_currentSigilInfo.curSigil >= currentStage + 1));
-    }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
 
+        }
+    }
+ 
     // Raises and/or lowers the terrain and changes currentStage depending on if the stage was passed
     IEnumerator COAscend(bool _success)
     {
@@ -57,7 +59,7 @@ public class StageManager : MonoBehaviour
         {
             targetPos = new Vector3(currentPos.x, currentPos.y - ascendFullDistance, currentPos.z);
             originPos = new Vector3(originPos.x, originPos.y - ascendFullDistance, originPos.z);
-            currentStage++;
+            StartCoroutine(StageTimer(44));
         }
         else
         {
@@ -66,5 +68,27 @@ public class StageManager : MonoBehaviour
             count = 0f;
             targetPos = originPos;
         }
+    }
+
+    // Counts up to a specified time where it then checks to see if the player can progress to the next stage. 
+    public IEnumerator StageTimer(float _stageLengthTime)
+    {
+        while (stageTimer < _stageLengthTime)
+        {
+            yield return new WaitForSeconds(1f);
+            stageTimer++;
+        }
+        stageTimer = 0f;
+        currentStage++;
+        if (APManager.Instance.curSigil >= currentStage) 
+        {
+            StartCoroutine(COAscend(true));
+        }
+        else 
+        {
+            StartCoroutine(COAscend(false));
+        }
+
+        //if (currentStage == 4)
     }
 }
