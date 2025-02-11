@@ -11,6 +11,8 @@ public class AvatarManager : MonoBehaviour
     public static float playerCircDiameter;
     public static float avatarCircDiameter;
 
+    public bool DisableMovement;
+
     [Header("Variables to Set")]
     [SerializeField]
     RectTransform playerCircRectTransform;
@@ -54,8 +56,11 @@ public class AvatarManager : MonoBehaviour
     }
     private void Update()
     {
-        rightAvatar.transform.position = GetAvatarPos(true);
-        leftAvatar.transform.position = GetAvatarPos(false);
+        if(!DisableMovement)
+        {
+            rightAvatar.transform.position = GetAvatarPos(true);
+            leftAvatar.transform.position = GetAvatarPos(false);
+        }
     }
     //Given a bool to determine which controller. Returns a vector3 of the position the avatar will be set to that update
     Vector3 GetAvatarPos(bool right)
