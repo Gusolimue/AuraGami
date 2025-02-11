@@ -5,6 +5,8 @@ public enum eSide { left, right, any }
 public class BaseInteractableBehavior : MonoBehaviour
 {
     public Color leftColor;
+    public Material leftMat;
+    public Material rightMat;
     public Color rightColor;
     public Renderer interactableRenderer;
     public eSide side;
@@ -25,10 +27,10 @@ public class BaseInteractableBehavior : MonoBehaviour
         switch (side)
         {
             case eSide.left:
-                //interactableRenderer.material.color = leftColor;
+                interactableRenderer.sharedMaterial = leftMat;
                 break;
             case eSide.right:
-                //interactableRenderer.material.color = rightColor;
+                interactableRenderer.sharedMaterial = rightMat;
                 break;
             case eSide.any:
                 break;
