@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2547189862824949024}
-  - component: {fileID: 9034317291128462121}
+  - component: {fileID: -7690791737335030122}
   m_Layer: 6
-  m_Name: regularTargetPrefab
+  m_Name: multiHitTargetPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6572872248978305597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9034317291128462121
+--- !u!114 &-7690791737335030122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8115143063326862121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65ff1552540dc540a22351075c63eed, type: 3}
+  m_Script: {fileID: 11500000, guid: e4c83d54ea0e3fc4e9158c1a3b4ac8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftMat: {fileID: 2100000, guid: 41f26f09cd01dbf42af63b0c1ff719fa, type: 2}
   rightMat: {fileID: 2100000, guid: fec9d6fee127fe4408f67a1de2e306a1, type: 2}
-  interactableRenderer: {fileID: 3222719354804811677}
+  interactableRenderer: {fileID: 3222719354804811677, guid: 71079fd277127224fafc42ba466df5d9, type: 3}
   side: 0
   interactable:
     interactableType: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 5825460294253264845}
   - component: {fileID: 5993731324176567086}
   m_Layer: 6
-  m_Name: RegularTarget
+  m_Name: BlueTarget
   m_TagString: BlueTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

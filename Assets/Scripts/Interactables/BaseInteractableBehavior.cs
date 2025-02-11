@@ -9,18 +9,20 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Renderer interactableRenderer;
     public eSide side;
 
+    public Interactable interactable;
     float count;
     float originSpawnDistance;
     public int currentBeat;
     Vector3 originPos;
     Vector3 lastPos;
-    Vector3 targetPos;
+    public Vector3 targetPos;
     private void Awake()
     {
         originPos = transform.position;
     }
-    public virtual void InitInteractable(eSide _eSide)
+    public virtual void InitInteractable(eSide _eSide, Interactable _interactable)
     {
+        interactable = _interactable;
         side = _eSide;
         switch (side)
         {
@@ -45,7 +47,7 @@ public class BaseInteractableBehavior : MonoBehaviour
         BeatManager.beatUpdated += UpdateMovementTarget;
     }
 
-    void UpdateMovementTarget()
+    public virtual void UpdateMovementTarget()
     {
         lastPos = transform.position;
         currentBeat++;

@@ -110,7 +110,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.multihitTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "multiHitTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
@@ -130,7 +130,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
@@ -210,7 +210,7 @@ public class Interactable
     [Range(0f, 1f)]
     public float interactableDistance;
 
-    /*[ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty]*/ public TargetPoints[] multiPoints;
+    [ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty] public TargetPoints[] multiPoints;
 
     [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public TargetPoints[] threadedPoints;
 }
