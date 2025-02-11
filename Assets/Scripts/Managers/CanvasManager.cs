@@ -33,4 +33,11 @@ public class CanvasManager : MonoBehaviour
     {
         Instantiate(Resources.Load("Canvas_PauseMenu/" + "Canvas_PauseMenu") as GameObject);
     }
+
+    //GAME STATE CAVAS'
+
+    public void ShowCanvasStageFail()
+    {
+        Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_StageFail") as GameObject);
+    }
 }

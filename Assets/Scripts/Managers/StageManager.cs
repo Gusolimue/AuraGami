@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
         currentPos = terrain.transform.position;
         targetPos = terrain.transform.position;
 
-        StartCoroutine(StageTimer(44));
+        StartCoroutine(StageTimer(10));
     }
 
     // Moves the terrain to the target position over time.
@@ -44,11 +44,6 @@ public class StageManager : MonoBehaviour
         count += Time.deltaTime;
         terrain.transform.position = Vector3.Lerp(currentPos, targetPos, count);
         currentPos = terrain.transform.position;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-        }
     }
  
     // Raises and/or lowers the terrain and changes currentStage depending on if the stage was passed
@@ -59,7 +54,7 @@ public class StageManager : MonoBehaviour
         {
             targetPos = new Vector3(currentPos.x, currentPos.y - ascendFullDistance, currentPos.z);
             originPos = new Vector3(originPos.x, originPos.y - ascendFullDistance, originPos.z);
-            StartCoroutine(StageTimer(44));
+            StartCoroutine(StageTimer(10));
         }
         else
         {
@@ -67,6 +62,9 @@ public class StageManager : MonoBehaviour
             yield return new WaitForSeconds(ascendCheckTime);
             count = 0f;
             targetPos = originPos;
+
+            PauseManager.Instance.isPaused = true;
+            CanvasManager.Instance.ShowCanvasStageFail();
         }
     }
 
@@ -80,7 +78,7 @@ public class StageManager : MonoBehaviour
         }
         stageTimer = 0f;
         currentStage++;
-        if (APManager.Instance.curSigil >= currentStage) 
+        if (APManager.Instance.curSigil > currentStage) 
         {
             StartCoroutine(COAscend(true));
         }

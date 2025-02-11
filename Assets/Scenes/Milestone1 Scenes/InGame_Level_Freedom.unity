@@ -914,10 +914,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd021fc8568f8bd4b816f5a77b42729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ascendFullDistance: -100
-  ascendCheckDistance: 0
-  ascendCheckTime: 0
+  ascendFullDistance: 100
+  ascendCheckDistance: 50
+  ascendCheckTime: 4
   terrain: {fileID: 1132183558}
+  currentStage: 0
+  stageTimer: 0
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
