@@ -17,9 +17,13 @@ public class Level : MonoBehaviour
         tmpLength /= 60;
         tmpLength *= soTrack.bpm;
         stage1.Clear();
-        for (int i = 0; i < tmpLength; i++)
+        stage2.Clear();
+        stage3.Clear();
+        for (int i = 0; i < tmpLength/3; i++)
         {
             stage1.Add(new Board());
+            stage2.Add(new Board());
+            stage3.Add(new Board());
         }
         // button to set board amount based on bpm/time sig for song entered
         //stages should be separate lists
@@ -33,21 +37,39 @@ public class Level : MonoBehaviour
     List<Board> stage2;
     [SerializeField]
     List<Board> stage3;
-    [Button]
-    [SerializeField]
+    [Button, SerializeField]
     void ShowLevel()
     {
+        GameObject tmpLastBoard;
         if (levelPreview != null)
         {
             DestroyImmediate(levelPreview);
         }
         levelPreview = new GameObject("Level Preview");
         levelPreview.transform.parent = this.transform;
-        levelPreview.transform.position = Vector3.zero;
+        stage1Preview = new GameObject("Stage 1 Preview");
+        stage1Preview.transform.parent = levelPreview.transform;
+        stage2Preview = new GameObject("Stage 2 Preview");
+        stage2Preview.transform.parent = levelPreview.transform;
+        stage3Preview = new GameObject("Stage 3 Preview");
+        stage3Preview.transform.parent = levelPreview.transform;
+        stage3Preview.transform.position = levelPreview.transform.position = stage1Preview.transform.position = stage2Preview.transform.position = Vector3.zero;
         for (int i = 0; i < stage1.Count; i++)
         {
-            SpawnBoard(i, levelPreview.transform);
+            SpawnBoard(i, stage1, stage1Preview.transform);
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
+        }
+        tmpLastBoard = currentBoard;
+        for (int i = 0; i < stage1.Count; i++)
+        {
+            SpawnBoard(i, stage2, stage2Preview.transform);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
+        }
+        tmpLastBoard = currentBoard;
+        for (int i = 0; i < stage1.Count; i++)
+        {
+            SpawnBoard(i, stage3, stage3Preview.transform);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
     private void Awake()
@@ -60,15 +82,18 @@ public class Level : MonoBehaviour
     //spawns a board with its targets when called
     [HideInInspector] public GameObject currentBoard;
     public GameObject levelPreview;
-    public void SpawnBoard(int num, Transform transform)
+    GameObject stage1Preview;
+    GameObject stage2Preview;
+    GameObject stage3Preview;
+    public void SpawnBoard(int num, List<Board> _stage, Transform transform)
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
             as GameObject, transform);
-        foreach (var Target in stage1[num].interactables)
+        foreach (var Target in _stage[num].interactables)
         {
             SpawnTarget(Target);
         }
-        if(stage1[num].interactables.Length == 0)
+        if(_stage[num].interactables.Length == 0)
         {
             currentBoard.name = "Empty Board";
         }
@@ -109,7 +134,7 @@ public class Level : MonoBehaviour
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
-        tmpObject.transform.Translate(Vector3.up) ;
+        tmpObject.transform.Translate(Vector3.up * _target.interactableDistance) ;
         tmpObject.transform.localRotation = Quaternion.identity;
     }
     [Header("Level Editing")]
@@ -127,22 +152,8 @@ public class Level : MonoBehaviour
     {
         copiedSelection.Clear();
         int tmpIndex = endIndex;
-        switch (stageSelection)
-        {
-            //  please use copy to method for list you dummy
-            case 1:
-                if (stage1.Count < endIndex) tmpIndex = stage1.Count;
-                copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
-                break;
-            case 2:
-                if (stage2.Count < endIndex) tmpIndex = stage2.Count;
-                copiedSelection.AddRange(stage2.GetRange(startIndex, tmpIndex));
-                break;
-            case 3:
-                if (stage3.Count < endIndex) tmpIndex = stage3.Count;
-                copiedSelection.AddRange(stage3.GetRange(startIndex, tmpIndex));
-                break;
-        }
+        if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
+        copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
     }
     public List<Board> GetStage(int _index)
     {
@@ -164,26 +175,12 @@ public class Level : MonoBehaviour
     [SerializeField, HideInInspector] VoidStructure pasteButtonHolder;
     void PastePressed()
     {
-        int tmpIndex = endIndex;
-        switch (stageSelection)
+        for (int i = 0; i < copiedSelection.Count; i++)
         {
-            case 1:
-                for (int i = 0; i < copiedSelection.Count; i++)
-                {
-                    if(stage1.Count > startIndex + i)
-                    {
-                        stage1[startIndex + i] = copiedSelection[i];
-                    }
-                }
-                break;
-            case 2:
-                if (stage2.Count < endIndex) tmpIndex = stage2.Count;
-                copiedSelection.AddRange(stage2.GetRange(startIndex, tmpIndex));
-                break;
-            case 3:
-                if (stage3.Count < endIndex) tmpIndex = stage3.Count;
-                copiedSelection.AddRange(stage3.GetRange(startIndex, tmpIndex));
-                break;
+            if (GetStage(stageSelection).Count > startIndex + i)
+            {
+                GetStage(stageSelection)[startIndex + i] = copiedSelection[i];
+            }
         }
     }
     //[ButtonField(nameof(Undo))]

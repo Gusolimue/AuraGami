@@ -4,10 +4,8 @@ using System.Collections;
 public enum eSide { left, right, any }
 public class BaseInteractableBehavior : MonoBehaviour
 {
-    public Color leftColor;
     public Material leftMat;
     public Material rightMat;
-    public Color rightColor;
     public Renderer interactableRenderer;
     public eSide side;
 
