@@ -40,4 +40,9 @@ public class CanvasManager : MonoBehaviour
     {
         Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_StageFail") as GameObject);
     }
+
+    public void ShowCanvasLevelEnd()
+    {
+        Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_LevelEnd") as GameObject);
+    }
 }

@@ -54,7 +54,9 @@ public class StageManager : MonoBehaviour
         {
             targetPos = new Vector3(currentPos.x, currentPos.y - ascendFullDistance, currentPos.z);
             originPos = new Vector3(originPos.x, originPos.y - ascendFullDistance, originPos.z);
-            StartCoroutine(StageTimer(10));
+            if (currentStage != 4) StartCoroutine(StageTimer(10));
+            else CanvasManager.Instance.ShowCanvasLevelEnd();
+
         }
         else
         {
@@ -86,7 +88,5 @@ public class StageManager : MonoBehaviour
         {
             StartCoroutine(COAscend(false));
         }
-
-        //if (currentStage == 4)
     }
 }
