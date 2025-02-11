@@ -6,7 +6,6 @@ using System.Collections;
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
-    //private RepeatTerrainBehavior repeatTerrainBehavior;
     public InputActionReference openPauseMenuAction;
     public bool isPaused = false;
 
@@ -27,6 +26,11 @@ public class PauseManager : MonoBehaviour
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    private void Update()
+    {
+        if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
     }
 
     private void OnDestroy()

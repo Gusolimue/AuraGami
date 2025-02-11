@@ -7,7 +7,6 @@ public class CanvasManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //ShowCanvasFE();
     }
 
     //When called, instantiates the FrontEnd canvas, all other methods act similarly for their respective canvas'.

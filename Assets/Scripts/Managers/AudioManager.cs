@@ -49,6 +49,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+        // Music keeps playing between scenes due to this object not being destroyed.
         Instance = this;
 
         if (Instance == null)
