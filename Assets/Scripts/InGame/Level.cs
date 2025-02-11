@@ -134,7 +134,7 @@ public class Level : MonoBehaviour
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
-        tmpObject.transform.Translate(Vector3.up) ;
+        tmpObject.transform.Translate(Vector3.up * _target.interactableDistance) ;
         tmpObject.transform.localRotation = Quaternion.identity;
     }
     [Header("Level Editing")]
