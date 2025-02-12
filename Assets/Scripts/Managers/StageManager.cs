@@ -56,8 +56,6 @@ public class StageManager : MonoBehaviour
             targetPos = new Vector3(currentPos.x, currentPos.y - ascendFullDistance, currentPos.z);
             originPos = new Vector3(originPos.x, originPos.y - ascendFullDistance, originPos.z);
             if (currentStage <= 4) StartCoroutine(StageTimer(stageLengthTime));
-            else CanvasManager.Instance.ShowCanvasLevelEnd();
-
         }
         else
         {
@@ -67,7 +65,14 @@ public class StageManager : MonoBehaviour
             targetPos = originPos;
 
             PauseManager.Instance.isPaused = true;
-            CanvasManager.Instance.ShowCanvasStageFail();
+            if (APManager.Instance.sigilThree.value == 6f)
+            {
+                CanvasManager.Instance.ShowCanvasLevelEnd();
+            }
+            else 
+            {
+                CanvasManager.Instance.ShowCanvasStageFail();
+            }
         }
     }
 

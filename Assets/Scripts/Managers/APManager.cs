@@ -7,7 +7,7 @@ public class APManager : MonoBehaviour
     [Header("Sigils")]
     [SerializeField] Slider sigilOne;
     [SerializeField] Slider sigilTwo;
-    [SerializeField] Slider sigilThree;
+    [SerializeField] public Slider sigilThree;
     [Space]
     [Header("Sigil Values")]
     public float ap = .1f;
