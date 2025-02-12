@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             instantiatedLevel[boardCount].SetActive(true);
+            instantiatedLevel[boardCount].GetComponent<BoardBehavior>().StartMovement();
             boardCount++;
         }
     }
