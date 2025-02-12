@@ -37,34 +37,31 @@ public class BaseInteractableBehavior : MonoBehaviour
         }
 
     }
-
-    public void StartMovement()
+    public virtual void InteractableMissed()
     {
-
-        currentBeat = 0;
-        BeatManager.beatUpdated += UpdateMovementTarget;
+        //Debug.Log("player missed");
     }
 
-    void UpdateMovementTarget()
-    {
-        lastPos = transform.position;
-        currentBeat++;
-        targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.Instance.beatsToPlayer)*currentBeat;
-        if (currentBeat > LevelManager.Instance.beatsToPlayer + 1)
-        {
-            StopTarget();
-        }
-        count = 0;
-    }
+    //public void StartMovement()
+    //{
+
+    //    currentBeat = 0;
+    //    BeatManager.beatUpdated += UpdateMovementTarget;
+    //}
+
+    //void UpdateMovementTarget()
+    //{
+    //    lastPos = transform.position;
+    //    currentBeat++;
+    //    targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.Instance.beatsToPlayer)*currentBeat;
+    //    if (currentBeat > LevelManager.Instance.beatsToPlayer + 1)
+    //    {
+    //        StopTarget();
+    //    }
+    //    count = 0;
+    //}
     void Update()
     {
-        transform.position += Vector3.back * Time.deltaTime * 10;
-        // Moves instantiated targets and obstacles foward
-        count += Time.deltaTime;
-        if(currentBeat > 0)
-        {
-            transform.position = Vector3.Lerp(lastPos, targetPos, 60f / LevelManager.Instance.level.soTrack.bpm * count);
-        }
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
@@ -74,7 +71,6 @@ public class BaseInteractableBehavior : MonoBehaviour
 
     private void StopTarget()
     {
-        BeatManager.beatUpdated -= UpdateMovementTarget;
         gameObject.SetActive(false);
         
     }
