@@ -62,10 +62,10 @@ public class LevelManager : MonoBehaviour
             BeatManager.beatUpdated -= ActivateBoard;
         }
         else
-        {
+        {          
             instantiatedLevel[boardCount].SetActive(true);
             instantiatedLevel[boardCount].GetComponent<BoardBehavior>().StartMovement();
-            boardCount++;
+            boardCount++;              
         }
     }
     // set the spawn distance. set number of beats for travel time

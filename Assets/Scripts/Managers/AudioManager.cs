@@ -52,14 +52,15 @@ public class AudioManager : MonoBehaviour
         // Music keeps playing between scenes due to this object not being destroyed.
         Instance = this;
 
-        if (Instance == null)
+       /* if (Instance == null)
         {
             Instance = this;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
-        }
+        }*/
+
     }
 
     void Start()
