@@ -40,6 +40,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     public virtual void InteractableMissed()
     {
         //Debug.Log("player missed");
+        APManager.Instance.DecreaseAP();
     }
 
     //public void StartMovement()
