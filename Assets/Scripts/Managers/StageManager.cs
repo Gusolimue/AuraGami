@@ -16,7 +16,7 @@ public class StageManager : MonoBehaviour
     public GameObject terrain;
 
     public int currentStage = 1;
-    public float stagelengthTime;
+    public float stageLengthTime;
     Vector3 originPos;
     Vector3 currentPos;
     Vector3 targetPos;
@@ -36,7 +36,7 @@ public class StageManager : MonoBehaviour
         currentPos = terrain.transform.position;
         targetPos = terrain.transform.position;
 
-        StartCoroutine(StageTimer(stagelengthTime));
+        StartCoroutine(StageTimer(stageLengthTime));
     }
 
     // Moves the terrain to the target position over time.
@@ -55,7 +55,7 @@ public class StageManager : MonoBehaviour
         {
             targetPos = new Vector3(currentPos.x, currentPos.y - ascendFullDistance, currentPos.z);
             originPos = new Vector3(originPos.x, originPos.y - ascendFullDistance, originPos.z);
-            if (currentStage <= 4) StartCoroutine(StageTimer(stagelengthTime));
+            if (currentStage <= 4) StartCoroutine(StageTimer(stageLengthTime));
             else CanvasManager.Instance.ShowCanvasLevelEnd();
 
         }
