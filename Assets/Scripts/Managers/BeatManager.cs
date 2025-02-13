@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System.Runtime.InteropServices;
 using FMODUnity;
 using System;
+using EditorAttributes;
 
 public class BeatManager : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class BeatManager : MonoBehaviour
         Instance = this;
         musicInstance = RuntimeManager.CreateInstance(music);
         musicInstance.start();
+    }
+    [Button, SerializeField]
+    public void PauseMusicTMP(bool _paused)
+    {
+        musicInstance.setPaused(_paused);
     }
 
     [StructLayout(LayoutKind.Sequential)]

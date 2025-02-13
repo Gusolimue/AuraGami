@@ -51,4 +51,9 @@ public class BoardBehavior : MonoBehaviour
         gameObject.SetActive(false);
 
     }
+    private void OnDestroy()
+    {
+
+        BeatManager.beatUpdated -= UpdateMovementTarget;
+    }
 }

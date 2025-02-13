@@ -67,6 +67,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
         StopTarget();
     }
 

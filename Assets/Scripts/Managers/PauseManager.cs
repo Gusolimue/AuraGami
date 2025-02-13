@@ -30,7 +30,7 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
+        //if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
     }
 
     private void OnDestroy()
@@ -43,6 +43,7 @@ public class PauseManager : MonoBehaviour
     public void PauseGame(bool _pause)
     {
         if (_pause) Time.timeScale = 0; else Time.timeScale = 1;
+        BeatManager.Instance.PauseMusicTMP(_pause);
     }
 
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
