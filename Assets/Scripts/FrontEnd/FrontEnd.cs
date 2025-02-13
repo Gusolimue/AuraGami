@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using EditorAttributes;
 
 public class FrontEnd : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
         StartCoroutine(PlayButtonBGColorChangeOnExit());
     }
-
+    [Button, SerializeField]
     public void OnPlayButtonPressed()
     {
         playButton_BG_OnPressed_Anim.enabled = true;

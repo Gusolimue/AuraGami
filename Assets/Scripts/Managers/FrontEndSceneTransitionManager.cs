@@ -40,9 +40,10 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
+        AudioManager.Instance.StopMusic();
         if (LoadManager.Instance.whichScene == 0) LoadManager.Instance.LoadScene(eScene.levelFreedom);
-        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); 
-        if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        else if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); 
+        else if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {

@@ -2,6 +2,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine;
+using EditorAttributes;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class PauseMenu : MonoBehaviour
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
-    
+    [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
         //SceneMgr.Instance.IntoFrontEndSceneTransition();
