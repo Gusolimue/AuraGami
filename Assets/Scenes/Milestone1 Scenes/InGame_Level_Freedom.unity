@@ -17579,7 +17579,7 @@ MonoBehaviour:
   sigilOne: {fileID: 1952203637}
   sigilTwo: {fileID: 546126302}
   sigilThree: {fileID: 962533833}
-  ap: 0.01
+  ap: 0.1
   curAP: 0
   multBuildUp: 0
   maxMult: 0.1
@@ -18306,7 +18306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1219338166
 Transform:
   m_ObjectHideFlags: 0
@@ -24986,6 +24986,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentBeat: 0
   movementSpeed: 0
+--- !u!1 &1723549975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1083376152663379238, guid: 599799d9b315f61468045147600a4ee7, type: 3}
+  m_PrefabInstance: {fileID: 6987587815485313286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1739459478
 GameObject:
   m_ObjectHideFlags: 0
@@ -29875,6 +29880,17 @@ MonoBehaviour:
   interactableRenderer: {fileID: 652468122}
   side: 1
   currentBeat: 0
+--- !u!114 &2068154726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
+  m_PrefabInstance: {fileID: 6987587815485313286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb56995bf32f6a4b92a469855f02cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2069307299
 GameObject:
   m_ObjectHideFlags: 0
@@ -31766,7 +31782,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2022017847740949613, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: currentBoard
@@ -31782,7 +31798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[1].interactables.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[2].interactables.Array.size
@@ -31921,6 +31937,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
+      propertyPath: stage1.Array.data[1].interactables.Array.data[0].interactableType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[2].interactables.Array.data[0].interactableType
       value: 0
       objectReference: {fileID: 0}
@@ -31942,7 +31962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[1].interactables.Array.data[0].interactableAngle
-      value: 90
+      value: 148
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[2].interactables.Array.data[0].interactableAngle
@@ -31998,7 +32018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[1].interactables.Array.data[0].interactableDistance
-      value: 0.5
+      value: 0.339
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[2].interactables.Array.data[0].interactableDistance
@@ -32051,7 +32071,7 @@ PrefabInstance:
     - target: {fileID: 3298513978753850582, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 1219338167}
+      objectReference: {fileID: 2068154726}
     - target: {fileID: 3298513978753850582, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: beatsToPlayer
       value: 25
@@ -32063,7 +32083,7 @@ PrefabInstance:
     - target: {fileID: 3298513978753850582, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: levelContainer
       value: 
-      objectReference: {fileID: 62689414}
+      objectReference: {fileID: 1723549975}
     - target: {fileID: 6704436547440999146, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
