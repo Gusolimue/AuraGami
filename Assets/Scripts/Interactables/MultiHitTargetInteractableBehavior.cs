@@ -23,9 +23,9 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Sets the movement target to a target point
-    public override void UpdateMovementTarget()
+    public /*override*/ void UpdateMovementTarget()
     {
-        base.UpdateMovementTarget();
+        //base.UpdateMovementTarget();
         targetPos = multiPositions[currentPoint].transform.position; // Set the target position to be next point in the list
         Debug.Log("Movement Updated!");
     }
