@@ -5,6 +5,7 @@ public class BoardBehavior : MonoBehaviour
     float count;
     float originSpawnDistance;
     public int currentBeat;
+    public float movementSpeed;
     Vector3 originPos;
     Vector3 lastPos;
     Vector3 targetPos;
@@ -17,7 +18,7 @@ public class BoardBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        count += Time.deltaTime;
+        count += Time.deltaTime / movementSpeed;
         if (currentBeat > 0)
         {
             transform.position = Vector3.Lerp(lastPos, targetPos, 60f / LevelManager.Instance.level.soTrack.bpm * count);
@@ -49,5 +50,10 @@ public class BoardBehavior : MonoBehaviour
         }
         gameObject.SetActive(false);
 
+    }
+    private void OnDestroy()
+    {
+
+        BeatManager.beatUpdated -= UpdateMovementTarget;
     }
 }

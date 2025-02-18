@@ -7,7 +7,6 @@ public class CanvasManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //ShowCanvasFE();
     }
 
     //When called, instantiates the FrontEnd canvas, all other methods act similarly for their respective canvas'.
@@ -32,5 +31,17 @@ public class CanvasManager : MonoBehaviour
     public void ShowCanvasPauseMenu()
     {
         Instantiate(Resources.Load("Canvas_PauseMenu/" + "Canvas_PauseMenu") as GameObject);
+    }
+
+    //GAME STATE CAVAS'
+
+    public void ShowCanvasStageFail()
+    {
+        Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_StageFail") as GameObject);
+    }
+
+    public void ShowCanvasLevelEnd()
+    {
+        Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_LevelEnd") as GameObject);
     }
 }
