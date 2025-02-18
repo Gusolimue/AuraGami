@@ -21,6 +21,12 @@ public class LevelManager : MonoBehaviour
         InitLevel();
         levelContainer.transform.Translate(Vector3.forward * spawnDistance);
     }
+    public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
+    {
+        //returns the instantiated board when given index
+        //if stage 1, board index is fine. if stage 2 or 3, you need to add instantiatedLevel.count()/3 or (instantiatedLevel.Count()/3 * 2) respectively
+        return null;
+    }
     public void InitLevel()
     {
         int tmp = 0;

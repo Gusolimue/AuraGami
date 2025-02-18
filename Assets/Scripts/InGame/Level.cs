@@ -130,7 +130,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _target);
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, );
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;

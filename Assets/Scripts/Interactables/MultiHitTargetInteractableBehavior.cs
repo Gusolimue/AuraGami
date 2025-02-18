@@ -13,17 +13,28 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     int totalPoints;
     List<GameObject> multiPositions = new List<GameObject>();
 
-    public override void InitInteractable(eSide _eSide, Interactable _interactable)
+    float count;
+    float originSpawnDistance;
+    public int currentBeat;
+    Vector3 originPos;
+    Vector3 lastPos;
+    public Vector3 targetPos;
+    public override void InitInteractable(eSide _eSide, int _stage, int _board, int _interactable)
     {
-        base.InitInteractable(_eSide, _interactable);
+        base.InitInteractable(_eSide, _stage, _board, _interactable);
 
         currentPoint = 0;
         SpawnTargetPoints();
         totalPoints = multiPositions.Count;
     }
 
+    private void Update()
+    {
+        //look in board behavior for lerping example
+    }
+
     // Sets the movement target to a target point
-    public /*override*/ void UpdateMovementTarget()
+    public void UpdateMovementTarget()
     {
         //base.UpdateMovementTarget();
         targetPos = multiPositions[currentPoint].transform.position; // Set the target position to be next point in the list
@@ -52,13 +63,12 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         foreach (TargetPoints point in interactable.multiPoints)
         {
             pointCount++;
-            GameObject tmpObject = new GameObject("TargetPoint" + pointCount); // Creates and names the point
-            tmpObject.AddComponent<BaseInteractableBehavior>(); // Lets the point move forward like normal
-            tmpObject.GetComponent<BaseInteractableBehavior>().currentBeat -= point.boardsMoved; // Move the point back by the set amount of boards(?) WIP
+            GameObject tmpObject = new GameObject("TargetPoint of " + pointCount); // Creates and names the point
+            // tmpObject.transform = uses the get methods in level manager to set parent as the correct board
             Quaternion tmpRot = new Quaternion();
             tmpRot.eulerAngles = new Vector3(0, 0, point.interactableAngle);
             tmpObject.transform.localRotation *= tmpRot;
-            tmpObject.transform.Translate(Vector3.up);
+            tmpObject.transform.Translate(Vector3.up * point.interactableDistance);
             tmpObject.transform.localRotation = Quaternion.identity;
 
             multiPositions.Add(tmpObject);
