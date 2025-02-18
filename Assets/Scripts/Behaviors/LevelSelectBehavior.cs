@@ -12,9 +12,9 @@ public class LevelSelectBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Level_Exploration"))
+        if (other.CompareTag("FrontEndBody"))
         {
-            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
             Debug.Log("LEVEL_EXPLORATION");
             whichLevel = 1;
         }
