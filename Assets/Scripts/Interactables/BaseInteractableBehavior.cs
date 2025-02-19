@@ -10,20 +10,21 @@ public class BaseInteractableBehavior : MonoBehaviour
     public eSide side;
 
     public Interactable interactable;
-    int stageIndex;
-    int boardIndex;
+    public int stageIndex;
+    public int boardIndex;
     int interactableIndex;
     LevelManager lm;
     internal virtual void Awake()
     {
         lm = LevelManager.Instance;
     }
-    public virtual void InitInteractable(eSide _eSide, int _stage, int _board, int _interactable)
+    public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         stageIndex = _stage;
         boardIndex = _board;
-        interactableIndex = _interactable;
-        interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
+        //interactableIndex = _interactable;
+        //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
+        interactable = _interactable;
         side = _eSide;
         switch (side)
         {

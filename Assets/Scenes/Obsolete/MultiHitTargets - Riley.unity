@@ -175,8 +175,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &7559027
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &7902150
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &12550809
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &16419949
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &19150751
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &22313028
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &23441322
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &23918643 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6002718031920468881, guid: c034a98089442814bbd124c813344de6, type: 3}
@@ -917,8 +924,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &26789145
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &30400492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,8 +1028,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &35884458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &36407184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,8 +1136,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &37993253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &40430851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,8 +1240,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &41793225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,8 +1419,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &46132296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &54004659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,6 +1754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &56481956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,8 +1811,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &56879609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,8 +1869,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &62982212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,8 +1927,8 @@ MonoBehaviour:
     interactableDistance: 0.5
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &75345040
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,6 +2050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &78629403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &81618497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &85291999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,8 +2320,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &91183645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &92563901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,8 +2545,8 @@ MonoBehaviour:
     interactableDistance: 0.679
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &107615368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,8 +2603,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &110027491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,8 +2661,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &112238646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,6 +2708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &114347821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,8 +2765,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &115266869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,6 +2812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &117838409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,6 +2858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &118173462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,6 +2904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &120353024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,6 +2950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &121132485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +2996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &125131962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,6 +3046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &127731416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,6 +3213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &134131790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,6 +3503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &136744332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3524,6 +3549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &137541345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,6 +3595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &140292130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,6 +3642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &141641347
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,8 +3699,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &144348378
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &146683593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,8 +3803,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &152492784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,8 +3861,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &153770732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,6 +3908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &159716954
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,6 +4075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &168853130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,8 +4253,8 @@ MonoBehaviour:
     interactableDistance: 0.679
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &176674388
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,6 +4421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &186854975
 GameObject:
   m_ObjectHideFlags: 0
@@ -4436,6 +4468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &189203238
 GameObject:
   m_ObjectHideFlags: 0
@@ -4492,8 +4525,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &190017350
 GameObject:
   m_ObjectHideFlags: 0
@@ -4539,6 +4572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &191180025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,6 +4618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &191767997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4629,6 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &192093387
 GameObject:
   m_ObjectHideFlags: 0
@@ -4685,8 +4721,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &193279978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4974,6 +5010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &211346130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5140,6 +5177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &217779878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &220822838
 GameObject:
   m_ObjectHideFlags: 0
@@ -5472,6 +5511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &222107547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,6 +5678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &226248120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,6 +5724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &228354602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5732,6 +5774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &228470137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,6 +5820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &231622855
 GameObject:
   m_ObjectHideFlags: 0
@@ -5833,8 +5877,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &231731845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,6 +5927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &232992367
 GameObject:
   m_ObjectHideFlags: 0
@@ -5939,8 +5984,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &234972496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5986,6 +6031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &243508903
 GameObject:
   m_ObjectHideFlags: 0
@@ -6163,8 +6209,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &247472864
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,6 +6256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &248432202
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,6 +6419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &249989348
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,6 +6708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &254123892
 GameObject:
   m_ObjectHideFlags: 0
@@ -6705,6 +6754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &260399462
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,6 +6800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &263994585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,6 +6846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &271135339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6961,6 +7013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &278045878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7006,6 +7059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &281398814
 GameObject:
   m_ObjectHideFlags: 0
@@ -7051,6 +7105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &281455476
 GameObject:
   m_ObjectHideFlags: 0
@@ -7096,6 +7151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &285770983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,8 +7208,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &286355758
 GameObject:
   m_ObjectHideFlags: 0
@@ -7199,6 +7255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &286826086
 GameObject:
   m_ObjectHideFlags: 0
@@ -7255,8 +7312,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!4 &289625775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -7560,8 +7617,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &299639867
 GameObject:
   m_ObjectHideFlags: 0
@@ -7739,8 +7796,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &301880499
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,8 +7854,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &303830056
 GameObject:
   m_ObjectHideFlags: 0
@@ -7976,8 +8033,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &313325829
 GameObject:
   m_ObjectHideFlags: 0
@@ -8034,8 +8091,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &326840586
 GameObject:
   m_ObjectHideFlags: 0
@@ -8323,6 +8380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &333727470
 GameObject:
   m_ObjectHideFlags: 0
@@ -8500,8 +8558,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &337986796
 GameObject:
   m_ObjectHideFlags: 0
@@ -8547,6 +8605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &338041718
 GameObject:
   m_ObjectHideFlags: 0
@@ -8596,6 +8655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &338360305
 GameObject:
   m_ObjectHideFlags: 0
@@ -8762,6 +8822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &342512114
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,6 +8872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &344557821
 GameObject:
   m_ObjectHideFlags: 0
@@ -8856,6 +8918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &350310139
 GameObject:
   m_ObjectHideFlags: 0
@@ -8912,8 +8975,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &352362388
 GameObject:
   m_ObjectHideFlags: 0
@@ -9080,6 +9143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &363716190
 GameObject:
   m_ObjectHideFlags: 0
@@ -9257,8 +9321,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &369753319
 GameObject:
   m_ObjectHideFlags: 0
@@ -9425,6 +9489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &373671030
 GameObject:
   m_ObjectHideFlags: 0
@@ -9481,8 +9546,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &373745805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9528,6 +9593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &387455882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9573,6 +9639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &389035514
 GameObject:
   m_ObjectHideFlags: 0
@@ -9629,8 +9696,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &389659241
 GameObject:
   m_ObjectHideFlags: 0
@@ -9676,6 +9743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &390510587
 GameObject:
   m_ObjectHideFlags: 0
@@ -9721,6 +9789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &391262123
 GameObject:
   m_ObjectHideFlags: 0
@@ -9777,8 +9846,8 @@ MonoBehaviour:
     interactableDistance: 0.4
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &392365948
 GameObject:
   m_ObjectHideFlags: 0
@@ -9949,6 +10018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &397913681
 GameObject:
   m_ObjectHideFlags: 0
@@ -9994,6 +10064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &398242705
 GameObject:
   m_ObjectHideFlags: 0
@@ -10039,6 +10110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &401820490
 GameObject:
   m_ObjectHideFlags: 0
@@ -10084,6 +10156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &403987380
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,6 +10202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &404705416
 GameObject:
   m_ObjectHideFlags: 0
@@ -10174,6 +10248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &407324001
 GameObject:
   m_ObjectHideFlags: 0
@@ -10219,6 +10294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &410455346
 GameObject:
   m_ObjectHideFlags: 0
@@ -10264,6 +10340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &410831018
 GameObject:
   m_ObjectHideFlags: 0
@@ -10309,6 +10386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &419325465
 GameObject:
   m_ObjectHideFlags: 0
@@ -10365,8 +10443,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &428992908
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,6 +10490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &430147006
 GameObject:
   m_ObjectHideFlags: 0
@@ -10578,6 +10657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &431265559
 GameObject:
   m_ObjectHideFlags: 0
@@ -10623,6 +10703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &435188822
 GameObject:
   m_ObjectHideFlags: 0
@@ -10679,8 +10760,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1001 &441087506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10824,6 +10905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &444350453
 GameObject:
   m_ObjectHideFlags: 0
@@ -11001,8 +11083,8 @@ MonoBehaviour:
     interactableDistance: 0.1
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &451233761
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,6 +11130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &453572566
 GameObject:
   m_ObjectHideFlags: 0
@@ -11093,6 +11176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &453796645
 GameObject:
   m_ObjectHideFlags: 0
@@ -11138,6 +11222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &454940815
 GameObject:
   m_ObjectHideFlags: 0
@@ -11362,8 +11447,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &455349908
 GameObject:
   m_ObjectHideFlags: 0
@@ -11530,6 +11615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &457663883
 GameObject:
   m_ObjectHideFlags: 0
@@ -11545,7 +11631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &457663884
 Transform:
   m_ObjectHideFlags: 0
@@ -11620,8 +11706,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &466049921
 GameObject:
   m_ObjectHideFlags: 0
@@ -11667,6 +11753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &474295302
 GameObject:
   m_ObjectHideFlags: 0
@@ -11723,8 +11810,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &481885728
 GameObject:
   m_ObjectHideFlags: 0
@@ -11891,6 +11978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &484951641
 GameObject:
   m_ObjectHideFlags: 0
@@ -11947,8 +12035,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &496257040
 GameObject:
   m_ObjectHideFlags: 0
@@ -12126,8 +12214,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &502573703
 GameObject:
   m_ObjectHideFlags: 0
@@ -12184,8 +12272,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &505475691
 GameObject:
   m_ObjectHideFlags: 0
@@ -12353,6 +12441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &513397540
 GameObject:
   m_ObjectHideFlags: 0
@@ -12409,8 +12498,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &513795991
 GameObject:
   m_ObjectHideFlags: 0
@@ -12457,6 +12546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &519525869
 GameObject:
   m_ObjectHideFlags: 0
@@ -12623,6 +12713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &523919962
 GameObject:
   m_ObjectHideFlags: 0
@@ -12668,6 +12759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &525579273
 GameObject:
   m_ObjectHideFlags: 0
@@ -12713,6 +12805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &525851753
 GameObject:
   m_ObjectHideFlags: 0
@@ -12758,6 +12851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &526228313
 GameObject:
   m_ObjectHideFlags: 0
@@ -12803,6 +12897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &526515277
 GameObject:
   m_ObjectHideFlags: 0
@@ -12848,6 +12943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!4 &527163423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -12898,6 +12994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &530821759
 GameObject:
   m_ObjectHideFlags: 0
@@ -12954,8 +13051,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &543098674
 GameObject:
   m_ObjectHideFlags: 0
@@ -13001,6 +13098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &543723635
 GameObject:
   m_ObjectHideFlags: 0
@@ -13046,6 +13144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &544313300
 GameObject:
   m_ObjectHideFlags: 0
@@ -13091,6 +13190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &545165483
 GameObject:
   m_ObjectHideFlags: 0
@@ -13257,6 +13357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &548809891
 GameObject:
   m_ObjectHideFlags: 0
@@ -13423,6 +13524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &555620379
 GameObject:
   m_ObjectHideFlags: 0
@@ -13468,6 +13570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &560839374
 GameObject:
   m_ObjectHideFlags: 0
@@ -13513,6 +13616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &560970400
 GameObject:
   m_ObjectHideFlags: 0
@@ -13558,6 +13662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &562530366
 GameObject:
   m_ObjectHideFlags: 0
@@ -13603,6 +13708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &562611264
 GameObject:
   m_ObjectHideFlags: 0
@@ -13648,6 +13754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &564238426
 GameObject:
   m_ObjectHideFlags: 0
@@ -13825,8 +13932,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &569375200
 GameObject:
   m_ObjectHideFlags: 0
@@ -13883,8 +13990,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &569496192
 GameObject:
   m_ObjectHideFlags: 0
@@ -13930,6 +14037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &574254232
 GameObject:
   m_ObjectHideFlags: 0
@@ -14459,6 +14567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &584504688
 GameObject:
   m_ObjectHideFlags: 0
@@ -14504,6 +14613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &584541279
 GameObject:
   m_ObjectHideFlags: 0
@@ -14549,6 +14659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &596863811
 GameObject:
   m_ObjectHideFlags: 0
@@ -14715,6 +14826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &600843022
 GameObject:
   m_ObjectHideFlags: 0
@@ -14760,6 +14872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &601498968
 GameObject:
   m_ObjectHideFlags: 0
@@ -14805,6 +14918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &602230077
 GameObject:
   m_ObjectHideFlags: 0
@@ -14850,6 +14964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &613676094
 GameObject:
   m_ObjectHideFlags: 0
@@ -15005,6 +15120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &617199692
 GameObject:
   m_ObjectHideFlags: 0
@@ -15053,6 +15169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &618586002
 GameObject:
   m_ObjectHideFlags: 0
@@ -15098,6 +15215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &619554616
 GameObject:
   m_ObjectHideFlags: 0
@@ -15264,6 +15382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &632822003
 GameObject:
   m_ObjectHideFlags: 0
@@ -15441,8 +15560,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &640116749
 GameObject:
   m_ObjectHideFlags: 0
@@ -15499,8 +15618,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &640963343
 GameObject:
   m_ObjectHideFlags: 0
@@ -15546,6 +15665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &643467991
 GameObject:
   m_ObjectHideFlags: 0
@@ -15591,6 +15711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &646574801
 GameObject:
   m_ObjectHideFlags: 0
@@ -15636,6 +15757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &650587839
 GameObject:
   m_ObjectHideFlags: 0
@@ -15692,8 +15814,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &651390799
 GameObject:
   m_ObjectHideFlags: 0
@@ -15750,8 +15872,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &653064572
 GameObject:
   m_ObjectHideFlags: 0
@@ -15797,6 +15919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &653449675
 GameObject:
   m_ObjectHideFlags: 0
@@ -15842,6 +15965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &654762486
 GameObject:
   m_ObjectHideFlags: 0
@@ -15898,8 +16022,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &654911250
 GameObject:
   m_ObjectHideFlags: 0
@@ -15945,6 +16069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &663990845
 GameObject:
   m_ObjectHideFlags: 0
@@ -15990,6 +16115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &665798020
 GameObject:
   m_ObjectHideFlags: 0
@@ -16035,6 +16161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &667685323
 GameObject:
   m_ObjectHideFlags: 0
@@ -16080,6 +16207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &670203800
 GameObject:
   m_ObjectHideFlags: 0
@@ -16125,6 +16253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &671412902
 GameObject:
   m_ObjectHideFlags: 0
@@ -16170,6 +16299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &671477279
 GameObject:
   m_ObjectHideFlags: 0
@@ -16219,6 +16349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &671735425
 GameObject:
   m_ObjectHideFlags: 0
@@ -16275,8 +16406,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &671964276
 GameObject:
   m_ObjectHideFlags: 0
@@ -16322,6 +16453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &672704341
 GameObject:
   m_ObjectHideFlags: 0
@@ -16378,8 +16510,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &674381155
 GameObject:
   m_ObjectHideFlags: 0
@@ -16425,6 +16557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &674474334
 GameObject:
   m_ObjectHideFlags: 0
@@ -16602,8 +16735,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &676891984
 GameObject:
   m_ObjectHideFlags: 0
@@ -16660,8 +16793,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &678814453
 GameObject:
   m_ObjectHideFlags: 0
@@ -16707,6 +16840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &678965063
 GameObject:
   m_ObjectHideFlags: 0
@@ -16994,6 +17128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &681202630
 GameObject:
   m_ObjectHideFlags: 0
@@ -17039,6 +17174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &683736905
 GameObject:
   m_ObjectHideFlags: 0
@@ -17084,6 +17220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &685562344
 GameObject:
   m_ObjectHideFlags: 0
@@ -17129,6 +17266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &691332968
 GameObject:
   m_ObjectHideFlags: 0
@@ -17174,6 +17312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &695330690
 GameObject:
   m_ObjectHideFlags: 0
@@ -17340,6 +17479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &698003054
 GameObject:
   m_ObjectHideFlags: 0
@@ -17385,6 +17525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &698922996
 GameObject:
   m_ObjectHideFlags: 0
@@ -17430,6 +17571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &699224390
 GameObject:
   m_ObjectHideFlags: 0
@@ -17475,6 +17617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &706186412
 GameObject:
   m_ObjectHideFlags: 0
@@ -17520,6 +17663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &708500296
 GameObject:
   m_ObjectHideFlags: 0
@@ -17576,8 +17720,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &716500040
 GameObject:
   m_ObjectHideFlags: 0
@@ -17627,6 +17771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &718798292
 GameObject:
   m_ObjectHideFlags: 0
@@ -17672,6 +17817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &719509497
 GameObject:
   m_ObjectHideFlags: 0
@@ -17728,8 +17874,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &720241570
 GameObject:
   m_ObjectHideFlags: 0
@@ -17775,6 +17921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &720520856
 GameObject:
   m_ObjectHideFlags: 0
@@ -17820,6 +17967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &721640551
 GameObject:
   m_ObjectHideFlags: 0
@@ -18118,8 +18266,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &724076709
 GameObject:
   m_ObjectHideFlags: 0
@@ -18176,8 +18324,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &726705788
 GameObject:
   m_ObjectHideFlags: 0
@@ -18344,6 +18492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &729179290
 GameObject:
   m_ObjectHideFlags: 0
@@ -18631,6 +18780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &740768776
 GameObject:
   m_ObjectHideFlags: 0
@@ -18676,6 +18826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &742145960
 GameObject:
   m_ObjectHideFlags: 0
@@ -18721,6 +18872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &748919069
 GameObject:
   m_ObjectHideFlags: 0
@@ -19054,6 +19206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &764033241
 GameObject:
   m_ObjectHideFlags: 0
@@ -19099,6 +19252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &764546272
 GameObject:
   m_ObjectHideFlags: 0
@@ -19144,6 +19298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &767185987
 GameObject:
   m_ObjectHideFlags: 0
@@ -19200,8 +19355,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &772389663
 GameObject:
   m_ObjectHideFlags: 0
@@ -19247,6 +19402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &774717210
 GameObject:
   m_ObjectHideFlags: 0
@@ -19292,6 +19448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &775434650
 GameObject:
   m_ObjectHideFlags: 0
@@ -19337,6 +19494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &783690418
 GameObject:
   m_ObjectHideFlags: 0
@@ -19382,6 +19540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &784579648
 GameObject:
   m_ObjectHideFlags: 0
@@ -19559,8 +19718,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &789433343
 GameObject:
   m_ObjectHideFlags: 0
@@ -19610,6 +19769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &801128104
 GameObject:
   m_ObjectHideFlags: 0
@@ -19776,6 +19936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &807176863
 GameObject:
   m_ObjectHideFlags: 0
@@ -19821,6 +19982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &810827961
 GameObject:
   m_ObjectHideFlags: 0
@@ -19866,6 +20028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &812937508
 GameObject:
   m_ObjectHideFlags: 0
@@ -19911,6 +20074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &815974328
 GameObject:
   m_ObjectHideFlags: 0
@@ -19956,6 +20120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &818346961
 GameObject:
   m_ObjectHideFlags: 0
@@ -20012,8 +20177,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &824246161
 GameObject:
   m_ObjectHideFlags: 0
@@ -20063,6 +20228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &832557682
 GameObject:
   m_ObjectHideFlags: 0
@@ -20119,8 +20285,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &833690643
 GameObject:
   m_ObjectHideFlags: 0
@@ -20166,6 +20332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &834827567
 GameObject:
   m_ObjectHideFlags: 0
@@ -20211,6 +20378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &838982753
 GameObject:
   m_ObjectHideFlags: 0
@@ -20267,8 +20435,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &840923851
 GameObject:
   m_ObjectHideFlags: 0
@@ -20314,6 +20482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &841633957
 GameObject:
   m_ObjectHideFlags: 0
@@ -20359,6 +20528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &842847320
 GameObject:
   m_ObjectHideFlags: 0
@@ -20525,6 +20695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &850531905
 GameObject:
   m_ObjectHideFlags: 0
@@ -20570,6 +20741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &852714206
 GameObject:
   m_ObjectHideFlags: 0
@@ -20615,6 +20787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &853530635
 GameObject:
   m_ObjectHideFlags: 0
@@ -20671,8 +20844,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &853957885
 GameObject:
   m_ObjectHideFlags: 0
@@ -20843,6 +21016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &866803790
 GameObject:
   m_ObjectHideFlags: 0
@@ -20888,6 +21062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &876011281
 GameObject:
   m_ObjectHideFlags: 0
@@ -20937,6 +21112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &876763120
 GameObject:
   m_ObjectHideFlags: 0
@@ -20986,6 +21162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &877462220
 GameObject:
   m_ObjectHideFlags: 0
@@ -21042,8 +21219,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &880802919
 GameObject:
   m_ObjectHideFlags: 0
@@ -21214,6 +21391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &886333312
 GameObject:
   m_ObjectHideFlags: 0
@@ -21259,6 +21437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &887367896
 GameObject:
   m_ObjectHideFlags: 0
@@ -21304,6 +21483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &888278794
 GameObject:
   m_ObjectHideFlags: 0
@@ -21349,6 +21529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &890941416
 GameObject:
   m_ObjectHideFlags: 0
@@ -21515,6 +21696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &892250251
 GameObject:
   m_ObjectHideFlags: 0
@@ -21571,8 +21753,8 @@ MonoBehaviour:
     interactableDistance: 0.8
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &894283546
 GameObject:
   m_ObjectHideFlags: 0
@@ -21629,8 +21811,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &897301432
 GameObject:
   m_ObjectHideFlags: 0
@@ -21676,6 +21858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &897652132
 GameObject:
   m_ObjectHideFlags: 0
@@ -21732,8 +21915,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &898255265
 GameObject:
   m_ObjectHideFlags: 0
@@ -21911,8 +22094,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &900588066
 GameObject:
   m_ObjectHideFlags: 0
@@ -21958,6 +22141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &908544852
 GameObject:
   m_ObjectHideFlags: 0
@@ -22003,6 +22187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &909993660
 GameObject:
   m_ObjectHideFlags: 0
@@ -22048,6 +22233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &910046829
 GameObject:
   m_ObjectHideFlags: 0
@@ -22214,6 +22400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &916327502
 GameObject:
   m_ObjectHideFlags: 0
@@ -22259,6 +22446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &920729801
 GameObject:
   m_ObjectHideFlags: 0
@@ -22304,6 +22492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &921548710
 GameObject:
   m_ObjectHideFlags: 0
@@ -22470,6 +22659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &925953324
 GameObject:
   m_ObjectHideFlags: 0
@@ -22526,8 +22716,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &927670120
 GameObject:
   m_ObjectHideFlags: 0
@@ -22573,6 +22763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &932295740
 GameObject:
   m_ObjectHideFlags: 0
@@ -22743,6 +22934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &941512545
 GameObject:
   m_ObjectHideFlags: 0
@@ -22799,8 +22991,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &943733121
 GameObject:
   m_ObjectHideFlags: 0
@@ -22857,8 +23049,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &945723563
 GameObject:
   m_ObjectHideFlags: 0
@@ -23029,6 +23221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &951352942
 GameObject:
   m_ObjectHideFlags: 0
@@ -23195,6 +23388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &956878057
 GameObject:
   m_ObjectHideFlags: 0
@@ -23244,6 +23438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &964317702
 GameObject:
   m_ObjectHideFlags: 0
@@ -23289,6 +23484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &969060657
 GameObject:
   m_ObjectHideFlags: 0
@@ -23334,6 +23530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &969083734
 GameObject:
   m_ObjectHideFlags: 0
@@ -23379,6 +23576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &972568203
 GameObject:
   m_ObjectHideFlags: 0
@@ -23435,8 +23633,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &973047096
 GameObject:
   m_ObjectHideFlags: 0
@@ -23482,6 +23680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &973839907
 GameObject:
   m_ObjectHideFlags: 0
@@ -23527,6 +23726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &983253452
 GameObject:
   m_ObjectHideFlags: 0
@@ -23572,6 +23772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &983510403
 GameObject:
   m_ObjectHideFlags: 0
@@ -23617,6 +23818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &983803012
 GameObject:
   m_ObjectHideFlags: 0
@@ -23673,8 +23875,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &990430186
 GameObject:
   m_ObjectHideFlags: 0
@@ -23720,6 +23922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &993523808
 GameObject:
   m_ObjectHideFlags: 0
@@ -23765,6 +23968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &996739836
 GameObject:
   m_ObjectHideFlags: 0
@@ -23821,8 +24025,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &998788853
 GameObject:
   m_ObjectHideFlags: 0
@@ -23868,6 +24072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &999985441
 GameObject:
   m_ObjectHideFlags: 0
@@ -23924,8 +24129,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1002199550
 GameObject:
   m_ObjectHideFlags: 0
@@ -23975,6 +24180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1003442213
 GameObject:
   m_ObjectHideFlags: 0
@@ -24020,6 +24226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1003652479
 GameObject:
   m_ObjectHideFlags: 0
@@ -24065,6 +24272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1013644200
 GameObject:
   m_ObjectHideFlags: 0
@@ -24121,8 +24329,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1013894615
 GameObject:
   m_ObjectHideFlags: 0
@@ -24168,6 +24376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1017180906
 GameObject:
   m_ObjectHideFlags: 0
@@ -24334,6 +24543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1018656548
 GameObject:
   m_ObjectHideFlags: 0
@@ -24379,6 +24589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1019438720
 GameObject:
   m_ObjectHideFlags: 0
@@ -24435,8 +24646,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1022238702
 GameObject:
   m_ObjectHideFlags: 0
@@ -24614,8 +24825,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1030040518
 GameObject:
   m_ObjectHideFlags: 0
@@ -24672,8 +24883,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1031471457
 GameObject:
   m_ObjectHideFlags: 0
@@ -24719,6 +24930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1036027032
 GameObject:
   m_ObjectHideFlags: 0
@@ -24764,6 +24976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1038762153
 GameObject:
   m_ObjectHideFlags: 0
@@ -24809,6 +25022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1042012157
 GameObject:
   m_ObjectHideFlags: 0
@@ -24975,6 +25189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1047541230
 GameObject:
   m_ObjectHideFlags: 0
@@ -25020,6 +25235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1048376967
 GameObject:
   m_ObjectHideFlags: 0
@@ -25186,6 +25402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1052811611
 GameObject:
   m_ObjectHideFlags: 0
@@ -25242,8 +25459,8 @@ MonoBehaviour:
     interactableDistance: 0.6
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1057342246
 GameObject:
   m_ObjectHideFlags: 0
@@ -25300,8 +25517,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1060684653
 GameObject:
   m_ObjectHideFlags: 0
@@ -25589,6 +25806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1066188274
 GameObject:
   m_ObjectHideFlags: 0
@@ -25634,6 +25852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1067800418
 GameObject:
   m_ObjectHideFlags: 0
@@ -25679,6 +25898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1070888239
 GameObject:
   m_ObjectHideFlags: 0
@@ -25735,8 +25955,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1071129597
 GameObject:
   m_ObjectHideFlags: 0
@@ -25782,6 +26002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1073436156
 GameObject:
   m_ObjectHideFlags: 0
@@ -26069,6 +26290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1084255259
 GameObject:
   m_ObjectHideFlags: 0
@@ -26114,6 +26336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1085000153
 GameObject:
   m_ObjectHideFlags: 0
@@ -26427,8 +26650,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1095194554
 GameObject:
   m_ObjectHideFlags: 0
@@ -26485,8 +26708,8 @@ MonoBehaviour:
     interactableDistance: 1
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1096605267
 GameObject:
   m_ObjectHideFlags: 0
@@ -26532,6 +26755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1096697567
 GameObject:
   m_ObjectHideFlags: 0
@@ -26588,8 +26812,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1097925293
 GameObject:
   m_ObjectHideFlags: 0
@@ -26756,6 +26980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1105778617
 GameObject:
   m_ObjectHideFlags: 0
@@ -26801,6 +27026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1106260396
 GameObject:
   m_ObjectHideFlags: 0
@@ -26847,6 +27073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1107419597
 GameObject:
   m_ObjectHideFlags: 0
@@ -26892,6 +27119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1108057383
 GameObject:
   m_ObjectHideFlags: 0
@@ -27058,6 +27286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1112863981
 GameObject:
   m_ObjectHideFlags: 0
@@ -27224,6 +27453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1121280446
 GameObject:
   m_ObjectHideFlags: 0
@@ -27280,8 +27510,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1122156726
 GameObject:
   m_ObjectHideFlags: 0
@@ -27459,8 +27689,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1132164614
 GameObject:
   m_ObjectHideFlags: 0
@@ -27517,8 +27747,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1132250082
 GameObject:
   m_ObjectHideFlags: 0
@@ -27696,8 +27926,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1139092477
 GameObject:
   m_ObjectHideFlags: 0
@@ -27744,6 +27974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1145104698
 GameObject:
   m_ObjectHideFlags: 0
@@ -27789,6 +28020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1145812542
 GameObject:
   m_ObjectHideFlags: 0
@@ -27955,6 +28187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1150129149
 GameObject:
   m_ObjectHideFlags: 0
@@ -28011,8 +28244,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1150596708
 GameObject:
   m_ObjectHideFlags: 0
@@ -28069,8 +28302,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1153401023
 GameObject:
   m_ObjectHideFlags: 0
@@ -28116,6 +28349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1153746713
 GameObject:
   m_ObjectHideFlags: 0
@@ -28161,6 +28395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1160239924
 GameObject:
   m_ObjectHideFlags: 0
@@ -28327,6 +28562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1168005788
 GameObject:
   m_ObjectHideFlags: 0
@@ -28383,8 +28619,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1171063991
 GameObject:
   m_ObjectHideFlags: 0
@@ -28562,8 +28798,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1172815368
 GameObject:
   m_ObjectHideFlags: 0
@@ -28609,6 +28845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1172993622
 GameObject:
   m_ObjectHideFlags: 0
@@ -28665,8 +28902,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1175472968
 GameObject:
   m_ObjectHideFlags: 0
@@ -28723,8 +28960,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1181275435
 GameObject:
   m_ObjectHideFlags: 0
@@ -28891,6 +29128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1187269515
 GameObject:
   m_ObjectHideFlags: 0
@@ -28936,6 +29174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1189088720
 GameObject:
   m_ObjectHideFlags: 0
@@ -29102,6 +29341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1191543794
 GameObject:
   m_ObjectHideFlags: 0
@@ -29147,6 +29387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1192409315
 GameObject:
   m_ObjectHideFlags: 0
@@ -29313,6 +29554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1200770193
 GameObject:
   m_ObjectHideFlags: 0
@@ -29358,6 +29600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1204139628
 GameObject:
   m_ObjectHideFlags: 0
@@ -29414,8 +29657,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1204996896
 GameObject:
   m_ObjectHideFlags: 0
@@ -29582,6 +29825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1211408694
 GameObject:
   m_ObjectHideFlags: 0
@@ -29629,6 +29873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1212968320
 GameObject:
   m_ObjectHideFlags: 0
@@ -29674,6 +29919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1217005130
 GameObject:
   m_ObjectHideFlags: 0
@@ -30140,8 +30386,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1229290182
 GameObject:
   m_ObjectHideFlags: 0
@@ -30319,8 +30565,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1242530460
 GameObject:
   m_ObjectHideFlags: 0
@@ -30366,6 +30612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1243773239
 GameObject:
   m_ObjectHideFlags: 0
@@ -30422,8 +30669,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1249087159
 GameObject:
   m_ObjectHideFlags: 0
@@ -30469,6 +30716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1250152969
 GameObject:
   m_ObjectHideFlags: 0
@@ -30998,6 +31246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1269928817
 GameObject:
   m_ObjectHideFlags: 0
@@ -31047,6 +31296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1275272827
 GameObject:
   m_ObjectHideFlags: 0
@@ -31213,6 +31463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1281661939
 GameObject:
   m_ObjectHideFlags: 0
@@ -31258,6 +31509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1288934116
 GameObject:
   m_ObjectHideFlags: 0
@@ -31556,8 +31808,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1290711244
 GameObject:
   m_ObjectHideFlags: 0
@@ -31966,6 +32218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1301381756
 GameObject:
   m_ObjectHideFlags: 0
@@ -32011,6 +32264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1305651047
 GameObject:
   m_ObjectHideFlags: 0
@@ -32056,6 +32310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1308821562
 GameObject:
   m_ObjectHideFlags: 0
@@ -32101,6 +32356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1309880947
 GameObject:
   m_ObjectHideFlags: 0
@@ -32157,8 +32413,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1310072998
 GameObject:
   m_ObjectHideFlags: 0
@@ -32215,8 +32471,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1310078232
 GameObject:
   m_ObjectHideFlags: 0
@@ -32273,8 +32529,8 @@ MonoBehaviour:
     interactableDistance: 0.7
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1310163376
 GameObject:
   m_ObjectHideFlags: 0
@@ -32573,8 +32829,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1319822455
 GameObject:
   m_ObjectHideFlags: 0
@@ -32631,8 +32887,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1320647893
 GameObject:
   m_ObjectHideFlags: 0
@@ -32810,8 +33066,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1322389606
 GameObject:
   m_ObjectHideFlags: 0
@@ -32989,8 +33245,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1329737548
 GameObject:
   m_ObjectHideFlags: 0
@@ -33036,6 +33292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1336957705
 GameObject:
   m_ObjectHideFlags: 0
@@ -33081,6 +33338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1339589742
 GameObject:
   m_ObjectHideFlags: 0
@@ -33126,6 +33384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1340008267
 GameObject:
   m_ObjectHideFlags: 0
@@ -33171,6 +33430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1342456851
 GameObject:
   m_ObjectHideFlags: 0
@@ -33227,8 +33487,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1344056702
 GameObject:
   m_ObjectHideFlags: 0
@@ -33274,6 +33534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1345122966
 GameObject:
   m_ObjectHideFlags: 0
@@ -33323,6 +33584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1345588610
 GameObject:
   m_ObjectHideFlags: 0
@@ -33489,6 +33751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1347910896
 GameObject:
   m_ObjectHideFlags: 0
@@ -33534,6 +33797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1351367468
 GameObject:
   m_ObjectHideFlags: 0
@@ -33579,6 +33843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1353173677
 GameObject:
   m_ObjectHideFlags: 0
@@ -33635,8 +33900,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1355482625
 GameObject:
   m_ObjectHideFlags: 0
@@ -33682,6 +33947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1358665105
 GameObject:
   m_ObjectHideFlags: 0
@@ -33727,6 +33993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1359966641
 GameObject:
   m_ObjectHideFlags: 0
@@ -33772,6 +34039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1361269211
 GameObject:
   m_ObjectHideFlags: 0
@@ -33821,6 +34089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1364930574
 GameObject:
   m_ObjectHideFlags: 0
@@ -33866,6 +34135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1366106598
 GameObject:
   m_ObjectHideFlags: 0
@@ -33911,6 +34181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1368738451
 GameObject:
   m_ObjectHideFlags: 0
@@ -33956,6 +34227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1369427022
 GameObject:
   m_ObjectHideFlags: 0
@@ -34012,8 +34284,8 @@ MonoBehaviour:
     interactableDistance: 0.9
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1370049041
 GameObject:
   m_ObjectHideFlags: 0
@@ -34063,6 +34335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1370578863
 GameObject:
   m_ObjectHideFlags: 0
@@ -34108,6 +34381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1377417913
 GameObject:
   m_ObjectHideFlags: 0
@@ -34153,6 +34427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1380262039
 GameObject:
   m_ObjectHideFlags: 0
@@ -34198,6 +34473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1382762365
 GameObject:
   m_ObjectHideFlags: 0
@@ -34244,6 +34520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1384973839
 GameObject:
   m_ObjectHideFlags: 0
@@ -34531,6 +34808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1389711525
 GameObject:
   m_ObjectHideFlags: 0
@@ -34587,8 +34865,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1393389427
 GameObject:
   m_ObjectHideFlags: 0
@@ -34802,6 +35080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1398746758
 GameObject:
   m_ObjectHideFlags: 0
@@ -34858,8 +35137,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1399864832
 GameObject:
   m_ObjectHideFlags: 0
@@ -35026,6 +35305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1406081936
 GameObject:
   m_ObjectHideFlags: 0
@@ -35071,6 +35351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1407347648
 GameObject:
   m_ObjectHideFlags: 0
@@ -35116,6 +35397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1409990274
 GameObject:
   m_ObjectHideFlags: 0
@@ -35161,6 +35443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1410450088
 GameObject:
   m_ObjectHideFlags: 0
@@ -35338,8 +35621,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1412934290
 GameObject:
   m_ObjectHideFlags: 0
@@ -35396,8 +35679,8 @@ MonoBehaviour:
     interactableDistance: 0.2
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1416131257
 GameObject:
   m_ObjectHideFlags: 0
@@ -35443,6 +35726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1421723988
 GameObject:
   m_ObjectHideFlags: 0
@@ -35488,6 +35772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1421940744
 GameObject:
   m_ObjectHideFlags: 0
@@ -35533,6 +35818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1422086138
 GameObject:
   m_ObjectHideFlags: 0
@@ -35626,6 +35912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1425496422
 GameObject:
   m_ObjectHideFlags: 0
@@ -35671,6 +35958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1427050106
 GameObject:
   m_ObjectHideFlags: 0
@@ -35958,6 +36246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1432174941
 GameObject:
   m_ObjectHideFlags: 0
@@ -36256,8 +36545,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1438189986
 GameObject:
   m_ObjectHideFlags: 0
@@ -36314,6 +36603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1440203498
 GameObject:
   m_ObjectHideFlags: 0
@@ -36359,6 +36649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1441629932
 GameObject:
   m_ObjectHideFlags: 0
@@ -36408,6 +36699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1441891235
 GameObject:
   m_ObjectHideFlags: 0
@@ -36464,8 +36756,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1445785248
 GameObject:
   m_ObjectHideFlags: 0
@@ -36522,8 +36814,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1446157602
 GameObject:
   m_ObjectHideFlags: 0
@@ -36580,8 +36872,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1461375772
 GameObject:
   m_ObjectHideFlags: 0
@@ -36638,8 +36930,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1461400914
 GameObject:
   m_ObjectHideFlags: 0
@@ -36806,6 +37098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1463457360
 GameObject:
   m_ObjectHideFlags: 0
@@ -36972,6 +37265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1466406605
 GameObject:
   m_ObjectHideFlags: 0
@@ -37017,6 +37311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1466439940
 GameObject:
   m_ObjectHideFlags: 0
@@ -37194,8 +37489,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1474844260
 GameObject:
   m_ObjectHideFlags: 0
@@ -37252,8 +37547,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1477381259
 GameObject:
   m_ObjectHideFlags: 0
@@ -37299,6 +37594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1480330581
 GameObject:
   m_ObjectHideFlags: 0
@@ -37344,6 +37640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1484923617
 GameObject:
   m_ObjectHideFlags: 0
@@ -37400,8 +37697,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1486347546
 GameObject:
   m_ObjectHideFlags: 0
@@ -37458,8 +37755,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1488282607
 GameObject:
   m_ObjectHideFlags: 0
@@ -37505,6 +37802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1489349783
 GameObject:
   m_ObjectHideFlags: 0
@@ -37550,6 +37848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1499745629
 GameObject:
   m_ObjectHideFlags: 0
@@ -37595,6 +37894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1500880805
 GameObject:
   m_ObjectHideFlags: 0
@@ -37651,8 +37951,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1501116765
 GameObject:
   m_ObjectHideFlags: 0
@@ -37698,6 +37998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1503828026
 GameObject:
   m_ObjectHideFlags: 0
@@ -37747,6 +38048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1516906975
 GameObject:
   m_ObjectHideFlags: 0
@@ -37792,6 +38094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1519345980
 GameObject:
   m_ObjectHideFlags: 0
@@ -37837,6 +38140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1522147686
 GameObject:
   m_ObjectHideFlags: 0
@@ -37882,6 +38186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1525306603
 GameObject:
   m_ObjectHideFlags: 0
@@ -37927,6 +38232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1530002408
 GameObject:
   m_ObjectHideFlags: 0
@@ -37972,6 +38278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1530831761
 GameObject:
   m_ObjectHideFlags: 0
@@ -38138,6 +38445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1536905293
 GameObject:
   m_ObjectHideFlags: 0
@@ -38194,8 +38502,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1539910089
 GameObject:
   m_ObjectHideFlags: 0
@@ -38252,8 +38560,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1540805491
 GameObject:
   m_ObjectHideFlags: 0
@@ -38673,8 +38981,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1550888052
 GameObject:
   m_ObjectHideFlags: 0
@@ -38731,8 +39039,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1557488140
 GameObject:
   m_ObjectHideFlags: 0
@@ -38778,6 +39086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1561360685
 GameObject:
   m_ObjectHideFlags: 0
@@ -38827,6 +39136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1562011791
 GameObject:
   m_ObjectHideFlags: 0
@@ -38872,6 +39182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1562663574
 GameObject:
   m_ObjectHideFlags: 0
@@ -39003,8 +39314,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1568055644
 GameObject:
   m_ObjectHideFlags: 0
@@ -39054,6 +39365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1572682695
 GameObject:
   m_ObjectHideFlags: 0
@@ -39110,8 +39422,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1576076187
 GameObject:
   m_ObjectHideFlags: 0
@@ -39157,6 +39469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1577640759
 GameObject:
   m_ObjectHideFlags: 0
@@ -39202,6 +39515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1581195285
 GameObject:
   m_ObjectHideFlags: 0
@@ -39247,6 +39561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1589986201
 GameObject:
   m_ObjectHideFlags: 0
@@ -39292,6 +39607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1591797918
 GameObject:
   m_ObjectHideFlags: 0
@@ -39337,6 +39653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1595437058
 GameObject:
   m_ObjectHideFlags: 0
@@ -39503,6 +39820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1609124251
 GameObject:
   m_ObjectHideFlags: 0
@@ -39548,6 +39866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1609727478
 GameObject:
   m_ObjectHideFlags: 0
@@ -39657,6 +39976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1628497345
 GameObject:
   m_ObjectHideFlags: 0
@@ -39834,8 +40154,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1630177573
 GameObject:
   m_ObjectHideFlags: 0
@@ -40149,8 +40469,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1637928268
 GameObject:
   m_ObjectHideFlags: 0
@@ -40559,6 +40879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1657138729
 GameObject:
   m_ObjectHideFlags: 0
@@ -40615,8 +40936,8 @@ MonoBehaviour:
     interactableDistance: 0.3
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1661203358
 GameObject:
   m_ObjectHideFlags: 0
@@ -40662,6 +40983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1663891648
 GameObject:
   m_ObjectHideFlags: 0
@@ -40707,6 +41029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1666847862
 GameObject:
   m_ObjectHideFlags: 0
@@ -40756,6 +41079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1671046246
 GameObject:
   m_ObjectHideFlags: 0
@@ -40933,8 +41257,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1681296918
 GameObject:
   m_ObjectHideFlags: 0
@@ -40980,6 +41304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1682114370
 GameObject:
   m_ObjectHideFlags: 0
@@ -41146,6 +41471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1693362451
 GameObject:
   m_ObjectHideFlags: 0
@@ -41191,6 +41517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1698276967
 GameObject:
   m_ObjectHideFlags: 0
@@ -41236,6 +41563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1705021812
 GameObject:
   m_ObjectHideFlags: 0
@@ -41281,6 +41609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1707353161
 GameObject:
   m_ObjectHideFlags: 0
@@ -41337,8 +41666,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1707937366
 GameObject:
   m_ObjectHideFlags: 0
@@ -41516,8 +41845,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1711992861
 GameObject:
   m_ObjectHideFlags: 0
@@ -41574,8 +41903,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1715829280
 GameObject:
   m_ObjectHideFlags: 0
@@ -41621,6 +41950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1720334897
 GameObject:
   m_ObjectHideFlags: 0
@@ -41666,6 +41996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1725078554
 GameObject:
   m_ObjectHideFlags: 0
@@ -41711,6 +42042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1727156759
 GameObject:
   m_ObjectHideFlags: 0
@@ -41767,8 +42099,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1727468766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1083376152663379238, guid: 599799d9b315f61468045147600a4ee7, type: 3}
@@ -41819,6 +42151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1732023832
 GameObject:
   m_ObjectHideFlags: 0
@@ -41864,6 +42197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1732726881
 GameObject:
   m_ObjectHideFlags: 0
@@ -41909,6 +42243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1735427403
 GameObject:
   m_ObjectHideFlags: 0
@@ -41954,6 +42289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1742728588
 GameObject:
   m_ObjectHideFlags: 0
@@ -42003,6 +42339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1748869788
 GameObject:
   m_ObjectHideFlags: 0
@@ -42048,6 +42385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1750820419
 GameObject:
   m_ObjectHideFlags: 0
@@ -42104,8 +42442,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1758375457
 GameObject:
   m_ObjectHideFlags: 0
@@ -42151,6 +42489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1758580541
 GameObject:
   m_ObjectHideFlags: 0
@@ -42196,6 +42535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1759088879
 GameObject:
   m_ObjectHideFlags: 0
@@ -42252,8 +42592,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1761792046
 GameObject:
   m_ObjectHideFlags: 0
@@ -42310,8 +42650,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1766672492
 GameObject:
   m_ObjectHideFlags: 0
@@ -42478,6 +42818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1774519980
 GameObject:
   m_ObjectHideFlags: 0
@@ -42543,6 +42884,8 @@ MonoBehaviour:
       interactableAngle: 290
       interactableDistance: 0.79
     threadedPoints: []
+  stageIndex: 0
+  boardIndex: 0
   currentBeat: 0
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1775910139
@@ -42711,6 +43054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1784519902
 GameObject:
   m_ObjectHideFlags: 0
@@ -42756,6 +43100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1786853181
 GameObject:
   m_ObjectHideFlags: 0
@@ -42922,6 +43267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1790900955
 GameObject:
   m_ObjectHideFlags: 0
@@ -42967,6 +43313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1791022777
 GameObject:
   m_ObjectHideFlags: 0
@@ -43133,6 +43480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1796716574
 GameObject:
   m_ObjectHideFlags: 0
@@ -43189,8 +43537,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1797558222
 GameObject:
   m_ObjectHideFlags: 0
@@ -43247,8 +43595,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1800329241
 GameObject:
   m_ObjectHideFlags: 0
@@ -43298,6 +43646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1802222617
 GameObject:
   m_ObjectHideFlags: 0
@@ -43354,8 +43703,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1804522061
 GameObject:
   m_ObjectHideFlags: 0
@@ -43522,6 +43871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1815595545
 GameObject:
   m_ObjectHideFlags: 0
@@ -43809,6 +44159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1819131391
 GameObject:
   m_ObjectHideFlags: 0
@@ -43854,6 +44205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1819741000
 GameObject:
   m_ObjectHideFlags: 0
@@ -43899,6 +44251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1820245963
 GameObject:
   m_ObjectHideFlags: 0
@@ -43944,6 +44297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1822113950
 GameObject:
   m_ObjectHideFlags: 0
@@ -44000,8 +44354,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1823761695
 GameObject:
   m_ObjectHideFlags: 0
@@ -44047,6 +44401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1842012656
 GameObject:
   m_ObjectHideFlags: 0
@@ -44217,6 +44572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1845858627
 GameObject:
   m_ObjectHideFlags: 0
@@ -44273,8 +44629,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1849368991
 GameObject:
   m_ObjectHideFlags: 0
@@ -44331,8 +44687,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1850282933
 GameObject:
   m_ObjectHideFlags: 0
@@ -44378,6 +44734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1852198081
 GameObject:
   m_ObjectHideFlags: 0
@@ -44423,6 +44780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1853835833
 GameObject:
   m_ObjectHideFlags: 0
@@ -44468,6 +44826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1857391579
 GameObject:
   m_ObjectHideFlags: 0
@@ -44513,6 +44872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1858166421
 GameObject:
   m_ObjectHideFlags: 0
@@ -44679,6 +45039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1867039331
 GameObject:
   m_ObjectHideFlags: 0
@@ -44724,6 +45085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1867469961
 GameObject:
   m_ObjectHideFlags: 0
@@ -44773,6 +45135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1869434212
 GameObject:
   m_ObjectHideFlags: 0
@@ -44818,6 +45181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1872411133
 GameObject:
   m_ObjectHideFlags: 0
@@ -44863,6 +45227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1876240145
 GameObject:
   m_ObjectHideFlags: 0
@@ -45033,6 +45398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1881436502
 GameObject:
   m_ObjectHideFlags: 0
@@ -45078,6 +45444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1883408129
 GameObject:
   m_ObjectHideFlags: 0
@@ -45376,8 +45743,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1892196087
 GameObject:
   m_ObjectHideFlags: 0
@@ -45434,8 +45801,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1898115642
 GameObject:
   m_ObjectHideFlags: 0
@@ -45492,8 +45859,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1906253317
 GameObject:
   m_ObjectHideFlags: 0
@@ -45550,8 +45917,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1907897198
 GameObject:
   m_ObjectHideFlags: 0
@@ -45608,8 +45975,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1909191545
 GameObject:
   m_ObjectHideFlags: 0
@@ -45655,6 +46022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1913627036
 GameObject:
   m_ObjectHideFlags: 0
@@ -45700,6 +46068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1917624931
 GameObject:
   m_ObjectHideFlags: 0
@@ -45745,6 +46114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1921574223
 GameObject:
   m_ObjectHideFlags: 0
@@ -45790,6 +46160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1921964879
 GameObject:
   m_ObjectHideFlags: 0
@@ -45835,6 +46206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1925045524
 GameObject:
   m_ObjectHideFlags: 0
@@ -46012,8 +46384,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1930502007
 GameObject:
   m_ObjectHideFlags: 0
@@ -46180,6 +46552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1932068108
 GameObject:
   m_ObjectHideFlags: 0
@@ -46225,6 +46598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1932454208
 GameObject:
   m_ObjectHideFlags: 0
@@ -46270,6 +46644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1933658965
 GameObject:
   m_ObjectHideFlags: 0
@@ -46447,8 +46822,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1936735922
 GameObject:
   m_ObjectHideFlags: 0
@@ -46505,8 +46880,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1936866520
 GameObject:
   m_ObjectHideFlags: 0
@@ -46552,6 +46927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1938190992
 GameObject:
   m_ObjectHideFlags: 0
@@ -46608,8 +46984,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1940688396
 GameObject:
   m_ObjectHideFlags: 0
@@ -46655,6 +47031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1940909075
 GameObject:
   m_ObjectHideFlags: 0
@@ -46700,6 +47077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1942930997
 GameObject:
   m_ObjectHideFlags: 0
@@ -46745,6 +47123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1943581660
 GameObject:
   m_ObjectHideFlags: 0
@@ -46912,6 +47291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1951174952
 GameObject:
   m_ObjectHideFlags: 0
@@ -46957,6 +47337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1954650666
 GameObject:
   m_ObjectHideFlags: 0
@@ -47002,6 +47383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1961735139
 GameObject:
   m_ObjectHideFlags: 0
@@ -47172,6 +47554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1972877572
 GameObject:
   m_ObjectHideFlags: 0
@@ -47217,6 +47600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1973902979
 GameObject:
   m_ObjectHideFlags: 0
@@ -47262,6 +47646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1975097533
 GameObject:
   m_ObjectHideFlags: 0
@@ -47307,6 +47692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &1983293300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4472178437775977092, guid: c034a98089442814bbd124c813344de6, type: 3}
@@ -47489,8 +47875,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &1999014267
 GameObject:
   m_ObjectHideFlags: 0
@@ -47657,6 +48043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2006886971
 GameObject:
   m_ObjectHideFlags: 0
@@ -47702,6 +48089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2009005187
 GameObject:
   m_ObjectHideFlags: 0
@@ -47868,6 +48256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2021145171
 GameObject:
   m_ObjectHideFlags: 0
@@ -48034,6 +48423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2031175333
 GameObject:
   m_ObjectHideFlags: 0
@@ -48090,8 +48480,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2033794063
 GameObject:
   m_ObjectHideFlags: 0
@@ -48137,6 +48527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2044037705
 GameObject:
   m_ObjectHideFlags: 0
@@ -48182,6 +48573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2047242975
 GameObject:
   m_ObjectHideFlags: 0
@@ -48470,6 +48862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2054230519
 GameObject:
   m_ObjectHideFlags: 0
@@ -48515,6 +48908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2055623336
 GameObject:
   m_ObjectHideFlags: 0
@@ -48636,6 +49030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2060813212
 GameObject:
   m_ObjectHideFlags: 0
@@ -48915,8 +49310,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2068315516
 GameObject:
   m_ObjectHideFlags: 0
@@ -48962,6 +49357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2070153081
 GameObject:
   m_ObjectHideFlags: 0
@@ -49018,8 +49414,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2070881257
 GameObject:
   m_ObjectHideFlags: 0
@@ -49065,6 +49461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2073687205
 GameObject:
   m_ObjectHideFlags: 0
@@ -49121,8 +49518,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2080394281
 GameObject:
   m_ObjectHideFlags: 0
@@ -49289,6 +49686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2085141348
 GameObject:
   m_ObjectHideFlags: 0
@@ -49334,6 +49732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2085198063
 GameObject:
   m_ObjectHideFlags: 0
@@ -49511,8 +49910,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2087415452
 GameObject:
   m_ObjectHideFlags: 0
@@ -49558,6 +49957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2091624125
 GameObject:
   m_ObjectHideFlags: 0
@@ -49603,6 +50003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2092139007
 GameObject:
   m_ObjectHideFlags: 0
@@ -49735,6 +50136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2096532885
 GameObject:
   m_ObjectHideFlags: 0
@@ -49791,8 +50193,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2096822090
 GameObject:
   m_ObjectHideFlags: 0
@@ -49838,6 +50240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2097094761
 GameObject:
   m_ObjectHideFlags: 0
@@ -49883,6 +50286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2103490057
 GameObject:
   m_ObjectHideFlags: 0
@@ -50291,6 +50695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2113838081
 GameObject:
   m_ObjectHideFlags: 0
@@ -50336,6 +50741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2119968122
 GameObject:
   m_ObjectHideFlags: 0
@@ -50381,6 +50787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2120966809
 GameObject:
   m_ObjectHideFlags: 0
@@ -50426,6 +50833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2121332976
 GameObject:
   m_ObjectHideFlags: 0
@@ -50482,8 +50890,8 @@ MonoBehaviour:
     interactableDistance: 0
     multiPoints: []
     threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &2123784964
 GameObject:
   m_ObjectHideFlags: 0
@@ -50529,6 +50937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2129278205
 GameObject:
   m_ObjectHideFlags: 0
@@ -50937,6 +51346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2137869941
 GameObject:
   m_ObjectHideFlags: 0
@@ -50986,6 +51396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2145787053
 GameObject:
   m_ObjectHideFlags: 0
@@ -51032,6 +51443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1 &2147065852
 GameObject:
   m_ObjectHideFlags: 0
@@ -51077,6 +51489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBeat: 0
+  movementSpeed: 0
 --- !u!1001 &708679256503257649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51443,6 +51856,10 @@ PrefabInstance:
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[21].interactables.Array.data[1].interactableAngle
       value: 92
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
+      propertyPath: stage1.Array.data[0].interactables.Array.data[0].interactableDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2704495760554041192, guid: 599799d9b315f61468045147600a4ee7, type: 3}
       propertyPath: stage1.Array.data[21].interactables.Array.data[1].interactableDistance

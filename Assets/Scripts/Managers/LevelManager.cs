@@ -21,11 +21,17 @@ public class LevelManager : MonoBehaviour
         InitLevel();
         levelContainer.transform.Translate(Vector3.forward * spawnDistance);
     }
+
+    // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
     {
         //returns the instantiated board when given index
         //if stage 1, board index is fine. if stage 2 or 3, you need to add instantiatedLevel.count()/3 or (instantiatedLevel.Count()/3 * 2) respectively
-        return null;
+        if (_stageIndex == 2)
+            _boardIndex = _boardIndex + instantiatedLevel.Count / 3;
+        else if (_stageIndex == 3)
+            _boardIndex = _boardIndex + instantiatedLevel.Count / 3 * 2;
+        return instantiatedLevel[_boardIndex];
     }
     public void InitLevel()
     {
@@ -71,7 +77,7 @@ public class LevelManager : MonoBehaviour
         {          
             instantiatedLevel[boardCount].SetActive(true);
             instantiatedLevel[boardCount].GetComponent<BoardBehavior>().StartMovement();
-            boardCount++;              
+            boardCount++;
         }
     }
     // set the spawn distance. set number of beats for travel time
