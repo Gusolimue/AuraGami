@@ -8,22 +8,22 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     List<GameObject> multiPositions = new List<GameObject>();
 
     float count;
-    float originSpawnDistance;
-    public int currentBeat;
-    Vector3 originPos;
+    int currentBeat;
     Vector3 lastPos;
-    public Vector3 targetPos;
+    Vector3 targetPos;
+    bool isMoving;
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         base.InitInteractable(_eSide, _stage, _board, _interactable);
 
-        currentPoint = -1;
+        currentPoint = 0;
         currentBeat = 0;
+        isMoving = false;
     }
 
     private void Start()
     {
-        // Spawn targets in Start so all boards have been created
+        // Spawn targets points in Start so all boards have been created
         SpawnTargetPoints();
     }
 
@@ -32,8 +32,8 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         count += Time.deltaTime;
         if (currentBeat > 0)
         {
-            targetPos = multiPositions[currentPoint].transform.position;
-            transform.position = Vector3.Lerp(lastPos, targetPos, /*60f / LevelManager.Instance.level.soTrack.bpm * */count);
+            targetPos = multiPositions[currentPoint-1].transform.position;
+            transform.position = Vector3.Lerp(lastPos, targetPos, count);
         }
     }
 
@@ -41,26 +41,36 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     void UpdateMovementTarget()
     {
         lastPos = transform.position;
-        targetPos = multiPositions[currentPoint].transform.position; // Set the target position to be next point in the list
+        targetPos = multiPositions[currentPoint-1].transform.position; // Set the target position to be next point in the list
+        transform.parent = multiPositions[currentPoint-1].transform.parent.transform; // Set the parent object to be the new board
         count = 0;
         currentBeat++;
-        Debug.Log("Movement Updated!");
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
     public override void AvatarCollision()
     {
-        currentPoint++;
-        if (currentPoint+1 < totalPoints) // If a future point still exists
+        if (!isMoving) // If not moving to another target point
         {
-            // Set target to be the next future point
-            UpdateMovementTarget();
+            currentPoint++;
+            if (currentPoint - 1 < totalPoints) // If a future point still exists
+            {
+                isMoving = true;
+                // Set target to be the next future point
+                UpdateMovementTarget();
+                Invoke("StopMoving", 0.1f);
+            }
+            else
+            {
+                base.AvatarCollision();
+            }
         }
-        else
-        {
-            //BeatManager.beatUpdated -= UpdateMovementTarget;
-            base.AvatarCollision();
-        }
+    }
+
+    // Allows the target to be hit again
+    void StopMoving()
+    {
+        isMoving = false;
     }
 
     // Instantiates the future points as empty game objects and moves them into place
