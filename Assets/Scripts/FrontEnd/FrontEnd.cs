@@ -5,6 +5,7 @@ using EditorAttributes;
 
 public class FrontEnd : MonoBehaviour
 {
+    public static FrontEnd Instance;
     [Header("Play Button BG Assets")]
     [SerializeField] Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
@@ -13,7 +14,8 @@ public class FrontEnd : MonoBehaviour
     [Header("Play Button BG Colors")]
     public Color whiteColor;
     public Color blueColor;
-    private Color currentColor;
+    public Color explorationColor;
+    public Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
     private Animator playButton_BG_OnExit_Anim;
@@ -23,6 +25,8 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
