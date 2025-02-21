@@ -41,9 +41,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
             yield return null; // Wait for the next frame
         }
         AudioManager.Instance.StopMusic();
-        if (LoadManager.Instance.whichScene == 0) LoadManager.Instance.LoadScene(eScene.levelFreedom);
-        else if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd); 
-        else if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneSelection();
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
@@ -57,6 +55,14 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
+    }
+
+    public void SceneSelection()
+    {
+        if (LevelSelectManager.Instance.whichLevel == 1) LoadManager.Instance.LoadScene(eScene.levelExploration);
+        if (LevelSelectManager.Instance.whichLevel == 2) LoadManager.Instance.LoadScene(eScene.levelFreedom);
+        if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
+        //else if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

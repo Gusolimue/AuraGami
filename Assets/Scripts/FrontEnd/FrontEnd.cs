@@ -7,7 +7,7 @@ public class FrontEnd : MonoBehaviour
 {
     public static FrontEnd Instance;
     [Header("Play Button BG Assets")]
-    [SerializeField] Image playButton_BG;
+    [SerializeField] public Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
     [SerializeField] GameObject playButton_BG_OnPressed;
     [Space]
@@ -15,6 +15,7 @@ public class FrontEnd : MonoBehaviour
     public Color whiteColor;
     public Color blueColor;
     public Color explorationColor;
+    public Color freedomColor;
     public Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
