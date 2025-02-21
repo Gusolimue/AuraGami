@@ -110,7 +110,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.multihitTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "multiHitTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
@@ -130,7 +130,22 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
+        
+        int stageCount = 1; // Used to give the target a reference for the stage it's in
+        if (LevelManager.Instance.instantiatedLevel.Count < GetStage(1).Count)
+        {
+            stageCount = 1;
+        }
+        else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(2).Count * 2)
+        {
+            stageCount = 2;
+        }
+        else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(3).Count * 3)
+        {
+            stageCount = 3;
+        }
+
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, stageCount, LevelManager.Instance.instantiatedLevel.Count, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
@@ -210,7 +225,7 @@ public class Interactable
     [Range(0f, 1f)]
     public float interactableDistance;
 
-    /*[ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty]*/ public TargetPoints[] multiPoints;
+    [ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty] public TargetPoints[] multiPoints;
 
     [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public TargetPoints[] threadedPoints;
 }
