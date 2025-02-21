@@ -212,29 +212,38 @@ public class Level : MonoBehaviour
         //if a list is already created, it should add or remove elements for the list to add up
         //otherwise, it will make a new blank list of boards with targets
     }
-    [ButtonField(nameof(SetStageList), "Set Test Layout", 30f)]
+    [ButtonField(nameof(SetStageList), "!WARNING! Set Test Layout !WARNING!", 30f)]
     [SerializeField, HideInInspector] VoidStructure setTestLayoutButtonHolder;
 
     void SetTestLayout()
     {
-        for (int i = 0; i < 3; i++)
+        if (iWantToDeleteMyStagePermanently)
         {
-            for (int c = 0; c < GetStage(i + 1).Count; c++)
+            for (int i = 0; i < 3; i++)
             {
-                eTargetType tmpType = eTargetType.regularTarget;
-                eSide tmpSide = eSide.left;
-                int tmpAngle = c;
-                float tmpDistance = (i+1f)/3f;
-                Debug.Log(tmpDistance);
-                if(c % 2 != 0)
+                for (int c = 0; c < GetStage(i + 1).Count; c++)
                 {
-                    tmpSide = eSide.right;
-                }
-                Interactable[] tmpInteractableArray = new Interactable[1];
-                tmpInteractableArray[0] = new Interactable(tmpType, tmpSide, tmpAngle, tmpDistance);
-                GetStage(i + 1)[c] = new Board(tmpInteractableArray);
+                    eTargetType tmpType = eTargetType.regularTarget;
+                    eSide tmpSide = eSide.left;
+                    int tmpAngle = c;
+                    float tmpDistance = (i + 1f) / 3f;
+                    Debug.Log(tmpDistance);
+                    if (c % 2 != 0)
+                    {
+                        tmpSide = eSide.right;
+                    }
+                    Interactable[] tmpInteractableArray = new Interactable[1];
+                    tmpInteractableArray[0] = new Interactable(tmpType, tmpSide, tmpAngle, tmpDistance);
+                    GetStage(i + 1)[c] = new Board(tmpInteractableArray);
 
+                }
             }
+            iWantToDeleteMyStagePermanently = false;
+        }
+        else
+        {
+            Debug.Log("WARNING! THIS DELETES YOUR CURRENT STAGES. THIS CAN NOT BE UNDONE. IF YOU WOULD LIKE TO PROCEED" +
+                ", CHECK THE 'I Would Like To Delete My Stage Permanently' BOX.");
         }
     }
 
