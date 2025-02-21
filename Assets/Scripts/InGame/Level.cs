@@ -9,27 +9,6 @@ public class Level : MonoBehaviour
     //call error if two targets are placed on the same spot
     public soTrack soTrack;
     private FMOD.Studio.System musicInstance;
-    [Button, SerializeField]
-    void SetStageList()
-    {
-        float tmpLength = soTrack.trackLength;
-        tmpLength /= 1000;
-        tmpLength /= 60;
-        tmpLength *= soTrack.bpm;
-        stage1.Clear();
-        stage2.Clear();
-        stage3.Clear();
-        for (int i = 0; i < tmpLength/3; i++)
-        {
-            stage1.Add(new Board());
-            stage2.Add(new Board());
-            stage3.Add(new Board());
-        }
-        // button to set board amount based on bpm/time sig for song entered
-        //stages should be separate lists
-        //if a list is already created, it should add or remove elements for the list to add up
-        //otherwise, it will make a new blank list of boards with targets
-    }
     [Header("Stages")]
     [SerializeField]
     List<Board> stage1;
@@ -37,7 +16,8 @@ public class Level : MonoBehaviour
     List<Board> stage2;
     [SerializeField]
     List<Board> stage3;
-    [Button, SerializeField]
+    [ButtonField(nameof(ShowLevel), "Show Level Preview", 30f)]
+    [SerializeField] VoidStructure showLevelButtonHolder;
     void ShowLevel()
     {
         GameObject tmpLastBoard;
@@ -151,9 +131,14 @@ public class Level : MonoBehaviour
     void CopyPressed()
     {
         copiedSelection.Clear();
+        tmpSelection.Clear();
         int tmpIndex = endIndex;
         if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
-        copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
+        tmpSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
+        for (int i = 0; i < tmpSelection.Count; i++)
+        {
+            copiedSelection.Add(new Board(tmpSelection[i].interactables));
+        }
     }
     public List<Board> GetStage(int _index)
     {
@@ -170,6 +155,7 @@ public class Level : MonoBehaviour
         }
     }
     [SerializeField] List<Board> copiedSelection;
+    List<Board> tmpSelection;
     [SerializeField] int selectionToPaste;
     [ButtonField(nameof(PastePressed), "Paste", 30f)]
     [SerializeField, HideInInspector] VoidStructure pasteButtonHolder;
@@ -179,7 +165,7 @@ public class Level : MonoBehaviour
         {
             if (GetStage(stageSelection).Count > startIndex + i)
             {
-                GetStage(stageSelection)[startIndex + i] = copiedSelection[i];
+                GetStage(stageSelection)[startIndex + i] = new Board(copiedSelection[i].interactables);
             }
         }
     }
@@ -189,6 +175,70 @@ public class Level : MonoBehaviour
     //[ButtonField(nameof(Redo))]
     //[SerializeField, HideInInspector] VoidStructure redoButtonHolder;
     //void Redo(){}
+    [FoldoutGroup("Advanced Tools", nameof(setStageListButtonHolder), nameof(setTestLayoutButtonHolder), nameof(iWantToDeleteMyStagePermanently))]
+    [SerializeField] private VoidStructure AdvancedToolsGroup;
+
+    [SerializeField, HideInInspector] bool iWantToDeleteMyStagePermanently;
+
+    [ButtonField(nameof(SetStageList), "!WARNING! Set Stage List !WARNING!", 30f)]
+    [SerializeField, HideInInspector] VoidStructure setStageListButtonHolder;
+
+    void SetStageList()
+    {
+        if(iWantToDeleteMyStagePermanently)
+        {
+            float tmpLength = soTrack.trackLength;
+            tmpLength /= 1000;
+            tmpLength /= 60;
+            tmpLength *= soTrack.bpm;
+            stage1.Clear();
+            stage2.Clear();
+            stage3.Clear();
+            for (int i = 0; i < tmpLength / 3; i++)
+            {
+                stage1.Add(new Board(new Interactable[0]));
+                stage2.Add(new Board(new Interactable[0]));
+                stage3.Add(new Board(new Interactable[0]));
+            }
+            iWantToDeleteMyStagePermanently = false;
+        }
+        else
+        {
+            Debug.Log("WARNING! SET STAGE LIST DELETES YOUR CURRENT STAGES. THIS CAN NOT BE UNDONE. IF YOU WOULD LIKE TO PROCEED" +
+                ", CHECK THE 'I Would Like To Delete My Stage Permanently' BOX.");
+        }
+        // button to set board amount based on bpm/time sig for song entered
+        //stages should be separate lists
+        //if a list is already created, it should add or remove elements for the list to add up
+        //otherwise, it will make a new blank list of boards with targets
+    }
+    [ButtonField(nameof(SetStageList), "Set Test Layout", 30f)]
+    [SerializeField, HideInInspector] VoidStructure setTestLayoutButtonHolder;
+
+    void SetTestLayout()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int c = 0; c < GetStage(i + 1).Count; c++)
+            {
+                eTargetType tmpType = eTargetType.regularTarget;
+                eSide tmpSide = eSide.left;
+                int tmpAngle = c;
+                float tmpDistance = (i+1f)/3f;
+                Debug.Log(tmpDistance);
+                if(c % 2 != 0)
+                {
+                    tmpSide = eSide.right;
+                }
+                Interactable[] tmpInteractableArray = new Interactable[1];
+                tmpInteractableArray[0] = new Interactable(tmpType, tmpSide, tmpAngle, tmpDistance);
+                GetStage(i + 1)[c] = new Board(tmpInteractableArray);
+
+            }
+        }
+    }
+
+
 }
 
 
@@ -197,6 +247,29 @@ public class Level : MonoBehaviour
 public class Board
 {
     public Interactable[] interactables;
+    public Board(Interactable[] _interactables)
+    {
+        interactables = new Interactable[_interactables.Length];
+        for (int i = 0; i < _interactables.Length; i++)
+        {
+            TargetPoints[] tmpMultipoints = null;
+            if (_interactables[i].multiPoints != null)
+            {
+                for (int c = 0; c < _interactables[i].multiPoints.Length; c++)
+                {
+                    tmpMultipoints[c] = new TargetPoints(_interactables[i].multiPoints[c].boardsMoved,
+                        _interactables[i].multiPoints[c].interactableAngle, _interactables[i].multiPoints[c].interactableDistance);
+                }
+            }
+            //Debug.Log(_interactables[i].interactableType);
+            //Debug.Log(_interactables[i].side);
+            //Debug.Log(_interactables[i].interactableAngle);
+            //Debug.Log(_interactables[i].interactableDistance);
+            //Debug.Log(tmpMultipoints);
+            interactables[i] = new Interactable(_interactables[i].interactableType, _interactables[i].side,
+                _interactables[i].interactableAngle, _interactables[i].interactableDistance, tmpMultipoints);
+        }
+    }
 }
 //an interactable to be set for a board
 public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisionTarget,  regularObstacle }
@@ -210,9 +283,16 @@ public class Interactable
     [Range(0f, 1f)]
     public float interactableDistance;
 
-    /*[ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty]*/ public TargetPoints[] multiPoints;
+    public TargetPoints[] multiPoints;
 
-    [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public TargetPoints[] threadedPoints;
+    public Interactable(eTargetType _interactableType, eSide _side, int _interactableAngle, float _interactableDistance, TargetPoints[] _multiPoints = null)
+    {
+        interactableType = _interactableType;
+        side = _side;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+        multiPoints = _multiPoints;
+    }
 }
 [System.Serializable]
 public class TargetPoints
@@ -222,4 +302,10 @@ public class TargetPoints
     public int interactableAngle;
     [Range(0f, 1f)]
     public float interactableDistance;
+    public TargetPoints(int _boardsMoved, int _interactableAngle, float _interactableDistance)
+    {
+        boardsMoved = _boardsMoved;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+    }
 }
