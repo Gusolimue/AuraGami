@@ -34,7 +34,8 @@ public class LevelSelectManager : MonoBehaviour
 
     public void ExplorationTransition()
     {
-        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.explorationColor;
+        FrontEnd.Instance.levelColor = FrontEnd.Instance.explorationColor;
+        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.levelColor;
 
         if (whichLevel == 1)
         {
@@ -44,7 +45,8 @@ public class LevelSelectManager : MonoBehaviour
 
     public void FreedomTransition()
     {
-        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.freedomColor;
+        FrontEnd.Instance.levelColor = FrontEnd.Instance.freedomColor;
+        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.levelColor;
 
         if (whichLevel == 2)
         {

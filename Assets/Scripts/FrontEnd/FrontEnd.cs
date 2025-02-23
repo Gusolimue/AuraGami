@@ -13,9 +13,10 @@ public class FrontEnd : MonoBehaviour
     [Space]
     [Header("Play Button BG Colors")]
     public Color whiteColor;
-    public Color blueColor;
+    public Color startingColor;
     public Color explorationColor;
     public Color freedomColor;
+    public Color levelColor;
     public Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
@@ -38,7 +39,7 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnExit_Anim.enabled = false;
         playButton_BG_OnPressed_Anim.enabled = false;
 
-        currentColor = blueColor;
+        currentColor = whiteColor;
         playButton_BG.color = currentColor;
     }
 
@@ -101,7 +102,7 @@ public class FrontEnd : MonoBehaviour
     }
     public IEnumerator PlayButtonBGColorChangeOnExit()
     {
-        currentColor = blueColor;
+        currentColor = levelColor;
         float numGoal = 1f;
         float numStart = 0f;
 
