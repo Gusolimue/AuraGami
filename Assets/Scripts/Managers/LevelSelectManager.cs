@@ -4,11 +4,13 @@ public class LevelSelectManager : MonoBehaviour
 {
     public static LevelSelectManager Instance;
     public GameObject[] levelOrbs;
+    public GameObject[] levelOrbContainers;
     public int whichLevel;
 
     private void Awake()
     {
         Instance = this;
+        SetLevelOrbs(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +20,7 @@ public class LevelSelectManager : MonoBehaviour
             whichLevel = 1;
 
             other.gameObject.SetActive(false);
+            SetLevelOrbs(true);
             ExplorationTransition();
             Debug.Log("LEVEL_EXPLORATION");
         }
@@ -27,6 +30,7 @@ public class LevelSelectManager : MonoBehaviour
             whichLevel = 2;
 
             other.gameObject.SetActive(false);
+            SetLevelOrbs(true);
             FreedomTransition();
             Debug.Log("LEVEL_FREEDOM");
         }
@@ -52,5 +56,16 @@ public class LevelSelectManager : MonoBehaviour
         {
             levelOrbs[0].SetActive(true);
         }
+    }
+
+    public void SetLevelOrbs(bool set)
+    {
+        levelOrbs[0].transform.position = levelOrbContainers[0].transform.position;
+        levelOrbs[1].transform.position = levelOrbContainers[1].transform.position;
+    }
+
+    public void OnLevelOrbClicked()
+    {
+        Debug.Log("HEY!");
     }
 }
