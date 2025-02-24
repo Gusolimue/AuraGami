@@ -112,18 +112,21 @@ public class Level : MonoBehaviour
         }
         
         int stageCount = 1; // Used to give the target a reference for the stage it's in
-        if (LevelManager.Instance.instantiatedLevel.Count < GetStage(1).Count)
-        {
-            stageCount = 1;
-        }
-        else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(2).Count * 2)
-        {
-            stageCount = 2;
-        }
-        else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(3).Count * 3)
-        {
-            stageCount = 3;
-        }
+        //if(!Application.isEditor)
+        //{
+        //    if ((GetStage(1).Count * 3) < GetStage(1).Count)
+        //    {
+        //        stageCount = 1;
+        //    }
+        //    else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(2).Count * 2)
+        //    {
+        //        stageCount = 2;
+        //    }
+        //    else if (LevelManager.Instance.instantiatedLevel.Count < GetStage(3).Count * 3)
+        //    {
+        //        stageCount = 3;
+        //    }
+        //}
         tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, stageCount, LevelManager.Instance.instantiatedLevel.Count, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
@@ -145,7 +148,7 @@ public class Level : MonoBehaviour
     void CopyPressed()
     {
         copiedSelection.Clear();
-        tmpSelection.Clear();
+        if (tmpSelection != null) tmpSelection.Clear();
         int tmpIndex = endIndex;
         if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
         tmpSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
