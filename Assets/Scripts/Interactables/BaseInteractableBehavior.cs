@@ -9,22 +9,18 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Renderer interactableRenderer;
     public eSide side;
 
-    public Interactable interactable;
-    public int stageIndex;
-    public int boardIndex;
-    int interactableIndex;
-    LevelManager lm;
-    internal virtual void Awake()
+    float count;
+    float originSpawnDistance;
+    public int currentBeat;
+    Vector3 originPos;
+    Vector3 lastPos;
+    Vector3 targetPos;
+    private void Awake()
     {
-        lm = LevelManager.Instance;
+        originPos = transform.position;
     }
-    public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
+    public virtual void InitInteractable(eSide _eSide)
     {
-        stageIndex = _stage;
-        boardIndex = _board;
-        //interactableIndex = _interactable;
-        //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
-        interactable = _interactable;
         side = _eSide;
         switch (side)
         {
@@ -45,6 +41,28 @@ public class BaseInteractableBehavior : MonoBehaviour
     {
         //Debug.Log("player missed");
         APManager.Instance.DecreaseAP();
+    }
+
+    //public void StartMovement()
+    //{
+
+    //    currentBeat = 0;
+    //    BeatManager.beatUpdated += UpdateMovementTarget;
+    //}
+
+    //void UpdateMovementTarget()
+    //{
+    //    lastPos = transform.position;
+    //    currentBeat++;
+    //    targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.Instance.beatsToPlayer)*currentBeat;
+    //    if (currentBeat > LevelManager.Instance.beatsToPlayer + 1)
+    //    {
+    //        StopTarget();
+    //    }
+    //    count = 0;
+    //}
+    void Update()
+    {
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
