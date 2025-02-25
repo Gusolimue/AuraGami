@@ -18,8 +18,11 @@ public class Level : MonoBehaviour
     List<Board> stage3;
     [ButtonField(nameof(ShowLevel), "Show Level Preview", 30f)]
     [SerializeField] VoidStructure showLevelButtonHolder;
+
+    int boardCount;
     void ShowLevel()
     {
+        boardCount = 0;
         GameObject tmpLastBoard;
         if (levelPreview != null)
         {
@@ -77,6 +80,7 @@ public class Level : MonoBehaviour
         {
             currentBoard.name = "Empty Board";
         }
+        boardCount += 1;
     }
 
     //called to spawn every individual target when a board is spawned
@@ -110,7 +114,19 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
+
+        int stageCount = 1; // Used to give the target a reference for the stage it's in
+
+        if (boardCount < GetStage(2).Count * 2)
+        {
+            stageCount = 2;
+        }
+        else if (boardCount < GetStage(3).Count * 3)
+        {
+            stageCount = 3;
+        }
+
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, stageCount,  boardCount, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
