@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
 //Base Script to source for all in game interactables (targets and hazards)
-public enum eSide { left, right, any }
+public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
 {
     public Material leftMat;
     public Material rightMat;
+    public Material anyMat;
+    public Material bothMat;
     public Renderer interactableRenderer;
     public eSide side;
 
@@ -35,6 +37,10 @@ public class BaseInteractableBehavior : MonoBehaviour
                 interactableRenderer.sharedMaterial = rightMat;
                 break;
             case eSide.any:
+                interactableRenderer.sharedMaterial = anyMat;
+                break;
+            case eSide.both:
+                interactableRenderer.sharedMaterial = bothMat;
                 break;
             default:
                 break;

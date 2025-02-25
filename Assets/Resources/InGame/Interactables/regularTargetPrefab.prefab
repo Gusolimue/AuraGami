@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftMat: {fileID: 2100000, guid: 41f26f09cd01dbf42af63b0c1ff719fa, type: 2}
   rightMat: {fileID: 2100000, guid: fec9d6fee127fe4408f67a1de2e306a1, type: 2}
+  anyMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
+  bothMat: {fileID: 2100000, guid: 8ab64c6f12f2ee04bb452a5cf27f69de, type: 2}
   interactableRenderer: {fileID: 3222719354804811677}
   side: 0
   interactable:
@@ -55,9 +57,8 @@ MonoBehaviour:
     interactableAngle: 0
     interactableDistance: 0
     multiPoints: []
-    threadedPoints: []
-  currentBeat: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  stageIndex: 0
+  boardIndex: 0
 --- !u!1 &8744082952492454435
 GameObject:
   m_ObjectHideFlags: 0
