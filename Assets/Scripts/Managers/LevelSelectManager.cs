@@ -64,7 +64,7 @@ public class LevelSelectManager : MonoBehaviour
         levelOrbs[1].transform.position = levelOrbContainers[1].transform.position;
     }
 
-    public void OnLevelOrbClicked()
+    public void OnExplorationOrbGrabbed()
     {
         Debug.Log("HEY!");
     }

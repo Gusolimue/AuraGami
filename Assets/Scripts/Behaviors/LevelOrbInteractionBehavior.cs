@@ -3,15 +3,7 @@ using UnityEngine.InputSystem;
 
 public class LevelOrbInteractionBehavior : MonoBehaviour
 {
-    public InputActionReference openPauseMenuAction;
-
-    private void Awake()
-    {
-        openPauseMenuAction.action.Enable();
-        openPauseMenuAction.action.performed += OnInteractButtonPressed;
-        InputSystem.onDeviceChange += OnDeviceChange;
-    }
-
+    public int orbToHold;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Zephyr_Hands"))
@@ -20,23 +12,13 @@ public class LevelOrbInteractionBehavior : MonoBehaviour
         }
     }
 
-    public void OnInteractButtonPressed(InputAction.CallbackContext context)
+    public void OnExplorationLevelOrbPressed()
     {
-     
-    }
+        orbToHold = 1;
 
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        switch (change)
+        if (orbToHold == 1)
         {
-            case InputDeviceChange.Disconnected:
-                openPauseMenuAction.action.Disable();
-                openPauseMenuAction.action.performed -= OnInteractButtonPressed;
-                break;
-            case InputDeviceChange.Reconnected:
-                openPauseMenuAction.action.Enable();
-                openPauseMenuAction.action.performed += OnInteractButtonPressed;
-                break;
+            
         }
     }
 }
