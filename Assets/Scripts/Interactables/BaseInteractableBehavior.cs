@@ -6,6 +6,7 @@ public class BaseInteractableBehavior : MonoBehaviour
 {
     public Material leftMat;
     public Material rightMat;
+    public Material anyMat;
     public Renderer interactableRenderer;
     public eSide side;
 
@@ -35,6 +36,7 @@ public class BaseInteractableBehavior : MonoBehaviour
                 interactableRenderer.sharedMaterial = rightMat;
                 break;
             case eSide.any:
+                interactableRenderer.sharedMaterial = anyMat;
                 break;
             default:
                 break;
