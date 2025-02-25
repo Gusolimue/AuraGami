@@ -45,13 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea8c16882b867649b9a13e7fd9a58c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftColor: {r: 0, g: 0, b: 0, a: 0}
-  leftMat: {fileID: 0}
-  rightMat: {fileID: 0}
-  rightColor: {r: 0, g: 0, b: 0, a: 0}
+  leftMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
+  rightMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
+  anyMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
   interactableRenderer: {fileID: 6138565383161227328}
   side: 2
-  currentBeat: 0
+  interactable:
+    interactableType: 0
+    side: 0
+    interactableAngle: 0
+    interactableDistance: 0
+    multiPoints: []
+  stageIndex: 0
+  boardIndex: 0
   damageAmount: 1
 --- !u!1 &5420210627931808595
 GameObject:
