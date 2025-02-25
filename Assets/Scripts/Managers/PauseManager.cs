@@ -28,11 +28,6 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChange;
     }
 
-    private void Update()
-    {
-        //if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
-    }
-
     private void OnDestroy()
     {
         openPauseMenuAction.action.Disable();
