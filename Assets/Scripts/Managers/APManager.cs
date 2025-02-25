@@ -7,7 +7,7 @@ public class APManager : MonoBehaviour
     [Header("Sigils")]
     [SerializeField] Slider sigilOne;
     [SerializeField] Slider sigilTwo;
-    [SerializeField] Slider sigilThree;
+    [SerializeField] public Slider sigilThree;
     [Space]
     [Header("Sigil Values")]
     public float ap = .1f;
@@ -15,7 +15,7 @@ public class APManager : MonoBehaviour
     [Space]
     [Header("Multiplier Values")]
     public float multBuildUp;
-    public float maxMult = .5f;
+    public float maxMult = 0f;
     public float apIncrease = .1f;
 
     public int curSigil;
@@ -44,6 +44,7 @@ public class APManager : MonoBehaviour
     {
         curAP -= ap;
         ap = .1f;
+        maxMult = 0f;
         if (curSigil == 1) sigilOne.value -= ap;
 
         if (curSigil == 2) 
@@ -57,14 +58,27 @@ public class APManager : MonoBehaviour
             sigilThree.value -= ap;
             if (sigilThree.value <= -1) curSigil = 2;
         }
+
+        AuraFXBehavior.Instance.ResetAuraVFX();
     }
 
     public void APBehavior()
     {
         if (multBuildUp >= 1f) 
         {
-            if (isMaxMult == false) ap += apIncrease;
-            else ap = maxMult;
+            maxMult += .1f;
+            if (maxMult >= .5f) 
+            {
+                isMaxMult = true;
+                maxMult = .5f;
+            }
+
+            if (isMaxMult == false) 
+            {
+                ap += apIncrease;
+            }
+
+            AuraFXBehavior.Instance.IncreaseAuraVFX();
             multBuildUp = 0f;
         }
 
