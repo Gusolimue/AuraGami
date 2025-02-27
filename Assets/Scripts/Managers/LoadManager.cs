@@ -39,9 +39,9 @@ public class LoadManager : MonoBehaviour
         switch ((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
-                //CanvasManager.Instance.ShowCanvasFE();
+                CanvasManager.Instance.ShowCanvasFE();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
-                CanvasManager.Instance.ShowCanvasSettings();
+                //CanvasManager.Instance.ShowCanvasSettings();
                 AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 whichScene = 0;
                 break;
