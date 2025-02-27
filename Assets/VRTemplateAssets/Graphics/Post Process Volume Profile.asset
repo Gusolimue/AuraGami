@@ -103,6 +103,83 @@ MonoBehaviour:
   - {fileID: -8175944365485479075}
   - {fileID: 8339455231178082067}
   - {fileID: -1360232469857127578}
+  - {fileID: 1347555295458909968}
+--- !u!114 &1347555295458909968
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb17be0ccb1a684aaccc0a6b52bd969, type: 3}
+  m_Name: MultiColorFogVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  _CloseFogColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 1, b: 0, a: 1}
+  _CloseFogDistance:
+    m_OverrideState: 1
+    m_Value: 15
+  _CloseMidFogColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 1, a: 1}
+  _CloseMidFogDistance:
+    m_OverrideState: 1
+    m_Value: 25
+  _MidFogColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0, b: 1, a: 1}
+  _MidFogDistance:
+    m_OverrideState: 1
+    m_Value: 50
+  _MidFarFogColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
+  _MidFarFogDistance:
+    m_OverrideState: 1
+    m_Value: 100
+  _FarFogColor:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _FarFogDistance:
+    m_OverrideState: 1
+    m_Value: 150
+  _GradientTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  _UseGradientTexture:
+    m_OverrideState: 1
+    m_Value: 0
+  _FogIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  _ExtraCloseFogIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+  _ExtraCloseMidFogIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+  _ExtraMidFogIntensity:
+    m_OverrideState: 1
+    m_Value: 0
+  _ExtraMidFarFogIntensity:
+    m_OverrideState: 1
+    m_Value: 0.5
+  _ExtraFarFogIntensity:
+    m_OverrideState: 1
+    m_Value: 2
+  _HueShift:
+    m_OverrideState: 1
+    m_Value: 0
+  _WorldPositionShift:
+    m_OverrideState: 1
+    m_Value: 1.3
+  _WorldHeight:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &8339455231178082067
 MonoBehaviour:
   m_ObjectHideFlags: 3
