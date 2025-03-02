@@ -8,7 +8,7 @@ public class ButtonStarBehavior : MonoBehaviour
     private float buttonStarRadius;
     private void Awake()
     {
-        buttonStarRadius = 1.5f;
+        buttonStarRadius = 1.1f;
 
         //var shape = buttonStars.shape;
         //shape.radius = buttonStarRadius;
