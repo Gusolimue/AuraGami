@@ -21,13 +21,14 @@ public class ButtonStarBehavior : MonoBehaviour
 
     public IEnumerator StarRadiusIncrease()
     {
-        buttonStarRadius = 1.5f;
+        buttonStarRadius = 1.1f;
 
         while (buttonStarRadius > 1f)
         {
             buttonStarRadius -= .1f;
             var shape = buttonStars.shape;
             shape.radius = buttonStarRadius;
+            Debug.Log(buttonStarRadius);
         }
         yield return null;
     }
