@@ -18,6 +18,9 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
         InitLevel();
         levelContainer.transform.Translate(Vector3.forward * spawnDistance);
     }
@@ -67,6 +70,7 @@ public class LevelManager : MonoBehaviour
 
         }
         BeatManager.beatUpdated += ActivateBoard;
+        APManager.Instance.SetTargetValues();
     }
 
     void ActivateBoard()

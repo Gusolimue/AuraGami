@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,12 +22,30 @@ public class APManager : MonoBehaviour
     public int curSigil;
     public bool isMaxMult = false;
 
+    public int totalTargets;
     private void Awake()
     {
         Instance = this;
         curSigil = 1;  
     }
 
+    public void SetTargetValues()
+    {
+        for (int c = 0; c < 3; c++)
+        {
+            List<Board> tmpStage = LevelManager.Instance.level.GetStage(c);
+            for (int i = 0; i < tmpStage.Count; i++)
+            {
+                foreach (var item in tmpStage[i].interactables)
+                {
+                    if (item.interactableType != eTargetType.regularObstacle)
+                    {
+                        totalTargets++;
+                    }
+                }
+            }
+        }
+    }
     public void IncreaseAP()
     {
         curAP += ap;
