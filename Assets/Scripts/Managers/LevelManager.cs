@@ -4,7 +4,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public Level level;
-    public GameObject levelContainer;
+    GameObject levelContainer;
     public static LevelManager Instance;
     public List<GameObject> instantiatedLevel;
     [Header("Level Attributes"), Space]
@@ -35,6 +35,8 @@ public class LevelManager : MonoBehaviour
     }
     public void InitLevel()
     {
+        levelContainer = new GameObject("Level Container");
+        levelContainer.transform.parent = this.transform;
         int tmp = 0;
         stage1Container = new GameObject("Stage 1 Preview");
         stage1Container.transform.parent = levelContainer.transform;
@@ -51,7 +53,7 @@ public class LevelManager : MonoBehaviour
         }
         for (int i = 0; i < level.GetStage(2).Count; i++)
         {
-            level.SpawnBoard(i, level.GetStage(2), stage1Container.transform);
+            level.SpawnBoard(i, level.GetStage(2), stage2Container.transform);
             instantiatedLevel.Add(level.currentBoard);
             instantiatedLevel[i + level.GetStage(1).Count - 1].SetActive(false);
 

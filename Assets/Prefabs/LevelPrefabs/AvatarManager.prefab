@@ -167,6 +167,59 @@ Transform:
   - {fileID: 8519084314846422072}
   m_Father: {fileID: 5921053170156098359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3265509475585250559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3460180540452506216}
+  - component: {fileID: 4778293461654308236}
+  m_Layer: 0
+  m_Name: Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3460180540452506216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265509475585250559}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5158301457311989783}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4778293461654308236
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265509475585250559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: -0.25}
 --- !u!1 &5799911519936819159
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +664,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnakeAvatar
       objectReference: {fileID: 0}
+    - target: {fileID: 6951212118944629833, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8263594913150121191, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
       propertyPath: m_CollisionDetection
       value: 2
@@ -657,7 +714,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8436021521563711846, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3460180540452506216}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
 --- !u!1 &4472178437775977092 stripped
@@ -681,6 +741,30 @@ PrefabInstance:
     - target: {fileID: 907314388109661173, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_Name
       value: BirdAvatar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286255781811751010, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286255781811751010, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286255781811751010, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286255781811751010, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Center.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286255781811751010, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6951212118944629833, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalPosition.x

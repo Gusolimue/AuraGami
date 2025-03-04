@@ -228,7 +228,7 @@ public class Level : MonoBehaviour
         //if a list is already created, it should add or remove elements for the list to add up
         //otherwise, it will make a new blank list of boards with targets
     }
-    [ButtonField(nameof(SetStageList), "!WARNING! Set Test Layout !WARNING!", 30f)]
+    [ButtonField(nameof(SetTestLayout), "!WARNING! Set Test Layout !WARNING!", 30f)]
     [SerializeField, HideInInspector] VoidStructure setTestLayoutButtonHolder;
 
     void SetTestLayout()
