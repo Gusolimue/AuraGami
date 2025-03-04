@@ -1,25 +1,25 @@
 using UnityEngine;
 using System.Collections;
 
-public class ButtonStarBehavior : MonoBehaviour
+public class LevelSelectButtonBehavior : MonoBehaviour
 {
-    [SerializeField] public ParticleSystem buttonStars;
+    [SerializeField] public ParticleSystem highlightNebula;
 
-    private float buttonStarRadius;
     private void Awake()
     {
-        buttonStarRadius = 1.1f;
-
-        //var shape = buttonStars.shape;
-        //shape.radius = buttonStarRadius;
+        highlightNebula.gameObject.SetActive(false);
     }
-
     public void OnLevelButtonEnter()
     {
-        StartCoroutine(StarRadiusIncrease());
+        highlightNebula.gameObject.SetActive(true);
     }
 
-    public IEnumerator StarRadiusIncrease()
+    public void OnLevelButtonExit()
+    {
+        highlightNebula.gameObject.SetActive(false);
+    }
+
+    /*public IEnumerator StarRadiusIncrease()
     {
         buttonStarRadius = 1.1f;
 
@@ -31,5 +31,5 @@ public class ButtonStarBehavior : MonoBehaviour
             Debug.Log(buttonStarRadius);
         }
         yield return null;
-    }
+    }*/
 }
