@@ -11,6 +11,12 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Renderer interactableRenderer;
     public eSide side;
 
+    [SerializeField] float fadeOutTime;
+    Color startColor;
+    Color endColor;
+    float startTime;
+    bool isFading;
+
     public Interactable interactable;
     public int stageIndex;
     public int boardIndex;
@@ -19,6 +25,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     internal virtual void Awake()
     {
         lm = LevelManager.Instance;
+        isFading = false;
     }
     public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
@@ -63,5 +70,24 @@ public class BaseInteractableBehavior : MonoBehaviour
     {
         gameObject.SetActive(false);
         
+    }
+
+    private void FadeOutTarget()
+    {
+        startColor = interactableRenderer.material.color;
+        endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        startTime = Time.time;
+        isFading = true;
+    }
+
+    void Update()
+    {
+        if (isFading)
+        {
+            float elapsedTime = Time.time - startTime;
+            float t = Mathf.Clamp(elapsedTime / fadeOutTime, 0f, 1f);
+            Color lerpedColor = Color.Lerp(startColor, endColor, t);
+            interactableRenderer.material.color = lerpedColor;
+        }
     }
 }
