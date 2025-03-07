@@ -26,6 +26,11 @@ public class CanvasManager : MonoBehaviour
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_Settings") as GameObject);
     }
 
+    public void ShowCanvasCredits()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_Credits") as GameObject);
+    }
+
     //PAUSE MENU CAVAS'
 
     public void ShowCanvasPauseMenu()
