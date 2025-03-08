@@ -10,13 +10,13 @@ public class GraphicsButtonBehavior : MonoBehaviour
         graphicsConstellationOn.SetActive(false);
         graphicsConstellationOff.SetActive(true);
     }
-    public void OnAudioButtonEnter()
+    public void OnGraphicsButtonEnter()
     {
         graphicsConstellationOn.SetActive(true);
         graphicsConstellationOff.SetActive(false);
     }
 
-    public void OnAudioButtonExit()
+    public void OnGraphicsButtonExit()
     {
         graphicsConstellationOn.SetActive(false);
         graphicsConstellationOff.SetActive(true);
