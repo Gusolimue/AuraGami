@@ -4,29 +4,34 @@ using UnityEngine.UI;
 
 public class APManager : MonoBehaviour
 {
+    [Header("For Adjustments")]
+    public float[] multLevels;
+    public int multIncrementStreak;
+    public float[] stagePassPercent;
+    [Space]
+
+
+    [Header("In Game Info")]
+    public int curStreak;
+    public float curAP;
+    [SerializeField] int[] stageTargetTotals;
+    [SerializeField] float[] stageTargetValues;
+
+    [Space]
+    [Header("To Set/Call")]
+    public AuraFXBehavior[] auraFXBehaviors;
+    public Slider[] sigils;
     public static APManager Instance;
-    [Header("Sigils")]
-    [SerializeField] Slider sigilOne;
-    [SerializeField] Slider sigilTwo;
-    [SerializeField] public Slider sigilThree;
-    [Space]
-    [Header("Sigil Values")]
-    public float ap = .1f;
-    public float curAP = 0f;
-    [Space]
-    [Header("Multiplier Values")]
-    public float multBuildUp;
-    public float maxMult = 0f;
-    public float apIncrease = .1f;
 
-    public int curSigil;
-    public bool isMaxMult = false;
 
-    public int totalTargets;
     private void Awake()
     {
         Instance = this;
-        curSigil = 1;  
+        curAP = 0;
+        stageTargetTotals = new int[3];
+        stageTargetValues = new float[3];
+        UpdateSigils();
+        UpdateAuraFX();
     }
 
     public void SetTargetValues()
@@ -40,68 +45,183 @@ public class APManager : MonoBehaviour
                 {
                     if (item.interactableType != eTargetType.regularObstacle)
                     {
-                        totalTargets++;
+                        stageTargetTotals[c]++;
                     }
                 }
             }
+            stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
     }
     public void IncreaseAP()
     {
-        curAP += ap;
-        multBuildUp += .1f;
-
-        if (curSigil == 1) sigilOne.value += ap; 
-        if (curSigil == 2) sigilTwo.value += ap; 
-        if (curSigil == 3) sigilThree.value += ap; 
-
-        Debug.Log("AP Earned: " + ap);
-        Debug.Log("Current AP Cumulation: " + curAP);
+        curAP += stageTargetValues[LevelManager.currentStageIndex] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
+        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+        curStreak += 1;
+        UpdateSigils();
+        UpdateAuraFX();
     }
-
-    public void DecreaseAP()
+    public void DecreaseAP(float _percent)
     {
-        curAP -= ap;
-        ap = .1f;
-        maxMult = 0f;
-        if (curSigil == 1) sigilOne.value -= ap;
-
-        if (curSigil == 2) 
-        {
-            sigilTwo.value -= ap;
-            if (sigilTwo.value <= -1) curSigil = 1; 
-        }
-
-        if (curSigil == 3)
-        {
-            sigilThree.value -= ap;
-            if (sigilThree.value <= -1) curSigil = 2;
-        }
-
-        AuraFXBehavior.Instance.ResetAuraVFX();
+        curAP -= stageTargetValues[LevelManager.currentStageIndex] * _percent;
+        curStreak = 0;
+        UpdateSigils();
+        UpdateAuraFX();
     }
-
-    public void APBehavior()
+    //int GetMultIndex()
+    //{
+    //    return Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length);
+    //}
+    public void ResetAP()
     {
-        if (multBuildUp >= 1f) 
-        {
-            maxMult += .1f;
-            if (maxMult >= .5f) 
-            {
-                isMaxMult = true;
-                maxMult = .5f;
-            }
-
-            if (isMaxMult == false) 
-            {
-                ap += apIncrease;
-            }
-
-            AuraFXBehavior.Instance.IncreaseAuraVFX();
-            multBuildUp = 0f;
-        }
-
-        if (sigilOne.value == 2) curSigil = 2;
-        if (sigilTwo.value == 4) curSigil = 3;
+        UpdateSigils();
+        UpdateAuraFX();
     }
+    public void UpdateSigils()
+    {
+        sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
+        sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
+        sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
+    }
+    public void UpdateAuraFX()
+    {
+        foreach (var aura in auraFXBehaviors)
+        {
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //[Header("Sigils")]
+    //[SerializeField] Slider sigilOne;
+    //[SerializeField] Slider sigilTwo;
+    //[SerializeField] public Slider sigilThree;
+    //[Space]
+    //[Header("Sigil Values")]
+    //public float ap = .1f;
+    //public float curAP = 0f;
+    //[Space]
+    //[Header("Multiplier Values")]
+    //public float multBuildUp;
+    //public float maxMult = 0f;
+    //public float apIncrease = .1f;
+
+    //public int curSigil;
+    //public bool isMaxMult = false;
+
+    //public int totalTargets;
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //    curSigil = 1;  
+    //}
+
+    //public void SetTargetValues()
+    //{
+    //    for (int c = 0; c < 3; c++)
+    //    {
+    //        List<Board> tmpStage = LevelManager.Instance.level.GetStage(c);
+    //        for (int i = 0; i < tmpStage.Count; i++)
+    //        {
+    //            foreach (var item in tmpStage[i].interactables)
+    //            {
+    //                if (item.interactableType != eTargetType.regularObstacle)
+    //                {
+    //                    totalTargets++;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+    //public void IncreaseAP()
+    //{
+    //    curAP += ap;
+    //    multBuildUp += .1f;
+
+    //    if (curSigil == 1) sigilOne.value += ap; 
+    //    if (curSigil == 2) sigilTwo.value += ap; 
+    //    if (curSigil == 3) sigilThree.value += ap; 
+
+    //    Debug.Log("AP Earned: " + ap);
+    //    Debug.Log("Current AP Cumulation: " + curAP);
+    //}
+
+    //public void DecreaseAP()
+    //{
+    //    curAP -= ap;
+    //    ap = .1f;
+    //    maxMult = 0f;
+    //    if (curSigil == 1) sigilOne.value -= ap;
+
+    //    if (curSigil == 2) 
+    //    {
+    //        sigilTwo.value -= ap;
+    //        if (sigilTwo.value <= -1) curSigil = 1; 
+    //    }
+
+    //    if (curSigil == 3)
+    //    {
+    //        sigilThree.value -= ap;
+    //        if (sigilThree.value <= -1) curSigil = 2;
+    //    }
+
+    //    AuraFXBehavior.Instance.ResetAuraVFX();
+    //}
+
+    //public void APBehavior()
+    //{
+    //    if (multBuildUp >= 1f) 
+    //    {
+    //        maxMult += .1f;
+    //        if (maxMult >= .5f) 
+    //        {
+    //            isMaxMult = true;
+    //            maxMult = .5f;
+    //        }
+
+    //        if (isMaxMult == false) 
+    //        {
+    //            ap += apIncrease;
+    //        }
+
+    //        AuraFXBehavior.Instance.IncreaseAuraVFX();
+    //        multBuildUp = 0f;
+    //    }
+
+    //    if (sigilOne.value == 2) curSigil = 2;
+    //    if (sigilTwo.value == 4) curSigil = 3;
+    //}
 }
