@@ -3,7 +3,6 @@ using UnityEngine.VFX;
 
 public class AuraFXBehavior : MonoBehaviour
 {
-    public static AuraFXBehavior Instance;
     [SerializeField]
     float maxSize = .5f;
     [SerializeField]
@@ -24,8 +23,6 @@ public class AuraFXBehavior : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
-
         incrementCount = 0;
         sizeIncrement = maxSize / maxIncrementCount;
         alphaIncrement = maxAlpha / maxIncrementCount;

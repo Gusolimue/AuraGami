@@ -65,7 +65,7 @@ public class StageManager : MonoBehaviour
             targetPos = originPos;
 
             PauseManager.Instance.isPaused = true;
-            if (APManager.Instance.sigilThree.value == 6f)
+            if (APManager.Instance.sigils[2].value == APManager.Instance.sigils[2].maxValue)
             {
                 CanvasManager.Instance.ShowCanvasLevelEnd();
             }
@@ -86,7 +86,7 @@ public class StageManager : MonoBehaviour
         }
         stageTimer = 0f;
         currentStage++;
-        if (APManager.Instance.curSigil > currentStage) 
+        if (APManager.Instance.curAP > currentStage) 
         {
             StartCoroutine(COAscend(true));
         }

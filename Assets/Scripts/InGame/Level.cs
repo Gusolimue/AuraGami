@@ -39,19 +39,19 @@ public class Level : MonoBehaviour
         stage3Preview.transform.position = levelPreview.transform.position = stage1Preview.transform.position = stage2Preview.transform.position = Vector3.zero;
         for (int i = 0; i < stage1.Count; i++)
         {
-            SpawnBoard(i, stage1, stage1Preview.transform);
+            SpawnBoard(i, stage1, stage1Preview.transform, 0);
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
-        for (int i = 0; i < stage1.Count; i++)
+        for (int i = 0; i < stage2.Count; i++)
         {
-            SpawnBoard(i, stage2, stage2Preview.transform);
+            SpawnBoard(i, stage2, stage2Preview.transform, 1);
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
-        for (int i = 0; i < stage1.Count; i++)
+        for (int i = 0; i < stage3.Count; i++)
         {
-            SpawnBoard(i, stage3, stage3Preview.transform);
+            SpawnBoard(i, stage3, stage3Preview.transform, 2);
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
@@ -68,13 +68,13 @@ public class Level : MonoBehaviour
     GameObject stage1Preview;
     GameObject stage2Preview;
     GameObject stage3Preview;
-    public void SpawnBoard(int num, List<Board> _stage, Transform transform)
+    public void SpawnBoard(int num, List<Board> _stage, Transform transform, int _stageIndex = 0)
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
             as GameObject, transform);
         foreach (var Target in _stage[num].interactables)
         {
-            SpawnTarget(Target);
+            SpawnTarget(Target, _stageIndex);
         }
         if(_stage[num].interactables.Length == 0)
         {
@@ -84,7 +84,7 @@ public class Level : MonoBehaviour
     }
 
     //called to spawn every individual target when a board is spawned
-    void SpawnTarget(Interactable _target)
+    void SpawnTarget(Interactable _target, int _index)
     {
         GameObject tmpObject;
         switch (_target.interactableType)
@@ -115,24 +115,27 @@ public class Level : MonoBehaviour
                 break;
         }
 
-        int stageCount = 1; // Used to give the target a reference for the stage it's in
+        //int stageCount = 1; // Used to give the target a reference for the stage it's in
 
-        if (boardCount < GetStage(2).Count * 2)
-        {
-            stageCount = 2;
-        }
-        else if (boardCount < GetStage(3).Count * 3)
-        {
-            stageCount = 3;
-        }
+        //if (boardCount < GetStage(2).Count * 2)
+        //{
+        //    stageCount = 2;
+        //}
+        //else if (boardCount < GetStage(3).Count * 3)
+        //{
+        //    stageCount = 3;
+        //}
 
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, stageCount,  boardCount, _target);
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _index,  boardCount, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
         tmpObject.transform.Translate(Vector3.up * _target.interactableDistance) ;
         tmpObject.transform.localRotation = Quaternion.identity;
     }
+
+
+
     [Header("Level Editing")]
     //fix the organization, also buttons are not showing where they should
     [SerializeField, Dropdown(nameof(stageDropdown))] public int stageSelection;

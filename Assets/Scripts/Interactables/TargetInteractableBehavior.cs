@@ -5,7 +5,6 @@ public class TargetInteractableBehavior : BaseInteractableBehavior
     public override void AvatarCollision()
     {
         APManager.Instance.IncreaseAP();
-        APManager.Instance.APBehavior();
         base.AvatarCollision();
     }
 }

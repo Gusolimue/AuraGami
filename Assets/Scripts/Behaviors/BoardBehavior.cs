@@ -22,10 +22,10 @@ public class BoardBehavior : MonoBehaviour
     void Update()
     {
         count += Time.deltaTime / movementSpeed;
-        if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
+        //if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
         if (currentBeat > 0)
         {
-            transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.soTrack.bpm ));
+            transform.position = Vector3.Lerp(lastPos, targetPos, count * ( 60f / LevelManager.Instance.level.soTrack.bpm ));
         }
     }
     public void StartMovement()
@@ -51,7 +51,10 @@ public class BoardBehavior : MonoBehaviour
         BeatManager.beatUpdated -= UpdateMovementTarget;
         foreach (var interactable in this.GetComponentsInChildren<BaseInteractableBehavior>())
         {
-            interactable.InteractableMissed();
+            if(interactable.isActiveAndEnabled)
+            {
+                interactable.InteractableMissed();
+            }
         }
         gameObject.SetActive(false);
 

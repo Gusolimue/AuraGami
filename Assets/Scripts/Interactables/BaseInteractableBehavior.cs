@@ -57,7 +57,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     public virtual void InteractableMissed()
     {
         //Debug.Log("player missed");
-        APManager.Instance.DecreaseAP();
+        APManager.Instance.DecreaseAP(.5f);
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
