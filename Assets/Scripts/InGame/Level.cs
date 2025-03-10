@@ -9,27 +9,6 @@ public class Level : MonoBehaviour
     //call error if two targets are placed on the same spot
     public soTrack soTrack;
     private FMOD.Studio.System musicInstance;
-    [Button, SerializeField]
-    void SetStageList()
-    {
-        float tmpLength = soTrack.trackLength;
-        tmpLength /= 1000;
-        tmpLength /= 60;
-        tmpLength *= soTrack.bpm;
-        stage1.Clear();
-        stage2.Clear();
-        stage3.Clear();
-        for (int i = 0; i < tmpLength/3; i++)
-        {
-            stage1.Add(new Board());
-            stage2.Add(new Board());
-            stage3.Add(new Board());
-        }
-        // button to set board amount based on bpm/time sig for song entered
-        //stages should be separate lists
-        //if a list is already created, it should add or remove elements for the list to add up
-        //otherwise, it will make a new blank list of boards with targets
-    }
     [Header("Stages")]
     [SerializeField]
     List<Board> stage1;
@@ -37,9 +16,13 @@ public class Level : MonoBehaviour
     List<Board> stage2;
     [SerializeField]
     List<Board> stage3;
-    [Button, SerializeField]
+    [ButtonField(nameof(ShowLevel), "Show Level Preview", 30f)]
+    [SerializeField] VoidStructure showLevelButtonHolder;
+
+    int boardCount;
     void ShowLevel()
     {
+        boardCount = 0;
         GameObject tmpLastBoard;
         if (levelPreview != null)
         {
@@ -56,19 +39,19 @@ public class Level : MonoBehaviour
         stage3Preview.transform.position = levelPreview.transform.position = stage1Preview.transform.position = stage2Preview.transform.position = Vector3.zero;
         for (int i = 0; i < stage1.Count; i++)
         {
-            SpawnBoard(i, stage1, stage1Preview.transform);
+            SpawnBoard(i, stage1, stage1Preview.transform, 0);
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
-        for (int i = 0; i < stage1.Count; i++)
+        for (int i = 0; i < stage2.Count; i++)
         {
-            SpawnBoard(i, stage2, stage2Preview.transform);
+            SpawnBoard(i, stage2, stage2Preview.transform, 1);
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
-        for (int i = 0; i < stage1.Count; i++)
+        for (int i = 0; i < stage3.Count; i++)
         {
-            SpawnBoard(i, stage3, stage3Preview.transform);
+            SpawnBoard(i, stage3, stage3Preview.transform, 2);
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
@@ -85,22 +68,23 @@ public class Level : MonoBehaviour
     GameObject stage1Preview;
     GameObject stage2Preview;
     GameObject stage3Preview;
-    public void SpawnBoard(int num, List<Board> _stage, Transform transform)
+    public void SpawnBoard(int num, List<Board> _stage, Transform transform, int _stageIndex = 0)
     {
         currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
             as GameObject, transform);
         foreach (var Target in _stage[num].interactables)
         {
-            SpawnTarget(Target);
+            SpawnTarget(Target, _stageIndex);
         }
         if(_stage[num].interactables.Length == 0)
         {
             currentBoard.name = "Empty Board";
         }
+        boardCount += 1;
     }
 
     //called to spawn every individual target when a board is spawned
-    void SpawnTarget(Interactable _target)
+    void SpawnTarget(Interactable _target, int _index)
     {
         GameObject tmpObject;
         switch (_target.interactableType)
@@ -118,7 +102,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.precisionTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.regularObstacle:
@@ -130,13 +114,28 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side);
+
+        //int stageCount = 1; // Used to give the target a reference for the stage it's in
+
+        //if (boardCount < GetStage(2).Count * 2)
+        //{
+        //    stageCount = 2;
+        //}
+        //else if (boardCount < GetStage(3).Count * 3)
+        //{
+        //    stageCount = 3;
+        //}
+
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _index,  boardCount, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
         tmpObject.transform.Translate(Vector3.up * _target.interactableDistance) ;
         tmpObject.transform.localRotation = Quaternion.identity;
     }
+
+
+
     [Header("Level Editing")]
     //fix the organization, also buttons are not showing where they should
     [SerializeField, Dropdown(nameof(stageDropdown))] public int stageSelection;
@@ -151,9 +150,14 @@ public class Level : MonoBehaviour
     void CopyPressed()
     {
         copiedSelection.Clear();
+        tmpSelection.Clear();
         int tmpIndex = endIndex;
         if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
-        copiedSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
+        tmpSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
+        for (int i = 0; i < tmpSelection.Count; i++)
+        {
+            copiedSelection.Add(new Board(tmpSelection[i].interactables));
+        }
     }
     public List<Board> GetStage(int _index)
     {
@@ -170,6 +174,7 @@ public class Level : MonoBehaviour
         }
     }
     [SerializeField] List<Board> copiedSelection;
+    List<Board> tmpSelection;
     [SerializeField] int selectionToPaste;
     [ButtonField(nameof(PastePressed), "Paste", 30f)]
     [SerializeField, HideInInspector] VoidStructure pasteButtonHolder;
@@ -179,7 +184,7 @@ public class Level : MonoBehaviour
         {
             if (GetStage(stageSelection).Count > startIndex + i)
             {
-                GetStage(stageSelection)[startIndex + i] = copiedSelection[i];
+                GetStage(stageSelection)[startIndex + i] = new Board(copiedSelection[i].interactables);
             }
         }
     }
@@ -189,6 +194,79 @@ public class Level : MonoBehaviour
     //[ButtonField(nameof(Redo))]
     //[SerializeField, HideInInspector] VoidStructure redoButtonHolder;
     //void Redo(){}
+    [FoldoutGroup("Advanced Tools", nameof(setStageListButtonHolder), nameof(setTestLayoutButtonHolder), nameof(iWantToDeleteMyStagePermanently))]
+    [SerializeField] private VoidStructure AdvancedToolsGroup;
+
+    [SerializeField, HideInInspector] bool iWantToDeleteMyStagePermanently;
+
+    [ButtonField(nameof(SetStageList), "!WARNING! Set Stage List !WARNING!", 30f)]
+    [SerializeField, HideInInspector] VoidStructure setStageListButtonHolder;
+
+    void SetStageList()
+    {
+        if(iWantToDeleteMyStagePermanently)
+        {
+            float tmpLength = soTrack.trackLength;
+            tmpLength /= 1000;
+            tmpLength /= 60;
+            tmpLength *= soTrack.bpm;
+            stage1.Clear();
+            stage2.Clear();
+            stage3.Clear();
+            for (int i = 0; i < tmpLength / 3; i++)
+            {
+                stage1.Add(new Board(new Interactable[0]));
+                stage2.Add(new Board(new Interactable[0]));
+                stage3.Add(new Board(new Interactable[0]));
+            }
+            iWantToDeleteMyStagePermanently = false;
+        }
+        else
+        {
+            Debug.Log("WARNING! SET STAGE LIST DELETES YOUR CURRENT STAGES. THIS CAN NOT BE UNDONE. IF YOU WOULD LIKE TO PROCEED" +
+                ", CHECK THE 'I Would Like To Delete My Stage Permanently' BOX.");
+        }
+        // button to set board amount based on bpm/time sig for song entered
+        //stages should be separate lists
+        //if a list is already created, it should add or remove elements for the list to add up
+        //otherwise, it will make a new blank list of boards with targets
+    }
+    [ButtonField(nameof(SetTestLayout), "!WARNING! Set Test Layout !WARNING!", 30f)]
+    [SerializeField, HideInInspector] VoidStructure setTestLayoutButtonHolder;
+
+    void SetTestLayout()
+    {
+        if (iWantToDeleteMyStagePermanently)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int c = 0; c < GetStage(i + 1).Count; c++)
+                {
+                    eTargetType tmpType = eTargetType.regularTarget;
+                    eSide tmpSide = eSide.left;
+                    int tmpAngle = c;
+                    float tmpDistance = (i + 1f) / 3f;
+                    Debug.Log(tmpDistance);
+                    if (c % 2 != 0)
+                    {
+                        tmpSide = eSide.right;
+                    }
+                    Interactable[] tmpInteractableArray = new Interactable[1];
+                    tmpInteractableArray[0] = new Interactable(tmpType, tmpSide, tmpAngle, tmpDistance);
+                    GetStage(i + 1)[c] = new Board(tmpInteractableArray);
+
+                }
+            }
+            iWantToDeleteMyStagePermanently = false;
+        }
+        else
+        {
+            Debug.Log("WARNING! THIS DELETES YOUR CURRENT STAGES. THIS CAN NOT BE UNDONE. IF YOU WOULD LIKE TO PROCEED" +
+                ", CHECK THE 'I Would Like To Delete My Stage Permanently' BOX.");
+        }
+    }
+
+
 }
 
 
@@ -197,6 +275,29 @@ public class Level : MonoBehaviour
 public class Board
 {
     public Interactable[] interactables;
+    public Board(Interactable[] _interactables)
+    {
+        interactables = new Interactable[_interactables.Length];
+        for (int i = 0; i < _interactables.Length; i++)
+        {
+            TargetPoints[] tmpMultipoints = null;
+            if (_interactables[i].multiPoints != null)
+            {
+                for (int c = 0; c < _interactables[i].multiPoints.Length; c++)
+                {
+                    tmpMultipoints[c] = new TargetPoints(_interactables[i].multiPoints[c].boardsMoved,
+                        _interactables[i].multiPoints[c].interactableAngle, _interactables[i].multiPoints[c].interactableDistance);
+                }
+            }
+            //Debug.Log(_interactables[i].interactableType);
+            //Debug.Log(_interactables[i].side);
+            //Debug.Log(_interactables[i].interactableAngle);
+            //Debug.Log(_interactables[i].interactableDistance);
+            //Debug.Log(tmpMultipoints);
+            interactables[i] = new Interactable(_interactables[i].interactableType, _interactables[i].side,
+                _interactables[i].interactableAngle, _interactables[i].interactableDistance, tmpMultipoints);
+        }
+    }
 }
 //an interactable to be set for a board
 public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisionTarget,  regularObstacle }
@@ -210,9 +311,16 @@ public class Interactable
     [Range(0f, 1f)]
     public float interactableDistance;
 
-    /*[ShowField(nameof(interactableType), eTargetType.multihitTarget), HideProperty]*/ public TargetPoints[] multiPoints;
+    public TargetPoints[] multiPoints;
 
-    [ShowField(nameof(interactableType), eTargetType.threadedTarget)] public TargetPoints[] threadedPoints;
+    public Interactable(eTargetType _interactableType, eSide _side, int _interactableAngle, float _interactableDistance, TargetPoints[] _multiPoints = null)
+    {
+        interactableType = _interactableType;
+        side = _side;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+        multiPoints = _multiPoints;
+    }
 }
 [System.Serializable]
 public class TargetPoints
@@ -222,4 +330,10 @@ public class TargetPoints
     public int interactableAngle;
     [Range(0f, 1f)]
     public float interactableDistance;
+    public TargetPoints(int _boardsMoved, int _interactableAngle, float _interactableDistance)
+    {
+        boardsMoved = _boardsMoved;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+    }
 }

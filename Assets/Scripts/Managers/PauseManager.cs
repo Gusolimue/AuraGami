@@ -22,10 +22,14 @@ public class PauseManager : MonoBehaviour
     {
         Instance = this;
         countdownTimer_TXT.gameObject.SetActive(false);
-        PauseGame(false);
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
+    }
+    private void Start()
+    {
+        //moved this to start because you cant refer to another instance (beatmanager) in awake
+        PauseGame(false);
     }
 
     private void OnDestroy()

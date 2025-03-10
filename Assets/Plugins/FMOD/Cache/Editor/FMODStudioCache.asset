@@ -47,6 +47,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 229497
+--- !u!114 &-7843872611949841259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music Freedom (Metronome)
+  m_EditorClassIdentifier: 
+  Path: event:/Music Freedom (Metronome)
+  Guid:
+    Data1: -1728079738
+    Data2: 1233896698
+    Data3: 1015743874
+    Data4: 2050571848
+  Banks:
+  - {fileID: 2480437315722019909}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 134605
 --- !u!114 &-7550620036946189989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +113,7 @@ MonoBehaviour:
     Data3: 548924830
     Data4: 861849420
   Banks:
-  - {fileID: -1259566733124402326}
+  - {fileID: 2480437315722019909}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -193,6 +220,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 134605
+--- !u!114 &-3897389116558478496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638771722287307917
+  FileSizes:
+  - Name: Desktop
+    Value: 17440
+  Exists: 1
 --- !u!114 &-2885513681345201492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,33 +260,6 @@ MonoBehaviour:
   - Name: Desktop
     Value: 2248704
   Exists: 1
---- !u!114 &-2692643988362757461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TempHitSFX
-  m_EditorClassIdentifier: 
-  Path: event:/TempHitSFX
-  Guid:
-    Data1: 587661018
-    Data2: 1264140451
-    Data3: -459969656
-    Data4: 1274420188
-  Banks:
-  - {fileID: -1259566733124402326}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-2369313524337399370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +279,7 @@ MonoBehaviour:
     Data3: 113168257
     Data4: -1848579889
   Banks:
-  - {fileID: -1259566733124402326}
+  - {fileID: -3897389116558478496}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -306,8 +326,8 @@ MonoBehaviour:
     Data3: -1242862152
     Data4: 489049943
   Banks:
-  - {fileID: -1259566733124402326}
-  IsStream: 1
+  - {fileID: 2480437315722019909}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
@@ -329,10 +349,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638771989058019092
+  lastModified: 638771722286974049
   FileSizes:
   - Name: Desktop
-    Value: 4238464
+    Value: 1036
   Exists: 1
 --- !u!114 &-1158813283316240032
 MonoBehaviour:
@@ -374,6 +394,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 868
   Exists: 1
+--- !u!114 &-488815230675553732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TempHitSFX
+  m_EditorClassIdentifier: 
+  Path: event:/TempHitSFX
+  Guid:
+    Data1: 587661018
+    Data2: 1264140451
+    Data3: -459969656
+    Data4: 1274420188
+  Banks:
+  - {fileID: -3897389116558478496}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,18 +436,21 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 971616238944496318}
   - {fileID: -1259566733124402326}
+  - {fileID: 2480437315722019909}
+  - {fileID: -3897389116558478496}
   EditorEvents:
   - {fileID: -2369313524337399370}
   - {fileID: -7543146964188493809}
   - {fileID: -1322567783990755795}
-  - {fileID: 5450982259709697595}
-  - {fileID: -2692643988362757461}
+  - {fileID: 3094067551022303724}
+  - {fileID: -7843872611949841259}
+  - {fileID: -488815230675553732}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1259566733124402326}
   StringsBanks:
   - {fileID: 971616238944496318}
-  cacheTime: 638771989058019092
+  cacheTime: 638771722287307917
   cacheVersion: 131622
 --- !u!114 &248670630947211784
 MonoBehaviour:
@@ -471,10 +521,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638771989058019092
+  lastModified: 638771722286979731
   FileSizes:
   - Name: Desktop
-    Value: 972
+    Value: 1136
   Exists: 1
 --- !u!114 &1630379389417418468
 MonoBehaviour:
@@ -550,7 +600,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 229497
---- !u!114 &5450982259709697595
+--- !u!114 &2480437315722019909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638771722287277767
+  FileSizes:
+  - Name: Desktop
+    Value: 5164576
+  Exists: 1
+--- !u!114 &3094067551022303724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -560,23 +630,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music Freedom (Metronome)
+  m_Name: event:/auragami piano prototype 1_9 (184bpm)(1)
   m_EditorClassIdentifier: 
-  Path: event:/Music Freedom (Metronome)
+  Path: event:/auragami piano prototype 1_9 (184bpm)(1)
   Guid:
-    Data1: -1728079738
-    Data2: 1233896698
-    Data3: 1015743874
-    Data4: 2050571848
+    Data1: -169602415
+    Data2: 1259162112
+    Data3: 52397190
+    Data4: 989749410
   Banks:
-  - {fileID: -1259566733124402326}
+  - {fileID: 2480437315722019909}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 134605
+  Length: 229497
 --- !u!114 &6031156426567345643
 MonoBehaviour:
   m_ObjectHideFlags: 0
