@@ -102,7 +102,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.precisionTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.regularObstacle:
