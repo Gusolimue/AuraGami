@@ -105,13 +105,14 @@ public class LevelManager : MonoBehaviour
     {
         currentStageIndex += 1;
         boardCount = 0;
+        APManager.Instance.ResetAP();
     }
     void ActivateBoard()
     {
         if(boardCount >= instantiatedStages[currentStageIndex].Count)
         {
             Debug.Log("stage finished");
-            if(currentStageIndex > 2)
+            if(currentStageIndex >= 2)
             {
                 BeatManager.beatUpdated -= ActivateBoard;
                 isSubscribed = false;

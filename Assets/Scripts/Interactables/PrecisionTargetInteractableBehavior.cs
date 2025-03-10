@@ -18,14 +18,13 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a normal target
             Debug.Log("Hit the target");
             APManager.Instance.IncreaseAP();
-            APManager.Instance.APBehavior();
             base.AvatarCollision();
         }
         else
         {
             // Act like a hazard
             Debug.Log("Missed the mark");
-            APManager.Instance.DecreaseAP();
+            APManager.Instance.DecreaseAP(1);
             Destroy(gameObject);
         }
     }    

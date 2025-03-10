@@ -49,7 +49,7 @@ public class APManager : MonoBehaviour
                     }
                 }
             }
-            stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
+            stageTargetValues[c] = (2 + c - stagePassPercent[c]) / stageTargetTotals[c];
         }
     }
     public void IncreaseAP()
@@ -63,6 +63,7 @@ public class APManager : MonoBehaviour
     public void DecreaseAP(float _percent)
     {
         curAP -= stageTargetValues[LevelManager.currentStageIndex] * _percent;
+        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
         curStreak = 0;
         UpdateSigils();
         UpdateAuraFX();
@@ -73,6 +74,7 @@ public class APManager : MonoBehaviour
     //}
     public void ResetAP()
     {
+        curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
     }
