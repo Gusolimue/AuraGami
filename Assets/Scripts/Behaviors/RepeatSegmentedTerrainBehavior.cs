@@ -4,7 +4,7 @@ using UnityEngine;
 public class RepeatSegmentedTerrainBehavior : MonoBehaviour
 {
     [SerializeField]
-    private float tempoSpeed = 300;
+    public float tempoSpeed = 300;
 
     [SerializeField]
     private GameObject[] terrainPrefabs;
