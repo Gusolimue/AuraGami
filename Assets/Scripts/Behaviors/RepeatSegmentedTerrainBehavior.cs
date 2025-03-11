@@ -4,7 +4,10 @@ using UnityEngine;
 public class RepeatSegmentedTerrainBehavior : MonoBehaviour
 {
     [SerializeField]
-    private float tempoSpeed = 300;
+    public float tempoSpeed = 300;
+
+    [SerializeField]
+    private int terrainOffset;
 
     [SerializeField]
     private GameObject[] terrainPrefabs;
@@ -33,7 +36,7 @@ public class RepeatSegmentedTerrainBehavior : MonoBehaviour
         // Initialize segments
         for (int i = 0; i < segmentsMaxCount; i++)
         {
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, segmentTotalCount + segmentFrontCount);
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, (segmentTotalCount + segmentFrontCount) + terrainOffset);
             GameObject segment = SpawnSegment(spawnPosition);
         }
     }
@@ -49,10 +52,10 @@ public class RepeatSegmentedTerrainBehavior : MonoBehaviour
     void TerrainMovement()
     {
         transform.Translate(Vector3.back * Time.deltaTime * tempoSpeed);
-        if (transform.position.z < -(segmentTotalCount * repeatLength))
+        if (transform.position.z < -(segmentTotalCount * repeatLength) -(terrainOffset * repeatLength))
         {
             Debug.Log("Spawn new segment");
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, segmentTotalCount + segmentFrontCount);
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, (segmentTotalCount + segmentFrontCount) + terrainOffset);
             GameObject segment = SpawnSegment(spawnPosition);
 
             // If there are more segments than the maximum number allowed, remove the one in the very back

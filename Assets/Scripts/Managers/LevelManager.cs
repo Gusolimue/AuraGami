@@ -104,8 +104,20 @@ public class LevelManager : MonoBehaviour
     public void NextStage()
     {
         currentStageIndex += 1;
-        boardCount = 0;
-        APManager.Instance.ResetAP();
+        if(currentStageIndex >= 2)
+        {
+            CanvasManager.Instance.ShowCanvasLevelEnd();
+        }
+        else if (APManager.Instance.StagePassCheck())
+        {
+            CanvasManager.Instance.ShowCanvasStageFail();
+        }
+        else
+        {
+            boardCount = 0;
+
+            APManager.Instance.ResetAP();
+        }
     }
     void ActivateBoard()
     {
