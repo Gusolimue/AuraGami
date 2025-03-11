@@ -3,7 +3,14 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     [SerializeField] GameObject[] settingMenus;
-    
+
+    public void OnBackButtonPressed() // When pressed, destroys Canvas_Settings and instantiates Canvas_FrontEnd.
+    {
+        if (LoadManager.Instance.whichScene == 0) CanvasManager.Instance.ShowCanvasFE();
+        if (LoadManager.Instance.whichScene >= 1) CanvasManager.Instance.ShowCanvasPauseMenu();
+        Destroy(this.gameObject);
+    }
+
     public void OnAudioButtonPressed()
     {
         settingMenus[0].SetActive(true); settingMenus[1].SetActive(false);

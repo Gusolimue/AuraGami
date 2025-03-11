@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     public float masterVolume = .4f;
-    FMOD.Studio.Bus Master;
+    public FMOD.Studio.Bus Master;
 
     public string currentMusicName = "null";
     public FMOD.Studio.EventInstance currentMusicInstance;

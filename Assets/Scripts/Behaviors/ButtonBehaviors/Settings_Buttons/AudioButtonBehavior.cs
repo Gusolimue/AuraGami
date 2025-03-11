@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioButtonBehavior : MonoBehaviour
 {
     [SerializeField] public GameObject audioConstellationOn;
     [SerializeField] public GameObject audioConstellationOff;
+
+    [SerializeField] public Slider masterAudioSlider;
 
     private void Awake()
     {
@@ -22,5 +25,10 @@ public class AudioButtonBehavior : MonoBehaviour
         audioConstellationOn.SetActive(false);
         audioConstellationOff.SetActive(true);
         Debug.Log("Exit");
+    }
+
+    public void MasterVolumeSlider()
+    {
+        AudioManager.Instance.Master.setVolume(AudioManager.Instance.masterVolume);
     }
 }
