@@ -72,6 +72,13 @@ public class APManager : MonoBehaviour
     //{
     //    return Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length);
     //}
+
+    public bool StagePassCheck()
+    {
+        bool tmp = false;
+        if (curAP >= LevelManager.currentStageIndex) tmp = true;
+        return tmp;
+    }
     public void ResetAP()
     {
         curAP = 0;

@@ -72,7 +72,7 @@ public class BaseInteractableBehavior : MonoBehaviour
         
     }
 
-    private void FadeOutTarget()
+    public void FadeOutTarget()
     {
         startColor = interactableRenderer.material.color;
         endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
