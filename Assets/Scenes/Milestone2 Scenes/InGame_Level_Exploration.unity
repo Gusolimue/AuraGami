@@ -865,6 +865,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &521703232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521703234}
+  - component: {fileID: 521703233}
+  m_Layer: 0
+  m_Name: TestLvlMngr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &521703233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521703232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7511e952771b8488f3e663bf2d9baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 0}
+  instantiatedLevel: []
+  spawnDistance: 0
+  beatsToPlayer: 0
+--- !u!4 &521703234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521703232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1318.8042, y: 919.3058, z: -1999.9998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 857846359}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &527163423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -1038,6 +1087,932 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834507323}
   m_CullTransparentMesh: 1
+--- !u!1 &857846358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 857846359}
+  - component: {fileID: 857846360}
+  m_Layer: 0
+  m_Name: LevelTesting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &857846359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857846358}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 521703234}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &857846360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857846358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb56995bf32f6a4b92a469855f02cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soTrack: {fileID: 0}
+  stage1:
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  stage2:
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  stage3:
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 0.5
+      multiPoints: []
+    - interactableType: 0
+      side: 1
+      interactableAngle: 270
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 1
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 0.5
+      multiPoints: []
+    - interactableType: 0
+      side: 1
+      interactableAngle: 270
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 0
+      interactableAngle: 30
+      interactableDistance: 0.3
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 330
+      interactableDistance: 0.3
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 1
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0.7
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 1
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 80
+      interactableDistance: 0.4
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 280
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 1
+      interactableAngle: 330
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.7
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 290
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 4
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 1
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 70
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 80
+      interactableDistance: 0.4
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 280
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 1
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 270
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 70
+      interactableDistance: 0.4
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 290
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.7
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 60
+      interactableDistance: 0.3
+      multiPoints: []
+    - interactableType: 4
+      side: 2
+      interactableAngle: 60
+      interactableDistance: 0.3
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 1
+      side: 3
+      interactableAngle: 240
+      interactableDistance: 0.7
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 300
+      interactableDistance: 0.5
+      multiPoints: []
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 30
+      interactableDistance: 1
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 90
+      interactableDistance: 1
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 120
+      interactableDistance: 1
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 240
+      interactableDistance: 1
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 4
+      side: 2
+      interactableAngle: 80
+      interactableDistance: 0.4
+      multiPoints: []
+    - interactableType: 4
+      side: 0
+      interactableAngle: 280
+      interactableDistance: 0.4
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  currentBoard: {fileID: 0}
+  levelPreview: {fileID: 0}
+  stageSelection: 1
+  startIndex: 0
+  endIndex: 0
+  copiedSelection: []
+  selectionToPaste: 0
+  iWantToDeleteMyStagePermanently: 0
 --- !u!1 &929294861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5656,3 +6631,4 @@ SceneRoots:
   - {fileID: 1063950128}
   - {fileID: 2010303151}
   - {fileID: 1914972017}
+  - {fileID: 521703234}
