@@ -104,14 +104,14 @@ public class LevelManager : MonoBehaviour
     public void NextStage()
     {
         currentStageIndex += 1;
-        if(currentStageIndex >= 2)
-        {
-            CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.isPaused = true;
-        }
-        else if (APManager.Instance.StagePassCheck())
+        if (APManager.Instance.StagePassCheck())
         {
             CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.isPaused = true;
+        }
+        else if (currentStageIndex >= 2)
+        {
+            CanvasManager.Instance.ShowCanvasLevelEnd();
             PauseManager.Instance.isPaused = true;
         }
         else
