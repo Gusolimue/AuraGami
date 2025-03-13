@@ -138,6 +138,7 @@ public class LevelManager : MonoBehaviour
             {
                 BeatManager.beatUpdated -= ActivateBoard;
                 isSubscribed = false;
+                NextStage();
             }
             else
             {
