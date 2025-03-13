@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
         InitLevel();
         foreach (var container in stageContainers)
         {
+            container.transform.position = AvatarManager.Instance.avatarCircTransform.position;
             container.transform.Translate(Vector3.forward * spawnDistance);
         }
     }
@@ -104,15 +105,15 @@ public class LevelManager : MonoBehaviour
     public void NextStage()
     {
         currentStageIndex += 1;
-        if (APManager.Instance.StagePassCheck())
+        if (!APManager.Instance.StagePassCheck())
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
         }
         else if (currentStageIndex >= 2)
         {
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
         }
         else
         {
@@ -123,9 +124,10 @@ public class LevelManager : MonoBehaviour
     }
     void ActivateBoard()
     {
+        //Debug.Log("board activated");
         if(boardCount >= instantiatedStages[currentStageIndex].Count)
         {
-            Debug.Log("stage finished");
+            //Debug.Log("stage finished");
             if(currentStageIndex >= 2)
             {
                 BeatManager.beatUpdated -= ActivateBoard;

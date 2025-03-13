@@ -54,7 +54,7 @@ public class RepeatSegmentedTerrainBehavior : MonoBehaviour
         transform.Translate(Vector3.back * Time.deltaTime * tempoSpeed);
         if (transform.position.z < -(segmentTotalCount * repeatLength) -(terrainOffset * repeatLength))
         {
-            Debug.Log("Spawn new segment");
+            //Debug.Log("Spawn new segment");
             Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, (segmentTotalCount + segmentFrontCount) + terrainOffset);
             GameObject segment = SpawnSegment(spawnPosition);
 

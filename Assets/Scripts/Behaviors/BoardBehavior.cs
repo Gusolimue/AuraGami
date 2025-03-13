@@ -4,6 +4,7 @@ public class BoardBehavior : MonoBehaviour
 {
     float count;
     float originSpawnDistance;
+    bool isStopped = false;
     public int currentBeat;
     public float movementSpeed;
     public static int boardcount = 0;
@@ -16,16 +17,21 @@ public class BoardBehavior : MonoBehaviour
     {
         mycount = boardcount;
         boardcount++;
+        originPos = this.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        count += Time.deltaTime / movementSpeed;
+        if (!PauseManager.Instance.isPaused) count += Time.deltaTime / movementSpeed;
         //if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
         if (currentBeat > 0)
         {
-            transform.position = Vector3.Lerp(lastPos, targetPos, count * ( 60f / LevelManager.Instance.level.soTrack.bpm ));
+            transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.soTrack.bpm));
+        }
+        if(isStopped && (count / (60f / LevelManager.Instance.level.soTrack.bpm)) >= 1)
+        {
+            StopMovement();
         }
     }
     public void StartMovement()
@@ -40,7 +46,8 @@ public class BoardBehavior : MonoBehaviour
         //Debug.Log(count);
         if (currentBeat > LevelManager.Instance.beatsToPlayer)
         {
-            StopMovement();
+            isStopped = true;
+            BeatManager.beatUpdated -= UpdateMovementTarget;
         }
         count = 0;
         currentBeat++;
@@ -48,7 +55,7 @@ public class BoardBehavior : MonoBehaviour
 
     private void StopMovement()
     {
-        BeatManager.beatUpdated -= UpdateMovementTarget;
+        //BeatManager.beatUpdated -= UpdateMovementTarget;
         foreach (var interactable in this.GetComponentsInChildren<BaseInteractableBehavior>())
         {
             if(interactable.isActiveAndEnabled)

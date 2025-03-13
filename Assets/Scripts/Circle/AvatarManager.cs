@@ -22,7 +22,7 @@ public class AvatarManager : MonoBehaviour
     [SerializeField]
     Transform playerCircTransform;
     [SerializeField]
-    Transform avatarCircTransform;
+    public Transform avatarCircTransform;
     
     [SerializeField]
     Transform rightControllerTransform;
