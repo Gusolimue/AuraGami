@@ -32,11 +32,6 @@ public class PauseManager : MonoBehaviour
         PauseGame(false);
     }
 
-    private void Update()
-    {
-        //if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
-    }
-
     private void OnDestroy()
     {
         openPauseMenuAction.action.Disable();

@@ -5,15 +5,19 @@ using EditorAttributes;
 
 public class FrontEnd : MonoBehaviour
 {
+    public static FrontEnd Instance;
     [Header("Play Button BG Assets")]
-    [SerializeField] Image playButton_BG;
+    [SerializeField] public Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
     [SerializeField] GameObject playButton_BG_OnPressed;
     [Space]
     [Header("Play Button BG Colors")]
     public Color whiteColor;
-    public Color blueColor;
-    private Color currentColor;
+    public Color startingColor;
+    public Color explorationColor;
+    public Color freedomColor;
+    public Color levelColor;
+    public Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
     private Animator playButton_BG_OnExit_Anim;
@@ -23,6 +27,8 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
@@ -33,7 +39,7 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnExit_Anim.enabled = false;
         playButton_BG_OnPressed_Anim.enabled = false;
 
-        currentColor = blueColor;
+        currentColor = whiteColor;
         playButton_BG.color = currentColor;
     }
 
@@ -96,7 +102,7 @@ public class FrontEnd : MonoBehaviour
     }
     public IEnumerator PlayButtonBGColorChangeOnExit()
     {
-        currentColor = blueColor;
+        currentColor = levelColor;
         float numGoal = 1f;
         float numStart = 0f;
 
