@@ -104,7 +104,6 @@ public class LevelManager : MonoBehaviour
     }
     public void NextStage()
     {
-        currentStageIndex += 1;
         if (!APManager.Instance.StagePassCheck())
         {
             CanvasManager.Instance.ShowCanvasStageFail();
@@ -112,6 +111,7 @@ public class LevelManager : MonoBehaviour
         }
         else if (currentStageIndex >= 2)
         {
+            Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
             PauseManager.Instance.PauseGame(true);
         }
@@ -121,13 +121,19 @@ public class LevelManager : MonoBehaviour
 
             APManager.Instance.ResetAP();
         }
+
+        currentStageIndex += 1;
+    }
+    public void EndLevel()
+    {
+
     }
     void ActivateBoard()
     {
         //Debug.Log("board activated");
         if(boardCount >= instantiatedStages[currentStageIndex].Count)
         {
-            //Debug.Log("stage finished");
+            Debug.Log("stage finished + :"+currentStageIndex);
             if(currentStageIndex >= 2)
             {
                 BeatManager.beatUpdated -= ActivateBoard;

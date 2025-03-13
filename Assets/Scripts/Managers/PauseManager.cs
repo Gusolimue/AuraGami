@@ -102,6 +102,7 @@ public class PauseManager : MonoBehaviour
             countdownTimer--;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
+        BeatManager.Instance.PauseMusicTMP(false);
         isPaused = false;
     }
 }
