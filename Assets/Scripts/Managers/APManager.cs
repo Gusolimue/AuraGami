@@ -7,6 +7,7 @@ public class APManager : MonoBehaviour
     [Header("For Adjustments")]
     public float[] multLevels;
     public int multIncrementStreak;
+    [Range(0,1)]
     public float[] stagePassPercent;
     [Space]
 
