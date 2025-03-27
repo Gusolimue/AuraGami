@@ -41,6 +41,7 @@ public class LoadManager : MonoBehaviour
             case eScene.frontEnd:
                 CanvasManager.Instance.ShowCanvasFE();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
+                //CanvasManager.Instance.ShowCanvasLevelSelectMockup();
                 //CanvasManager.Instance.ShowCanvasSettings();
                 //CanvasManager.Instance.ShowCanvasCredits();
                 AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
