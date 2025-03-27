@@ -19,11 +19,6 @@ public class RepeatTerrainBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseManager.Instance.isPaused == false) TerrainMovement(true);
-    }
-
-    public void TerrainMovement(bool _isMoving)
-    {
         transform.Translate(Vector3.back * Time.deltaTime * tmpSpeed);
 
         if (transform.position.z < startPos.z - repeatLength / 2)
@@ -31,5 +26,4 @@ public class RepeatTerrainBehavior : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, startPos.z);
         }
     }
-
 }

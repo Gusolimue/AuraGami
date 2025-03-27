@@ -22,15 +22,14 @@ public class PauseManager : MonoBehaviour
     {
         Instance = this;
         countdownTimer_TXT.gameObject.SetActive(false);
-        PauseGame(false);
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
     }
-
-    private void Update()
+    private void Start()
     {
-        //if (isPaused == false) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_level_Freedom);
+        //moved this to start because you cant refer to another instance (beatmanager) in awake
+        PauseGame(false);
     }
 
     private void OnDestroy()
@@ -103,6 +102,7 @@ public class PauseManager : MonoBehaviour
             countdownTimer--;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
+        BeatManager.Instance.PauseMusicTMP(false);
         isPaused = false;
     }
 }

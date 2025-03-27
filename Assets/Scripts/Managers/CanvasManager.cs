@@ -21,9 +21,19 @@ public class CanvasManager : MonoBehaviour
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect") as GameObject);
     }
 
+    public void ShowCanvasLevelSelectMockup()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect_Mockup") as GameObject);
+    }
+
     public void ShowCanvasSettings()
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_Settings") as GameObject);
+    }
+
+    public void ShowCanvasCredits()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_Credits") as GameObject);
     }
 
     //PAUSE MENU CAVAS'
