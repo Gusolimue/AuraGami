@@ -157,7 +157,14 @@ public class Level : MonoBehaviour
         tmpSelection.AddRange(GetStage(stageSelection).GetRange(startIndex, Math.Clamp(tmpIndex, 0 , GetStage(stageSelection).Count)));
         for (int i = 0; i < tmpSelection.Count; i++)
         {
-            copiedSelection.Add(new Board(tmpSelection[i].interactables));
+            if(tmpSelection[i].interactables != null)
+            {
+                copiedSelection.Add(new Board(tmpSelection[i].interactables));
+            }
+            else
+            {
+                copiedSelection.Add(new Board(new Interactable[0]));
+            }
         }
     }
     public List<Board> GetStage(int _index)
