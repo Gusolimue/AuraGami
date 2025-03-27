@@ -94,7 +94,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.multihitTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "multihitTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
@@ -151,9 +151,10 @@ public class Level : MonoBehaviour
     {
         copiedSelection.Clear();
         tmpSelection.Clear();
+
         int tmpIndex = endIndex;
         if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
-        tmpSelection.AddRange(stage1.GetRange(startIndex, tmpIndex));
+        tmpSelection.AddRange(GetStage(stageSelection).GetRange(startIndex, Math.Clamp(tmpIndex, 0 , GetStage(stageSelection).Count)));
         for (int i = 0; i < tmpSelection.Count; i++)
         {
             copiedSelection.Add(new Board(tmpSelection[i].interactables));
@@ -182,6 +183,7 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < copiedSelection.Count; i++)
         {
+
             if (GetStage(stageSelection).Count > startIndex + i)
             {
                 GetStage(stageSelection)[startIndex + i] = new Board(copiedSelection[i].interactables);
