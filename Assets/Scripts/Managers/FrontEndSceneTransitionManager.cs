@@ -11,10 +11,15 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
     public float fadeInDuration;
     public float fadeOutDuration;
 
+    public bool isTransitioning;
+
     private void Awake()
     {
         Instance = this;
         SceneFadeOutTransitionSplash();
+        isTransitioning = false;
+
+        //LevelSelectManager.Instance.whichLevel = 1;
     }
 
     public void SceneFadeInTransitionSplash()
@@ -27,6 +32,11 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         StartCoroutine(TransitionFadeInPauseMenu(0));
     }
 
+    public void SceneFadeInTransitionRestartSplash()
+    {
+        StartCoroutine(TransitionFadeInRestart(0));
+    }
+
     public void SceneFadeOutTransitionSplash()
     {
         StartCoroutine(TransitionFadeOut(1));
@@ -37,6 +47,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
     {
         alpha = 0f;
         fadeInDuration = 1f;
+        isTransitioning = true;
 
         while (alpha < 1f)
         {
@@ -46,7 +57,8 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
             yield return null; // Wait for the next frame
         }
         AudioManager.Instance.StopMusic();
-        SceneSelection();
+        LoadManager.Instance.LoadScene((eScene)LevelSelectManager.Instance.whichLevel);
+        isTransitioning = false;
     }
     public IEnumerator TransitionFadeOut(float alpha)
     {
@@ -60,14 +72,6 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-    }
-
-    public void SceneSelection()
-    {
-        if (LevelSelectManager.Instance.whichLevel == 1) LoadManager.Instance.LoadScene(eScene.levelExploration);
-        if (LevelSelectManager.Instance.whichLevel == 2) LoadManager.Instance.LoadScene(eScene.levelFreedom);
-        //if (LoadManager.Instance.whichScene == 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
-        //else if (PauseMenu.Instance.isRestarting == true) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public IEnumerator TransitionFadeInPauseMenu(float alpha)
@@ -84,6 +88,22 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         }
         AudioManager.Instance.StopMusic();
         LoadManager.Instance.LoadScene(eScene.frontEnd);
+    }
+
+    public IEnumerator TransitionFadeInRestart(float alpha)
+    {
+        alpha = 0f;
+        fadeInDuration = 1f;
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / fadeInDuration;
+            transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g,
+                transitionSplash.color.b, alpha); // Updates alpha 
+            yield return new WaitForSecondsRealtime(.01f);
+        }
+        AudioManager.Instance.StopMusic();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

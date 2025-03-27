@@ -62,11 +62,15 @@ public class APManager : MonoBehaviour
     }
     public void DecreaseAP(float _percent)
     {
-        curAP -= stageTargetValues[LevelManager.currentStageIndex] * _percent;
-        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
-        curStreak = 0;
-        UpdateSigils();
-        UpdateAuraFX();
+        if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
+        {
+            curAP -= stageTargetValues[LevelManager.currentStageIndex] * _percent;
+            curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+            curStreak = 0;
+            UpdateSigils();
+            UpdateAuraFX();
+        }
+     
     }
     //int GetMultIndex()
     //{

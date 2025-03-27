@@ -58,6 +58,7 @@ public class FrontEnd : MonoBehaviour
     [Button, SerializeField]
     public void OnPlayButtonPressed()
     {
+        LevelSelectManager.Instance.whichLevel = 2;
         playButton_BG_OnPressed_Anim.enabled = true;
         playButton_BG_OnPressed_Anim.SetTrigger("OnPlayButtonPressed");
         Debug.Log("Play Level!");
