@@ -69,7 +69,7 @@ public class LevelSelectManager : MonoBehaviour
 
     public void SetLevelOrbs(bool set)
     {
-        if (whichLevel == 0)
+        /*if (whichLevel == 0)
         {
             levelOrbs[0].transform.parent = levelOrbContainers[0].transform;
             levelOrbs[1].transform.position = levelOrbContainers[1].transform.position;
@@ -78,7 +78,7 @@ public class LevelSelectManager : MonoBehaviour
             levelOrbs[1].transform.position = levelOrbContainers[1].transform.position;
         }
 
-       /* if (whichLevel == 1) 
+        if (whichLevel == 1) 
         {
             levelOrbs[1].transform.parent = levelOrbContainers[1].transform;
             levelOrbs[1].transform.position = levelOrbContainers[1].transform.position;

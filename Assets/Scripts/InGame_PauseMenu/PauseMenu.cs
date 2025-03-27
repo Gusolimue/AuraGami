@@ -49,8 +49,8 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
-        //SceneMgr.Instance.IntoFrontEndSceneTransition();
+        LevelSelectManager.Instance.whichLevel = 0;
         PauseManager.Instance.PauseGame(false);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionPauseSplash();
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }
