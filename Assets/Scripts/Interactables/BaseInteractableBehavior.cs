@@ -1,28 +1,93 @@
 using UnityEngine;
 using System.Collections;
 //Base Script to source for all in game interactables (targets and hazards)
-
+public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
 {
-    [Header("Variables to Adjust")]
-    public int moveSpeed;
-    //[Header("Variables to Set")]
-    //[Header("Variables to Call")]
+    public Material leftMat;
+    public Material rightMat;
+    public Material anyMat;
+    public Material bothMat;
+    public Renderer interactableRenderer;
+    public eSide side;
 
-    void Update()
+    [SerializeField] float fadeOutTime;
+    Color startColor;
+    Color endColor;
+    float startTime;
+    bool isFading;
+
+    public Interactable interactable;
+    public int stageIndex;
+    public int boardIndex;
+    int interactableIndex;
+    LevelManager lm;
+    internal virtual void Awake()
     {
-        // Moves instantiated targets and obstacles foward
-        transform.position += Time.deltaTime * transform.forward * moveSpeed;
+        lm = LevelManager.Instance;
+        isFading = false;
+    }
+    public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
+    {
+        stageIndex = _stage;
+        boardIndex = _board;
+        //interactableIndex = _interactable;
+        //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
+        interactable = _interactable;
+        side = _eSide;
+        switch (side)
+        {
+            case eSide.left:
+                interactableRenderer.sharedMaterial = leftMat;
+                break;
+            case eSide.right:
+                interactableRenderer.sharedMaterial = rightMat;
+                break;
+            case eSide.any:
+                interactableRenderer.sharedMaterial = anyMat;
+                break;
+            case eSide.both:
+                interactableRenderer.sharedMaterial = bothMat;
+                break;
+            default:
+                break;
+        }
+
+    }
+    public virtual void InteractableMissed()
+    {
+        //Debug.Log("player missed");
+        APManager.Instance.DecreaseAP(.5f);
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()
     {
-        Destroy(this.gameObject);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
+        StopTarget();
     }
 
-    //Method called when object's trigger collides with the avatar circle
-    public void CircleCollision()
+    private void StopTarget()
     {
-        Destroy(this.gameObject, 2f);
+        gameObject.SetActive(false);
+        
+    }
+
+    public void FadeOutTarget()
+    {
+        startColor = interactableRenderer.material.color;
+        endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        startTime = Time.time;
+        isFading = true;
+    }
+
+    void Update()
+    {
+        if (isFading)
+        {
+            float elapsedTime = Time.time - startTime;
+            float t = Mathf.Clamp(elapsedTime / fadeOutTime, 0f, 1f);
+            Color lerpedColor = Color.Lerp(startColor, endColor, t);
+            interactableRenderer.material.color = lerpedColor;
+        }
     }
 }

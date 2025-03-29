@@ -1,24 +1,35 @@
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using System.Collections;
 using UnityEngine;
+using EditorAttributes;
 
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
 
+    public bool isRestarting;
+
     private void Awake()
     {
-        Instance = this;    
+        Instance = this;
+        isRestarting = false;
     }
 
     public void OnRestartGameButtonPressed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //PauseManager.Instance.PauseGame(false); //Tmp
+        isRestarting = true;
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionRestartSplash();
         Destroy(this.gameObject);
     }
 
     public void OnResumeGameButtonPressed()
     {
-        PauseManager.Instance.isPaused = false;
+        //PauseManager.Instance.PauseGame(false); //Tmp
+        PauseManager.Instance.yataAvatar.SetActive(true);
+        PauseManager.Instance.naginiAvatar.SetActive(true);
+        PauseManager.Instance.StartCountdown();
         Destroy(this.gameObject);
     }
 
@@ -35,10 +46,11 @@ public class PauseMenu : MonoBehaviour
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
-
+    [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
         //SceneMgr.Instance.IntoFrontEndSceneTransition();
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        PauseManager.Instance.PauseGame(false);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionPauseSplash();
     }
 }

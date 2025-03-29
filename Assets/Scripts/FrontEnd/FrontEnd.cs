@@ -1,18 +1,23 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using EditorAttributes;
 
 public class FrontEnd : MonoBehaviour
 {
+    public static FrontEnd Instance;
     [Header("Play Button BG Assets")]
-    [SerializeField] Image playButton_BG;
+    [SerializeField] public Image playButton_BG;
     [SerializeField] GameObject playButton_BG_OnEnter;
     [SerializeField] GameObject playButton_BG_OnPressed;
     [Space]
     [Header("Play Button BG Colors")]
     public Color whiteColor;
-    public Color blueColor;
-    private Color currentColor;
+    public Color startingColor;
+    public Color explorationColor;
+    public Color freedomColor;
+    public Color levelColor;
+    public Color currentColor;
 
     private Animator playButton_BG_OnEnter_Anim;
     private Animator playButton_BG_OnExit_Anim;
@@ -22,7 +27,8 @@ public class FrontEnd : MonoBehaviour
 
     private void Awake()
     {
-        CanvasManager.Instance.ShowCanvasFE();
+        Instance = this;
+
         // Grabbing the animator from each of these game objects.
         playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
         playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
@@ -33,7 +39,7 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnExit_Anim.enabled = false;
         playButton_BG_OnPressed_Anim.enabled = false;
 
-        currentColor = blueColor;
+        currentColor = whiteColor;
         playButton_BG.color = currentColor;
     }
 
@@ -49,34 +55,34 @@ public class FrontEnd : MonoBehaviour
         playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
         StartCoroutine(PlayButtonBGColorChangeOnExit());
     }
-
+    [Button, SerializeField]
     public void OnPlayButtonPressed()
     {
+        LevelSelectManager.Instance.whichLevel = 2;
         playButton_BG_OnPressed_Anim.enabled = true;
         playButton_BG_OnPressed_Anim.SetTrigger("OnPlayButtonPressed");
         Debug.Log("Play Level!");
-
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
     public void OnLevelsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }
 
     public void OnSettingsButtonPressed()
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
 
     public void OnQuitButtonPressed() // Will exit game (works for builds only).
     {
-        NewAudioManager.Instance.frontEndButtonSFX.Play();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Application.Quit();
     }
 
@@ -97,7 +103,7 @@ public class FrontEnd : MonoBehaviour
     }
     public IEnumerator PlayButtonBGColorChangeOnExit()
     {
-        currentColor = blueColor;
+        currentColor = levelColor;
         float numGoal = 1f;
         float numStart = 0f;
 

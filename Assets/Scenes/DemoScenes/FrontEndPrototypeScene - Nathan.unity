@@ -1015,6 +1015,95 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1391090961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1009776921, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412368239, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969614473891287835, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -57.34549
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.931405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371538543911741, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175170, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: m_Name
+      value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175171, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: waveHeight
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175171, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: waveLength
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175171, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: waveFrequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175171, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: forceFlatShading
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606371540047175228, guid: 155b31400490d964b92d1197bc89d416, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 905e0d5b1ed00c74290cf60d7be1ccd0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 155b31400490d964b92d1197bc89d416, type: 3}
 --- !u!1 &1465891257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595968772
 Transform:
   m_ObjectHideFlags: 0
@@ -1576,7 +1665,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f27a3900e5469044986eb948c3fb8afe, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f27a3900e5469044986eb948c3fb8afe, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1869,3 +1958,4 @@ SceneRoots:
   - {fileID: 1968489854}
   - {fileID: 613676096}
   - {fileID: 1595968772}
+  - {fileID: 1391090961}

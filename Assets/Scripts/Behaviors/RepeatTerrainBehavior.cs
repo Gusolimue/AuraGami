@@ -23,7 +23,7 @@ public class RepeatTerrainBehavior : MonoBehaviour
 
         if (transform.position.z < startPos.z - repeatLength / 2)
         {
-            transform.position = startPos;
+            transform.position = new Vector3(transform.position.x, transform.position.y, startPos.z);
         }
     }
 }

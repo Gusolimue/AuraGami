@@ -1,0 +1,1450 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3473681073150104660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668944841145823069}
+  - component: {fileID: 8756348638340761953}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &668944841145823069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473681073150104660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7217444314754306936}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8756348638340761953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3473681073150104660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7511e952771b8488f3e663bf2d9baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 8199415403371416287}
+  instantiatedLevel: []
+  spawnDistance: 0
+  beatsToPlayer: 0
+--- !u!1 &5210038913675506138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7217444314754306936}
+  - component: {fileID: 8199415403371416287}
+  m_Layer: 0
+  m_Name: Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7217444314754306936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210038913675506138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07, y: 1.012, z: 2.104}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1307001349398450532}
+  m_Father: {fileID: 668944841145823069}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8199415403371416287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210038913675506138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb56995bf32f6a4b92a469855f02cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soTrack: {fileID: 11400000, guid: 80cd2747e5de0a243b0610ae085d8afe, type: 2}
+  stage1:
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 30
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 45
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 60
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 90
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 115
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 130
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 145
+      interactableDistance: 1
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  stage2: []
+  stage3: []
+  currentBoard: {fileID: 0}
+  levelPreview: {fileID: 0}
+  stageSelection: 1
+  startIndex: 20
+  endIndex: 20
+  copiedSelection:
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+    - interactableType: 0
+      side: 0
+      interactableAngle: 0
+      interactableDistance: 0
+      targetPosition: 0
+      navPositions: 
+      endingPosition: 
+  selectionToPaste: 0
+--- !u!1 &6578224771705542801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307001349398450532}
+  m_Layer: 0
+  m_Name: LevelContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307001349398450532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578224771705542801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7217444314754306936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

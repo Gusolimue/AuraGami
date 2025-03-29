@@ -1,6 +1,29 @@
 using UnityEngine;
-//this is currently a dummy behavior used for collision detection
+//this is currently a dummy behavior used for collision detection and instantiating the avatar model
 
 public class AvatarBehavior : MonoBehaviour
 {
+    //[Header("Variables to Adjust")]
+    [Header("Variables to Set")]
+    public eSide side;
+    [SerializeField] GameObject avatarPrefab;
+    //[Header("Variables to Call")]
+    
+    //
+    private void Awake()
+    {
+        Instantiate(avatarPrefab).transform.SetParent(this.transform);
+    }
+
+    //
+    public void ObstacleCollision()
+    {
+
+    }
+
+    //
+    public void TargetCollision()
+    {
+
+    }
 }
