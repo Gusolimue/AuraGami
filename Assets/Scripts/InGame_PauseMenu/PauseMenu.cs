@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuButtonPressed()
     {
         LevelSelectManager.Instance.whichLevel = 0;
-        PauseManager.Instance.PauseGame(false);
+        //PauseManager.Instance.PauseGame(false);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }

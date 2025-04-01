@@ -29,7 +29,7 @@ public class PauseManager : MonoBehaviour
     private void Start()
     {
         //moved this to start because you cant refer to another instance (beatmanager) in awake
-        PauseGame(false);
+        //PauseGame(false);
     }
 
     private void OnDestroy()
@@ -52,18 +52,20 @@ public class PauseManager : MonoBehaviour
             CanvasManager.Instance.ShowCanvasPauseMenu();
             naginiAvatar.SetActive(false);
             yataAvatar.SetActive(false);
+            BeatManager.Instance.PauseMusicTMP(true);
             isPaused = true;
-            PauseGame(true);
+            //PauseGame(true);
             Debug.Log("Is Paused!");
         }
         else if (isPaused == true)
         {
             isPaused = false;
-            PauseGame(false);
+            //PauseGame(false);
             PauseMenu.Instance.OnResumeGameButtonPressed();
             StartCoroutine(Countdown(3));
             naginiAvatar.SetActive(true);
             yataAvatar.SetActive(true);
+            BeatManager.Instance.PauseMusicTMP(false);
             Debug.Log("Is Unpaused!");
         }
     }

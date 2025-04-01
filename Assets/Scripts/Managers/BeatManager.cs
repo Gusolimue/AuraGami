@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using FMODUnity;
 using System;
 using EditorAttributes;
+using UnityEngine.PlayerLoop;
 
 public class BeatManager : MonoBehaviour
 {
@@ -33,12 +34,14 @@ public class BeatManager : MonoBehaviour
         musicInstance.start();
     }
     [Button, SerializeField]
+
     public void PauseMusicTMP(bool _paused)
     {
         musicInstance.setPaused(_paused);
     }
 
     [StructLayout(LayoutKind.Sequential)]
+
     public class TimelineInfo
     {
         public int currentBeat = 0;
@@ -53,6 +56,7 @@ public class BeatManager : MonoBehaviour
         musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
             | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
     }
+
     public void OnDestroy()
     {
         musicInstance.setUserData(IntPtr.Zero);

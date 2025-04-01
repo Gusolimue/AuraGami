@@ -43,7 +43,7 @@ public class RepeatSegmentedTerrainBehavior : MonoBehaviour
 
     void Update()
     {
-        if (PauseManager.Instance.isPaused == false)
+        if (!PauseManager.Instance.isPaused)
         {
             TerrainMovement();
         }
