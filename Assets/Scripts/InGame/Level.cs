@@ -98,7 +98,7 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.precisionTarget:
@@ -150,8 +150,11 @@ public class Level : MonoBehaviour
     void CopyPressed()
     {
         copiedSelection.Clear();
-        tmpSelection = new List<Board>(0);
-        tmpSelection.AddRange(GetStage(stageSelection).GetRange(startIndex, Math.Clamp(endIndex + 1, 0 , GetStage(stageSelection).Count)));
+        tmpSelection.Clear();
+
+        int tmpIndex = endIndex;
+        if (GetStage(stageSelection).Count < endIndex) tmpIndex = stage1.Count;
+        tmpSelection.AddRange(GetStage(stageSelection).GetRange(startIndex, Math.Clamp(tmpIndex, 0 , GetStage(stageSelection).Count)));
         for (int i = 0; i < tmpSelection.Count; i++)
         {
             if(tmpSelection[i].interactables != null)
@@ -289,7 +292,6 @@ public class Board
             TargetPoints[] tmpMultipoints = null;
             if (_interactables[i].multiPoints != null)
             {
-                tmpMultipoints = new TargetPoints[_interactables[i].multiPoints.Length];
                 for (int c = 0; c < _interactables[i].multiPoints.Length; c++)
                 {
                     tmpMultipoints[c] = new TargetPoints(_interactables[i].multiPoints[c].boardsMoved,
