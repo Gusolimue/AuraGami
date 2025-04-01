@@ -55,13 +55,21 @@ public class BoardBehavior : MonoBehaviour
 
     private void StopMovement()
     {
+        bool tmpbool = false;
         //BeatManager.beatUpdated -= UpdateMovementTarget;
         foreach (var interactable in this.GetComponentsInChildren<BaseInteractableBehavior>())
         {
-            if(interactable.isActiveAndEnabled)
+            if (interactable.isActiveAndEnabled && !interactable.dontDestroy)
             {
+                tmpbool = true;
                 interactable.InteractableMissed();
             }
+
+        }
+
+        if (tmp)
+        {
+
         }
         gameObject.SetActive(false);
 

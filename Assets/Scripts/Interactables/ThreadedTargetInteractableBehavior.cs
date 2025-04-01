@@ -7,20 +7,21 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     int totalPoints;
     List<GameObject> threadPositions = new List<GameObject>();
 
+    public Renderer endTargetRenderer;
     LineRenderer threadLine;
     float count;
     int currentBeat;
     Vector3 lastPos;
     Vector3 targetPos;
-    bool isMoving;
+    bool isTracing = false;
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         base.InitInteractable(_eSide, _stage, _board, _interactable);
         threadLine = GetComponent<LineRenderer>();
         threadLine.enabled = false;
+        endTargetRenderer.sharedMaterial = interactableRenderer.sharedMaterial;
         currentPoint = 0;
         currentBeat = 0;
-        isMoving = false;
     }
 
     private void Start()
@@ -43,40 +44,18 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         ThreadLineUpdate();
     }
 
-    // Sets the movement target to a target point
-    void UpdateMovementTarget()
-    {
-        lastPos = transform.position;
-        targetPos = threadPositions[currentPoint - 1].transform.position; // Set the target position to be next point in the list
-        transform.parent = threadPositions[currentPoint - 1].transform.parent.transform; // Set the parent object to be the new board
-        count = 0;
-        currentBeat++;
-    }
-
     // Increments the current target point if one still exists, otherwise triggers collision like normal
     public override void AvatarCollision()
     {
-        if (!isMoving) // If not moving to another target point
+        if(isTracing)
         {
-            currentPoint++;
-            if (currentPoint - 1 < totalPoints) // If a future point still exists
-            {
-                isMoving = true;
-                // Set target to be the next future point
-                UpdateMovementTarget();
-                Invoke("StopMoving", 0.1f);
-            }
-            else
-            {
-                base.AvatarCollision();
-            }
+            APManager.Instance.IncreaseAP();
+            base.AvatarCollision();
         }
-    }
-
-    // Allows the target to be hit again
-    void StopMoving()
-    {
-        isMoving = false;
+        else
+        {
+            isTracing = true;
+        }
     }
      void ThreadLineUpdate()
     {
@@ -90,6 +69,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     {
         int pointCount = 0; // Keeps track of the total number of target points
         int boardsMovedBack = 0; // Keeps track of the total boards moved back
+        threadPositions.Add(this.gameObject);
         foreach (TargetPoints point in interactable.multiPoints)
         {
             pointCount++;
@@ -107,5 +87,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         threadLine.enabled = true;
         threadLine.positionCount = threadPositions.Count;
         totalPoints = threadPositions.Count;
+        endTargetRenderer.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
+        endTargetRenderer.gameObject.transform.position = Vector3.zero;
     }
 }
