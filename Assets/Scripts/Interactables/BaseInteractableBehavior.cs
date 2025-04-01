@@ -10,12 +10,14 @@ public class BaseInteractableBehavior : MonoBehaviour
     public Material bothMat;
     public Renderer interactableRenderer;
     public eSide side;
+    public eTargetType type;
 
     [SerializeField] float fadeOutTime;
     Color startColor;
     Color endColor;
     float startTime;
     bool isFading;
+    [HideInInspector] public bool dontDestroy;
 
     public Interactable interactable;
     public int stageIndex;
