@@ -52,6 +52,7 @@ public class PauseManager : MonoBehaviour
             CanvasManager.Instance.ShowCanvasPauseMenu();
             naginiAvatar.SetActive(false);
             yataAvatar.SetActive(false);
+            //RepeatSegmentedTerrainBehavior.Instance.TerrainMovement(false);
             BeatManager.Instance.PauseMusicTMP(true);
             isPaused = true;
             //PauseGame(true);
@@ -65,6 +66,7 @@ public class PauseManager : MonoBehaviour
             StartCoroutine(Countdown(3));
             naginiAvatar.SetActive(true);
             yataAvatar.SetActive(true);
+            //RepeatSegmentedTerrainBehavior.Instance.TerrainMovement(true);
             BeatManager.Instance.PauseMusicTMP(false);
             Debug.Log("Is Unpaused!");
         }
