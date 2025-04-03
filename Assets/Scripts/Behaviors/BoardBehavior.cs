@@ -42,9 +42,9 @@ public class BoardBehavior : MonoBehaviour
     void UpdateMovementTarget()
     {
         lastPos = transform.position;
-        targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.Instance.beatsToPlayer) * currentBeat;
-        //Debug.Log(count);
-        if (currentBeat > LevelManager.Instance.beatsToPlayer)
+        targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer) * currentBeat;
+        //Debug.Log(targetPos);
+        if (currentBeat > LevelManager.beatsToPlayer)
         {
             isStopped = true;
             BeatManager.beatUpdated -= UpdateMovementTarget;
