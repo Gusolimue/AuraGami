@@ -5,7 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Level Attributes"), Space]
     public float spawnDistance;
-    public int beatsToPlayer;
+    public static int beatsToPlayer = 8;
 
     [Header("Attributes To Set/Call"), Space]
     public Level level;
@@ -40,20 +40,12 @@ public class LevelManager : MonoBehaviour
     // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
     {
+        Debug.Log("stage index" + _stageIndex);
+        Debug.Log("board index" + _boardIndex);
         return instantiatedStages[_stageIndex][_boardIndex];
     }
     public void InitLevel()
     {
-        //levelContainer = new GameObject("Level Container");
-        //levelContainer.transform.parent = this.transform;
-        //int tmp = 0;
-        //stage1Container = new GameObject("Stage 1 Preview");
-        //stage1Container.transform.parent = levelContainer.transform;
-        //stage2Container = new GameObject("Stage 2 Preview");
-        //stage2Container.transform.parent = levelContainer.transform;
-        //stage3Container = new GameObject("Stage 3 Preview");
-        //stage3Container.transform.parent = levelContainer.transform;
-
         stageContainers = new GameObject[3];
         instantiatedStages = new List<GameObject>[3];
 
@@ -74,32 +66,7 @@ public class LevelManager : MonoBehaviour
 
             }
         }
-
-
-        //for (int i = 0; i < level.GetStage(1).Count; i++)
-        //{
-        //    level.SpawnBoard(i, level.GetStage(1), stage1Container.transform);
-        //    instantiatedStages.Add(level.currentBoard);
-        //    instantiatedStages[i].SetActive(false);
-        //    tmp = i;
-        //}
-        //for (int i = 0; i < level.GetStage(2).Count; i++)
-        //{
-        //    level.SpawnBoard(i, level.GetStage(2), stage2Container.transform);
-        //    instantiatedStages.Add(level.currentBoard);
-        //    instantiatedStages[i + level.GetStage(1).Count - 1].SetActive(false);
-
-        //}
-
-        //for (int i = 0; i < level.GetStage(3).Count; i++)
-        //{
-        //    level.SpawnBoard(i, level.GetStage(3), stage3Container.transform);
-        //    instantiatedStages.Add(level.currentBoard);
-        //    instantiatedStages[i + level.GetStage(1).Count - 1 + level.GetStage(2).Count].SetActive(false);
-
-        //}
-        BeatManager.beatUpdated += ActivateBoard;
-        isSubscribed = true;
+        StartStage();
         APManager.Instance.SetTargetValues();
     }
     public void NextStage()
@@ -127,26 +94,36 @@ public class LevelManager : MonoBehaviour
 
         currentStageIndex += 1;
     }
-    public void EndLevel()
+    public void StartStage()
     {
-
+        Debug.Log("stage started: " + (currentStageIndex+1));
+        boardCount = 0;
+        BeatManager.beatUpdated += ActivateBoard;
+        isSubscribed = true;
+    }
+    public void EndStage()
+    {
+        Debug.Log("stage finished :" + (currentStageIndex + 1));
+        BeatManager.beatUpdated -= ActivateBoard;
+        isSubscribed = false;
+        currentStageIndex += 1;
     }
     void ActivateBoard()
     {
         //Debug.Log("board activated");
         if(boardCount >= instantiatedStages[currentStageIndex].Count)
         {
-            Debug.Log("stage finished + :"+currentStageIndex);
-            if(currentStageIndex >= 2)
-            {
-                BeatManager.beatUpdated -= ActivateBoard;
-                isSubscribed = false;
-                NextStage();
-            }
-            else
-            {
-                NextStage();
-            }
+            EndStage();
+            //if (currentStageIndex >= 2)
+            //{
+            //    BeatManager.beatUpdated -= ActivateBoard;
+            //    isSubscribed = false;
+            //    NextStage();
+            //}
+            //else
+            //{
+            //    NextStage();
+            //}
         }
         else
         {          

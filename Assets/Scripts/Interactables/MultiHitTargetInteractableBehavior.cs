@@ -82,15 +82,18 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         {
             pointCount++;
             boardsMovedBack = boardsMovedBack + point.boardsMoved;
-            // Create and name the target point as a child of the correct board
-            GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount), LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
-            Quaternion tmpRot = new Quaternion();
-            tmpRot.eulerAngles = new Vector3(0, 0, point.interactableAngle);
-            tmpObject.transform.localRotation *= tmpRot;
-            tmpObject.transform.Translate(Vector3.up * point.interactableDistance);
-            tmpObject.transform.localRotation = Quaternion.identity;
+            if(boardIndex + boardsMovedBack < LevelManager.Instance.instantiatedStages[stageIndex].Count)
+            {
+                // Create and name the target point as a child of the correct board
+                GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount), LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
+                Quaternion tmpRot = new Quaternion();
+                tmpRot.eulerAngles = new Vector3(0, 0, point.interactableAngle);
+                tmpObject.transform.localRotation *= tmpRot;
+                tmpObject.transform.Translate(Vector3.up * point.interactableDistance);
+                tmpObject.transform.localRotation = Quaternion.identity;
+                multiPositions.Add(tmpObject);
+            }
 
-            multiPositions.Add(tmpObject);
         }
         totalPoints = multiPositions.Count;
     }
