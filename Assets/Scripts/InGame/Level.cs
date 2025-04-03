@@ -216,8 +216,7 @@ public class Level : MonoBehaviour
             tmpLength /= 1000;
             tmpLength /= 60;
             tmpLength *= soTrack.bpm;
-
-            tmpLength -= LevelManager.Instance.beatsToPlayer * 9;
+            tmpLength -= LevelManager.beatsToPlayer * 9;
             tmpLength = Math.Clamp(tmpLength, 0 , Mathf.Infinity);
             stage1.Clear();
             stage2.Clear();
