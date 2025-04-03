@@ -170,7 +170,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1326467389}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -371,7 +373,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1947394888}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -1448,7 +1452,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 165676531}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -3111,7 +3117,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1293057900}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -5428,7 +5436,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 256063915}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -6125,7 +6135,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 2098616499}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -6373,7 +6385,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1653278893}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -6868,7 +6882,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 523499128}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -6928,7 +6944,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1107955724}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -7261,7 +7279,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 565266832}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -8332,7 +8352,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 845856581}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -8840,7 +8862,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 648250988}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -8994,7 +9018,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 640314721}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -9226,7 +9252,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 637075211}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -9501,7 +9529,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 606523631}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -10546,7 +10576,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1199178138}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -11085,7 +11117,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 558189176}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -11638,7 +11672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf661f8ae86084bb76d52d44896730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichScene: 1
+  currentScene: 0
 --- !u!114 &613676106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11651,13 +11685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd021fc8568f8bd4b816f5a77b42729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ascendFullDistance: 100
-  ascendCheckDistance: 50
-  ascendCheckTime: 4
-  terrain: {fileID: 1132183558}
-  currentStage: 0
-  stageLengthTime: 44
-  stageTimer: 0
 --- !u!1 &616161712
 GameObject:
   m_ObjectHideFlags: 0
@@ -11806,7 +11833,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 451634530}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -13260,7 +13289,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 508328251}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -13461,7 +13492,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1973487679}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -13568,7 +13601,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 305566471}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -14229,7 +14264,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1305052530}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -17263,7 +17300,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 546637904}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -17417,7 +17456,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 2008840688}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -17477,7 +17518,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 2059764906}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -18012,7 +18055,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -18279,7 +18323,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1988713439}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -18707,7 +18753,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 798715965}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -19532,7 +19580,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1896055211}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -20164,7 +20214,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 12856754}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -20643,7 +20695,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 217269584}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -20752,11 +20806,6 @@ MonoBehaviour:
   currentBeat: 0
   movementSpeed: 0
   mycount: 0
---- !u!1 &1132183558 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8699332892499736194, guid: 7dd57f531fa11314d8c82494dbb5a6cf, type: 3}
-  m_PrefabInstance: {fileID: 6587978829858280926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133067825
 GameObject:
   m_ObjectHideFlags: 0
@@ -23908,7 +23957,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 176992311}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -24179,7 +24230,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 711467697}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -25069,7 +25122,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1207972617}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -25834,7 +25889,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 2076763360}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -26193,7 +26250,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1956629136}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -26296,6 +26355,7 @@ MonoBehaviour:
   transitionSplash: {fileID: 1562663576}
   fadeInDuration: 10
   fadeOutDuration: 20
+  isTransitioning: 0
 --- !u!1 &1425622538
 GameObject:
   m_ObjectHideFlags: 0
@@ -26909,7 +26969,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 725958250}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -26969,7 +27031,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 641533044}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -29776,7 +29840,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 2112488697}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -33199,7 +33265,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1911245123}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -33651,7 +33719,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1657200205}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -34420,7 +34490,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1300990168}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -34527,7 +34599,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 306809838}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -35774,7 +35848,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1053722277}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -35834,7 +35910,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1704149780}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -35941,7 +36019,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1094815382}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -36001,7 +36081,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 433372404}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -36378,7 +36460,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 652468122}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -37156,7 +37240,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 513928118}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -37612,7 +37698,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1590237092}
   side: 0
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
@@ -38330,7 +38418,9 @@ MonoBehaviour:
   bothMat: {fileID: 0}
   interactableRenderer: {fileID: 1558218115}
   side: 1
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
