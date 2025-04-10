@@ -9775,7 +9775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3545246200198488429}
-  - component: {fileID: 7703458972555546061}
+  - component: {fileID: 4463427848031103972}
   m_Layer: 0
   m_Name: Credits_Button_Container
   m_TagString: Untagged
@@ -9802,7 +9802,7 @@ Transform:
   - {fileID: 3861994938938228159}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!114 &7703458972555546061
+--- !u!114 &4463427848031103972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9811,10 +9811,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1430036148531512718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46128b4cc81f93f4eb5830982d45d020, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightCreditsNebula: {fileID: 3599429610772763748}
+  highlightNebula: {fileID: 3599429610772763748}
 --- !u!1 &1575841452191128522
 GameObject:
   m_ObjectHideFlags: 0
@@ -9974,20 +9974,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830082381056436897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.3853}
-  m_LocalScale: {x: 1.1768, y: 1.1768, z: 1.1768}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 422.4806}
+  m_LocalScale: {x: 1.7795321, y: 1.7795321, z: 1.7795321}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4615075487814493461}
   - {fileID: 4530904342928919346}
   - {fileID: 8597583321756698894}
   - {fileID: 7364279490619925610}
-  m_Father: {fileID: 5063890370258840469}
+  m_Father: {fileID: 6246079556584938149}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.3258, y: 77.2}
+  m_AnchoredPosition: {x: -79.95935, y: -308.7868}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1855223539671718269
@@ -10336,8 +10336,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 648207360338337390}
-          m_TargetAssemblyTypeName: ButtonStarBehavior, Assembly-CSharp
-          m_MethodName: OnLevelButtonEnter
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10352,8 +10352,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 648207360338337390}
-          m_TargetAssemblyTypeName: LevelSelectButtonBehvior, Assembly-CSharp
-          m_MethodName: OnLevelButtonExit
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -25020,7 +25020,6 @@ RectTransform:
   - {fileID: 9088404947507091692}
   - {fileID: 5444881481186528839}
   - {fileID: 6246079556584938149}
-  - {fileID: 2509258353309491617}
   - {fileID: 803665505721405522}
   - {fileID: 3173954714107196806}
   - {fileID: 8835198266236245778}
@@ -25079,7 +25078,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25268,7 +25267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2609190414673632933}
-  - component: {fileID: 3607406339697541134}
+  - component: {fileID: 6573624352885164047}
   m_Layer: 0
   m_Name: 'Settings_Button_Container '
   m_TagString: Untagged
@@ -25295,7 +25294,7 @@ Transform:
   - {fileID: 124081125070919728}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3607406339697541134
+--- !u!114 &6573624352885164047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25304,10 +25303,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3238755018648471730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4583e65ce6da2b64d85c0a57dd6fcf04, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightSettingsNebula: {fileID: 5091980361355296570}
+  highlightNebula: {fileID: 5091980361355296570}
 --- !u!1 &3292192071696850342
 GameObject:
   m_ObjectHideFlags: 0
@@ -25317,7 +25316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8246626231155711233}
-  - component: {fileID: 5324614844230343415}
+  - component: {fileID: 2906771048605540688}
   m_Layer: 0
   m_Name: 'Quit_Button_Container  '
   m_TagString: Untagged
@@ -25344,7 +25343,7 @@ Transform:
   - {fileID: 5888348033096023098}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: 13.904999, z: 0}
---- !u!114 &5324614844230343415
+--- !u!114 &2906771048605540688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25353,10 +25352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3292192071696850342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d153f21f0b00e7468d318786357d806, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightQuitNebula: {fileID: 789631115832624522}
+  highlightNebula: {fileID: 789631115832624522}
 --- !u!1 &3469768686236142120
 GameObject:
   m_ObjectHideFlags: 0
@@ -25441,7 +25440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6246079556584938149}
-  - component: {fileID: 4625945866580712796}
+  - component: {fileID: 4165957927764225884}
   m_Layer: 0
   m_Name: Play_Button_Container
   m_TagString: Untagged
@@ -25462,11 +25461,12 @@ Transform:
   m_LocalScale: {x: 0.6612975, y: 0.66129744, z: 0.66129744}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2509258353309491617}
   - {fileID: 2340616433965615354}
   - {fileID: 6219311213186850811}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!114 &4625945866580712796
+--- !u!114 &4165957927764225884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25475,10 +25475,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3512851049728377799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11de545c178d7c49b9272da3549f7a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightPlayNebula: {fileID: 8130507207714360930}
+  highlightNebula: {fileID: 8130507207714360930}
 --- !u!1 &3521013617952969781
 GameObject:
   m_ObjectHideFlags: 0
@@ -25875,9 +25875,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4625945866580712796}
-          m_TargetAssemblyTypeName: PlayButtonBehavior, Assembly-CSharp
-          m_MethodName: OnPlayButtonEnter
+        - m_Target: {fileID: 4165957927764225884}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -25891,9 +25891,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4625945866580712796}
-          m_TargetAssemblyTypeName: PlayButtonBehavior, Assembly-CSharp
-          m_MethodName: OnPlayButtonExit
+        - m_Target: {fileID: 4165957927764225884}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -80873,9 +80873,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7703458972555546061}
-          m_TargetAssemblyTypeName: CreditsButtonBehavior, Assembly-CSharp
-          m_MethodName: OnCreditsButtonEnter
+        - m_Target: {fileID: 4463427848031103972}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -80889,9 +80889,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7703458972555546061}
-          m_TargetAssemblyTypeName: CreditsButtonBehavior, Assembly-CSharp
-          m_MethodName: OnCreditsButtonExit
+        - m_Target: {fileID: 4463427848031103972}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -85933,7 +85933,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4625945866580712796}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayButtonBehavior, Assembly-CSharp
           m_MethodName: OnPlayButtonEnter
           m_Mode: 1
@@ -85949,7 +85949,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4625945866580712796}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: PlayButtonBehavior, Assembly-CSharp
           m_MethodName: OnPlayButtonExit
           m_Mode: 1
@@ -86111,9 +86111,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5324614844230343415}
-          m_TargetAssemblyTypeName: QuitButtonBehavior, Assembly-CSharp
-          m_MethodName: OnQuitButtonEnter
+        - m_Target: {fileID: 2906771048605540688}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -86127,9 +86127,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5324614844230343415}
-          m_TargetAssemblyTypeName: QuitButtonBehavior, Assembly-CSharp
-          m_MethodName: OnQuitButtonExit
+        - m_Target: {fileID: 2906771048605540688}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -91504,9 +91504,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3607406339697541134}
-          m_TargetAssemblyTypeName: SettingsButtonBehavior, Assembly-CSharp
-          m_MethodName: OnSettingsButtonEnter
+        - m_Target: {fileID: 6573624352885164047}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -91520,9 +91520,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3607406339697541134}
-          m_TargetAssemblyTypeName: SettingsButtonBehavior, Assembly-CSharp
-          m_MethodName: OnSettingsButtonExit
+        - m_Target: {fileID: 6573624352885164047}
+          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
+          m_MethodName: OnButtonExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

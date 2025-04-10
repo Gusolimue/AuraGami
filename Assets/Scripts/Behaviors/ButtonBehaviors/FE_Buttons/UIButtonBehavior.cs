@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class LevelSelectButtonBehavior : MonoBehaviour
+public class UIButtonBehavior : MonoBehaviour
 {
     [SerializeField] public ParticleSystem highlightNebula;
 
@@ -9,12 +9,12 @@ public class LevelSelectButtonBehavior : MonoBehaviour
     {
         highlightNebula.gameObject.SetActive(false);
     }
-    public void OnLevelButtonEnter()
+    public void OnButtonEnter()
     {
         highlightNebula.gameObject.SetActive(true);
     }
 
-    public void OnLevelButtonExit()
+    public void OnButtonExit()
     {
         highlightNebula.gameObject.SetActive(false);
     }

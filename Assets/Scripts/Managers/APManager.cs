@@ -9,6 +9,8 @@ public class APManager : MonoBehaviour
     public int multIncrementStreak;
     [Range(0,1)]
     public float[] stagePassPercent;
+
+    public float currentVelocity;
     [Space]
 
 
@@ -33,6 +35,12 @@ public class APManager : MonoBehaviour
         stageTargetValues = new float[3];
         UpdateSigils();
         UpdateAuraFX();
+    }
+
+    private void Update()
+    {
+        float currentScore =  Mathf.SmoothDamp(sigils[0].value, curAP, ref currentVelocity, 200);
+        sigils[0].value = currentScore; 
     }
 
     public void SetTargetValues()
