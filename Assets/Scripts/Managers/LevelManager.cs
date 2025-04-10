@@ -40,8 +40,8 @@ public class LevelManager : MonoBehaviour
     // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
     {
-        Debug.Log("stage index" + _stageIndex);
-        Debug.Log("board index" + _boardIndex);
+        //Debug.Log("stage index" + _stageIndex);
+        //Debug.Log("board index" + _boardIndex);
         return instantiatedStages[_stageIndex][_boardIndex];
     }
     public void InitLevel()
