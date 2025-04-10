@@ -12,12 +12,17 @@ public class BoardBehavior : MonoBehaviour
     Vector3 originPos;
     Vector3 lastPos;
     Vector3 targetPos;
+    GameObject testPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mycount = boardcount;
         boardcount++;
         originPos = this.transform.position;
+        if (mycount == 0)
+        {
+            testPoint = new GameObject("GussyTest");
+        }
     }
 
     // Update is called once per frame
@@ -38,11 +43,16 @@ public class BoardBehavior : MonoBehaviour
     {
         currentBeat = 0;
         BeatManager.beatUpdated += UpdateMovementTarget;
+        //UpdateMovementTarget();
     }
     void UpdateMovementTarget()
     {
         lastPos = transform.position;
         targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer) * currentBeat;
+        if (mycount == 0)
+        {
+            testPoint.transform.position = targetPos;
+        }
         //Debug.Log(targetPos);
         if (currentBeat > LevelManager.beatsToPlayer)
         {
