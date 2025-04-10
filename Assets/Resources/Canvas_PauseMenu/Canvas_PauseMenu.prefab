@@ -150,7 +150,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2242842694456039034}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: QuitButtonBehavior, Assembly-CSharp
           m_MethodName: OnQuitButtonEnter
           m_Mode: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2242842694456039034}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: QuitButtonBehavior, Assembly-CSharp
           m_MethodName: OnQuitButtonExit
           m_Mode: 1
@@ -328,7 +328,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8485686164830533638}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: SettingsButtonBehavior, Assembly-CSharp
           m_MethodName: OnSettingsButtonEnter
           m_Mode: 1
@@ -344,7 +344,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8485686164830533638}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: SettingsButtonBehavior, Assembly-CSharp
           m_MethodName: OnSettingsButtonExit
           m_Mode: 1
@@ -10031,7 +10031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5958567258221216564}
-  - component: {fileID: 2242842694456039034}
+  - component: {fileID: 8317047567637096268}
   m_Layer: 0
   m_Name: 'MainMenu_Button_Container  '
   m_TagString: Untagged
@@ -10057,7 +10057,7 @@ Transform:
   - {fileID: 8608466083161515437}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: 13.904999, z: 0}
---- !u!114 &2242842694456039034
+--- !u!114 &8317047567637096268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10066,10 +10066,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1008179968646458446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d153f21f0b00e7468d318786357d806, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightQuitNebula: {fileID: 6322519019453273057}
+  highlightNebula: {fileID: 6322519019453273057}
 --- !u!1 &1190533065458570328
 GameObject:
   m_ObjectHideFlags: 0
@@ -20505,8 +20505,8 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2133787935771404754}
   - {fileID: 1711211990756988681}
+  - {fileID: 2133787935771404754}
   - {fileID: 6323129382136584992}
   - {fileID: 5134575100038430498}
   - {fileID: 5958567258221216564}
@@ -25746,7 +25746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6323129382136584992}
-  - component: {fileID: 8485686164830533638}
+  - component: {fileID: 1191185209604448593}
   m_Layer: 0
   m_Name: 'Settings_Button_Container '
   m_TagString: Untagged
@@ -25772,7 +25772,7 @@ Transform:
   - {fileID: 3288220054873215047}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8485686164830533638
+--- !u!114 &1191185209604448593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25781,10 +25781,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3681315258946459554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4583e65ce6da2b64d85c0a57dd6fcf04, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightSettingsNebula: {fileID: 7299625642030842838}
+  highlightNebula: {fileID: 7299625642030842838}
 --- !u!1 &3794078313130076462
 GameObject:
   m_ObjectHideFlags: 0
@@ -25794,7 +25794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5134575100038430498}
-  - component: {fileID: 6936136373592110775}
+  - component: {fileID: 847369391173140982}
   m_Layer: 0
   m_Name: Restart_Button_Container
   m_TagString: Untagged
@@ -25820,7 +25820,7 @@ Transform:
   - {fileID: 1223522765724111496}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!114 &6936136373592110775
+--- !u!114 &847369391173140982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25829,10 +25829,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3794078313130076462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46128b4cc81f93f4eb5830982d45d020, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightCreditsNebula: {fileID: 4366625809808335359}
+  highlightNebula: {fileID: 4366625809808335359}
 --- !u!1 &3873846443049743446
 GameObject:
   m_ObjectHideFlags: 0
@@ -51291,7 +51291,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6936136373592110775}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CreditsButtonBehavior, Assembly-CSharp
           m_MethodName: OnCreditsButtonEnter
           m_Mode: 1
@@ -51307,7 +51307,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6936136373592110775}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CreditsButtonBehavior, Assembly-CSharp
           m_MethodName: OnCreditsButtonExit
           m_Mode: 1
