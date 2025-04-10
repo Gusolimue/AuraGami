@@ -7,53 +7,55 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Variables to Set")]
     [SerializeField] List<GameObject> rightPrefabs;
     [SerializeField] List<GameObject> leftPrefabs;
-    [SerializeField] int prefabLength; //300
+    [SerializeField] int prefabLength = 300;
+    [SerializeField] int centerOffset = 100; // How far left/right the environment prefabs spawn
 
     [Header("Variables to Adjust")]
-    [SerializeField] int spawnDistance; //550
-    [SerializeField] int centerOffset; //100 // How far left/right the environment prefabs spawn
-    [SerializeField] int destroyBound; //-350
+    [SerializeField] int spawnDistance = -50;
+    [SerializeField] int destroyBound = -350;
     [SerializeField] int environmentSpeed;
 
+    [Header("Current Environment Rows")]
     [SerializeField] List<GameObject> environmentRows;
 
-    //private float startTime;
-    //public float movementTime;
+    private int rowCount;
 
-    void Start()
+    void Awake()
     {
-        // Spawn the initial three environment prefabs
-        SpawnEnvironment(spawnDistance - (prefabLength * 2));
-        SpawnEnvironment(spawnDistance - prefabLength);
+        rowCount = 0;
+        SpawnEnvironment(spawnDistance);
+        SpawnEnvironment(spawnDistance);
         SpawnEnvironment(spawnDistance);
     }
 
     // Controls environment movement and removal
     void Update()
     {
-        for (int rowIndex = 0; rowIndex < environmentRows.Count; rowIndex++)
+        if (PauseManager.Instance.isPaused == false)
         {
-            GameObject eRow = environmentRows[rowIndex];
-            if (eRow.transform.position.z <= destroyBound)
-            {
-                Destroy(eRow);
-                environmentRows.RemoveAt(0);
-                SpawnEnvironment(spawnDistance);
-                rowIndex--;
-            }
-            eRow.transform.position = new Vector3(eRow.transform.position.x, eRow.transform.position.y, eRow.transform.position.z - Time.deltaTime * environmentSpeed);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - Time.deltaTime * environmentSpeed);
 
-            //float tmpElapsedTime = Time.time - startTime;
-            //float t = 0f;
-            //t = Mathf.Clamp(tmpElapsedTime / movementTime, 0f, 1f);
-            //eRow.transform.position = new Vector3(eRow.transform.position.x, eRow.transform.position.y, Mathf.Lerp(spawnDistance, destroyBound, t));
+            for (int rowIndex = 0; rowIndex < environmentRows.Count; rowIndex++)
+            {
+                GameObject eRow = environmentRows[rowIndex];
+                if (eRow.transform.position.z <= destroyBound) // If an environment is out of bounds
+                {
+                    // Destroy the environment and spawn a new one
+                    Destroy(eRow);
+                    environmentRows.RemoveAt(0);
+                    SpawnEnvironment(spawnDistance);
+                    break;
+                }
+            }
         }
     }
 
     // Spawns the next row of environment prefabs at the set distance
     private void SpawnEnvironment(int _spawnDistance)
     {
-        GameObject environmentRow = new GameObject("EnvironmentRow");
+        rowCount++;
+        GameObject environmentRow = new GameObject("EnvironmentRow: " + rowCount);
+        environmentRow.transform.parent = gameObject.transform;
         environmentRow.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + _spawnDistance);
 
         Instantiate(rightPrefabs[Random.Range(0, rightPrefabs.Count)],
@@ -66,6 +68,6 @@ public class EnvironmentManager : MonoBehaviour
 
         environmentRows.Add(environmentRow);
 
-        //startTime = Time.time;
+        spawnDistance += prefabLength;
     }
 }
