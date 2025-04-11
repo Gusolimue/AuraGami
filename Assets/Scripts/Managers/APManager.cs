@@ -21,7 +21,8 @@ public class APManager : MonoBehaviour
     [Space]
     [Header("To Set/Call")]
     public AuraFXBehavior[] auraFXBehaviors;
-    public Slider[] sigils;
+    public Slider sigil;
+    //public Slider[] sigils;
     public static APManager Instance;
 
 
@@ -50,7 +51,7 @@ public class APManager : MonoBehaviour
                     }
                 }
             }
-            stageTargetValues[c] = (2 + c - stagePassPercent[c]) / stageTargetTotals[c];
+            stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
     }
     public void IncreaseAP()
@@ -81,7 +82,7 @@ public class APManager : MonoBehaviour
     public bool StagePassCheck()
     {
         bool tmp = false;
-        if (curAP >= LevelManager.currentStageIndex) tmp = true;
+        if (curAP >= /*LevelManager.currentStageIndex*/ 1) tmp = true;
         return tmp;
     }
     public void ResetAP()
@@ -92,9 +93,10 @@ public class APManager : MonoBehaviour
     }
     public void UpdateSigils()
     {
-        sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
-        sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
-        sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
+        sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
+        //sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
+        //sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
+        //sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
     }
     public void UpdateAuraFX()
     {
