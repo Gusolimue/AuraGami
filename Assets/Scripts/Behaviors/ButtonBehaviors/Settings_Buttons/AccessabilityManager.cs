@@ -9,13 +9,15 @@ public class AccessabilityManager : MonoBehaviour
     [SerializeField] public GameObject accessabilityConstellationOn;
     [SerializeField] public GameObject accessabilityConstellationOff;
 
-    [Header("Player Circle Slider")]
+    [Header("Player Circle/Slider")]
     [SerializeField] public Slider playCircleSlider;
+    [SerializeField] GameObject playCircleDemo;
     public float playCircleSliderValue;
 
     private void Awake()
     {
         Instance = this;
+        playCircleSlider.value = 1f;
 
         accessabilityConstellationOn.SetActive(false);
         accessabilityConstellationOff.SetActive(true);
@@ -24,7 +26,6 @@ public class AccessabilityManager : MonoBehaviour
     private void Start()
     {
         playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
-        //playCircleSlider.value = playCircleSliderValue;
         playCircleSlider.onValueChanged.AddListener(ChangeSlider);
         Debug.Log("Slider Value Load: " + PlayerPrefs.GetFloat("save", playCircleSliderValue));
     }
@@ -47,6 +48,12 @@ public class AccessabilityManager : MonoBehaviour
 
         playCircleSliderValue = value;
         PlayerPrefs.SetFloat("save", playCircleSliderValue);
+        PlayerPrefs.Save();
+
+        if (playCircleDemo != null) playCircleDemo.transform.localScale = new Vector3(value, value, value);
+        PlayerPrefs.SetFloat("playCircleScaleX", playCircleDemo.transform.localScale.x);
+        PlayerPrefs.SetFloat("playCircleScaleY", playCircleDemo.transform.localScale.y);
+        PlayerPrefs.SetFloat("playCircleScaleZ", playCircleDemo.transform.localScale.z);
         PlayerPrefs.Save();
     }
 }

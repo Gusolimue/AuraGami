@@ -64,6 +64,7 @@ public class APManager : MonoBehaviour
     }
     public void IncreaseAP()
     {
+        sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
         curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
         curStreak += 1;
@@ -74,6 +75,7 @@ public class APManager : MonoBehaviour
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
+            sigilSliderSpeed = 5f;
             curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1) ] * _percent;
             curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
             curStreak = 0;
@@ -95,7 +97,7 @@ public class APManager : MonoBehaviour
     }
     public void ResetAP()
     {
-        sigilSliderSpeed = 10f;
+        sigilSliderSpeed = 1f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
