@@ -25603,6 +25603,8 @@ GameObject:
   - component: {fileID: 1250513558494721737}
   - component: {fileID: 1391947736261083105}
   - component: {fileID: 5505490800378086194}
+  - component: {fileID: 566554102111400527}
+  - component: {fileID: 7018235140326430649}
   m_Layer: 5
   m_Name: Canvas_Settings
   m_TagString: Untagged
@@ -25686,7 +25688,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25723,6 +25725,30 @@ MonoBehaviour:
   - {fileID: 7713222387686095109}
   - {fileID: 7107530495041933126}
   - {fileID: 6429169786299951162}
+--- !u!114 &566554102111400527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751529164868806702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db263e9b254f07a4690f82295beb81b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7018235140326430649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751529164868806702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db263e9b254f07a4690f82295beb81b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2774297056690386911
 GameObject:
   m_ObjectHideFlags: 0
@@ -37342,7 +37368,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5776007317352486810}
+        m_TargetAssemblyTypeName: AccessabilityManager, Assembly-CSharp
+        m_MethodName: ChangeSlider
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3531201967083593027
 GameObject:
   m_ObjectHideFlags: 0
@@ -64660,6 +64698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accessabilityConstellationOn: {fileID: 7164181644880117366}
   accessabilityConstellationOff: {fileID: 7972222366394756564}
+  playCircleSlider: {fileID: 5422717060611079157}
+  playCircleSliderValue: 0
 --- !u!1 &7041844975171161016
 GameObject:
   m_ObjectHideFlags: 0
