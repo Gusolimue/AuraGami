@@ -10,7 +10,8 @@ public class APManager : MonoBehaviour
     [Range(0,1)]
     public float[] stagePassPercent;
 
-    public float currentVelocity;
+    public float sigilSliderSpeed = 5f;
+    private float targetSigilValue = 0f;
     [Space]
 
 
@@ -40,8 +41,7 @@ public class APManager : MonoBehaviour
 
     private void Update()
     {
-        float currentScore =  Mathf.SmoothDamp(sigils[0].value, curAP, ref currentVelocity, 200);
-        sigils[0].value = currentScore; 
+        sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, Time.deltaTime * sigilSliderSpeed);
     }
 
     public void SetTargetValues()
@@ -95,13 +95,15 @@ public class APManager : MonoBehaviour
     }
     public void ResetAP()
     {
+        sigilSliderSpeed = 10f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
     }
     public void UpdateSigils()
     {
-        sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
+        targetSigilValue = Mathf.Clamp01(curAP) * sigil.maxValue;
+        //sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
         //sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
         //sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
         //sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
