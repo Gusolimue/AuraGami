@@ -12,11 +12,9 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ADVANCED_SHADING
   - _FLAT_SHADING
   - _INTERSECTION_FOAM
   - _RECEIVE_SHADOWS_OFF
-  - _RIVER
   - _TRANSLUCENCY
   - _WAVES
   m_InvalidKeywords:
@@ -36,7 +34,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _WaveTint
+  m_LockedProperties: _NormalMapOn _WaveTint
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -219,10 +217,10 @@ Material:
     - _RefractionChromaticAberration: 1
     - _RefractionOn: 0
     - _RefractionStrength: 0.118
-    - _RiverModeOn: 1
+    - _RiverModeOn: 0
     - _SHARP_INERSECTIONOn: 1
     - _ScreenSpaceReflectionsEnabled: 0
-    - _ShadingMode: 1
+    - _ShadingMode: 0
     - _ShadowStrength: 1
     - _ShoreLineLength: 2
     - _ShoreLineWaveDistance: 64
@@ -279,7 +277,7 @@ Material:
     - _BaseColor: {r: 0, g: 0.17100494, b: 0.4811321, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DepthMapBounds: {r: 0, g: 0, b: 0, a: 0}
-    - _Direction: {r: 1, g: 1, b: 0, a: 0}
+    - _Direction: {r: 1.07, g: 1, b: 0, a: 0}
     - _DistanceFoamFadeDist: {r: 100, g: 350, b: 0, a: 0}
     - _DistanceNormalsFadeDist: {r: 300, g: 0.25, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
