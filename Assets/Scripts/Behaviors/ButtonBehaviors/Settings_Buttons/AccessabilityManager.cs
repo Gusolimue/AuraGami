@@ -17,17 +17,18 @@ public class AccessabilityManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        playCircleSlider.value = 1f;
+       // playCircleSlider.value = 1f;
 
         accessabilityConstellationOn.SetActive(false);
         accessabilityConstellationOff.SetActive(true);
+
+        playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
+        playCircleSlider.onValueChanged.AddListener(ChangeSlider);
     }
 
     private void Start()
     {
-        playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
-        playCircleSlider.onValueChanged.AddListener(ChangeSlider);
-        Debug.Log("Slider Value Load: " + PlayerPrefs.GetFloat("save", playCircleSliderValue));
+
     }
 
     public void OnAccessabilityButtonEnter()

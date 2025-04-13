@@ -23,7 +23,7 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowCanvasLevelSelectMockup()
     {
-        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect_Mockup") as GameObject);
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect 1") as GameObject);
     }
 
     public void ShowCanvasSettings()
