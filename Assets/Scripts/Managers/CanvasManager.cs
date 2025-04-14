@@ -16,6 +16,11 @@ public class CanvasManager : MonoBehaviour
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE") as GameObject);
     }
 
+    public void ShowCanvasFEPlaytestTutorial()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE_Tutorial_Playtest") as GameObject);
+    }
+
     public void ShowCanvasLevelSelect()
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect") as GameObject);
@@ -23,7 +28,7 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowCanvasLevelSelectMockup()
     {
-        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect 1") as GameObject);
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE 1") as GameObject);
     }
 
     public void ShowCanvasSettings()

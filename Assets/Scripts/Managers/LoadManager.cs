@@ -39,7 +39,8 @@ public class LoadManager : MonoBehaviour
         switch ((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
-                CanvasManager.Instance.ShowCanvasFE();
+                //CanvasManager.Instance.ShowCanvasFE();
+                CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
                 //CanvasManager.Instance.ShowCanvasLevelEnd();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
                 //CanvasManager.Instance.ShowCanvasLevelSelectMockup();
