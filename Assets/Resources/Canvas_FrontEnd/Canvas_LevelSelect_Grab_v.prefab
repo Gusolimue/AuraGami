@@ -437,15 +437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOrbs:
-  - {fileID: 7187025056865490224}
-  - {fileID: 9005988909362889247}
-  orbs:
-  - {fileID: 5738735671623240166}
-  - {fileID: 1941130596070143914}
-  levelOrbContainers:
-  - {fileID: 4007183243335267237}
-  - {fileID: 3391744616525034051}
   whichLevel: 0
 --- !u!1 &1883231110618370108
 GameObject:
@@ -870,7 +861,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6902,13 +6893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelOrbs:
-  - {fileID: 7187025056865490224}
-  - {fileID: 9005988909362889247}
-  orbs: []
-  levelOrbContainers:
-  - {fileID: 4007183243335267237}
-  - {fileID: 3391744616525034051}
   whichLevel: 0
 --- !u!1 &7187025056865490224
 GameObject:
@@ -7153,7 +7137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f2fb5afa18f5e4fa5c59dd095fbbc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbToHold: 0
+  levelOrb: {fileID: 0}
+  zephyrBody: {fileID: 0}
+  orbPosition: {fileID: 0}
+  orbMovementSpeed: 1
+  levelOrbScaleUp: {fileID: 0}
+  levelOrbScaleDown: {fileID: 0}
+  orbScaleSpeed: 5
 --- !u!1 &7241760616564836697
 GameObject:
   m_ObjectHideFlags: 0

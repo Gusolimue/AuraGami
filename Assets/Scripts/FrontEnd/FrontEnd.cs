@@ -69,7 +69,7 @@ public class FrontEnd : MonoBehaviour
     public void OnLevelsButtonPressed()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        CanvasManager.Instance.ShowCanvasLevelSelectMockup();
+        CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }
 

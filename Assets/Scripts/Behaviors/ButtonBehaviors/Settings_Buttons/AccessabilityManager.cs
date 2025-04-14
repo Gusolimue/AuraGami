@@ -24,11 +24,8 @@ public class AccessabilityManager : MonoBehaviour
 
         playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
         playCircleSlider.onValueChanged.AddListener(ChangeSlider);
-    }
 
-    private void Start()
-    {
-
+        Debug.Log(playCircleSlider.value);
     }
 
     public void OnAccessabilityButtonEnter()
