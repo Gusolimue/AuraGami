@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf661f8ae86084bb76d52d44896730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichScene: 1
+  currentScene: 0
 --- !u!114 &6959828250870017309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,13 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd021fc8568f8bd4b816f5a77b42729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ascendFullDistance: 100
-  ascendCheckDistance: 50
-  ascendCheckTime: 4
-  terrain: {fileID: 0}
-  currentStage: 0
-  stageLengthTime: 44
-  stageTimer: 0
 --- !u!114 &6434529717784574836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +176,7 @@ MonoBehaviour:
   transitionSplash: {fileID: 0}
   fadeInDuration: 10
   fadeOutDuration: 20
+  isTransitioning: 0
 --- !u!1001 &3019973920871480253
 PrefabInstance:
   m_ObjectHideFlags: 0

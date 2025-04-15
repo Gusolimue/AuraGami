@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine;
 using EditorAttributes;
+using UnityEngine.UIElements;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         //PauseManager.Instance.PauseGame(false); //Tmp
         PauseManager.Instance.yataAvatar.SetActive(true);
         PauseManager.Instance.naginiAvatar.SetActive(true);
+        PauseManager.Instance.progressBar.SetActive(true);
         PauseManager.Instance.StartCountdown();
         Destroy(this.gameObject);
     }
@@ -49,8 +51,8 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
-        //SceneMgr.Instance.IntoFrontEndSceneTransition();
-        PauseManager.Instance.PauseGame(false);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionPauseSplash();
+        LevelSelectManager.Instance.whichLevel = 0;
+        //PauseManager.Instance.PauseGame(false);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }

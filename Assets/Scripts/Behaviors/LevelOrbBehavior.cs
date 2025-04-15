@@ -1,0 +1,58 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class LevelOrbBehavior : MonoBehaviour
+{
+    public static LevelOrbBehavior Instance;
+
+    [Header("GameObjects")]
+    [SerializeField] GameObject levelOrb;
+    [SerializeField] GameObject zephyrBody;
+    [SerializeField] GameObject orbPosition;
+
+    [Header("Orb Selection Variables")]
+    private bool isSelected;
+    public float orbMovementSpeed = 1f;
+
+    [Header("Orb Enter/Exit Variables")]
+    [SerializeField] GameObject levelOrbScaleUp;
+    [SerializeField] GameObject levelOrbScaleDown;
+    private bool isEntered;
+    private bool isExited;
+    public float orbScaleSpeed = 5f;
+
+    private void Awake()
+    {
+        Instance = this;
+        isSelected = false;
+        levelOrb.transform.position = orbPosition.transform.position;
+    }
+
+    private void Update()
+    {
+        if (isSelected == true) levelOrb.transform.position = Vector3.Lerp(levelOrb.transform.position, zephyrBody.transform.position, Time.deltaTime * orbMovementSpeed);
+
+        if (isEntered == true && !isSelected) levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleUp.transform.localScale, Time.deltaTime * orbScaleSpeed);
+
+        if (isExited == true) levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleDown.transform.localScale, Time.deltaTime * orbScaleSpeed);
+    }
+
+    public void OrbButtonPressed()
+    {
+        isSelected = true;
+        isEntered = false;
+        isExited = true;
+    }
+
+    public void OnOrbButtonEntered()
+    {
+        isEntered = true;
+        isExited = false;
+    }
+
+    public void OnOrbButtonExit()
+    {
+        isEntered = false;
+        isExited = true;
+    }
+}

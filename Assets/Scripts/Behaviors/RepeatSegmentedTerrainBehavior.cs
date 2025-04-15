@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RepeatSegmentedTerrainBehavior : MonoBehaviour
 {
+    public static RepeatSegmentedTerrainBehavior Instance;
     [SerializeField]
     public float tempoSpeed = 300;
 
@@ -41,15 +42,20 @@ public class RepeatSegmentedTerrainBehavior : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Update()
     {
-        if (PauseManager.Instance.isPaused == false)
+        if (!PauseManager.Instance.isPaused)
         {
             TerrainMovement();
         }
     }
 
-    void TerrainMovement()
+    public void TerrainMovement()
     {
         transform.Translate(Vector3.back * Time.deltaTime * tempoSpeed);
         if (transform.position.z < -(segmentTotalCount * repeatLength) -(terrainOffset * repeatLength))

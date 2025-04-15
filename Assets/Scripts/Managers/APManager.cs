@@ -9,6 +9,9 @@ public class APManager : MonoBehaviour
     public int multIncrementStreak;
     [Range(0,1)]
     public float[] stagePassPercent;
+
+    public float sigilSliderSpeed = 5f;
+    private float targetSigilValue = 0f;
     [Space]
 
 
@@ -36,6 +39,11 @@ public class APManager : MonoBehaviour
         UpdateAuraFX();
     }
 
+    private void Update()
+    {
+        sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, Time.deltaTime * sigilSliderSpeed);
+    }
+
     public void SetTargetValues()
     {
         for (int c = 0; c < 3; c++)
@@ -56,6 +64,7 @@ public class APManager : MonoBehaviour
     }
     public void IncreaseAP()
     {
+        sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
         curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
         curStreak += 1;
@@ -66,6 +75,7 @@ public class APManager : MonoBehaviour
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
+            sigilSliderSpeed = 5f;
             curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1) ] * _percent;
             curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
             curStreak = 0;
@@ -87,13 +97,15 @@ public class APManager : MonoBehaviour
     }
     public void ResetAP()
     {
+        sigilSliderSpeed = 1f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
     }
     public void UpdateSigils()
     {
-        sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
+        targetSigilValue = Mathf.Clamp01(curAP) * sigil.maxValue;
+        //sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
         //sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
         //sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
         //sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;

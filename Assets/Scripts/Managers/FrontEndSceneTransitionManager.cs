@@ -18,18 +18,11 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         Instance = this;
         SceneFadeOutTransitionSplash();
         isTransitioning = false;
-
-        //LevelSelectManager.Instance.whichLevel = 1;
     }
 
     public void SceneFadeInTransitionSplash()
     {
         StartCoroutine(TransitionFadeIn(0));
-    }
-
-    public void SceneFadeInTransitionPauseSplash()
-    {
-        StartCoroutine(TransitionFadeInPauseMenu(0));
     }
 
     public void SceneFadeInTransitionRestartSplash()
@@ -42,7 +35,6 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         StartCoroutine(TransitionFadeOut(1));
     }
 
-    //COROUTINES WILL NO FUNCTION UPON RELOADING SCENE,
     public IEnumerator TransitionFadeIn(float alpha)
     {
         alpha = 0f;
@@ -72,26 +64,10 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-        if(LoadManager.Instance.whichScene == 1)
+        if(SceneManager.GetActiveScene().buildIndex != (int)eScene.frontEnd)
         {
             BeatManager.Instance.StartSong();
         }
-    }
-
-    public IEnumerator TransitionFadeInPauseMenu(float alpha)
-    {
-        alpha = 0f;
-        fadeInDuration = 1f;
-
-        while (alpha < 1f)
-        {
-            alpha += Time.deltaTime / fadeInDuration;
-            transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g,
-                transitionSplash.color.b, alpha); // Updates alpha 
-            yield return null; // Wait for the next frame
-        }
-        AudioManager.Instance.StopMusic();
-        LoadManager.Instance.LoadScene(eScene.frontEnd);
     }
 
     public IEnumerator TransitionFadeInRestart(float alpha)

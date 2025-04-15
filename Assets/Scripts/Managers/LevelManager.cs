@@ -91,13 +91,16 @@ public class LevelManager : MonoBehaviour
         if (!APManager.Instance.StagePassCheck())
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.PauseGame(true);
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
+            //PauseManager.Instance.PauseGame(true);
         }
         else if (currentStageIndex >= 2)
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.PauseGame(true);
+            PauseManager.Instance.isPaused = true;
+            //PauseManager.Instance.PauseGame(true);
         }
         else
         {

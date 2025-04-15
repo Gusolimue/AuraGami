@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/njja0/Desktop/AuraGami/AuraGami/Library/PramData/AndroidApplicationController/Cache/com.unity.template.vr/gradle-project/unityLibrary/src/main/cpp
+# Install script for directory: C:/Users/njja0/Desktop/AuraGami/AuraGami/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
