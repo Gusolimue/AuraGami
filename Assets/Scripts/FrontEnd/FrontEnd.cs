@@ -2,65 +2,20 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using EditorAttributes;
+using TMPro;
 
 public class FrontEnd : MonoBehaviour
 {
     public static FrontEnd Instance;
-    [Header("Play Button BG Assets")]
-    [SerializeField] public Image playButton_BG;
-    [SerializeField] GameObject playButton_BG_OnEnter;
-    [SerializeField] GameObject playButton_BG_OnPressed;
-    [Space]
-    [Header("Play Button BG Colors")]
-    public Color whiteColor;
-    public Color startingColor;
-    public Color explorationColor;
-    public Color freedomColor;
-    public Color levelColor;
-    public Color currentColor;
-
-    private Animator playButton_BG_OnEnter_Anim;
-    private Animator playButton_BG_OnExit_Anim;
-    private Animator playButton_BG_OnPressed_Anim;
-
-    public float colorChangeDuration = 3f;
 
     private void Awake()
     {
         Instance = this;
-
-        // Grabbing the animator from each of these game objects.
-        playButton_BG_OnEnter_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
-        playButton_BG_OnExit_Anim = playButton_BG_OnEnter.GetComponent<Animator>();
-        playButton_BG_OnPressed_Anim = playButton_BG_OnPressed.GetComponent<Animator>();
-
-        //Ensuring the animations don't play on awake.
-        playButton_BG_OnEnter_Anim.enabled = false;
-        playButton_BG_OnExit_Anim.enabled = false;
-        playButton_BG_OnPressed_Anim.enabled = false;
-
-        currentColor = whiteColor;
-        playButton_BG.color = currentColor;
     }
 
-    public void OnPlayButtonEnter()
-    {
-        playButton_BG_OnEnter_Anim.enabled = true;
-        playButton_BG_OnEnter_Anim.SetTrigger("OnPlayButtonEnter");
-        StartCoroutine(PlayButtonBGColorChangeOnEnter());
-    }
-    public void OnPlayButtonExit()
-    {
-        playButton_BG_OnExit_Anim.enabled = true;
-        playButton_BG_OnExit_Anim.SetTrigger("OnPlayButtonExit");
-        StartCoroutine(PlayButtonBGColorChangeOnExit());
-    }
-    [Button, SerializeField]
     public void OnPlayButtonPressed()
     {
         LevelSelectManager.Instance.whichLevel = 2;
-        playButton_BG_OnPressed_Anim.enabled = true;
-        playButton_BG_OnPressed_Anim.SetTrigger("OnPlayButtonPressed");
         Debug.Log("Play Level!");
         //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
@@ -85,35 +40,4 @@ public class FrontEnd : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Application.Quit();
     }
-
-
-    public IEnumerator PlayButtonBGColorChangeOnEnter()
-    {
-        currentColor = whiteColor;
-        float numGoal = 1f;
-        float numStart = 0f;
-
-        while (numStart < numGoal)
-        {
-            numStart += .01f;
-
-            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
-            yield return null; // Wait for the next frame
-        }
-    }
-    public IEnumerator PlayButtonBGColorChangeOnExit()
-    {
-        currentColor = levelColor;
-        float numGoal = 1f;
-        float numStart = 0f;
-
-        while (numStart < numGoal)
-        {
-            numStart += .01f;
-
-            playButton_BG.color = Color.Lerp(playButton_BG.color, currentColor, 0.1f); // Updates colors 
-            yield return null; // Wait for the next frame
-        }
-    }
-
 }

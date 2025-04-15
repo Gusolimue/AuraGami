@@ -7,7 +7,8 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
-        if (LoadManager.Instance.currentScene > 0) settingsBG_TMP.SetActive(true);
+        if (LoadManager.Instance.currentScene == 0) settingsBG_TMP.SetActive(false);
+        if (LoadManager.Instance.currentScene >= 1) settingsBG_TMP.SetActive(true);
     }
 
     public void OnBackButtonPressed() // When pressed, destroys Canvas_Settings and instantiates Canvas_FrontEnd.

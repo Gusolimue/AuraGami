@@ -56,18 +56,6 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
-    public void ExplorationTransition()
-    {
-        FrontEnd.Instance.levelColor = FrontEnd.Instance.explorationColor;
-        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.levelColor;
-
-    }
-
-    public void FreedomTransition()
-    {
-        FrontEnd.Instance.levelColor = FrontEnd.Instance.freedomColor;
-        FrontEnd.Instance.playButton_BG.color = FrontEnd.Instance.levelColor;
-    }
 
     public void SetLevelOrbs(bool set)
     {

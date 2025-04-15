@@ -5899,7 +5899,6 @@ GameObject:
   - component: {fileID: 1250513558494721737}
   - component: {fileID: 1391947736261083105}
   - component: {fileID: 1539326333825500570}
-  - component: {fileID: 2893707274678163836}
   m_Layer: 5
   m_Name: Canvas_LevelSelect
   m_TagString: Untagged
@@ -6014,28 +6013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617c3886c7c311449852d3bdabf7e62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2893707274678163836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751529164868806702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63d088a0583cbc4fa5f97ecba9a424f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playButton_BG: {fileID: 4514440543122314678}
-  playButton_BG_OnEnter: {fileID: 935318452234506158}
-  playButton_BG_OnPressed: {fileID: 5587702877578166826}
-  whiteColor: {r: 1, g: 1, b: 1, a: 1}
-  startingColor: {r: 0, g: 0, b: 0, a: 0}
-  explorationColor: {r: 0.14509805, g: 0.15686275, b: 0.4156863, a: 0.69803923}
-  freedomColor: {r: 0.8078432, g: 0.5686275, b: 0.1764706, a: 0.69803923}
-  levelColor: {r: 0, g: 0, b: 0, a: 0}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
-  colorChangeDuration: 3
 --- !u!1 &3079141035255541597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,7 +6498,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2893707274678163836}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
         m_MethodName: OnPlayButtonPressed
         m_Mode: 1
@@ -6550,7 +6527,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2893707274678163836}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
           m_MethodName: OnPlayButtonEnter
           m_Mode: 1
@@ -6566,7 +6543,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2893707274678163836}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: FrontEnd, Assembly-CSharp
           m_MethodName: OnPlayButtonExit
           m_Mode: 1
