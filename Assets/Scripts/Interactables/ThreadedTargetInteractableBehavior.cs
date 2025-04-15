@@ -19,7 +19,8 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         base.InitInteractable(_eSide, _stage, _board, _interactable);
         threadLine = GetComponent<LineRenderer>();
         threadLine.enabled = false;
-        endTargetRenderer.sharedMaterial = interactableRenderer.sharedMaterial;
+        endTargetRenderer.sharedMaterials[0] = interactableRenderer.sharedMaterials[0];
+        endTargetRenderer.sharedMaterials[1] = interactableRenderer.sharedMaterials[1];
         currentPoint = 0;
         currentBeat = 0;
     }
