@@ -117,14 +117,14 @@ public class StageProgressionManager : MonoBehaviour
             FadeAllInteractables();
 
             PauseManager.Instance.isPaused = true;
-            if (APManager.Instance.sigils[2].value == APManager.Instance.sigils[2].maxValue)
-            {
-                CanvasManager.Instance.ShowCanvasLevelEnd();
-            }
-            else
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-            }
+            //if (APManager.Instance.sigils[2].value == APManager.Instance.sigils[2].maxValue)
+            //{
+            //    CanvasManager.Instance.ShowCanvasLevelEnd();
+            //}
+            //else
+            //{
+            //    CanvasManager.Instance.ShowCanvasStageFail();
+            //}
         }
     }
 
