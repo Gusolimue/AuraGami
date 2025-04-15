@@ -25,7 +25,6 @@ public class APManager : MonoBehaviour
     [Header("To Set/Call")]
     public AuraFXBehavior[] auraFXBehaviors;
     public Slider sigil;
-    //public Slider[] sigils;
     public static APManager Instance;
 
 

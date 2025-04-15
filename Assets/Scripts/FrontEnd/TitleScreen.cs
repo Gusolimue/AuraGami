@@ -12,6 +12,8 @@ public class TitleScreen : MonoBehaviour
     public float alphaSpeed = 5f;
     private bool isFrontEnd;
 
+    public bool isTutorial;
+
     private void Update()
     {
         if (isFrontEnd == true)
@@ -30,7 +32,8 @@ public class TitleScreen : MonoBehaviour
     {
         isFrontEnd = true;
         yield return new WaitForSeconds(2);
-        CanvasManager.Instance.ShowCanvasFE();
+        if (!isTutorial) CanvasManager.Instance.ShowCanvasFE();
+        else if (isTutorial == true) CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
         yield return new WaitForSeconds(1);
         Destroy(this.gameObject);
     }

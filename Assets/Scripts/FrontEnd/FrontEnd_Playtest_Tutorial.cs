@@ -4,20 +4,23 @@ using UnityEngine.UI;
 public class FrontEnd_Playtest_Tutorial : MonoBehaviour
 {
     [SerializeField] GameObject[] tutorialSlides;
-    [SerializeField] Button understoodButton;
+    [SerializeField] Button nextButton;
     [SerializeField] Button backButton;
+    [SerializeField] Button understoodButton;
 
     public int currentSlideIndex = 0;
+    private bool isLastSlide;
 
     private void Awake()
     {
-        understoodButton.onClick.AddListener(NextSlide);
+        nextButton.onClick.AddListener(NextSlide);
         backButton.onClick.AddListener(PreviousSlide);
 
         ShowSlide(currentSlideIndex);
 
-        understoodButton.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
         backButton.gameObject.SetActive(false);
+        understoodButton.gameObject.SetActive(false);
     }
 
     private void ShowSlide(int index)
@@ -32,9 +35,9 @@ public class FrontEnd_Playtest_Tutorial : MonoBehaviour
             tutorialSlides[index].SetActive(true);
         }
 
-        if (currentSlideIndex == 0) backButton.gameObject.SetActive(false); understoodButton.gameObject.SetActive(true);
-        if (currentSlideIndex == 1) backButton.gameObject.SetActive(true);
-        if (currentSlideIndex == 3) understoodButton.gameObject.SetActive(false);
+        if (currentSlideIndex == 0) backButton.gameObject.SetActive(false); nextButton.gameObject.SetActive(true);
+        if (currentSlideIndex == 1) backButton.gameObject.SetActive(true); isLastSlide = true;
+        if (currentSlideIndex == 3) nextButton.gameObject.SetActive(false); understoodButton.gameObject.SetActive(true);
     }
 
     private void NextSlide()
@@ -55,4 +58,9 @@ public class FrontEnd_Playtest_Tutorial : MonoBehaviour
         }
     }
 
+    public void OnUnderstoodButtonPressed()
+    {
+        CanvasManager.Instance.ShowCanvasFE(); 
+        Destroy(this.gameObject);
+    }
 }

@@ -17,7 +17,7 @@ public class FrontEnd : MonoBehaviour
     {
         LevelSelectManager.Instance.whichLevel = 2;
         Debug.Log("Play Level!");
-        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
@@ -32,6 +32,13 @@ public class FrontEnd : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasSettings();
+        Destroy(this.gameObject);
+    }
+
+    public void OnTutorialButtonPressed()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
         Destroy(this.gameObject);
     }
 
