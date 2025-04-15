@@ -64,7 +64,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
-        if(LoadManager.Instance.whichScene == 1)
+        if(SceneManager.GetActiveScene().buildIndex != (int)eScene.frontEnd)
         {
             BeatManager.Instance.StartSong();
         }
