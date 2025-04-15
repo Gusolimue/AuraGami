@@ -30,9 +30,9 @@ public class AvatarManager : MonoBehaviour
     Transform leftControllerTransform;
 
     [SerializeField]
-    GameObject rightAvatar;
+    public GameObject rightAvatar;
     [SerializeField]
-    GameObject leftAvatar;
+    public GameObject leftAvatar;
 
     [Header("Variables to Call")]
     public static AvatarManager Instance;
