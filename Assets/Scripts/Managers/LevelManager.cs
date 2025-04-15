@@ -16,9 +16,8 @@ public class LevelManager : MonoBehaviour
     public List<GameObject>[] instantiatedStages;
 
     GameObject[] stageContainers;
-    GameObject stage1Container;
-    GameObject stage2Container;
-    GameObject stage3Container;
+
+    GameObject[] trackPoints;
     int boardCount;
 
     bool isSubscribed;
@@ -30,11 +29,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         InitLevel();
-        foreach (var container in stageContainers)
-        {
-            container.transform.position = AvatarManager.Instance.avatarCircTransform.position;
-            container.transform.Translate(Vector3.forward * spawnDistance);
-        }
+        StartStage();
     }
 
     // Returns the board GameObject at the given index and stage
@@ -44,29 +39,51 @@ public class LevelManager : MonoBehaviour
         Debug.Log("board index" + _boardIndex);
         return instantiatedStages[_stageIndex][_boardIndex];
     }
+
+    public Transform GetTrackPointTransform(int _index)
+    {
+        return trackPoints[Mathf.Clamp(_index, 0, trackPoints.Length-1)].transform;
+    }
     public void InitLevel()
     {
         stageContainers = new GameObject[3];
         instantiatedStages = new List<GameObject>[3];
+        trackPoints = new GameObject[beatsToPlayer + 2];
+        GameObject trackContainer = new GameObject("Track Container");
+        trackContainer.transform.SetParent(this.transform);
+        trackContainer.transform.position = AvatarManager.Instance.avatarCircTransform.position;
+        for (int i = 0; i < beatsToPlayer + 2; i++)
+        {
+            trackPoints[i] = new GameObject("[" + i + "] Track Point");
+            trackPoints[i].transform.SetParent(trackContainer.transform);
+            trackPoints[i].transform.localPosition = Vector3.zero;
+            trackPoints[i].transform.Translate(Vector3.forward * spawnDistance);
+            trackPoints[i].transform.Translate(Vector3.back * spawnDistance/ beatsToPlayer * i);
+        }
 
         for (int i = 0; i < 3; i++)
         {
-            stageContainers[i] = new GameObject("Stage " + (i + 1) + " Preview");
+            stageContainers[i] = new GameObject("Stage " + (i + 1) + " Boards");
             stageContainers[i].transform.parent = this.transform;
             instantiatedStages[i] = new List<GameObject>();
         }
 
         for (int i = 0; i < 3; i++)
         {
-            for (int c = 0; c < level.GetStage(i+1).Count; c++)
+            for (int c = 0; c < level.GetStage(i + 1).Count; c++)
             {
-                level.SpawnBoard(c, level.GetStage(i+1), stageContainers[i].transform);
+                level.SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform);
                 instantiatedStages[i].Add(level.currentBoard);
                 instantiatedStages[i][c].SetActive(false);
 
             }
         }
-        StartStage();
+
+        foreach (var container in stageContainers)
+        {
+            container.transform.position = AvatarManager.Instance.avatarCircTransform.position;
+            container.transform.Translate(Vector3.forward * spawnDistance);
+        }
         APManager.Instance.SetTargetValues();
     }
     public void NextStage()
@@ -128,7 +145,7 @@ public class LevelManager : MonoBehaviour
         else
         {          
             instantiatedStages[currentStageIndex][boardCount].SetActive(true);
-            instantiatedStages[currentStageIndex][boardCount].GetComponent<BoardBehavior>().StartMovement();
+            instantiatedStages[currentStageIndex][boardCount].GetComponent<BoardBehavior>().Init();
             boardCount++;
         }
     }

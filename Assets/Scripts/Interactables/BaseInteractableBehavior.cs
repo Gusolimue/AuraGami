@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 //Base Script to source for all in game interactables (targets and hazards)
 public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
 {
-    public Material leftMat;
-    public Material rightMat;
-    public Material anyMat;
-    public Material bothMat;
+    //[SerializeField] static Material leftMat;
+    //[SerializeField] static Material rightMat;
+    //[SerializeField] static Material anyMat;
+    //[SerializeField] static Material bothMat;
     public Renderer interactableRenderer;
     public eSide side;
     public eTargetType type;
@@ -37,29 +38,38 @@ public class BaseInteractableBehavior : MonoBehaviour
         //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
         interactable = _interactable;
         side = _eSide;
+        List<Material> tmpMats = new List<Material>(0);
         switch (side)
         {
             case eSide.left:
-                interactableRenderer.sharedMaterial = leftMat;
+                tmpMats.Add(Resources.Load("Materials/" + "Red", typeof(Material)) as Material);
+                tmpMats.Add(Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material);
                 break;
             case eSide.right:
-                interactableRenderer.sharedMaterial = rightMat;
+                tmpMats.Add(Resources.Load("Materials/" + "Blue", typeof(Material)) as Material);
+                tmpMats.Add(Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material);
                 break;
             case eSide.any:
-                interactableRenderer.sharedMaterial = anyMat;
+                tmpMats.Add(Resources.Load("Materials/" + "Orange", typeof(Material)) as Material);
+                tmpMats.Add(Resources.Load("Materials/" + "Orange", typeof(Material)) as Material);
                 break;
             case eSide.both:
-                interactableRenderer.sharedMaterial = bothMat;
+                tmpMats.Add(Resources.Load("Materials/" + "Purple", typeof(Material)) as Material);
+                tmpMats.Add(Resources.Load("Materials/" + "PurpleGlow", typeof(Material)) as Material);
                 break;
             default:
                 break;
         }
+        interactableRenderer.SetMaterials(tmpMats);
 
     }
     public virtual void InteractableMissed()
     {
         //Debug.Log("player missed");
-        APManager.Instance.DecreaseAP(.5f);
+        APManager.Instance.DecreaseAP(1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_miss);
+        StopTarget();
+
     }
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision()

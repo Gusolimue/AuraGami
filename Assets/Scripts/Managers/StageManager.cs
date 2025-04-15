@@ -7,15 +7,12 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance;
 
     string stage1CString = "Stage1Check";
-    string stage1EString = "Stage1Evolve";
     string stage2SString = "Stage2Start";
     
     string stage2CString = "Stage2Check";
-    string stage2EString = "Stage2Evolve";
     string stage3SString = "Stage3Start";
     
     string stage3CString = "Stage3Check";
-    string stage3EString = "Stage3Evolve";
     string endString = "LevelEnd";
 
     bool stagePassed;
@@ -35,9 +32,8 @@ public class StageManager : MonoBehaviour
 
         if(tmpMarker == stage1CString)
         {
-        }
-        else if (tmpMarker == stage1EString)
-        {
+            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
+            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
 
             Debug.Log("player passed: " + APManager.Instance.StagePassCheck());
             if (!APManager.Instance.StagePassCheck())
@@ -58,11 +54,8 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage2CString)
         {
-        }
-        else if (tmpMarker == stage2EString)
-        {
-
-
+            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             if (!APManager.Instance.StagePassCheck())
             {
                 CanvasManager.Instance.ShowCanvasStageFail();
@@ -81,12 +74,6 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage3CString)
         {
-
-        }
-        else if (tmpMarker == stage3EString)
-        {
-
-
             if (!APManager.Instance.StagePassCheck())
             {
                 CanvasManager.Instance.ShowCanvasStageFail();
