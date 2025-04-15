@@ -72,6 +72,10 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
                 transitionSplash.color.b, alpha); // Updates alpha 
             yield return null; // Wait for the next frame
         }
+        if(LoadManager.Instance.whichScene == 1)
+        {
+            BeatManager.Instance.StartSong();
+        }
     }
 
     public IEnumerator TransitionFadeInPauseMenu(float alpha)
