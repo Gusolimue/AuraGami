@@ -14,23 +14,23 @@ public class BoardBehavior : MonoBehaviour
     Vector3 targetPos;
     GameObject testPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Init()
     {
+        this.transform.position = LevelManager.Instance.GetTrackPointTransform(0).position;
         mycount = boardcount;
         boardcount++;
-        originPos = this.transform.position;
         if (mycount == 0)
         {
             testPoint = new GameObject("GussyTest");
         }
+        StartMovement();
     }
-
     // Update is called once per frame
     void Update()
     {
-        if (!PauseManager.Instance.isPaused) count += Time.deltaTime / movementSpeed;
+        if (!PauseManager.Instance.isPaused) count += Time.deltaTime;
         //if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
-        if (currentBeat > 0)
+        if (currentBeat >= 0)
         {
             transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.soTrack.bpm));
         }
@@ -39,21 +39,23 @@ public class BoardBehavior : MonoBehaviour
             StopMovement();
         }
     }
-    public void StartMovement()
+    void StartMovement()
     {
         currentBeat = 0;
+        UpdateMovementTarget();
         BeatManager.beatUpdated += UpdateMovementTarget;
-        //UpdateMovementTarget();
     }
     void UpdateMovementTarget()
     {
+        
         lastPos = transform.position;
-        targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer) * currentBeat;
+        //targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer) * currentBeat;
+        targetPos = LevelManager.Instance.GetTrackPointTransform(currentBeat).position;
         if (mycount == 0)
         {
             testPoint.transform.position = targetPos;
+            Debug.Log("updated mvmt");
         }
-        //Debug.Log(targetPos);
         if (currentBeat > LevelManager.beatsToPlayer)
         {
             isStopped = true;
