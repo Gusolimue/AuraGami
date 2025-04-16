@@ -11,19 +11,24 @@ public class CanvasManager : MonoBehaviour
 
     //When called, instantiates the FrontEnd canvas, all other methods act similarly for their respective canvas'.
     //FRONT END CANVAS'
+
+    public void ShowCanvasTitleScreen()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_TitleScreen") as GameObject);
+    }
     public void ShowCanvasFE() 
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE") as GameObject);
     }
 
+    public void ShowCanvasFEPlaytestTutorial()
+    {
+        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_FE_Tutorial_Playtest") as GameObject);
+    }
+
     public void ShowCanvasLevelSelect()
     {
         Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect") as GameObject);
-    }
-
-    public void ShowCanvasLevelSelectMockup()
-    {
-        Instantiate(Resources.Load("Canvas_FrontEnd/" + "Canvas_LevelSelect_Mockup") as GameObject);
     }
 
     public void ShowCanvasSettings()

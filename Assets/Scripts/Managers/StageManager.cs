@@ -39,7 +39,9 @@ public class StageManager : MonoBehaviour
             if (!APManager.Instance.StagePassCheck())
             {
                 CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.PauseGame(true);
+                PauseManager.Instance.isPaused = true;
+                BeatManager.Instance.PauseMusicTMP(true);
+                //PauseManager.Instance.PauseGame(true);
             }
             else
             {
@@ -57,7 +59,9 @@ public class StageManager : MonoBehaviour
             if (!APManager.Instance.StagePassCheck())
             {
                 CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.PauseGame(true);
+                PauseManager.Instance.isPaused = true;
+                BeatManager.Instance.PauseMusicTMP(true);
+                //PauseManager.Instance.PauseGame(true);
             }
             else
             {
@@ -73,7 +77,8 @@ public class StageManager : MonoBehaviour
             if (!APManager.Instance.StagePassCheck())
             {
                 CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.PauseGame(true);
+                PauseManager.Instance.isPaused = true;
+                BeatManager.Instance.PauseMusicTMP(true);
             }
             else
             {
@@ -84,7 +89,8 @@ public class StageManager : MonoBehaviour
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.PauseGame(true);
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
         }
     }
 

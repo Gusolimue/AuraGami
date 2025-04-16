@@ -1,28 +1,28 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.Splines;
 public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
 {
-    int currentPoint;
-    int totalPoints;
     List<GameObject> threadPositions = new List<GameObject>();
-
+    public Material tracingMat;
+    public Material failedTraceMat;
+    public SplineContainer threadSpline;
+    Renderer splineRenderer;
+    public BezierKnot[] threadKnots;
     public Renderer endTargetRenderer;
-    LineRenderer threadLine;
-    float count;
-    int currentBeat;
-    Vector3 lastPos;
-    Vector3 targetPos;
+
+    int currentPoint;
+    int targetBoardIndex = 0;
     bool isTracing = false;
+    [HideInInspector] public bool onSpline = false;
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         base.InitInteractable(_eSide, _stage, _board, _interactable);
-        threadLine = GetComponent<LineRenderer>();
-        threadLine.enabled = false;
         endTargetRenderer.sharedMaterials[0] = interactableRenderer.sharedMaterials[0];
         endTargetRenderer.sharedMaterials[1] = interactableRenderer.sharedMaterials[1];
-        currentPoint = 0;
-        currentBeat = 0;
+        splineRenderer = threadSpline.GetComponent<Renderer>();
     }
 
     private void Start()
@@ -33,16 +33,37 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
 
     private void Update()
     {
-        count += Time.deltaTime;
-        if (currentBeat > 0)
-        {
-            targetPos = threadPositions[currentPoint - 1].transform.position;
-            transform.position = Vector3.Lerp(lastPos, targetPos, count);
-        }
+        ThreadSplineUpdate();
     }
-    private void LateUpdate()
+    IEnumerator COTrace()
     {
-        ThreadLineUpdate();
+        splineRenderer.sharedMaterial = tracingMat;
+        
+        yield return new WaitUntil(()=> onSpline);
+        yield return new WaitUntil(()=> !onSpline);
+
+        splineRenderer.sharedMaterial = failedTraceMat;
+        isTracing = false;
+    }
+    public override void InteractableMissed()
+    {
+        if (currentPoint <= interactable.multiPoints.Length)
+        {
+            targetBoardIndex += interactable.multiPoints[Mathf.Clamp(currentPoint, 0, interactable.multiPoints.Length - 1)].boardsMoved;
+            APManager.Instance.IncreaseAP();
+            Debug.Log("threaded moved");
+            this.transform.SetParent(LevelManager.Instance.GetSpawnedBoard(targetBoardIndex, LevelManager.currentStageIndex).gameObject.transform);
+            if (currentPoint > interactable.multiPoints.Length)
+            {
+                isTracing = false;
+            }
+            currentPoint++;
+        }
+        else
+        {
+            Debug.Log("threadedMissed");
+            base.InteractableMissed();
+        }
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
@@ -56,13 +77,16 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         else
         {
             isTracing = true;
+            StartCoroutine(COTrace());
+            interactableRenderer.gameObject.SetActive(false);
         }
     }
-     void ThreadLineUpdate()
+     void ThreadSplineUpdate()
     {
-        for (int i = 0; i < threadLine.positionCount; i++)
+        for (int i = 0; i < threadKnots.Length; i++)
         {
-            threadLine.SetPosition(i, threadPositions[i].transform.position);
+            threadKnots[i].Position = this.transform.InverseTransformPoint(threadPositions[i].transform.position);
+            threadSpline.Spline.SetKnot(i, threadKnots[i]);
         }
     }
     // Instantiates the future points as empty game objects and moves them into place
@@ -76,7 +100,8 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             pointCount++;
             boardsMovedBack = boardsMovedBack + point.boardsMoved;
             // Create and name the target point as a child of the correct board
-            GameObject tmpObject = Instantiate(new GameObject("ThreadPoint " + pointCount), LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
+            GameObject tmpObject = Instantiate(new GameObject("ThreadPoint " + pointCount), this.transform);
+            tmpObject.transform.Translate(Vector3.forward * (LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer)* (boardIndex + boardsMovedBack));
             Quaternion tmpRot = new Quaternion();
             tmpRot.eulerAngles = new Vector3(0, 0, point.interactableAngle);
             tmpObject.transform.localRotation *= tmpRot;
@@ -85,10 +110,19 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
 
             threadPositions.Add(tmpObject);
         }
-        threadLine.enabled = true;
-        threadLine.positionCount = threadPositions.Count;
-        totalPoints = threadPositions.Count;
+        threadKnots = new BezierKnot[threadPositions.Count];
+        foreach (var knot in threadKnots)
+        {
+            threadSpline.Spline.Add(knot);
+        }
+        //for (int i = 0; i < threadPositions.Count; i++)
+        //{
+        //    threadKnots.Add(new BezierKnot());
+        //    threadSpline.Spline.Add(threadKnots[i]);
+        //}
+        //threadLine.enabled = true;
+        //threadLine.positionCount = threadPositions.Count;
         endTargetRenderer.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
-        endTargetRenderer.gameObject.transform.position = Vector3.zero;
+        endTargetRenderer.gameObject.transform.localPosition = Vector3.zero;
     }
 }

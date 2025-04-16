@@ -9,5 +9,9 @@ public class InvisibleBehavior : MonoBehaviour
         {
             GetComponent<Renderer>().enabled = false;
         }
+        else if (GetComponent<Canvas>())
+        {
+            GetComponent<Canvas>().enabled = false;
+        }
     }
 }

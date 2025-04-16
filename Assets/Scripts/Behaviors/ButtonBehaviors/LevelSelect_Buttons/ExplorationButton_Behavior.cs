@@ -9,28 +9,28 @@ public class ExplorationButton_Behavior : MonoBehaviour
 
     public void Awake()
     {
-       planetAnim = explorationPlanet.GetComponent<Animator>();
+       /*planetAnim = explorationPlanet.GetComponent<Animator>();
        planetShrinkAnim = explorationPlanet.GetComponent <Animator>();
 
        planetAnim.enabled = false;
-       planetShrinkAnim.enabled = false;
+       planetShrinkAnim.enabled = false;*/
     }
 
     public void OnExplorationButtonEntered()
     {
-        planetAnim.enabled = true;
+        //planetAnim.enabled = true;
         planetAnim.SetTrigger("LevelHover");
     }
 
     public void OnExplorationButtonnExit()
     {
-        planetShrinkAnim.enabled = true;
+       // planetShrinkAnim.enabled = true;
         planetShrinkAnim.SetTrigger("LevelNotHover");
     }
 
     public void OnExplorationButtonPressed()
     {
-        LevelSelectManager.Instance.whichLevel = 1;
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionPauseSplash();
+        LevelSelectManager.Instance.whichLevel = 2;
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }

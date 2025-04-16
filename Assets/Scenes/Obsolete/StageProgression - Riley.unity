@@ -669,10 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd021fc8568f8bd4b816f5a77b42729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ascendFullDistance: 100
-  ascendCheckDistance: 100
-  ascendCheckTime: 5
-  terrain: {fileID: 830963999}
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,11 +715,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &830963999 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8699332892499736194, guid: 7dd57f531fa11314d8c82494dbb5a6cf, type: 3}
-  m_PrefabInstance: {fileID: 6587978829858280926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1086905347
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +776,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -907,6 +899,7 @@ MonoBehaviour:
   transitionSplash: {fileID: 1562663576}
   fadeInDuration: 10
   fadeOutDuration: 20
+  isTransitioning: 0
 --- !u!1 &1562663574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1100,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

@@ -1,23 +1,38 @@
 using UnityEngine;
-
+using UnityEngine.Splines;
 public class AvatarTrigger : MonoBehaviour
 {
-    AvatarBehavior ab;
-    private void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        if(GetComponentInParent<AvatarBehavior>() != null)
+        if (other.GetComponent<SplineExtrude>() != null)
         {
-            ab = GetComponentInParent<AvatarBehavior>();
+            if(other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            {
+                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = true;
+            }
         }
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (ab != null)
-    //    {
-    //        if (other.GetComponentInParent())
-    //        {
 
-    //        }
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<SplineExtrude>() != null)
+        {
+            if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            {
+                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
+            }
+        }
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+
+        if (other.GetComponent<SplineExtrude>() != null)
+        {
+            if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            {
+                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = true;
+            }
+        }
+    }
 }
