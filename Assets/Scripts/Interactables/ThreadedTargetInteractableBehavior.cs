@@ -22,7 +22,9 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         base.InitInteractable(_eSide, _stage, _board, _interactable);
         endTargetRenderer.sharedMaterials[0] = interactableRenderer.sharedMaterials[0];
         endTargetRenderer.sharedMaterials[1] = interactableRenderer.sharedMaterials[1];
+
         splineRenderer = threadSpline.GetComponent<Renderer>();
+        currentPoint = 0;
     }
 
     private void Start()
