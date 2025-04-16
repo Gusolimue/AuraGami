@@ -79,7 +79,6 @@ public class StageManager : MonoBehaviour
                 CanvasManager.Instance.ShowCanvasStageFail();
                 PauseManager.Instance.isPaused = true;
                 BeatManager.Instance.PauseMusicTMP(true);
-                //PauseManager.Instance.PauseGame(true);
             }
             else
             {
@@ -92,7 +91,6 @@ public class StageManager : MonoBehaviour
             CanvasManager.Instance.ShowCanvasLevelEnd();
             PauseManager.Instance.isPaused = true;
             BeatManager.Instance.PauseMusicTMP(true);
-            //PauseManager.Instance.PauseGame(true);
         }
     }
 

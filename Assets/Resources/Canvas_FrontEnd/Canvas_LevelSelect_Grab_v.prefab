@@ -861,7 +861,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,16 +905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63d088a0583cbc4fa5f97ecba9a424f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton_BG: {fileID: 4514440543122314678}
-  playButton_BG_OnEnter: {fileID: 935318452234506158}
-  playButton_BG_OnPressed: {fileID: 5587702877578166826}
-  whiteColor: {r: 1, g: 1, b: 1, a: 1}
-  startingColor: {r: 0, g: 0, b: 0, a: 0}
-  explorationColor: {r: 0.14509805, g: 0.15686275, b: 0.4156863, a: 0.69803923}
-  freedomColor: {r: 0.8078432, g: 0.5686275, b: 0.1764706, a: 0.69803923}
-  levelColor: {r: 0, g: 0, b: 0, a: 0}
-  currentColor: {r: 0, g: 0, b: 0, a: 0}
-  colorChangeDuration: 3
+  tutorialButton: {fileID: 0}
+  isTutorial: 0
 --- !u!1 &3012349356612135546
 GameObject:
   m_ObjectHideFlags: 0

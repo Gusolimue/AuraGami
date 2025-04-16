@@ -19,40 +19,40 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRestartGameButtonPressed()
     {
-        //PauseManager.Instance.PauseGame(false); //Tmp
         isRestarting = true;
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionRestartSplash();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
 
     public void OnResumeGameButtonPressed()
     {
-        //PauseManager.Instance.PauseGame(false); //Tmp
         PauseManager.Instance.yataAvatar.SetActive(true);
         PauseManager.Instance.naginiAvatar.SetActive(true);
         PauseManager.Instance.progressBar.SetActive(true);
         PauseManager.Instance.StartCountdown();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
 
     public void OnLevelsButtonPressed()
     {
-        //NewAudioManager.Instance.frontEndButtonSFX.Play();
         CanvasManager.Instance.ShowCanvasLevelSelect();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
 
     public void OnSettingsButtonPressed()
     {
-        //NewAudioManager.Instance.frontEndButtonSFX.Play();
         CanvasManager.Instance.ShowCanvasSettings();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
         LevelSelectManager.Instance.whichLevel = 0;
-        //PauseManager.Instance.PauseGame(false);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }
