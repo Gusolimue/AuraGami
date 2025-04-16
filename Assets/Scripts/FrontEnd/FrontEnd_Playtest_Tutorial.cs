@@ -33,11 +33,24 @@ public class FrontEnd_Playtest_Tutorial : MonoBehaviour
         if (index >= 0 && index < tutorialSlides.Length)
         {
             tutorialSlides[index].SetActive(true);
+            if (currentSlideIndex == 0)
+            {
+                nextButton.gameObject.SetActive(true);
+                backButton.gameObject.SetActive(false);
+                understoodButton.gameObject.SetActive(false);
+            }
+            if (currentSlideIndex == 1)
+            {
+                nextButton.gameObject.SetActive(true);
+                backButton.gameObject.SetActive(true);
+                understoodButton.gameObject.SetActive(false);
+            }
+            if (currentSlideIndex == 2)
+            {
+                nextButton.gameObject.SetActive(false); 
+                understoodButton.gameObject.SetActive(true);
+            }
         }
-
-        if (currentSlideIndex == 0) backButton.gameObject.SetActive(false); nextButton.gameObject.SetActive(true);
-        if (currentSlideIndex == 1) backButton.gameObject.SetActive(true); isLastSlide = true;
-        if (currentSlideIndex == 3) nextButton.gameObject.SetActive(false); understoodButton.gameObject.SetActive(true);
     }
 
     private void NextSlide()

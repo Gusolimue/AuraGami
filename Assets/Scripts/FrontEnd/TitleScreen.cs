@@ -10,6 +10,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI button_TXT;
     public Color transparent;
     public float alphaSpeed = 5f;
+    private float threshold = 0.01f;
     private bool isFrontEnd;
 
     public bool isTutorial;
@@ -18,8 +19,23 @@ public class TitleScreen : MonoBehaviour
     {
         if (isFrontEnd == true)
         {
-            gameTitle_TXT.alpha = Mathf.Lerp(gameTitle_TXT.alpha, transparent.a, Time.deltaTime * alphaSpeed);
-            button_TXT.alpha = Mathf.Lerp(button_TXT.alpha, transparent.a, Time.deltaTime * alphaSpeed);
+            if (Mathf.Abs(gameTitle_TXT.alpha - transparent.a) < threshold)
+            {
+                gameTitle_TXT.alpha = transparent.a;
+            }
+            else
+            {
+                gameTitle_TXT.alpha = Mathf.Lerp(gameTitle_TXT.alpha, transparent.a, Time.deltaTime * alphaSpeed);
+            }
+
+            if (Mathf.Abs(button_TXT.alpha - transparent.a) < threshold)
+            {
+                button_TXT.alpha = transparent.a;
+            }
+            else
+            {
+                button_TXT.alpha = Mathf.Lerp(button_TXT.alpha, transparent.a, Time.deltaTime * alphaSpeed);
+            }
         }
     }
 

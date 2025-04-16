@@ -8,16 +8,21 @@ public class FrontEnd : MonoBehaviour
 {
     public static FrontEnd Instance;
 
+    [SerializeField] GameObject tutorialButton;
+    public bool isTutorial;
+
     private void Awake()
     {
         Instance = this;
+        if (isTutorial == true) tutorialButton.SetActive(true);
+        else tutorialButton.SetActive(false);
     }
 
     public void OnPlayButtonPressed()
     {
         LevelSelectManager.Instance.whichLevel = 2;
         Debug.Log("Play Level!");
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
+        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
