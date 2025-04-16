@@ -40,7 +40,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         alpha = 0f;
         fadeInDuration = 1f;
         isTransitioning = true;
-
+        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
         while (alpha < 1f)
         {
             alpha += Time.deltaTime / fadeInDuration;

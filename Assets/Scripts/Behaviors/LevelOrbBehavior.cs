@@ -42,6 +42,8 @@ public class LevelOrbBehavior : MonoBehaviour
         isSelected = true;
         isEntered = false;
         isExited = true;
+
+        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
     }
 
     public void OnOrbButtonEntered()

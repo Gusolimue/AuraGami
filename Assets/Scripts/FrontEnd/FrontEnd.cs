@@ -22,7 +22,7 @@ public class FrontEnd : MonoBehaviour
     {
         LevelSelectManager.Instance.whichLevel = 2;
         Debug.Log("Play Level!");
-        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 
