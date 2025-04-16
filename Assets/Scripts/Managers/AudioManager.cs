@@ -46,6 +46,9 @@ public class AudioManager : MonoBehaviour
     [Space]
     [Header("SFX: FrontEnd")]
     public EventReference sfx_frontEnd_buttonPressed;
+    public EventReference sfx_frontEnd_levelOrbPressed;
+    public EventReference sfx_frontEnd_orbSelectionTransition;
+    // This will be for when the orb reaches the player's chest and the scene transitions. This sound can be for the play button too. 
 
     void Awake()
     {

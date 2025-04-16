@@ -40,11 +40,7 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    public void PauseGame(bool _pause)
-    {
-        if (_pause) Time.timeScale = 0; else Time.timeScale = 1;
-        BeatManager.Instance.PauseMusicTMP(_pause);
-    }
+
 
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
@@ -54,23 +50,13 @@ public class PauseManager : MonoBehaviour
             naginiAvatar.SetActive(false);
             yataAvatar.SetActive(false);
             progressBar.SetActive(false);
-            //RepeatSegmentedTerrainBehavior.Instance.TerrainMovement(false);
-            BeatManager.Instance.PauseMusicTMP(true);
             isPaused = true;
-            //PauseGame(true);
             Debug.Log("Is Paused!");
         }
         else if (isPaused == true)
         {
             isPaused = false;
-            //PauseGame(false);
             PauseMenu.Instance.OnResumeGameButtonPressed();
-            StartCoroutine(Countdown(3));
-            naginiAvatar.SetActive(true);
-            yataAvatar.SetActive(true);
-            progressBar.SetActive(true);
-            //RepeatSegmentedTerrainBehavior.Instance.TerrainMovement(true);
-            BeatManager.Instance.PauseMusicTMP(false);
             Debug.Log("Is Unpaused!");
         }
     }
