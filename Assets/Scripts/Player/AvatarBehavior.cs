@@ -8,6 +8,9 @@ public class AvatarBehavior : MonoBehaviour
     [Header("Variables to Set")]
     public eSide side;
     public Renderer evolveSphereRenderer;
+    Color startColor;
+    Color transparentColor;
+    Color failColor;
     float evolveTime = 8;
     [SerializeField] GameObject avatarPrefab;
     //[Header("Variables to Call")]
@@ -15,8 +18,11 @@ public class AvatarBehavior : MonoBehaviour
     //
     private void Awake()
     {
-        evolveSphereRenderer.material.color = new Color(1, 1, 1, 0);
-        Instantiate(avatarPrefab).transform.SetParent(this.transform);
+        transparentColor = new Color(1, 1, 1, 0);
+        startColor = new Color(1, 1, 1, 1);
+        failColor = new Color(1, .5f, .5f, 1);
+        evolveSphereRenderer.material.color = transparentColor;
+        //Instantiate(avatarPrefab).transform.SetParent(this.transform);
     }
 
     //
@@ -25,15 +31,57 @@ public class AvatarBehavior : MonoBehaviour
 
     }
 
-    IEnumerator CoEvolve()
+    IEnumerator CoEvolve(bool _pass)
     {
-        evolveSphereRenderer.material.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds((60f / LevelManager.Instance.level.soTrack.bpm)*evolveTime);
-        evolveSphereRenderer.material.color = new Color(1, 1, 1, 0);
+        float count = 0;
+        while(count < 1)
+        {
+            count += Time.deltaTime;
+            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+            yield return null;
+        }
+        count = 0;
+        yield return new WaitForSeconds(1f);
+        if (_pass)
+        {
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count/(60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                yield return null;
+            }
+            if (eSide.right == side)
+            {
+                APManager.Instance.ResetAP();
+            }
+        }
+        else
+        {
+
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                yield return null;
+            }
+            count = 0;
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                yield return null;
+            }
+            if(eSide.right == side)
+            {
+                CanvasManager.Instance.ShowCanvasStageFail();
+                PauseManager.Instance.isPaused = true;
+                BeatManager.Instance.PauseMusicTMP(true);
+            }
+        }
     }
     public void StartEvolve()
     {
-        StartCoroutine(CoEvolve());
+        StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
     }
     //
     public void TargetCollision()
