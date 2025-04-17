@@ -78,7 +78,7 @@ public class BaseInteractableBehavior : MonoBehaviour
         StopTarget();
     }
 
-    private void StopTarget()
+    internal void StopTarget()
     {
         gameObject.SetActive(false);
         

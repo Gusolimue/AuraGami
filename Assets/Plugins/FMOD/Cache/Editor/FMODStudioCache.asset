@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8761582332109207929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/apple Sand 8
+  m_EditorClassIdentifier: 
+  Path: event:/apple Sand 8
+  Guid:
+    Data1: -1597263419
+    Data2: 1251840378
+    Data3: 152948403
+    Data4: 2139335325
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8011159140016980104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +96,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638803121072061358
+  lastModified: 638804506117572103
   FileSizes:
   - Name: Desktop
-    Value: 1494
+    Value: 1640
   Exists: 1
 --- !u!114 &-6128392783484299489
 MonoBehaviour:
@@ -163,10 +190,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638803121073739787
+  lastModified: 638804509023154755
   FileSizes:
   - Name: Desktop
-    Value: 205120
+    Value: 274592
   Exists: 1
 --- !u!114 &-1546856732508677928
 MonoBehaviour:
@@ -253,12 +280,15 @@ MonoBehaviour:
   - {fileID: 1105877103035787563}
   - {fileID: -1546856732508677928}
   - {fileID: 2081360664806886089}
+  - {fileID: 5382602779488929154}
+  - {fileID: 3066877223095826390}
+  - {fileID: -8761582332109207929}
   EditorParameters: []
   MasterBanks:
   - {fileID: 165366598516643150}
   StringsBanks:
   - {fileID: -6835896208683744630}
-  cacheTime: 638803121073739787
+  cacheTime: 638804509023154755
   cacheVersion: 131622
 --- !u!114 &165366598516643150
 MonoBehaviour:
@@ -275,7 +305,7 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638803121072047912
+  lastModified: 638804506117546403
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -388,6 +418,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1050
+--- !u!114 &3066877223095826390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/lvlplanetflash
+  m_EditorClassIdentifier: 
+  Path: event:/lvlplanetflash
+  Guid:
+    Data1: 583182982
+    Data2: 1137362448
+    Data3: 1617123255
+    Data4: 502342849
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4157860852810414830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +467,33 @@ MonoBehaviour:
   - {fileID: -3021294445542517383}
   IsStream: 0
   Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5382602779488929154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/lvlplanetgrab
+  m_EditorClassIdentifier: 
+  Path: event:/lvlplanetgrab
+  Guid:
+    Data1: -2090222520
+    Data2: 1260062904
+    Data3: -1781720170
+    Data4: 818113567
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1

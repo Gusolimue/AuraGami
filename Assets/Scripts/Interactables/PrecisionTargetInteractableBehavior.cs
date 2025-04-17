@@ -25,7 +25,8 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a hazard
             Debug.Log("Missed the mark");
             APManager.Instance.DecreaseAP(1);
-            Destroy(gameObject);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_obstacle_hit);
+            StopTarget();
         }
     }    
 }
