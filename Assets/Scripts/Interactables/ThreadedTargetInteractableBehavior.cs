@@ -31,6 +31,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         //splineExtrude.Radius = .05f;
         //splineExtrude.RebuildOnSplineChange = true;
         //threadSpline.gameObject.AddComponent<MeshCollider>();
+        //threadSpline.gameObject.GetComponent<MeshCollider>().providesContacts = true;
         currentPoint = 0;
     }
 

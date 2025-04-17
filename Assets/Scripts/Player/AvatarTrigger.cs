@@ -15,6 +15,7 @@ public class AvatarTrigger : MonoBehaviour
             if(other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
             {
                 other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = true;
+                Debug.Log("threadedEnter");
             }
         }
     }
@@ -26,6 +27,7 @@ public class AvatarTrigger : MonoBehaviour
             if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
             {
                 other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
+                Debug.Log("threadedExit");
             }
         }
 

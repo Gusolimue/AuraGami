@@ -5,6 +5,8 @@ using EditorAttributes;
 
 public class Level : MonoBehaviour
 {
+    public GameObject[] threadedTargets;
+    public int threadedCount = 0;
     [Header("Level Info")]
     //call error if two targets are placed on the same spot
     public soTrack soTrack;
@@ -98,8 +100,11 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")
-            as GameObject, currentBoard.transform);
+                //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
+                tmpObject = threadedTargets[threadedCount];
+                threadedCount++;
+                tmpObject.transform.SetParent(currentBoard.transform);
+                tmpObject.transform.localPosition = Vector3.zero;
                 break;
             case eTargetType.precisionTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
