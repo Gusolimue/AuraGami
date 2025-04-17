@@ -51,6 +51,7 @@ public class PauseManager : MonoBehaviour
             yataAvatar.SetActive(false);
             progressBar.SetActive(false);
             isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
             Debug.Log("Is Paused!");
         }
         else if (isPaused == true)

@@ -39,7 +39,12 @@ public class AvatarTrigger : MonoBehaviour
         {
             if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
             {
-                if (count > .2f) other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
+                if (count > .1f)
+                {
+                    other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
+                    Debug.Log("threadTimeout");
+                }
+                
                 count = 0;
             }
         }
