@@ -35,18 +35,18 @@ public class StageManager : MonoBehaviour
             AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
             AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
 
-            Debug.Log("player passed: " + APManager.Instance.StagePassCheck());
-            if (!APManager.Instance.StagePassCheck())
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.isPaused = true;
-                BeatManager.Instance.PauseMusicTMP(true);
-                //PauseManager.Instance.PauseGame(true);
-            }
-            else
-            {
-                APManager.Instance.ResetAP();
-            }
+            //Debug.Log("player passed: " + APManager.Instance.StagePassCheck());
+            //if (!APManager.Instance.StagePassCheck())
+            //{
+            //    CanvasManager.Instance.ShowCanvasStageFail();
+            //    PauseManager.Instance.isPaused = true;
+            //    BeatManager.Instance.PauseMusicTMP(true);
+            //    //PauseManager.Instance.PauseGame(true);
+            //}
+            //else
+            //{
+            //    APManager.Instance.ResetAP();
+            //}
         }
         else if (tmpMarker == stage2SString)
         {
@@ -56,17 +56,14 @@ public class StageManager : MonoBehaviour
         {
             AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
-            if (!APManager.Instance.StagePassCheck())
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.isPaused = true;
-                BeatManager.Instance.PauseMusicTMP(true);
-                //PauseManager.Instance.PauseGame(true);
-            }
-            else
-            {
-                APManager.Instance.ResetAP();
-            }
+            //if (!APManager.Instance.StagePassCheck())
+            //{
+            //    //PauseManager.Instance.PauseGame(true);
+            //}
+            //else
+            //{
+            //    APManager.Instance.ResetAP();
+            //}
         }
         else if (tmpMarker == stage3SString)
         {
@@ -74,16 +71,18 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage3CString)
         {
-            if (!APManager.Instance.StagePassCheck())
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.isPaused = true;
-                BeatManager.Instance.PauseMusicTMP(true);
-            }
-            else
-            {
-                APManager.Instance.ResetAP();
-            }
+            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            //if (!APManager.Instance.StagePassCheck())
+            //{
+            //    CanvasManager.Instance.ShowCanvasStageFail();
+            //    PauseManager.Instance.isPaused = true;
+            //    BeatManager.Instance.PauseMusicTMP(true);
+            //}
+            //else
+            //{
+            //    APManager.Instance.ResetAP();
+            //}
         }
         else if (tmpMarker == endString)
         {

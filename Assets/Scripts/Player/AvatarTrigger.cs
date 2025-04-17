@@ -2,6 +2,12 @@ using UnityEngine;
 using UnityEngine.Splines;
 public class AvatarTrigger : MonoBehaviour
 {
+    float count;
+
+    private void Update()
+    {
+        count += Time.deltaTime;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<SplineExtrude>() != null)
@@ -31,7 +37,8 @@ public class AvatarTrigger : MonoBehaviour
         {
             if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
             {
-                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = true;
+                if (count > .2f) other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
+                count = 0;
             }
         }
     }

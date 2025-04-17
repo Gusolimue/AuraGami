@@ -22,7 +22,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
 
     public void SceneFadeInTransitionSplash()
     {
-        StartCoroutine(TransitionFadeIn(0));
+        StartCoroutine(TransitionFadeIn());
     }
 
     public void SceneFadeInTransitionRestartSplash()
@@ -35,9 +35,9 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         StartCoroutine(TransitionFadeOut(1));
     }
 
-    public IEnumerator TransitionFadeIn(float alpha)
+    public IEnumerator TransitionFadeIn()
     {
-        alpha = 0f;
+        float alpha = 0f;
         fadeInDuration = 1f;
         isTransitioning = true;
         //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);

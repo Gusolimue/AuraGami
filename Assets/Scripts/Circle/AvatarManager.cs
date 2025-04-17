@@ -8,16 +8,16 @@ public class AvatarManager : MonoBehaviour
     [Header("Variables to Adjust")]
     public float playerDiameter;
     public float avatarDiameter;
-    //float playerCircDiameter;
-    //float avatarCircDiameter;
+    float playerCircDiameter;
+    float avatarCircDiameter;
 
     public bool DisableMovement;
 
     [Header("Variables to Set")]
-    //[SerializeField]
-    //RectTransform playerCircRectTransform;
-    //[SerializeField]
-    //RectTransform avatarCircRectTransform;
+    [SerializeField]
+    RectTransform playerCircRectTransform;
+    [SerializeField]
+    RectTransform avatarCircRectTransform;
 
     [SerializeField]
     Transform playerCircTransform;
@@ -46,21 +46,21 @@ public class AvatarManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerCircDiameter = playerDiameter;
+        avatarCircDiameter = avatarDiameter;
         GameObject tmpObject = Instantiate(new GameObject("Movement Targets"), this.transform);
         rightObject = new GameObject("Right Movement Target");
         leftObject = new GameObject("Left Movement Target");
         rightObject.transform.SetParent(tmpObject.transform);
         leftObject.transform.SetParent(tmpObject.transform);
-        playerCircTransform.localScale *= playerDiameter;
-        avatarCircTransform.localScale *= avatarDiameter;
     }
     private void Start()
     {
-        scaleMult = avatarDiameter / playerDiameter;
-        //playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerCircDiameter);
-        //playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, playerCircDiameter);
-        //avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, avatarCircDiameter);
-        //avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, avatarCircDiameter);
+        scaleMult = avatarCircDiameter / playerCircDiameter;
+        playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerCircDiameter);
+        playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, playerCircDiameter);
+        avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, avatarCircDiameter);
+        avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, avatarCircDiameter);
     }
     private void Update()
     {
@@ -69,9 +69,9 @@ public class AvatarManager : MonoBehaviour
             rightObject.transform.position = GetAvatarPos(true);
             leftObject.transform.position = GetAvatarPos(false);
         }
-        rightAvatar.transform.localRotation = Quaternion.LookRotation(rightObject.transform.position + (Vector3.forward / 10), Vector3.up);
+        //rightAvatar.transform.localRotation = Quaternion.LookRotation(rightObject.transform.position + (Vector3.forward / 10), Vector3.up);
         rightAvatar.transform.position = (rightObject.transform.position);
-        leftAvatar.transform.localRotation = Quaternion.LookRotation(leftObject.transform.position + (Vector3.forward / 10), Vector3.up);
+        //leftAvatar.transform.localRotation = Quaternion.LookRotation(leftObject.transform.position + (Vector3.forward / 10), Vector3.up);
         leftAvatar.transform.position = (leftObject.transform.position);
     }
     //Given a bool to determine which controller. Returns a vector3 of the position the avatar will be set to that update

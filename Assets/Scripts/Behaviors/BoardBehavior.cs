@@ -19,10 +19,10 @@ public class BoardBehavior : MonoBehaviour
         this.transform.position = LevelManager.Instance.GetTrackPointTransform(0).position;
         mycount = boardcount;
         boardcount++;
-        if (mycount == 0)
-        {
-            testPoint = new GameObject("GussyTest");
-        }
+        //if (mycount == 0)
+        //{
+        //    testPoint = new GameObject("GussyTest");
+        //}
         StartMovement();
     }
     // Update is called once per frame
@@ -51,11 +51,11 @@ public class BoardBehavior : MonoBehaviour
         lastPos = transform.position;
         //targetPos = originPos + (Vector3.back * LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer) * currentBeat;
         targetPos = LevelManager.Instance.GetTrackPointTransform(currentBeat).position;
-        if (mycount == 0)
-        {
-            testPoint.transform.position = targetPos;
-            Debug.Log("updated mvmt");
-        }
+        //if (mycount == 0)
+        //{
+        //    testPoint.transform.position = targetPos;
+        //    //Debug.Log("updated mvmt");
+        //}
         if (currentBeat > LevelManager.beatsToPlayer)
         {
             isStopped = true;
