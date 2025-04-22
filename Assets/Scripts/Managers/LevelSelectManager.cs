@@ -8,7 +8,7 @@ public class LevelSelectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        whichLevel = 0;
+        whichLevel = 1;
     }
 
     private void OnTriggerEnter(Collider other)
