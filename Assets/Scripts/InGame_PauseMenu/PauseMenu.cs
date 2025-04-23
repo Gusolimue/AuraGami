@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
+        LevelSelectManager.Instance.whichLevel = 1;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }

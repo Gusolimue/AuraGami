@@ -15,7 +15,7 @@ public class LevelSelectManager : MonoBehaviour
     {
         if (other.CompareTag("Level_Exploration"))
         {
-            whichLevel = 2;
+            whichLevel = 3;
 
             other.gameObject.SetActive(false);
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
@@ -24,7 +24,7 @@ public class LevelSelectManager : MonoBehaviour
 
         if (other.CompareTag("Level_Freedom"))
         {
-            whichLevel = 1;
+            whichLevel = 2;
 
             other.gameObject.SetActive(false);
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();

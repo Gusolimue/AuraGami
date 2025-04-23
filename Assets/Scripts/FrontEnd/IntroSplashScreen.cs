@@ -9,12 +9,13 @@ public class IntroSplashScreen : MonoBehaviour
     [Header("Controller Interactor")]
     public InputActionReference skipIntroControllerAction;
 
-    [Header("Logos")]
+    [Header("Logos/Assets")]
     [SerializeField] Image teamAuragamiLogoSprite;
     [SerializeField] Image fmodLogoSprite;
     [SerializeField] Image unityLogoSprite;
-
+    [Space]
     [SerializeField] GameObject introVideoContainer;
+    [SerializeField] Image skipIcon;
 
     public Color transparent;
     public Color noneTransparent;
@@ -28,6 +29,17 @@ public class IntroSplashScreen : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(SplashSequence());
+
+        skipIntroControllerAction.action.Enable();
+        skipIntroControllerAction.action.performed += OnPauseButtonPressed;
+        InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    private void OnDestroy()
+    {
+        skipIntroControllerAction.action.Disable();
+        skipIntroControllerAction.action.performed -= OnPauseButtonPressed;
+        InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
     private void Update()
@@ -60,7 +72,7 @@ public class IntroSplashScreen : MonoBehaviour
         }
     }
 
-    public void OnPauseButtonHeld(InputAction.CallbackContext context)
+    public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
@@ -85,5 +97,20 @@ public class IntroSplashScreen : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+            case InputDeviceChange.Disconnected:
+                skipIntroControllerAction.action.Disable();
+                skipIntroControllerAction.action.performed -= OnPauseButtonPressed;
+                break;
+            case InputDeviceChange.Reconnected:
+                skipIntroControllerAction.action.Enable();
+                skipIntroControllerAction.action.performed += OnPauseButtonPressed;
+                break;
+        }
     }
 }

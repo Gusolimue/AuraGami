@@ -20,7 +20,7 @@ public class FrontEnd : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
-        LevelSelectManager.Instance.whichLevel = 2;
+        LevelSelectManager.Instance.whichLevel = 3;
         Debug.Log("Play Level!");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
