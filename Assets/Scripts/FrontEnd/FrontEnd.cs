@@ -33,6 +33,13 @@ public class FrontEnd : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void OnCreditsButtonPressed()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        CanvasManager.Instance.ShowCanvasCredits();
+        Destroy(this.gameObject);
+    }
+
     public void OnSettingsButtonPressed()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
