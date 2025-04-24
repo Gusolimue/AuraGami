@@ -5,6 +5,8 @@ using EditorAttributes;
 
 public class Level : MonoBehaviour
 {
+    public GameObject[] threadedTargets;
+    public int threadedCount = 0;
     [Header("Level Info")]
     //call error if two targets are placed on the same spot
     public soTrack soTrack;
@@ -98,8 +100,11 @@ public class Level : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
             case eTargetType.threadedTarget:
-                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")
-            as GameObject, currentBoard.transform);
+                //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
+                tmpObject = threadedTargets[threadedCount];
+                threadedCount++;
+                tmpObject.transform.SetParent(currentBoard.transform);
+                tmpObject.transform.localPosition = Vector3.zero;
                 break;
             case eTargetType.precisionTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
@@ -200,7 +205,7 @@ public class Level : MonoBehaviour
     //[ButtonField(nameof(Redo))]
     //[SerializeField, HideInInspector] VoidStructure redoButtonHolder;
     //void Redo(){}
-    [FoldoutGroup("Advanced Tools", nameof(setStageListButtonHolder), nameof(setTestLayoutButtonHolder), nameof(iWantToDeleteMyStagePermanently))]
+    [FoldoutGroup("Advanced Tools", nameof(setStageListButtonHolder), nameof(setTestLayoutButtonHolder), nameof(iWantToDeleteMyStagePermanently), nameof(levelToPasteTo), nameof(pasteToSoLevelButtonHolder))]
     [SerializeField] private VoidStructure AdvancedToolsGroup;
 
     [SerializeField, HideInInspector] bool iWantToDeleteMyStagePermanently;
@@ -216,8 +221,7 @@ public class Level : MonoBehaviour
             tmpLength /= 1000;
             tmpLength /= 60;
             tmpLength *= soTrack.bpm;
-
-            tmpLength -= LevelManager.Instance.beatsToPlayer * 9;
+            tmpLength -= LevelManager.beatsToPlayer * 9;
             tmpLength = Math.Clamp(tmpLength, 0 , Mathf.Infinity);
             stage1.Clear();
             stage2.Clear();
@@ -275,7 +279,23 @@ public class Level : MonoBehaviour
         }
     }
 
+    [SerializeField, HideInInspector] SoLevel levelToPasteTo;
+    [ButtonField(nameof(PasteToSO), "PasteToScriptableObject", 30f)]
+    [SerializeField, HideInInspector] VoidStructure pasteToSoLevelButtonHolder;
 
+    void PasteToSO()
+    {
+        for (int c = 1; c < 4; c++)
+        {
+            for (int i = 0; i < GetStage(c).Count; i++)
+            {
+                if (levelToPasteTo.GetStage(c).Count > i)
+                {
+                    levelToPasteTo.GetStage(c)[i] = new Board(GetStage(c)[i].interactables);
+                }
+            }
+        }
+    }
 }
 
 

@@ -9,6 +9,9 @@ public class APManager : MonoBehaviour
     public int multIncrementStreak;
     [Range(0,1)]
     public float[] stagePassPercent;
+
+    public float sigilSliderSpeed = 5f;
+    private float targetSigilValue = 0f;
     [Space]
 
 
@@ -21,7 +24,7 @@ public class APManager : MonoBehaviour
     [Space]
     [Header("To Set/Call")]
     public AuraFXBehavior[] auraFXBehaviors;
-    public Slider[] sigils;
+    public Slider sigil;
     public static APManager Instance;
 
 
@@ -33,6 +36,11 @@ public class APManager : MonoBehaviour
         stageTargetValues = new float[3];
         UpdateSigils();
         UpdateAuraFX();
+    }
+
+    private void Update()
+    {
+        sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, Time.deltaTime * sigilSliderSpeed);
     }
 
     public void SetTargetValues()
@@ -50,12 +58,13 @@ public class APManager : MonoBehaviour
                     }
                 }
             }
-            stageTargetValues[c] = (2 + c - stagePassPercent[c]) / stageTargetTotals[c];
+            stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
     }
     public void IncreaseAP()
     {
-        curAP += stageTargetValues[LevelManager.currentStageIndex] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
+        sigilSliderSpeed = 5f;
+        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
         curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
         curStreak += 1;
         UpdateSigils();
@@ -65,7 +74,8 @@ public class APManager : MonoBehaviour
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
-            curAP -= stageTargetValues[LevelManager.currentStageIndex] * _percent;
+            sigilSliderSpeed = 5f;
+            curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1) ] * _percent;
             curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
             curStreak = 0;
             UpdateSigils();
@@ -81,20 +91,23 @@ public class APManager : MonoBehaviour
     public bool StagePassCheck()
     {
         bool tmp = false;
-        if (curAP >= LevelManager.currentStageIndex) tmp = true;
+        if (curAP >= /*LevelManager.currentStageIndex*/ 1) tmp = true;
         return tmp;
     }
     public void ResetAP()
     {
+        sigilSliderSpeed = 1f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
     }
     public void UpdateSigils()
     {
-        sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
-        sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
-        sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
+        targetSigilValue = Mathf.Clamp01(curAP) * sigil.maxValue;
+        //sigil.value = Mathf.Clamp01(curAP) * sigil.maxValue;
+        //sigils[0].value = Mathf.Clamp(curAP, 0, 1f) * sigils[0].maxValue;
+        //sigils[1].value = Mathf.Clamp(curAP - 1, 0, 1f) * sigils[1].maxValue;
+        //sigils[2].value = Mathf.Clamp(curAP - 2, 0, 1f) * sigils[2].maxValue;
     }
     public void UpdateAuraFX()
     {

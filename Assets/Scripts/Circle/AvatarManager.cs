@@ -8,8 +8,8 @@ public class AvatarManager : MonoBehaviour
     [Header("Variables to Adjust")]
     public float playerDiameter;
     public float avatarDiameter;
-    public static float playerCircDiameter;
-    public static float avatarCircDiameter;
+    float playerCircDiameter;
+    float avatarCircDiameter;
 
     public bool DisableMovement;
 
@@ -30,9 +30,13 @@ public class AvatarManager : MonoBehaviour
     Transform leftControllerTransform;
 
     [SerializeField]
-    GameObject rightAvatar;
+    public GameObject rightAvatar;
     [SerializeField]
-    GameObject leftAvatar;
+    public GameObject leftAvatar;
+
+    public GameObject cursorPrefab;
+    GameObject rightObject;
+    GameObject leftObject;
 
     [Header("Variables to Call")]
     public static AvatarManager Instance;
@@ -45,6 +49,9 @@ public class AvatarManager : MonoBehaviour
         Instance = this;
         playerCircDiameter = playerDiameter;
         avatarCircDiameter = avatarDiameter;
+        GameObject tmpObject = Instantiate(new GameObject("Movement Targets"), this.transform);
+        rightObject = Instantiate(cursorPrefab, tmpObject.transform);
+        leftObject = Instantiate(cursorPrefab, tmpObject.transform);
     }
     private void Start()
     {
@@ -58,9 +65,13 @@ public class AvatarManager : MonoBehaviour
     {
         if(!DisableMovement)
         {
-            rightAvatar.transform.position = GetAvatarPos(true);
-            leftAvatar.transform.position = GetAvatarPos(false);
+            rightObject.transform.position = GetAvatarPos(true);
+            leftObject.transform.position = GetAvatarPos(false);
         }
+        //rightAvatar.transform.localRotation = Quaternion.LookRotation(rightObject.transform.position + (Vector3.forward / 10), Vector3.up);
+        rightAvatar.transform.position = (rightObject.transform.position);
+        //leftAvatar.transform.localRotation = Quaternion.LookRotation(leftObject.transform.position + (Vector3.forward / 10), Vector3.up);
+        leftAvatar.transform.position = (leftObject.transform.position);
     }
     //Given a bool to determine which controller. Returns a vector3 of the position the avatar will be set to that update
     Vector3 GetAvatarPos(bool right)

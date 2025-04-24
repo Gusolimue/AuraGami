@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using FMODUnity;
 using System;
 using EditorAttributes;
+using System.Collections.Generic;
 
 public class BeatManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BeatManager : MonoBehaviour
 
     [SerializeField]
     EventReference music;
+    [SerializeField]
+    SoLevel levelToRecordTo;
     public TimelineInfo timelineInfo = null;
     GCHandle timelineHandle;
 
@@ -29,15 +32,38 @@ public class BeatManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        musicInstance = RuntimeManager.CreateInstance(music);
-        musicInstance.start();
+        //musicInstance = RuntimeManager.CreateInstance(music);
+        //musicInstance.start();
     }
-    [Button, SerializeField]
+    [/*Button,*/ SerializeField]
     public void PauseMusicTMP(bool _paused)
     {
         musicInstance.setPaused(_paused);
     }
-
+    [Button, SerializeField]
+    public void StartSong()
+    {
+        musicInstance = RuntimeManager.CreateInstance(music);
+        musicInstance.start();
+        timelineInfo = new TimelineInfo();
+        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
+        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
+        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
+            | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+        start = true;
+    }
+    [Button, SerializeField]
+    public void RecordSongData()
+    {
+        levelToRecordTo.beats = new List<Beat>(0);
+        beatUpdated += levelToRecordTo.RecordBeat;
+        music = levelToRecordTo.track.trackReference;
+        StartSong();
+        FMOD.Studio.EventDescription eventDescription;
+        musicInstance.getDescription(out eventDescription);
+        eventDescription.getLength(out levelToRecordTo.track.trackLength);
+    }
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
     {
@@ -46,12 +72,12 @@ public class BeatManager : MonoBehaviour
     }
     private void Start()
     {
-        timelineInfo = new TimelineInfo();
-        beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
-        timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
-        musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
-        musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
-            | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+        //timelineInfo = new TimelineInfo();
+        //beatCallback = new FMOD.Studio.EVENT_CALLBACK(BeatEventCallback);
+        //timelineHandle = GCHandle.Alloc(timelineInfo, GCHandleType.Pinned);
+        //musicInstance.setUserData(GCHandle.ToIntPtr(timelineHandle));
+        //musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
+        //    | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
     }
     public void OnDestroy()
     {
@@ -60,25 +86,29 @@ public class BeatManager : MonoBehaviour
         musicInstance.release();
         timelineHandle.Free();
     }
+    bool start = false;
     private void Update()
     {
-        if(lastMarkerString != timelineInfo.lastMarker)
+        if(start)
         {
-            lastMarkerString = timelineInfo.lastMarker;
-
-            if (markerUpdated != null)
+            if (lastMarkerString != timelineInfo.lastMarker)
             {
-                markerUpdated();
+                lastMarkerString = timelineInfo.lastMarker;
+
+                if (markerUpdated != null)
+                {
+                    markerUpdated();
+                }
             }
-        }
 
-        if (lastBeat != timelineInfo.currentBeat)
-        {
-            lastBeat = timelineInfo.currentBeat;
-
-            if (beatUpdated != null)
+            if (lastBeat != timelineInfo.currentBeat)
             {
-                beatUpdated();
+                lastBeat = timelineInfo.currentBeat;
+
+                if (beatUpdated != null)
+                {
+                    beatUpdated();
+                }
             }
         }
     }
@@ -86,7 +116,10 @@ public class BeatManager : MonoBehaviour
 #if UNITY_EDITOR
     private void OnGUI()
     {
-        GUILayout.Box($"Current beat = {timelineInfo.currentBeat}, Last Marker = {(string)timelineInfo.lastMarker}");
+        if(start)
+        {
+            GUILayout.Box($"Current beat = {timelineInfo.currentBeat}, Last Marker = {(string)timelineInfo.lastMarker}");
+        }
     }
 #endif
     [AOT.MonoPInvokeCallback(typeof(FMOD.Studio.EVENT_CALLBACK))]

@@ -5,7 +5,7 @@ public enum eScene { frontEnd, levelFreedom, levelExploration } // Will contain 
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
-    public int whichScene;
+    public int currentScene;
 
     private void Awake()
     {
@@ -39,22 +39,24 @@ public class LoadManager : MonoBehaviour
         switch ((eScene)scene.buildIndex)
         {
             case eScene.frontEnd:
-                CanvasManager.Instance.ShowCanvasFE();
+                CanvasManager.Instance.ShowCanvasTitleScreen();
+                //CanvasManager.Instance.ShowCanvasFE();
+                //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
+                //CanvasManager.Instance.ShowCanvasLevelEnd();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
-                //CanvasManager.Instance.ShowCanvasLevelSelectMockup();
                 //CanvasManager.Instance.ShowCanvasSettings();
                 //CanvasManager.Instance.ShowCanvasCredits();
                 AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
-                whichScene = 0;
+                currentScene = 0;
                 break;
 
 
             case eScene.levelExploration:
-                whichScene = 1;
+                currentScene = 1;
                 break;
 
             case eScene.levelFreedom:
-                whichScene = 2;
+                currentScene = 2;
                 break;
 
             default:

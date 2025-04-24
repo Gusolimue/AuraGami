@@ -9,9 +9,10 @@ public class PauseManager : MonoBehaviour
     public InputActionReference openPauseMenuAction;
     public bool isPaused = false;
 
-    [Header("Avatars")]
+    [Header("Avatars/UI")]
     [SerializeField] public GameObject naginiAvatar;
     [SerializeField] public GameObject yataAvatar;
+    [SerializeField] public GameObject progressBar;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
@@ -29,7 +30,7 @@ public class PauseManager : MonoBehaviour
     private void Start()
     {
         //moved this to start because you cant refer to another instance (beatmanager) in awake
-        PauseGame(false);
+        //PauseGame(false);
     }
 
     private void OnDestroy()
@@ -39,11 +40,7 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    public void PauseGame(bool _pause)
-    {
-        if (_pause) Time.timeScale = 0; else Time.timeScale = 1;
-        BeatManager.Instance.PauseMusicTMP(_pause);
-    }
+
 
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
@@ -52,18 +49,15 @@ public class PauseManager : MonoBehaviour
             CanvasManager.Instance.ShowCanvasPauseMenu();
             naginiAvatar.SetActive(false);
             yataAvatar.SetActive(false);
+            progressBar.SetActive(false);
             isPaused = true;
-            PauseGame(true);
+            BeatManager.Instance.PauseMusicTMP(true);
             Debug.Log("Is Paused!");
         }
         else if (isPaused == true)
         {
             isPaused = false;
-            PauseGame(false);
             PauseMenu.Instance.OnResumeGameButtonPressed();
-            StartCoroutine(Countdown(3));
-            naginiAvatar.SetActive(true);
-            yataAvatar.SetActive(true);
             Debug.Log("Is Unpaused!");
         }
     }
