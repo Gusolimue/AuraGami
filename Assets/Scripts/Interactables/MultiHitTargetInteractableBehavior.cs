@@ -5,7 +5,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
 {
     int currentPoint;
     int totalPoints;
-    List<GameObject> multiPositions = new List<GameObject>();
+    public List<GameObject> multiPositions = new List<GameObject>();
 
     float count;
     int currentBeat;
@@ -24,7 +24,6 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     private void Start()
     {
         // Spawn targets points in Start so all boards have been created
-        SpawnTargetPoints();
     }
 
     private void Update()
@@ -68,18 +67,23 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Instantiates the future points as empty game objects and moves them into place
-    void SpawnTargetPoints()
+    public void SpawnTargetPoints()
     {
         int pointCount = 0; // Keeps track of the total number of target points
         int boardsMovedBack = 0; // Keeps track of the total boards moved back
         foreach (TargetPoints point in interactable.multiPoints)
         {
             pointCount++;
-            boardsMovedBack = boardsMovedBack + point.boardsMoved;
+            boardsMovedBack += point.boardsMoved;
+            if(stageIndex > 0)
+            {
+                Debug.Log(boardIndex+", "+stageIndex+", "+boardsMovedBack);
+            }
             if(boardIndex + boardsMovedBack < LevelManager.Instance.instantiatedStages[stageIndex].Count)
             {
                 // Create and name the target point as a child of the correct board
-                GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount), LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
+                GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount),
+                    LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
                 Quaternion tmpRot = new Quaternion();
                 tmpRot.eulerAngles = new Vector3(0, 0, point.interactableAngle);
                 tmpObject.transform.localRotation *= tmpRot;

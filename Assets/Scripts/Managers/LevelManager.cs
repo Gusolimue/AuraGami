@@ -131,10 +131,21 @@ public class LevelManager : MonoBehaviour
         {
             for (int c = 0; c < level.GetStage(i + 1).Count; c++)
             {
-                SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform);
+                SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform, i);
                 instantiatedStages[i].Add(currentBoard);
                 instantiatedStages[i][c].SetActive(false);
 
+            }
+        }
+        foreach (var stage in instantiatedStages)
+        {
+            foreach (var board in stage)
+            {
+                Debug.Log("spawning target points");
+                foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())
+                {
+                    behavior.SpawnTargetPoints();
+                }
             }
         }
 
