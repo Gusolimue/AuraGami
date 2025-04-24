@@ -105,6 +105,7 @@ public class IntroSplashScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(26);
         introVideoContainer.SetActive(false);
+        yield return new WaitForSeconds(1);
         isTeamAuragami = true;
         yield return new WaitForSeconds(2);
         isTeamAuragami = false;

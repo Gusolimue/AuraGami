@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreditsButtonBehavior : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CreditsButtonBehavior : MonoBehaviour
         constellationOn.SetActive(false);
         constellationOff.SetActive(true);
     }
+
+
     public void OnButtonEnter()
     {
         constellationOn.SetActive(true);
