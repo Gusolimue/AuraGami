@@ -6,14 +6,15 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
-    string stage1CString = "Stage1Check";
-    string stage2SString = "Stage2Start";
-    
-    string stage2CString = "Stage2Check";
-    string stage3SString = "Stage3Start";
-    
-    string stage3CString = "Stage3Check";
-    string endString = "LevelEnd";
+    public static string stage1StartString = "Stage1Start";
+    public static string stage1CheckString = "Stage1Check";
+
+    public static string stage2StartString = "Stage2Start";
+    public static string stage2CheckString = "Stage2Check";
+
+    public static string stage3StartString = "Stage3Start";
+    public static string stage3CheckString = "Stage3Check";
+    public static string endString = "LevelEnd";
 
     bool stagePassed;
     private void Awake()
@@ -30,7 +31,7 @@ public class StageManager : MonoBehaviour
         Debug.Log("marker updated");
         string tmpMarker = BeatManager.Instance.timelineInfo.lastMarker;
 
-        if(tmpMarker == stage1CString)
+        if(tmpMarker == stage1CheckString)
         {
             AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
             AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
@@ -48,11 +49,11 @@ public class StageManager : MonoBehaviour
             //    APManager.Instance.ResetAP();
             //}
         }
-        else if (tmpMarker == stage2SString)
+        else if (tmpMarker == stage2StartString)
         {
             LevelManager.Instance.StartStage();
         }
-        else if (tmpMarker == stage2CString)
+        else if (tmpMarker == stage2CheckString)
         {
             AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
@@ -65,11 +66,11 @@ public class StageManager : MonoBehaviour
             //    APManager.Instance.ResetAP();
             //}
         }
-        else if (tmpMarker == stage3SString)
+        else if (tmpMarker == stage3StartString)
         {
             LevelManager.Instance.StartStage();
         }
-        else if (tmpMarker == stage3CString)
+        else if (tmpMarker == stage3CheckString)
         {
             AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();

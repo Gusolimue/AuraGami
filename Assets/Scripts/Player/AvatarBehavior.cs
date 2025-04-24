@@ -33,11 +33,13 @@ public class AvatarBehavior : MonoBehaviour
 
     IEnumerator CoEvolve(bool _pass)
     {
+
+        yield return new WaitForSeconds(1f);
         float count = 0;
         while(count < 1)
         {
             count += Time.deltaTime;
-            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
             yield return null;
         }
         count = 0;
@@ -47,7 +49,7 @@ public class AvatarBehavior : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count/(60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count/(60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
             if (eSide.right == side)
@@ -61,14 +63,14 @@ public class AvatarBehavior : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
             count = 0;
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.soTrack.bpm) * 2);
+                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
             if(eSide.right == side)
