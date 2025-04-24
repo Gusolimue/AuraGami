@@ -8,18 +8,21 @@ public class LevelManager : MonoBehaviour
     public static int beatsToPlayer = 8;
 
     [Header("Attributes To Set/Call"), Space]
-    public Level level;
+    //public Level level;
+    public SoLevel level;
     public static LevelManager Instance;
+    public GameObject[] threadedTargets;
 
     [Header("InGame Attributes"), Space]
     public static int currentStageIndex;
     public List<GameObject>[] instantiatedStages;
+    public int threadedCount = 0;
 
     GameObject[] stageContainers;
 
     GameObject[] trackPoints;
     int boardCount;
-
+    GameObject currentBoard;
     bool isSubscribed;
     private void Awake()
     {
@@ -32,6 +35,62 @@ public class LevelManager : MonoBehaviour
         StartStage();
     }
 
+    public void SpawnBoard(int num, List<Board> _stage, Transform transform, int _stageIndex = 0)
+    {
+        currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
+            as GameObject, transform);
+        foreach (var Target in _stage[num].interactables)
+        {
+            SpawnTarget(Target, _stageIndex);
+        }
+        if (_stage[num].interactables.Length == 0)
+        {
+            currentBoard.name = "Empty Board";
+        }
+        boardCount += 1;
+    }
+
+    //called to spawn every individual target when a board is spawned
+    void SpawnTarget(Interactable _target, int _index)
+    {
+        GameObject tmpObject;
+        switch (_target.interactableType)
+        {
+            case eTargetType.regularTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, currentBoard.transform);
+                break;
+            case eTargetType.multihitTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "multihitTargetPrefab")
+            as GameObject, currentBoard.transform);
+                break;
+            case eTargetType.threadedTarget:
+                //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
+                tmpObject = threadedTargets[threadedCount];
+                threadedCount++;
+                tmpObject.transform.SetParent(currentBoard.transform);
+                tmpObject.transform.localPosition = Vector3.zero;
+                break;
+            case eTargetType.precisionTarget:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
+            as GameObject, currentBoard.transform);
+                break;
+            case eTargetType.regularObstacle:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularObstaclePrefab")
+            as GameObject, currentBoard.transform);
+                break;
+            default:
+                tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
+            as GameObject, currentBoard.transform);
+                break;
+        }
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _index, boardCount, _target);
+        Quaternion tmpRot = new Quaternion();
+        tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
+        tmpObject.transform.localRotation *= tmpRot;
+        tmpObject.transform.Translate(Vector3.up * _target.interactableDistance);
+        tmpObject.transform.localRotation = Quaternion.identity;
+    }
     // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
     {
@@ -72,8 +131,8 @@ public class LevelManager : MonoBehaviour
         {
             for (int c = 0; c < level.GetStage(i + 1).Count; c++)
             {
-                level.SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform);
-                instantiatedStages[i].Add(level.currentBoard);
+                SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform);
+                instantiatedStages[i].Add(currentBoard);
                 instantiatedStages[i][c].SetActive(false);
 
             }

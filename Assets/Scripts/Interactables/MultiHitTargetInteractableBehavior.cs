@@ -33,7 +33,8 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         if (currentBeat > 0)
         {
             targetPos = multiPositions[currentPoint-1].transform.position;
-            transform.position = Vector3.Lerp(lastPos, targetPos, count);
+            transform.position = Vector3.Lerp(lastPos, targetPos, count * 2);
+            if (count * 2 > 1) isMoving = false;
         }
     }
 
@@ -58,19 +59,12 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
                 isMoving = true;
                 // Set target to be the next future point
                 UpdateMovementTarget();
-                Invoke("StopMoving", 0.1f);
             }
             else
             {
                 base.AvatarCollision();
             }
         }
-    }
-
-    // Allows the target to be hit again
-    void StopMoving()
-    {
-        isMoving = false;
     }
 
     // Instantiates the future points as empty game objects and moves them into place
