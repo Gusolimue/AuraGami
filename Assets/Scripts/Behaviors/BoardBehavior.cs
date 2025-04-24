@@ -32,9 +32,9 @@ public class BoardBehavior : MonoBehaviour
         //if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
         if (currentBeat >= 0)
         {
-            transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.soTrack.bpm));
+            transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.track.bpm));
         }
-        if(isStopped && (count / (60f / LevelManager.Instance.level.soTrack.bpm)) >= 1)
+        if(isStopped && (count / (60f / LevelManager.Instance.level.track.bpm)) >= 1)
         {
             StopMovement();
         }
