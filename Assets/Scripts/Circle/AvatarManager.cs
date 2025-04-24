@@ -34,6 +34,7 @@ public class AvatarManager : MonoBehaviour
     [SerializeField]
     public GameObject leftAvatar;
 
+    public GameObject cursorPrefab;
     GameObject rightObject;
     GameObject leftObject;
 
@@ -49,10 +50,8 @@ public class AvatarManager : MonoBehaviour
         playerCircDiameter = playerDiameter;
         avatarCircDiameter = avatarDiameter;
         GameObject tmpObject = Instantiate(new GameObject("Movement Targets"), this.transform);
-        rightObject = new GameObject("Right Movement Target");
-        leftObject = new GameObject("Left Movement Target");
-        rightObject.transform.SetParent(tmpObject.transform);
-        leftObject.transform.SetParent(tmpObject.transform);
+        rightObject = Instantiate(cursorPrefab, tmpObject.transform);
+        leftObject = Instantiate(cursorPrefab, tmpObject.transform);
     }
     private void Start()
     {
