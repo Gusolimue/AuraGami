@@ -74,12 +74,15 @@ public class APManager : MonoBehaviour
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
-            sigilSliderSpeed = 5f;
-            curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1) ] * _percent;
-            curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
-            curStreak = 0;
-            UpdateSigils();
-            UpdateAuraFX();
+            if (!SigilShieldBehavior.Instance.isShieldDown)
+            {
+                sigilSliderSpeed = 5f;
+                curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * _percent;
+                curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+                curStreak = 0;
+                UpdateSigils();
+                UpdateAuraFX();
+            }
         }
      
     }
@@ -96,7 +99,7 @@ public class APManager : MonoBehaviour
     }
     public void ResetAP()
     {
-        sigilSliderSpeed = 1f;
+        sigilSliderSpeed = .1f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();

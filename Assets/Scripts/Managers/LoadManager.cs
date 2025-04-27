@@ -48,7 +48,7 @@ public class LoadManager : MonoBehaviour
                 //CanvasManager.Instance.ShowCanvasLevelEnd();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
                 //CanvasManager.Instance.ShowCanvasSettings();
-                CanvasManager.Instance.ShowCanvasCredits();
+                //CanvasManager.Instance.ShowCanvasCredits();
                 AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 currentScene = 0;
                 break;
