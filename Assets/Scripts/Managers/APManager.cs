@@ -61,6 +61,7 @@ public class APManager : MonoBehaviour
             stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
     }
+
     public void IncreaseAP()
     {
         sigilSliderSpeed = 5f;
@@ -69,12 +70,19 @@ public class APManager : MonoBehaviour
         curStreak += 1;
         UpdateSigils();
         UpdateAuraFX();
+
+        if (sigil.maxValue >= 1f)
+        {
+            SigilShieldBehavior.Instance.isShieldUp = true;
+            SigilShieldBehavior.Instance.IncreaseShield();
+        }
     }
+
     public void DecreaseAP(float _percent)
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
-            if (!SigilShieldBehavior.Instance.isShieldDown)
+            if (!SigilShieldBehavior.Instance.isShieldUp)
             {
                 sigilSliderSpeed = 5f;
                 curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * _percent;
@@ -83,6 +91,11 @@ public class APManager : MonoBehaviour
                 UpdateSigils();
                 UpdateAuraFX();
             }
+            else
+            {
+                SigilShieldBehavior.Instance.DecreaseShield();
+            }
+
         }
      
     }

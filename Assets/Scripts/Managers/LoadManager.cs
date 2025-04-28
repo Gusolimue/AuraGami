@@ -43,7 +43,7 @@ public class LoadManager : MonoBehaviour
 
             case eScene.frontEnd:
                 //CanvasManager.Instance.ShowCanvasTitleScreen();
-                //CanvasManager.Instance.ShowCanvasFE();
+                CanvasManager.Instance.ShowCanvasFE();
                 //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
                 //CanvasManager.Instance.ShowCanvasLevelEnd();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
