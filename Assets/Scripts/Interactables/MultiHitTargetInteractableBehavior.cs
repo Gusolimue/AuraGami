@@ -69,18 +69,23 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     // Instantiates the future points as empty game objects and moves them into place
     public void SpawnTargetPoints()
     {
+
         int pointCount = 0; // Keeps track of the total number of target points
         int boardsMovedBack = 0; // Keeps track of the total boards moved back
         foreach (TargetPoints point in interactable.multiPoints)
         {
             pointCount++;
             boardsMovedBack += point.boardsMoved;
-            if(stageIndex > 0)
+            if (stageIndex > 0)
             {
-                Debug.Log(boardIndex+", "+stageIndex+", "+boardsMovedBack);
+                Debug.Log("boardto hit= "+(boardIndex + boardsMovedBack) +" and boardtojudge is = "+ LevelManager.Instance.instantiatedStages[stageIndex].Count);
             }
-            if(boardIndex + boardsMovedBack < LevelManager.Instance.instantiatedStages[stageIndex].Count)
+            if (boardIndex + boardsMovedBack < LevelManager.Instance.instantiatedStages[stageIndex].Count)
             {
+                if (stageIndex > 0)
+                {
+                    Debug.Log("im boarding baybe");
+                }
                 // Create and name the target point as a child of the correct board
                 GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount),
                     LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);

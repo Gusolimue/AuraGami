@@ -136,12 +136,12 @@ public class LevelManager : MonoBehaviour
                 instantiatedStages[i][c].SetActive(false);
 
             }
+            boardCount = 0;
         }
         foreach (var stage in instantiatedStages)
         {
             foreach (var board in stage)
             {
-                Debug.Log("spawning target points");
                 foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())
                 {
                     behavior.SpawnTargetPoints();

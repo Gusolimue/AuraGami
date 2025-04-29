@@ -13,6 +13,9 @@ public class APManager : MonoBehaviour
     public float sigilSliderSpeed = 5f;
     private float targetSigilValue = 0f;
     [Space]
+    [Header("Cheats")]
+    [SerializeField]bool forceSuccess = false;
+    [Space]
 
 
     [Header("In Game Info")]
@@ -40,6 +43,7 @@ public class APManager : MonoBehaviour
 
     private void Update()
     {
+        if (forceSuccess) curAP = 12;
         sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, Time.deltaTime * sigilSliderSpeed);
     }
 
