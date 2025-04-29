@@ -71,7 +71,7 @@ public class APManager : MonoBehaviour
         UpdateSigils();
         UpdateAuraFX();
 
-        if (sigil.maxValue >= 1f)
+        if (sigil.value >= 1f)
         {
             SigilShieldBehavior.Instance.isShieldUp = true;
             SigilShieldBehavior.Instance.IncreaseShield();

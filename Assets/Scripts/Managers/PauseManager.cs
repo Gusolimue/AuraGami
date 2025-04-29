@@ -56,7 +56,6 @@ public class PauseManager : MonoBehaviour
         }
         else if (isPaused == true)
         {
-            isPaused = false;
             PauseMenu.Instance.OnResumeGameButtonPressed();
             Debug.Log("Is Unpaused!");
         }
