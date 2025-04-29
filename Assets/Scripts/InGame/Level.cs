@@ -334,6 +334,8 @@ public class Board
 }
 //an interactable to be set for a board
 public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisionTarget,  regularObstacle }
+public enum eOrientation { vertical, horizontal }
+public enum eSize { small, medium, large}
 [System.Serializable]
 public class Interactable
 {
@@ -343,9 +345,11 @@ public class Interactable
     public int interactableAngle;
     [Range(0f, 1f)]
     public float interactableDistance;
-
     public TargetPoints[] multiPoints;
-
+    [FoldoutGroup("ObstacleSettings", nameof(obstacleOrientation), nameof(obstacleSize))]
+    [SerializeField] VoidStructure obstacleSettingsHolder;
+    [HideInInspector] public eOrientation obstacleOrientation;
+    [HideInInspector] public eSize obstacleSize;
     public Interactable(eTargetType _interactableType, eSide _side, int _interactableAngle, float _interactableDistance, TargetPoints[] _multiPoints = null)
     {
         interactableType = _interactableType;
