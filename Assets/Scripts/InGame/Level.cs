@@ -42,18 +42,21 @@ public class Level : MonoBehaviour
         for (int i = 0; i < stage1.Count; i++)
         {
             SpawnBoard(i, stage1, stage1Preview.transform, 0);
+            boardCount = 0;
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
         for (int i = 0; i < stage2.Count; i++)
         {
             SpawnBoard(i, stage2, stage2Preview.transform, 1);
+            boardCount = 0;
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
         for (int i = 0; i < stage3.Count; i++)
         {
             SpawnBoard(i, stage3, stage3Preview.transform, 2);
+            boardCount = 0;
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
