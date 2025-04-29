@@ -65,16 +65,22 @@ public class APManager : MonoBehaviour
     public void IncreaseAP()
     {
         sigilSliderSpeed = 5f;
+        SigilShieldBehavior.Instance.shieldPoints++;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
         curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
         curStreak += 1;
         UpdateSigils();
         UpdateAuraFX();
 
-        if (sigil.value >= 1f)
+        if (sigil.value >= .999f)
         {
             SigilShieldBehavior.Instance.isShieldUp = true;
-            SigilShieldBehavior.Instance.IncreaseShield();
+
+            if (SigilShieldBehavior.Instance.shieldPoints >= 5)
+            {
+                SigilShieldBehavior.Instance.shieldPoints = 0;
+                SigilShieldBehavior.Instance.IncreaseShield();
+            }
         }
     }
 
@@ -112,10 +118,11 @@ public class APManager : MonoBehaviour
     }
     public void ResetAP()
     {
-        sigilSliderSpeed = .1f;
+        sigilSliderSpeed = 1f;
         curAP = 0;
         UpdateSigils();
         UpdateAuraFX();
+        SigilShieldBehavior.Instance.ShieldReset();
     }
     public void UpdateSigils()
     {

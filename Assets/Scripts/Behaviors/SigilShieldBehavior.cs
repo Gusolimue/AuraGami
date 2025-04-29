@@ -19,6 +19,7 @@ public class SigilShieldBehavior : MonoBehaviour
 
     public bool isShieldUp;
     public float transitionSpeed = 5f;
+    public int shieldPoints;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class SigilShieldBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (shieldNum == 0)
+        /*if (shieldNum == 0)
         {
             shieldBarMeter[0].color = Color.Lerp(shieldBarMeter[0].color, transparent,
                  Time.deltaTime * transitionSpeed);
@@ -70,17 +71,24 @@ public class SigilShieldBehavior : MonoBehaviour
         {
             shieldBarMeter[2].color = Color.Lerp(shieldBarMeter[0].color, noneTransparent,
                 Time.deltaTime * transitionSpeed);
-        }
+        }*/
+
     }
 
     public void IncreaseShield()
     {
-        if (shieldNum <= 3) shieldNum++; shieldBar.value += .33f;
+        if (shieldNum <= 3 && shieldPoints >= 5) shieldNum++; shieldBar.value += .33f;
     }
 
     public void DecreaseShield()
     {
         if (shieldNum >= 0) shieldNum--; shieldBar.value -= .33f;
+    }
+
+    public void ShieldReset()
+    {
+        shieldNum = 0;
+        shieldBar.value = 0f;
     }
 
 }
