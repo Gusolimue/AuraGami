@@ -145,7 +145,7 @@ public class AudioManager : MonoBehaviour
     }
     public void SetVolume(eBus _bus, float _value)
     {
-        FMOD.Studio.bus
+        //FMOD.Studio.bus
         switch (_bus)
         {
             case eBus.Master:
