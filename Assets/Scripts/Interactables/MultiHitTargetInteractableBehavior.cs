@@ -58,6 +58,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
                 isMoving = true;
                 // Set target to be the next future point
                 UpdateMovementTarget();
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
             }
             else
             {
@@ -76,16 +77,8 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         {
             pointCount++;
             boardsMovedBack += point.boardsMoved;
-            if (stageIndex > 0)
-            {
-                Debug.Log("boardto hit= "+(boardIndex + boardsMovedBack) +" and boardtojudge is = "+ LevelManager.Instance.instantiatedStages[stageIndex].Count);
-            }
             if (boardIndex + boardsMovedBack < LevelManager.Instance.instantiatedStages[stageIndex].Count)
             {
-                if (stageIndex > 0)
-                {
-                    Debug.Log("im boarding baybe");
-                }
                 // Create and name the target point as a child of the correct board
                 GameObject tmpObject = Instantiate(new GameObject("TargetPoint " + pointCount),
                     LevelManager.Instance.GetSpawnedBoard(boardIndex + boardsMovedBack, stageIndex).transform);
@@ -95,6 +88,10 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
                 tmpObject.transform.Translate(Vector3.up * point.interactableDistance);
                 tmpObject.transform.localRotation = Quaternion.identity;
                 multiPositions.Add(tmpObject);
+            }
+            else
+            {
+                Debug.LogError("Multi points placed too far back");
             }
 
         }

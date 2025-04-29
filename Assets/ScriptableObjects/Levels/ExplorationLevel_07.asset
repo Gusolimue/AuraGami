@@ -373,11 +373,14 @@ MonoBehaviour:
   - eventString: LevelEnd
   stage1:
   - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 1
-      interactableAngle: 320
-      interactableDistance: 0.3
-      multiPoints: []
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 0
+        interactableDistance: 0
   - interactables: []
   - interactables:
     - interactableType: 0
@@ -813,11 +816,14 @@ MonoBehaviour:
       multiPoints: []
   stage2:
   - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 1
       interactableAngle: 320
       interactableDistance: 0.3
-      multiPoints: []
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 0
+        interactableDistance: 0
   - interactables: []
   - interactables:
     - interactableType: 0

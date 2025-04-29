@@ -5,7 +5,7 @@
 			<value>SandTargetHitSFX</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4837dab4-c13b-4543-b8d0-a6505180ffd6}</destination>
@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{d11fb496-26d6-454e-a3fe-a78b00574b1a}">
+		<property name="volume">
+			<value>-9.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{565ec249-3606-4f3d-b121-5ac58919e839}</destination>
 		</relationship>
@@ -96,16 +99,40 @@
 	<object class="MixerBusEffectChain" id="{565ec249-3606-4f3d-b121-5ac58919e839}">
 		<relationship name="effects">
 			<destination>{e000be2b-d415-45a7-aac4-8a6f1cbec330}</destination>
-			<destination>{873f4b54-8fa9-45ff-8aee-1df3b4029690}</destination>
+			<destination>{bca9be4f-b4dc-453f-949a-930a1fb94a56}</destination>
+			<destination>{5581bc65-db2f-4e6a-b677-761e48936755}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{98774e26-38a0-4ebb-b984-c92e2b548bf8}" />
 	<object class="SingleSound" id="{d8b98fbb-d038-433d-93df-9dd653c44604}">
 		<relationship name="audioFile">
-			<destination>{63a6cb13-146c-4943-b214-a14b94a001c3}</destination>
+			<destination>{6d78cb74-2568-4a99-bfa4-07c5f73d5b4f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{23f8fd14-e452-4832-9491-788b1b397bf4}" />
 	<object class="MixerBusFader" id="{e000be2b-d415-45a7-aac4-8a6f1cbec330}" />
-	<object class="SpatialiserEffect" id="{873f4b54-8fa9-45ff-8aee-1df3b4029690}" />
+	<object class="PitchShifterEffect" id="{bca9be4f-b4dc-453f-949a-930a1fb94a56}">
+		<property name="pitch">
+			<value>0.930000007</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{3e779bc7-ff56-4a7c-ab49-6cf1f9cd0ab1}</destination>
+		</relationship>
+	</object>
+	<object class="MultibandEqEffect" id="{5581bc65-db2f-4e6a-b677-761e48936755}">
+		<property name="frequencyA">
+			<value>10458.5479</value>
+		</property>
+		<property name="qualityA">
+			<value>2.51724148</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{3e779bc7-ff56-4a7c-ab49-6cf1f9cd0ab1}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>3.5</value>
+		</property>
+	</object>
 </objects>

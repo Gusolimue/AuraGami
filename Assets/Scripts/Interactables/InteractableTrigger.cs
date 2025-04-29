@@ -18,7 +18,7 @@ public class InteractableTrigger : MonoBehaviour
 
         if (ab != null && GetComponentInParent<BaseInteractableBehavior>() != null)
         {
-            if(ab.side == GetComponentInParent<BaseInteractableBehavior>().side || GetComponentInParent<BaseInteractableBehavior>().side == eSide.any)
+            if (ab.side == GetComponentInParent<BaseInteractableBehavior>().side || GetComponentInParent<BaseInteractableBehavior>().side == eSide.any)
             {
                 GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
             }
@@ -27,6 +27,17 @@ public class InteractableTrigger : MonoBehaviour
                 if (ab.side == eSide.left) leftTriggered = true;
                 if (ab.side == eSide.right) rightTriggered = true;
                 if (leftTriggered == rightTriggered == true) GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
+            }
+            else if (GetComponentInParent<HazardInteractableBehavior>() != null)
+            {
+                GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
+            }
+        }
+        else if (other.GetComponent<PlayerTrigger>() != null)
+        {
+            if (GetComponentInParent<HazardInteractableBehavior>() != null)
+            {
+                GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
             }
         }
     }
