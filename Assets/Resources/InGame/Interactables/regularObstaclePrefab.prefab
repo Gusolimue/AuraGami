@@ -45,22 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea8c16882b867649b9a13e7fd9a58c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
-  rightMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
-  anyMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
-  bothMat: {fileID: 0}
   interactableRenderer: {fileID: 6138565383161227328}
   side: 2
+  type: 0
   fadeOutTime: 0
+  dontDestroy: 0
   interactable:
     interactableType: 0
     side: 0
     interactableAngle: 0
     interactableDistance: 0
     multiPoints: []
+    obstacleOrientation: 0
+    obstacleSize: 0
   stageIndex: 0
   boardIndex: 0
   damageAmount: 1
+  smallScale: {x: 1, y: 1, z: 1}
+  mediumScale: {x: 1, y: 2, z: 1}
+  largeScale: {x: 2, y: 3.5, z: 1}
 --- !u!1 &5420210627931808595
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +96,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.012500001, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4827470004922365009}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
