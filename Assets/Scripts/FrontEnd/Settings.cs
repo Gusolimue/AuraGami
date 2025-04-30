@@ -3,13 +3,6 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     [SerializeField] GameObject[] settingMenus;
-    [SerializeField] GameObject settingsBG_TMP;
-
-    private void Awake()
-    {
-        if (LoadManager.Instance.currentScene == 0) settingsBG_TMP.SetActive(false);
-        if (LoadManager.Instance.currentScene >= 1) settingsBG_TMP.SetActive(true);
-    }
 
     public void OnBackButtonPressed() // When pressed, destroys Canvas_Settings and instantiates Canvas_FrontEnd.
     {

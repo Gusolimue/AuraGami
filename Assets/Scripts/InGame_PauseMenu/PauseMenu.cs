@@ -30,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         PauseManager.Instance.yataAvatar.SetActive(true);
         PauseManager.Instance.naginiAvatar.SetActive(true);
         PauseManager.Instance.progressBar.SetActive(true);
+        PauseManager.Instance.menuBG.SetActive(false);
         PauseManager.Instance.StartCountdown();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);

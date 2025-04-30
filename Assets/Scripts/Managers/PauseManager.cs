@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
     public InputActionReference openPauseMenuAction;
+    [SerializeField] public GameObject menuBG;
     public bool isPaused = false;
 
     [Header("Avatars/UI")]
@@ -23,14 +24,11 @@ public class PauseManager : MonoBehaviour
     {
         Instance = this;
         countdownTimer_TXT.gameObject.SetActive(false);
+        menuBG.SetActive(false);
+
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
-    }
-    private void Start()
-    {
-        //moved this to start because you cant refer to another instance (beatmanager) in awake
-        //PauseGame(false);
     }
 
     private void OnDestroy()
@@ -40,8 +38,6 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-
-
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
         if (isPaused == false)
@@ -50,6 +46,7 @@ public class PauseManager : MonoBehaviour
             naginiAvatar.SetActive(false);
             yataAvatar.SetActive(false);
             progressBar.SetActive(false);
+            menuBG.SetActive(true);
             isPaused = true;
             BeatManager.Instance.PauseMusicTMP(true);
             Debug.Log("Is Paused!");
