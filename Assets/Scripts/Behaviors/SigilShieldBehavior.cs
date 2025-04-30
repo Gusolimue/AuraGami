@@ -17,7 +17,6 @@ public class SigilShieldBehavior : MonoBehaviour
     [SerializeField] Color transparent;
     [SerializeField] Color noneTransparent;
 
-    public bool isShieldUp;
     public float transitionSpeed = 5f;
     public int shieldPoints;
 
@@ -26,7 +25,6 @@ public class SigilShieldBehavior : MonoBehaviour
         Instance = this;
         shieldNum = 0;
         shieldBar.value = 0f;
-        isShieldUp = false;
 
         for(int i = 0; i < shieldBarMeter.Length; i++)
         {

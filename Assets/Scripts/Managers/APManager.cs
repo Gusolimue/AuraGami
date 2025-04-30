@@ -73,18 +73,12 @@ public class APManager : MonoBehaviour
 
         if (sigil.value >= .999f)
         {
-            SigilShieldBehavior.Instance.isShieldUp = true;
             SigilShieldBehavior.Instance.shieldPoints++;
 
             if (SigilShieldBehavior.Instance.shieldPoints >= 5)
             {
                 SigilShieldBehavior.Instance.shieldPoints = 0;
                 SigilShieldBehavior.Instance.IncreaseShield();
-            }
-
-            if (SigilShieldBehavior.Instance.shieldNum == 0)
-            {
-                SigilShieldBehavior.Instance.isShieldUp = false;
             }
         }
     }
@@ -93,7 +87,7 @@ public class APManager : MonoBehaviour
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
-            if (!SigilShieldBehavior.Instance.isShieldUp)
+            if (SigilShieldBehavior.Instance.shieldNum <= 0)
             {
                 sigilSliderSpeed = 5f;
                 curAP -= stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * _percent;
