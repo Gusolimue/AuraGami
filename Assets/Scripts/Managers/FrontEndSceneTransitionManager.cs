@@ -66,7 +66,11 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         }
         if(SceneManager.GetActiveScene().buildIndex != (int)eScene.frontEnd)
         {
-            BeatManager.Instance.StartSong();
+            if((eScene)SceneManager.GetActiveScene().buildIndex != eScene.splashScene)
+            {
+                Debug.Log((eScene)SceneManager.GetActiveScene().buildIndex);
+                BeatManager.Instance.StartSong();
+            }
         }
     }
 
