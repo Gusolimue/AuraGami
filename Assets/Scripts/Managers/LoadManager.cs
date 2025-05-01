@@ -5,11 +5,26 @@ public enum eScene { splashScene, frontEnd, levelFreedom, levelExploration } // 
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
+    public int isTitleScreen;
     public int currentScene;
+
+    private void Start()
+    {
+        isTitleScreen = 0;
+    }
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("Destory New LoadManager");
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     private void OnEnable()
@@ -22,17 +37,6 @@ public class LoadManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void IntoLevelSceneTransition() // Basic transition scene transition method that will be called when Play is pressed 
-                                  // in the FrontEnd.
-    {
-        SceneManager.LoadScene("TargetPrototypeScene - Nathan");
-    }
-
-    public void IntoFrontEndSceneTransition() 
-    {
-        SceneManager.LoadScene("FrontEndPrototypeScene - Nathan");
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("<color=yellow>SceneLoaded " + scene.name + "</color>");
@@ -42,8 +46,16 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.frontEnd:
-                CanvasManager.Instance.ShowCanvasTitleScreen();
-                //CanvasManager.Instance.ShowCanvasFE();
+                if (isTitleScreen == 0)
+                {
+                    CanvasManager.Instance.ShowCanvasTitleScreen();
+                    Debug.Log("HELLO");
+                }
+                else if (isTitleScreen == 1)
+                {
+                    CanvasManager.Instance.ShowCanvasFE();
+                }
+               
                 //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
                 //CanvasManager.Instance.ShowCanvasLevelEnd();
                 //CanvasManager.Instance.ShowCanvasLevelSelect();
