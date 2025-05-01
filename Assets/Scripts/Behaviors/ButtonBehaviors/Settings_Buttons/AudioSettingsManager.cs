@@ -42,7 +42,7 @@ public class AudioSettingsManager : MonoBehaviour
         masterAudioSliderValue = value;
         PlayerPrefs.SetFloat("save", masterAudioSliderValue);
         PlayerPrefs.Save();
-        
+        AudioManager.Instance.SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
 
     }
 }
