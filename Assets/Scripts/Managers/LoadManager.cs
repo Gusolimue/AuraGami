@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum eScene { frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
+public enum eScene { splashScene, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -38,6 +38,9 @@ public class LoadManager : MonoBehaviour
         Debug.Log("<color=yellow>SceneLoaded " + scene.name + "</color>");
         switch ((eScene)scene.buildIndex)
         {
+            case eScene.splashScene:
+                break;
+
             case eScene.frontEnd:
                 CanvasManager.Instance.ShowCanvasTitleScreen();
                 //CanvasManager.Instance.ShowCanvasFE();
