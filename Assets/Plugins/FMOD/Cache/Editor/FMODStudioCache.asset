@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8983683805872052239
+--- !u!114 &-8943036723659366158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,41 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Menu button hover
+  m_Name: event:/SFX/TempButtonSFX
   m_EditorClassIdentifier: 
-  Path: event:/Menu button hover
+  Path: event:/SFX/TempButtonSFX
   Guid:
-    Data1: -1962516953
-    Data2: 1100938450
-    Data3: -1305164878
-    Data4: -1502436500
-  Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-8761582332109207929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/apple Sand 8
-  m_EditorClassIdentifier: 
-  Path: event:/apple Sand 8
-  Guid:
-    Data1: -1597263419
-    Data2: 1251840378
-    Data3: 152948403
-    Data4: 2139335325
+    Data1: -1335558384
+    Data2: 1156839809
+    Data3: 113168257
+    Data4: -1848579889
   Banks:
   - {fileID: -3021294445542517383}
   IsStream: 0
@@ -54,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-8011159140016980104
+--- !u!114 &-7981934357228912989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,14 +37,68 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TempButtonSFX
+  m_Name: event:/SFX/TempHitSFX
   m_EditorClassIdentifier: 
-  Path: event:/TempButtonSFX
+  Path: event:/SFX/TempHitSFX
   Guid:
-    Data1: -1335558384
-    Data2: 1156839809
-    Data3: 113168257
-    Data4: -1848579889
+    Data1: 587661018
+    Data2: 1264140451
+    Data3: -459969656
+    Data4: 1274420188
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7581040803726124181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/sandTargetHitSFX
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/sandTargetHitSFX
+  Guid:
+    Data1: 541934514
+    Data2: 1211792651
+    Data3: 1591307193
+    Data4: 40799201
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7254123723112582283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/lvlplanetflash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/lvlplanetflash
+  Guid:
+    Data1: 583182982
+    Data2: 1137362448
+    Data3: 1617123255
+    Data4: 502342849
   Banks:
   - {fileID: -3021294445542517383}
   IsStream: 0
@@ -96,12 +123,12 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638804506117572103
+  lastModified: 638816916537701092
   FileSizes:
   - Name: Desktop
-    Value: 1640
+    Value: 1926
   Exists: 1
---- !u!114 &-6128392783484299489
+--- !u!114 &-6142607664795385130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,23 +138,104 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music Exploration
+  m_Name: event:/SFX/game start button (fast)
   m_EditorClassIdentifier: 
-  Path: event:/Music Exploration
+  Path: event:/SFX/game start button (fast)
   Guid:
-    Data1: 798901528
-    Data2: 1184837519
-    Data3: -475216463
-    Data4: -1713826036
+    Data1: -817298105
+    Data2: 1203603602
+    Data3: 1779884954
+    Data4: 728479046
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5885784521250927191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music Freedom
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music Freedom
+  Guid:
+    Data1: -1014673978
+    Data2: 1172892062
+    Data3: -1242862152
+    Data4: 489049943
   Banks:
   - {fileID: -3650474956869360250}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 133500
+  Length: 134605
+--- !u!114 &-5282253254035778011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/game start button (slow)
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/game start button (slow)
+  Guid:
+    Data1: 1237727529
+    Data2: 1140475651
+    Data3: 839739064
+    Data4: -568472676
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4934387557607459772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Apple Sand 8
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Apple Sand 8
+  Guid:
+    Data1: -1597263419
+    Data2: 1251840378
+    Data3: 152948403
+    Data4: 2139335325
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3650474956869360250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,12 +251,12 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638816452346481773
+  lastModified: 638816916538259540
   FileSizes:
   - Name: Desktop
-    Value: 6708160
+    Value: 9222080
   Exists: 1
---- !u!114 &-3403576289085422417
+--- !u!114 &-3161219095521329788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,23 +266,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/CloudTargetHitSFX
+  m_Name: event:/Music/Auragami piano prototype 1_9 (184bpm)(1)
   m_EditorClassIdentifier: 
-  Path: event:/CloudTargetHitSFX
+  Path: event:/Music/Auragami piano prototype 1_9 (184bpm)(1)
   Guid:
-    Data1: -477810160
-    Data2: 1128507888
-    Data3: 1890958779
-    Data4: -1389941290
+    Data1: -169602415
+    Data2: 1259162112
+    Data3: 52397190
+    Data4: 989749410
   Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 1
+  - {fileID: -3650474956869360250}
+  IsStream: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 229497
 --- !u!114 &-3021294445542517383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,12 +298,12 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638816452346517257
+  lastModified: 638816916538302200
   FileSizes:
   - Name: Desktop
-    Value: 268480
+    Value: 479104
   Exists: 1
---- !u!114 &-1546856732508677928
+--- !u!114 &-2687153198284009706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,14 +313,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TempHitSFX
+  m_Name: event:/SFX/lvlplanetgrab
   m_EditorClassIdentifier: 
-  Path: event:/TempHitSFX
+  Path: event:/SFX/lvlplanetgrab
   Guid:
-    Data1: 587661018
-    Data2: 1264140451
-    Data3: -459969656
-    Data4: 1274420188
+    Data1: -2090222520
+    Data2: 1260062904
+    Data3: -1781720170
+    Data4: 818113567
   Banks:
   - {fileID: -3021294445542517383}
   IsStream: 0
@@ -222,7 +330,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-935192144085069344
+--- !u!114 &-1420094223572774226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,14 +340,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/game start button (slow)
+  m_Name: event:/SFX/CloudTargetHitSFX
   m_EditorClassIdentifier: 
-  Path: event:/game start button (slow)
+  Path: event:/SFX/CloudTargetHitSFX
   Guid:
-    Data1: 1237727529
-    Data2: 1140475651
-    Data3: 839739064
-    Data4: -568472676
+    Data1: -477810160
+    Data2: 1128507888
+    Data3: 1890958779
+    Data4: -1389941290
   Banks:
   - {fileID: -3021294445542517383}
   IsStream: 0
@@ -249,6 +357,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1128652433738194398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/stage transition
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/stage transition
+  Guid:
+    Data1: -1806385996
+    Data2: 1320395032
+    Data3: -644532305
+    Data4: -1759823078
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 23803
+--- !u!114 &-136760784944110913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music Exploration
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music Exploration
+  Guid:
+    Data1: 798901528
+    Data2: 1184837519
+    Data3: -475216463
+    Data4: -1713826036
+  Banks:
+  - {fileID: -3650474956869360250}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 133500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,28 +429,31 @@ MonoBehaviour:
   - {fileID: -3650474956869360250}
   - {fileID: -3021294445542517383}
   EditorEvents:
-  - {fileID: -6128392783484299489}
-  - {fileID: 8453745232188434322}
-  - {fileID: 608652510675965888}
-  - {fileID: 8713613161399019441}
-  - {fileID: 490993252001735921}
-  - {fileID: -3403576289085422417}
-  - {fileID: -8011159140016980104}
-  - {fileID: -8983683805872052239}
-  - {fileID: -935192144085069344}
-  - {fileID: 4157860852810414830}
-  - {fileID: 1105877103035787563}
-  - {fileID: -1546856732508677928}
-  - {fileID: 2081360664806886089}
-  - {fileID: 5382602779488929154}
-  - {fileID: 3066877223095826390}
-  - {fileID: -8761582332109207929}
+  - {fileID: -136760784944110913}
+  - {fileID: 3832997919698179419}
+  - {fileID: 5697454062259778136}
+  - {fileID: 5545594688029571048}
+  - {fileID: -3161219095521329788}
+  - {fileID: -5885784521250927191}
+  - {fileID: 1100247014805837648}
+  - {fileID: -1420094223572774226}
+  - {fileID: -8943036723659366158}
+  - {fileID: 6438749302911225795}
+  - {fileID: -5282253254035778011}
+  - {fileID: -6142607664795385130}
+  - {fileID: -2687153198284009706}
+  - {fileID: -7254123723112582283}
+  - {fileID: -7581040803726124181}
+  - {fileID: -1128652433738194398}
+  - {fileID: -4934387557607459772}
+  - {fileID: -7981934357228912989}
+  - {fileID: 5817177052084138768}
   EditorParameters: []
   MasterBanks:
   - {fileID: 165366598516643150}
   StringsBanks:
   - {fileID: -6835896208683744630}
-  cacheTime: 638816452346517257
+  cacheTime: 638816916538302200
   cacheVersion: 131622
 --- !u!114 &165366598516643150
 MonoBehaviour:
@@ -305,12 +470,12 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638804506117546403
+  lastModified: 638816916537691104
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1340
   Exists: 1
---- !u!114 &490993252001735921
+--- !u!114 &1100247014805837648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,149 +485,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music Freedom
+  m_Name: event:/SFX/sand target sfx faster
   m_EditorClassIdentifier: 
-  Path: event:/Music Freedom
+  Path: event:/SFX/sand target sfx faster
   Guid:
-    Data1: -1014673978
-    Data2: 1172892062
-    Data3: -1242862152
-    Data4: 489049943
-  Banks:
-  - {fileID: -3650474956869360250}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 134605
---- !u!114 &608652510675965888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music Freedom (Metronome)
-  m_EditorClassIdentifier: 
-  Path: event:/Music Freedom (Metronome)
-  Guid:
-    Data1: -1728079738
-    Data2: 1233896698
-    Data3: 1015743874
-    Data4: 2050571848
-  Banks:
-  - {fileID: -3650474956869360250}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 134605
---- !u!114 &1105877103035787563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SandTargetHitSFX
-  m_EditorClassIdentifier: 
-  Path: event:/SandTargetHitSFX
-  Guid:
-    Data1: 541934514
-    Data2: 1211792651
-    Data3: 1591307193
-    Data4: 40799201
-  Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2081360664806886089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MissedTargetSFX002
-  m_EditorClassIdentifier: 
-  Path: event:/MissedTargetSFX002
-  Guid:
-    Data1: -1669819425
-    Data2: 1338443173
-    Data3: -774720349
-    Data4: 1066764925
-  Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1050
---- !u!114 &3066877223095826390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/lvlplanetflash
-  m_EditorClassIdentifier: 
-  Path: event:/lvlplanetflash
-  Guid:
-    Data1: 583182982
-    Data2: 1137362448
-    Data3: 1617123255
-    Data4: 502342849
-  Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &4157860852810414830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/game start button (fast)
-  m_EditorClassIdentifier: 
-  Path: event:/game start button (fast)
-  Guid:
-    Data1: -817298105
-    Data2: 1203603602
-    Data3: 1779884954
-    Data4: 728479046
+    Data1: 1874166026
+    Data2: 1200957137
+    Data3: 355444885
+    Data4: -1274898595
   Banks:
   - {fileID: -3021294445542517383}
   IsStream: 0
@@ -472,7 +502,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &5382602779488929154
+--- !u!114 &3832997919698179419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,36 +512,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/lvlplanetgrab
+  m_Name: event:/Music/Music Front End
   m_EditorClassIdentifier: 
-  Path: event:/lvlplanetgrab
-  Guid:
-    Data1: -2090222520
-    Data2: 1260062904
-    Data3: -1781720170
-    Data4: 818113567
-  Banks:
-  - {fileID: -3021294445542517383}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &8453745232188434322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music Front End
-  m_EditorClassIdentifier: 
-  Path: event:/Music Front End
+  Path: event:/Music/Music Front End
   Guid:
     Data1: 14520359
     Data2: 1200985844
@@ -526,7 +529,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 167272
---- !u!114 &8713613161399019441
+--- !u!114 &5545594688029571048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -536,14 +539,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/auragami piano prototype 1_9 (184bpm)(1)
+  m_Name: event:/Music/Music Freedom (Metronome)
   m_EditorClassIdentifier: 
-  Path: event:/auragami piano prototype 1_9 (184bpm)(1)
+  Path: event:/Music/Music Freedom (Metronome)
   Guid:
-    Data1: -169602415
-    Data2: 1259162112
-    Data3: 52397190
-    Data4: 989749410
+    Data1: -1728079738
+    Data2: 1233896698
+    Data3: 1015743874
+    Data4: 2050571848
   Banks:
   - {fileID: -3650474956869360250}
   IsStream: 1
@@ -552,4 +555,85 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 229497
+  Length: 134605
+--- !u!114 &5697454062259778136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/AuragamiExploration001_mixdown
+  m_EditorClassIdentifier: 
+  Path: event:/Music/AuragamiExploration001_mixdown
+  Guid:
+    Data1: 492333405
+    Data2: 1120156794
+    Data3: -2125727048
+    Data4: -1898345033
+  Banks:
+  - {fileID: -3650474956869360250}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 234048
+--- !u!114 &5817177052084138768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/missedTargetSFX002
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/missedTargetSFX002
+  Guid:
+    Data1: -1669819425
+    Data2: 1338443173
+    Data3: -774720349
+    Data4: 1066764925
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1050
+--- !u!114 &6438749302911225795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/menu button hover
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/menu button hover
+  Guid:
+    Data1: -1962516953
+    Data2: 1100938450
+    Data3: -1305164878
+    Data4: -1502436500
+  Banks:
+  - {fileID: -3021294445542517383}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
