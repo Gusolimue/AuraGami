@@ -34,6 +34,11 @@ public class AvatarBehavior : MonoBehaviour
         animator.SetTrigger("OnDamage");
     }
 
+    public void StreakEnabled()
+    {
+        animator.SetTrigger("OnStreak");
+    }
+
     IEnumerator CoEvolve(bool _pass)
     {
 

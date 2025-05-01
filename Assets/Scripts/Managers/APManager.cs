@@ -21,6 +21,7 @@ public class APManager : MonoBehaviour
     [Header("In Game Info")]
     public int curStreak;
     public float curAP;
+    bool streakAnimation = false;
     [SerializeField] int[] stageTargetTotals;
     [SerializeField] float[] stageTargetValues;
 
@@ -35,6 +36,7 @@ public class APManager : MonoBehaviour
     {
         Instance = this;
         curAP = 0;
+        ResetStreak();
         stageTargetTotals = new int[3];
         stageTargetValues = new float[3];
         UpdateSigils();
@@ -69,9 +71,10 @@ public class APManager : MonoBehaviour
     public void IncreaseAP()
     {
         sigilSliderSpeed = 5f;
-        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)] * multLevels[Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1 )];
+        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)]
+            * multLevels[GetStreakIndex(1)];
         curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
-        curStreak += 1;
+
         UpdateSigils();
         UpdateAuraFX();
 
@@ -86,7 +89,25 @@ public class APManager : MonoBehaviour
             }
         }
     }
+    int GetStreakIndex(int _change = 0)
+    {
+        int tmpReturn = 0;
+        curStreak += _change;
+        if (curStreak%multIncrementStreak <= 0 && curStreak < multIncrementStreak * multLevels.Length)
+        {
+            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
+            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
+        }
+        curStreak = Mathf.FloorToInt(Mathf.Clamp(curStreak, 0, Mathf.Infinity));
+        tmpReturn = Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1);
+        return tmpReturn;
 
+    }
+    void ResetStreak()
+    {
+        curStreak = 0;
+        streakAnimation = false;
+    }
     public void DecreaseAP(float _percent)
     {
         if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
@@ -123,6 +144,7 @@ public class APManager : MonoBehaviour
     {
         sigilSliderSpeed = 1f;
         curAP = 0;
+        curStreak = 0;
         UpdateSigils();
         UpdateAuraFX();
         SigilShieldBehavior.Instance.ShieldReset();
