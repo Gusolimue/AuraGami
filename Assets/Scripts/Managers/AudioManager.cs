@@ -84,8 +84,8 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat("save", .4f);
             SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
         }
-        SetVolume(eBus.SFX, 1f);
-        SetVolume(eBus.Music, .1f);
+        SetVolume(eBus.SFX, .4f);
+        SetVolume(eBus.Music, .4f);
     }
 
     public void PlaySFX(EventReference sfxEvent)

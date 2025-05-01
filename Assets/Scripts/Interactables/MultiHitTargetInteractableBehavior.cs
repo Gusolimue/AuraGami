@@ -62,6 +62,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
             }
             else
             {
+                APManager.Instance.IncreaseAP();
                 base.AvatarCollision();
             }
         }
