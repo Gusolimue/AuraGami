@@ -42,18 +42,21 @@ public class Level : MonoBehaviour
         for (int i = 0; i < stage1.Count; i++)
         {
             SpawnBoard(i, stage1, stage1Preview.transform, 0);
+            boardCount = 0;
             currentBoard.transform.position += new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
         for (int i = 0; i < stage2.Count; i++)
         {
             SpawnBoard(i, stage2, stage2Preview.transform, 1);
+            boardCount = 0;
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
         tmpLastBoard = currentBoard;
         for (int i = 0; i < stage3.Count; i++)
         {
             SpawnBoard(i, stage3, stage3Preview.transform, 2);
+            boardCount = 0;
             currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
         }
     }
@@ -331,6 +334,8 @@ public class Board
 }
 //an interactable to be set for a board
 public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisionTarget,  regularObstacle }
+public enum eOrientation { vertical, horizontal }
+public enum eSize { small, medium, large}
 [System.Serializable]
 public class Interactable
 {
@@ -340,9 +345,11 @@ public class Interactable
     public int interactableAngle;
     [Range(0f, 1f)]
     public float interactableDistance;
-
     public TargetPoints[] multiPoints;
-
+    [FoldoutGroup("ObstacleSettings", nameof(obstacleOrientation), nameof(obstacleSize))]
+    [SerializeField] VoidStructure obstacleSettingsHolder;
+    [HideInInspector] public eOrientation obstacleOrientation;
+    [HideInInspector] public eSize obstacleSize;
     public Interactable(eTargetType _interactableType, eSide _side, int _interactableAngle, float _interactableDistance, TargetPoints[] _multiPoints = null)
     {
         interactableType = _interactableType;

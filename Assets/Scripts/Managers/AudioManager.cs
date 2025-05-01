@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-
+using UnityEngine.Rendering;
+public enum eBus { Master, SFX, Music}
 public class AudioManager : MonoBehaviour
 {
     GameManager gm;
@@ -10,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
     public float masterVolume = .4f;
     public FMOD.Studio.Bus Master;
+    public FMOD.Studio.Bus SFX;
+    public FMOD.Studio.Bus Music;
 
     public string currentMusicName = "null";
     public FMOD.Studio.EventInstance currentMusicInstance;
@@ -71,6 +74,8 @@ public class AudioManager : MonoBehaviour
         //gm = GameManager.gm;
 
         Master = FMODUnity.RuntimeManager.GetBus("bus:/");
+        SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX");
+        Music = FMODUnity.RuntimeManager.GetBus("bus:/Music");
         SetVolumeMaster(.4f);
     }
 
@@ -138,7 +143,32 @@ public class AudioManager : MonoBehaviour
             currentMusicName = "null";
         }
     }
+    public void SetVolume(eBus _bus, float _value)
+    {
+        //FMOD.Studio.bus
+        switch (_bus)
+        {
+            case eBus.Master:
+                break;
+            case eBus.SFX:
+                break;
+            case eBus.Music:
+                break;
+            default:
+                break;
+        }
+        float _newMasterVolume = _value;
 
+        if (_newMasterVolume > 1.25f)
+        {
+            _newMasterVolume = 1.25f;
+        }
+
+        masterVolume = _newMasterVolume;
+        Master.setVolume(masterVolume);
+
+        print("set master volume to " + masterVolume);
+    }
     public void SetVolumeMaster(float _value)
     {
         float _newMasterVolume = _value;
