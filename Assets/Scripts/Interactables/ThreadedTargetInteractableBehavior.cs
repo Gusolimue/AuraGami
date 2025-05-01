@@ -77,7 +77,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
-    public override void AvatarCollision()
+    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
     {
         if(isTracing)
         {

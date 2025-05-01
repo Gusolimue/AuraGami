@@ -8,6 +8,7 @@ public class AvatarBehavior : MonoBehaviour
     [Header("Variables to Set")]
     public eSide side;
     public Renderer evolveSphereRenderer;
+    public Animator animator;
     Color startColor;
     Color transparentColor;
     Color failColor;
@@ -30,7 +31,7 @@ public class AvatarBehavior : MonoBehaviour
     //
     public void ObstacleCollision()
     {
-
+        animator.SetTrigger("OnDamage");
     }
 
     IEnumerator CoEvolve(bool _pass)

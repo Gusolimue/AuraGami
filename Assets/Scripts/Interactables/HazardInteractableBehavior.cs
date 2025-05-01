@@ -36,9 +36,13 @@ public class HazardInteractableBehavior : BaseInteractableBehavior
         }
 
     }
-    public override void AvatarCollision()
+    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
     {
         APManager.Instance.DecreaseAP(1);
+        if(avatarBehavior != null)
+        {
+            avatarBehavior.ObstacleCollision();
+        }
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_obstacle_hit);
         StopTarget();
     }

@@ -48,7 +48,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
-    public override void AvatarCollision()
+    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
     {
         if (!isMoving) // If not moving to another target point
         {
