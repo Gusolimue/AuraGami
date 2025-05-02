@@ -30,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         PauseManager.Instance.yataAvatar.SetActive(true);
         PauseManager.Instance.naginiAvatar.SetActive(true);
         PauseManager.Instance.progressBar.SetActive(true);
+        PauseManager.Instance.menuBG.SetActive(false);
         PauseManager.Instance.StartCountdown();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
@@ -51,6 +52,9 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
+        LevelSelectManager.Instance.whichLevel = 1;
+        LoadManager.Instance.isTitleScreen = 1;
+
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }

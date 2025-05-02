@@ -8,7 +8,7 @@ public class LevelSelectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        whichLevel = 0;
+        whichLevel = 1;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +24,7 @@ public class LevelSelectManager : MonoBehaviour
 
         if (other.CompareTag("Level_Freedom"))
         {
-            whichLevel = 1;
+            whichLevel = 3;
 
             other.gameObject.SetActive(false);
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();

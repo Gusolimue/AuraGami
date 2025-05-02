@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
-
+using UnityEngine.Rendering;
+public enum eBus { Master, SFX, Music}
 public class AudioManager : MonoBehaviour
 {
     GameManager gm;
     public static AudioManager Instance;
 
     public float masterVolume = .4f;
+    public float musicVolume = .4f;
+    public float sFXVolume = .4f;
     public FMOD.Studio.Bus Master;
+    public FMOD.Studio.Bus SFX;
+    public FMOD.Studio.Bus Music;
 
     public string currentMusicName = "null";
     public FMOD.Studio.EventInstance currentMusicInstance;
@@ -71,7 +76,16 @@ public class AudioManager : MonoBehaviour
         //gm = GameManager.gm;
 
         Master = FMODUnity.RuntimeManager.GetBus("bus:/");
-        SetVolumeMaster(.4f);
+        SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX Bus");
+        Music = FMODUnity.RuntimeManager.GetBus("bus:/Music Bus");
+        if (PlayerPrefs.HasKey("save")) SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
+        else
+        {
+            PlayerPrefs.SetFloat("save", .4f);
+            SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
+        }
+        SetVolume(eBus.SFX, .4f);
+        SetVolume(eBus.Music, .4f);
     }
 
     public void PlaySFX(EventReference sfxEvent)
@@ -138,7 +152,50 @@ public class AudioManager : MonoBehaviour
             currentMusicName = "null";
         }
     }
+    public void SetVolume(eBus _bus, float _value)
+    {
+        FMOD.Studio.Bus tmpBus;
+        switch (_bus)
+        {
+            case eBus.Master:
+                tmpBus = Master;
+                break;
+            case eBus.SFX:
+                tmpBus = SFX;
+                break;
+            case eBus.Music:
+                tmpBus = Music;
+                break;
+            default:
+                break;
+        }
+        float _newVolume = _value;
 
+        if (_newVolume > 1.25f)
+        {
+            _newVolume = 1.25f;
+        }
+
+        switch (_bus)
+        {
+            case eBus.Master:
+                masterVolume = _newVolume;
+                Master.setVolume(masterVolume);
+                break;
+            case eBus.SFX:
+                sFXVolume = _newVolume;
+                SFX.setVolume(sFXVolume);
+                break;
+            case eBus.Music:
+                musicVolume = _newVolume;
+                Music.setVolume(musicVolume);
+                break;
+            default:
+                break;
+        }
+
+        print("set "+_bus+" volume to " + _newVolume);
+    }
     public void SetVolumeMaster(float _value)
     {
         float _newMasterVolume = _value;
