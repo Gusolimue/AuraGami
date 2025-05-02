@@ -25,67 +25,11 @@ public class AvatarBehavior : MonoBehaviour
         //Instantiate(avatarPrefab).transform.SetParent(this.transform);
     }
 
-    //
     public void ObstacleCollision()
     {
 
     }
 
-    IEnumerator CoEvolve(bool _pass)
-    {
-
-        yield return new WaitForSeconds(1f);
-        float count = 0;
-        while(count < 1)
-        {
-            count += Time.deltaTime;
-            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            yield return null;
-        }
-        count = 0;
-        yield return new WaitForSeconds(1f);
-        if (_pass)
-        {
-            while (count < 1)
-            {
-                count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count/(60f / LevelManager.Instance.level.track.bpm) * 2);
-                yield return null;
-            }
-            if (eSide.right == side)
-            {
-                APManager.Instance.ResetAP();
-            }
-        }
-        else
-        {
-
-            while (count < 1)
-            {
-                count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                yield return null;
-            }
-            count = 0;
-            while (count < 1)
-            {
-                count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                yield return null;
-            }
-            if(eSide.right == side)
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.isPaused = true;
-                BeatManager.Instance.PauseMusicTMP(true);
-            }
-        }
-    }
-    public void StartEvolve()
-    {
-        StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
-    }
-    //
     public void TargetCollision()
     {
 

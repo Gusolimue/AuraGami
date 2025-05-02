@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 public enum eControlType {restrictZ, free };
 public class AvatarManager : MonoBehaviour
 {
@@ -10,6 +13,12 @@ public class AvatarManager : MonoBehaviour
     public float avatarDiameter;
     float playerCircDiameter;
     float avatarCircDiameter;
+
+    public eSide side;
+
+    Color startColor;
+    Color transparentColor;
+    Color failColor;
 
     public bool DisableMovement;
 
@@ -38,6 +47,16 @@ public class AvatarManager : MonoBehaviour
     GameObject rightObject;
     GameObject leftObject;
 
+    public SoAvatar soAvatarLeft;
+    public SoAvatar soAvatarRight;
+
+    public AvatarBehavior avatarBehaviorLeft;
+    public AvatarBehavior avatarBehaviorRight;
+
+    public Renderer evolveSphereRenderer;
+
+    int evolutionCount;
+
     [Header("Variables to Call")]
     public static AvatarManager Instance;
 
@@ -52,6 +71,7 @@ public class AvatarManager : MonoBehaviour
         GameObject tmpObject = Instantiate(new GameObject("Movement Targets"), this.transform);
         rightObject = Instantiate(cursorPrefab, tmpObject.transform);
         leftObject = Instantiate(cursorPrefab, tmpObject.transform);
+        evolutionCount = 0;
     }
     private void Start()
     {
@@ -93,5 +113,78 @@ public class AvatarManager : MonoBehaviour
         }
     }
 
-    
+    IEnumerator CoEvolve(bool _pass)
+    {
+
+        yield return new WaitForSeconds(1f);
+        float count = 0;
+        while (count < 1)
+        {
+            count += Time.deltaTime;
+            // take control from player
+
+            // lerp avatars to center
+            
+            // fade in the sphere
+            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            // change out avatar models for next prefab in the SO scripts
+            evolutionCount++;
+            GameObject newLeftAvatar = Instantiate(soAvatarLeft.AvatarPrefab[evolutionCount]);
+            GameObject newRightAvatar = Instantiate(soAvatarRight.AvatarPrefab[evolutionCount]);
+
+            newLeftAvatar.transform.SetParent(leftAvatar.transform.parent);
+            newLeftAvatar.transform.localPosition = leftAvatar.transform.localPosition;
+
+            newRightAvatar.transform.SetParent(rightAvatar.transform.parent);
+            newRightAvatar.transform.localPosition = rightAvatar.transform.localPosition;
+
+            Destroy(leftAvatar);
+            Destroy(rightAvatar);
+            // proceed with sphere fadeout / color change if fail
+
+            yield return null;
+        }
+        count = 0;
+        yield return new WaitForSeconds(1f);
+        if (_pass)
+        {
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+            if (eSide.right == side)
+            {
+                APManager.Instance.ResetAP();
+            }
+        }
+        else
+        {
+
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+            count = 0;
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+            if (eSide.right == side)
+            {
+                CanvasManager.Instance.ShowCanvasStageFail();
+                PauseManager.Instance.isPaused = true;
+                BeatManager.Instance.PauseMusicTMP(true);
+            }
+        }
+    }
+    public void StartEvolve()
+    {
+        StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
+    }
 }
