@@ -146,6 +146,10 @@ public class LevelManager : MonoBehaviour
                 {
                     behavior.SpawnTargetPoints();
                 }
+                foreach (var behavior in board.GetComponentsInChildren<ThreadedTargetInteractableBehavior>())
+                {
+                    behavior.SpawnTargetPoints();
+                }
             }
         }
 

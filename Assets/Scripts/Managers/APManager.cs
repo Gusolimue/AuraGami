@@ -21,7 +21,6 @@ public class APManager : MonoBehaviour
     [Header("In Game Info")]
     public int curStreak;
     public float curAP;
-    bool streakAnimation = false;
     [SerializeField] int[] stageTargetTotals;
     [SerializeField] float[] stageTargetValues;
 
@@ -91,7 +90,7 @@ public class APManager : MonoBehaviour
     }
     int GetStreakIndex(int _change = 0)
     {
-        int tmpReturn = 0;
+        int tmpReturn;
         curStreak += _change;
         if (curStreak%multIncrementStreak <= 0 && curStreak < multIncrementStreak * multLevels.Length)
         {
@@ -106,7 +105,6 @@ public class APManager : MonoBehaviour
     void ResetStreak()
     {
         curStreak = 0;
-        streakAnimation = false;
     }
     public void DecreaseAP(float _percent)
     {
