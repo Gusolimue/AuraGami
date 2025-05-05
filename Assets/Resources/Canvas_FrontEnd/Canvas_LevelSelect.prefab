@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7449115081269070381
 Transform:
   m_ObjectHideFlags: 0
@@ -50,6 +50,8 @@ MonoBehaviour:
   orbMovementSpeed: 1
   levelOrbScaleUp: {fileID: 7852513917621721692}
   levelOrbScaleDown: {fileID: 3079141035255541597}
+  orbMaterial: {fileID: 0}
+  orbColors: []
   orbScaleSpeed: 5
 --- !u!1 &935318452234506158
 GameObject:
@@ -5981,7 +5983,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7517,6 +7519,10 @@ MonoBehaviour:
   orbMovementSpeed: 1
   levelOrbScaleUp: {fileID: 7852513917621721692}
   levelOrbScaleDown: {fileID: 3079141035255541597}
+  orbMaterial: {fileID: 2100000, guid: 86f34484455d8454fa2a63ed73c98ee4, type: 2}
+  orbColors:
+  - {r: 0.21568629, g: 0.8235295, b: 0.9960785, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   orbScaleSpeed: 5
 --- !u!1 &7852513917621721692
 GameObject:

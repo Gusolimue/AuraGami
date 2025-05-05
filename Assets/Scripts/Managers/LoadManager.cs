@@ -48,19 +48,19 @@ public class LoadManager : MonoBehaviour
             case eScene.frontEnd:
                 if (isTitleScreen == 0)
                 {
-                    CanvasManager.Instance.ShowCanvasTitleScreen();
-                    Debug.Log("HELLO");
+                    //CanvasManager.Instance.ShowCanvasTitleScreen();
+                    CanvasManager.Instance.ShowCanvasSettings();
                 }
                 else if (isTitleScreen == 1)
                 {
-                    CanvasManager.Instance.ShowCanvasFE();
+                    //CanvasManager.Instance.ShowCanvasFE();
+                    //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
+                    //CanvasManager.Instance.ShowCanvasLevelEnd();
+                    //CanvasManager.Instance.ShowCanvasLevelSelect();
+
+                    //CanvasManager.Instance.ShowCanvasCredits();
                 }
-               
-                //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
-                //CanvasManager.Instance.ShowCanvasLevelEnd();
-                //CanvasManager.Instance.ShowCanvasLevelSelect();
-                //CanvasManager.Instance.ShowCanvasSettings();
-                //CanvasManager.Instance.ShowCanvasCredits();
+
                 AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
                 currentScene = 0;
                 break;

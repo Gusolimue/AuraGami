@@ -17,6 +17,8 @@ public class LevelOrbBehavior : MonoBehaviour
     [Header("Orb Enter/Exit Variables")]
     [SerializeField] GameObject levelOrbScaleUp;
     [SerializeField] GameObject levelOrbScaleDown;
+    [SerializeField] Material orbMaterial;
+    [SerializeField] Color[] orbColors;
     private bool isEntered;
     private bool isExited;
     public float orbScaleSpeed = 5f;
@@ -26,15 +28,28 @@ public class LevelOrbBehavior : MonoBehaviour
         Instance = this;
         isSelected = false;
         levelOrb.transform.position = orbPosition.transform.position;
+
+        orbMaterial = new Material(orbMaterial); // clone if it's from Inspector
+        levelOrb.GetComponent<Renderer>().material = orbMaterial; // ensure assignment
     }
 
     private void Update()
     {
         if (isSelected == true) levelOrb.transform.position = Vector3.Lerp(levelOrb.transform.position, zephyrBody.transform.position, Time.deltaTime * orbMovementSpeed);
 
-        if (isEntered == true && !isSelected) levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleUp.transform.localScale, Time.deltaTime * orbScaleSpeed);
+        if (isEntered == true && !isSelected) 
+        {
+            levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleUp.transform.localScale, Time.deltaTime * orbScaleSpeed);
+            orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
+            //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
+        }
 
-        if (isExited == true) levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleDown.transform.localScale, Time.deltaTime * orbScaleSpeed);
+        if (isExited == true) 
+        {
+            levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleDown.transform.localScale, Time.deltaTime * orbScaleSpeed);
+            orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
+            //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
+        }
     }
 
     public void OrbButtonPressed()
