@@ -17,8 +17,13 @@ public class PauseManager : MonoBehaviour
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
-    public float countdownTimer = 3;
-    public bool timerOn = false;
+    [SerializeField] public TextMeshProUGUI[] countdownTimer;
+    [SerializeField] GameObject countdownTimer_SizeChange;
+    [SerializeField] GameObject ogCountdownSize;
+    [SerializeField] Color[] countdownColor;
+    private float countdownTimer_OLD = 3;
+    public float colorTransitionSpeed = 2.5f;
+    public int timerOn;
 
     private void Awake()
     {
@@ -29,6 +34,34 @@ public class PauseManager : MonoBehaviour
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
+
+        for (int i = 0; i < countdownTimer.Length; i++)
+        {
+            countdownTimer[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (timerOn == 3)
+        {
+            countdownTimer[0].color = Color.Lerp(countdownTimer[0].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[0].transform.localScale = Vector3.Lerp(countdownTimer[0].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * colorTransitionSpeed);
+        }
+        if (timerOn == 2)
+        {
+            countdownTimer[1].color = Color.Lerp(countdownTimer[1].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[1].transform.localScale = Vector3.Lerp(countdownTimer[1].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * colorTransitionSpeed);
+        }
+        if (timerOn == 1)
+        {
+            countdownTimer[2].color = Color.Lerp(countdownTimer[2].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[2].transform.localScale = Vector3.Lerp(countdownTimer[2].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * colorTransitionSpeed);
+        }
+
     }
 
     private void OnDestroy()
@@ -75,24 +108,53 @@ public class PauseManager : MonoBehaviour
 
     public void StartCountdown()
     {
-        StartCoroutine(Countdown(3));
+        //StartCoroutine(Countdown(3));
+        StartCoroutine(CountdownBehavior());
     }
 
     public IEnumerator Countdown(int seconds)
     {
-        countdownTimer = seconds;
+        countdownTimer_OLD = seconds;
         countdownTimer_TXT.gameObject.SetActive(true);
         Time.timeScale = 1;
 
-        while (countdownTimer > 0)
+        while (countdownTimer_OLD > 0)
         {
             countdownTimer_TXT.text = countdownTimer.ToString();
-            Debug.Log(countdownTimer);
             yield return new WaitForSecondsRealtime(1f);
-            countdownTimer--;
+            countdownTimer_OLD--;
         }
         countdownTimer_TXT.gameObject.SetActive(false);
         BeatManager.Instance.PauseMusicTMP(false);
         isPaused = false;
+    }
+
+    private IEnumerator CountdownBehavior()
+    {
+        openPauseMenuAction.action.performed -= OnPauseButtonPressed;
+
+        countdownTimer[0].color = countdownColor[0]; countdownTimer[0].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[0].gameObject.SetActive(true);
+        timerOn = 3;
+        yield return new WaitForSeconds(1.5f);
+
+        countdownTimer[1].color = countdownColor[0]; countdownTimer[1].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[1].gameObject.SetActive(true);
+        timerOn = 2;
+        yield return new WaitForSeconds(1.5f);
+
+        countdownTimer[2].color = countdownColor[0]; countdownTimer[2].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[2].gameObject.SetActive(true);
+        timerOn = 1;
+        yield return new WaitForSeconds(1.5f);
+
+        for (int i = 0; i < countdownTimer.Length; i++)
+        {
+            countdownTimer[i].gameObject.SetActive(false);
+        }
+        
+        BeatManager.Instance.PauseMusicTMP(false);
+        isPaused = false;
+        openPauseMenuAction.action.performed += OnPauseButtonPressed;
     }
 }
