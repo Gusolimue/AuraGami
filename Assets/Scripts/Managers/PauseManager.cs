@@ -21,7 +21,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject countdownTimer_SizeChange;
     [SerializeField] GameObject ogCountdownSize;
     [SerializeField] Color[] countdownColor;
-    private float countdownTimer_OLD = 3;
     public float colorTransitionSpeed = 2.5f;
     public int timerOn;
 
@@ -108,25 +107,7 @@ public class PauseManager : MonoBehaviour
 
     public void StartCountdown()
     {
-        //StartCoroutine(Countdown(3));
         StartCoroutine(CountdownBehavior());
-    }
-
-    public IEnumerator Countdown(int seconds)
-    {
-        countdownTimer_OLD = seconds;
-        countdownTimer_TXT.gameObject.SetActive(true);
-        Time.timeScale = 1;
-
-        while (countdownTimer_OLD > 0)
-        {
-            countdownTimer_TXT.text = countdownTimer.ToString();
-            yield return new WaitForSecondsRealtime(1f);
-            countdownTimer_OLD--;
-        }
-        countdownTimer_TXT.gameObject.SetActive(false);
-        BeatManager.Instance.PauseMusicTMP(false);
-        isPaused = false;
     }
 
     private IEnumerator CountdownBehavior()
