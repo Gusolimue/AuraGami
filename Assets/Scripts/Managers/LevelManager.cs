@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case eTargetType.threadedTarget:
                 //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
-                tmpObject = threadedTargets[threadedCount];
+                tmpObject = Instantiate(threadedTargets[0]);
                 threadedCount++;
                 tmpObject.transform.SetParent(currentBoard.transform);
                 tmpObject.transform.localPosition = Vector3.zero;
@@ -143,6 +143,10 @@ public class LevelManager : MonoBehaviour
             foreach (var board in stage)
             {
                 foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())
+                {
+                    behavior.SpawnTargetPoints();
+                }
+                foreach (var behavior in board.GetComponentsInChildren<ThreadedTargetInteractableBehavior>())
                 {
                     behavior.SpawnTargetPoints();
                 }
