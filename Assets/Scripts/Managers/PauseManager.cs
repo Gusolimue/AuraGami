@@ -16,7 +16,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] public GameObject progressBar;
 
     [Header("Unpause Elements")]
-    [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
     [SerializeField] public TextMeshProUGUI[] countdownTimer;
     [SerializeField] GameObject countdownTimer_SizeChange;
     [SerializeField] GameObject ogCountdownSize;
@@ -27,7 +26,6 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        countdownTimer_TXT.gameObject.SetActive(false);
         menuBG.SetActive(false);
 
         openPauseMenuAction.action.Enable();
