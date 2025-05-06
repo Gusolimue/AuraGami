@@ -33,8 +33,9 @@ public class StageManager : MonoBehaviour
 
         if(tmpMarker == stage1CheckString)
         {
-            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
-            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
+            AvatarManager.Instance.StartEvolve();
+            //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
+            //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
 
             //Debug.Log("player passed: " + APManager.Instance.StagePassCheck());
             //if (!APManager.Instance.StagePassCheck())
@@ -55,8 +56,10 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage2CheckString)
         {
-            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
-            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            AvatarManager.Instance.StartEvolve();
+            //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+
             //if (!APManager.Instance.StagePassCheck())
             //{
             //    //PauseManager.Instance.PauseGame(true);
@@ -72,8 +75,10 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage3CheckString)
         {
-            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
-            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            AvatarManager.Instance.StartEvolve();
+            //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+            //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
+
             //if (!APManager.Instance.StagePassCheck())
             //{
             //    CanvasManager.Instance.ShowCanvasStageFail();
