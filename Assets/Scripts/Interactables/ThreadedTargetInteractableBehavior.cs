@@ -38,12 +38,11 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     private void Start()
     {
         // Spawn targets points in Start so all boards have been created
-        SpawnTargetPoints();
     }
 
     private void Update()
     {
-        ThreadSplineUpdate();
+        //ThreadSplineUpdate();
         count += Time.deltaTime;
     }
     IEnumerator COTrace()
@@ -77,7 +76,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
-    public override void AvatarCollision()
+    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
     {
         if(isTracing)
         {
@@ -100,7 +99,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         }
     }
     // Instantiates the future points as empty game objects and moves them into place
-    void SpawnTargetPoints()
+    public void SpawnTargetPoints()
     {
         int pointCount = 0; // Keeps track of the total number of target points
         int boardsMovedBack = 0; // Keeps track of the total boards moved back
@@ -125,7 +124,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         threadKnots = new BezierKnot[threadPositions.Count];
         foreach (var knot in threadKnots)
         {
-            threadSpline.Spline.Add(knot);
+            threadSpline.Spline.Add(knot, TangentMode.AutoSmooth);
         }
         //for (int i = 0; i < threadPositions.Count; i++)
         //{
@@ -136,5 +135,6 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         //threadLine.positionCount = threadPositions.Count;
         endTargetRenderer.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
         endTargetRenderer.gameObject.transform.localPosition = Vector3.zero;
+        ThreadSplineUpdate();
     }
 }
