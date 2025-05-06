@@ -14,17 +14,18 @@ public class AvatarBehavior : MonoBehaviour
     Color failColor;
     float evolveTime = 8;
     [SerializeField] GameObject avatarPrefab;
+    public GameObject avatarObject;
     //[Header("Variables to Call")]
     
     //
     private void Awake()
     {
-        transparentColor = new Color(1, 1, 1, 0);
+        //transparentColor = new Color(1, 1, 1, 0);
         //startColor = new Color(1, 1, 1, 1);
         //failColor = new Color(1, .5f, .5f, 1);
-        startColor = transparentColor;
-        failColor = transparentColor;
-        evolveSphereRenderer.material.color = transparentColor;
+        //startColor = transparentColor;
+        //failColor = transparentColor;
+        //evolveSphereRenderer.material.color = transparentColor;
         //Instantiate(avatarPrefab).transform.SetParent(this.transform);
     }
 
