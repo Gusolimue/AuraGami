@@ -120,6 +120,7 @@ public class AvatarManager : MonoBehaviour
             return tmpPos;
         }
     }
+    public float count = 0;
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     IEnumerator CoEvolve(bool _pass)
     {
@@ -127,7 +128,6 @@ public class AvatarManager : MonoBehaviour
 
         //Gus- and then you will want a while loop here to lerp the avatars together (close but not exactly on top of eachother, as you dont want them clipping through each other)
         yield return new WaitForSeconds(1f);
-        float count = 0;
 
         Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
         Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
@@ -136,13 +136,13 @@ public class AvatarManager : MonoBehaviour
 
         // take control from player
         disableAvatarMovement = true;
-
+        count = 0;
         while (count < 1)
         {
             count += Time.deltaTime;
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
         }
         count = 0;
 

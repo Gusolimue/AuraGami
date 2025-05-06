@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case eTargetType.threadedTarget:
                 //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
-                tmpObject = Instantiate(threadedTargets[0]);
+                tmpObject = Instantiate(threadedTargets[threadedCount]);
                 threadedCount++;
                 tmpObject.transform.SetParent(currentBoard.transform);
                 tmpObject.transform.localPosition = Vector3.zero;

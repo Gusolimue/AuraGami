@@ -389,23 +389,7 @@ MonoBehaviour:
         interactableDistance: 0.826
       obstacleOrientation: 0
       obstacleSize: 0
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 0
-      interactableDistance: 0
-      multiPoints:
-      - boardsMoved: 3
-        interactableAngle: 160
-        interactableDistance: 0.645
-      - boardsMoved: 3
-        interactableAngle: 160
-        interactableDistance: 0.645
-      - boardsMoved: 3
-        interactableAngle: 160
-        interactableDistance: 0.645
-      obstacleOrientation: 0
-      obstacleSize: 0
+  - interactables: []
   - interactables:
     - interactableType: 0
       side: 1
@@ -636,11 +620,14 @@ MonoBehaviour:
       obstacleSize: 0
   - interactables: []
   - interactables:
-    - interactableType: 0
+    - interactableType: 2
       side: 0
       interactableAngle: 40
       interactableDistance: 0.3
-      multiPoints: []
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 0
+        interactableDistance: 0
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
@@ -705,9 +692,9 @@ MonoBehaviour:
       interactableAngle: 150
       interactableDistance: 1
       multiPoints:
-      - boardsMoved: 0
-        interactableAngle: 0
-        interactableDistance: 0
+      - boardsMoved: 3
+        interactableAngle: 286
+        interactableDistance: 0.718
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
