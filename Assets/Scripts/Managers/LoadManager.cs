@@ -48,8 +48,9 @@ public class LoadManager : MonoBehaviour
             case eScene.frontEnd:
                 if (isTitleScreen == 0)
                 {
+                    CanvasManager.Instance.ShowCanvasFE();
                     //CanvasManager.Instance.ShowCanvasTitleScreen();
-                    CanvasManager.Instance.ShowCanvasSettings();
+                    //CanvasManager.Instance.ShowCanvasSettings();
                 }
                 else if (isTitleScreen == 1)
                 {
