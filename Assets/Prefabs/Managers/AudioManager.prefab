@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterVolume: 0.4
+  musicVolume: 0.4
+  sFXVolume: 0.4
   currentMusicName: null
   currentMusicLoopPoint: 0
   lastMusicPlaying: 
@@ -56,77 +58,77 @@ MonoBehaviour:
       Data2: 1200985844
       Data3: 548924830
       Data4: 861849420
-    Path: event:/Music Front End
+    Path: event:/Music/Music Front End
   music_level_Freedom:
     Guid:
-      Data1: -1014673978
-      Data2: 1172892062
-      Data3: -1242862152
-      Data4: 489049943
-    Path: event:/Music Freedom
+      Data1: 1879525064
+      Data2: 1224437961
+      Data3: 1053964436
+      Data4: -841067667
+    Path: event:/Music/Music Freedom
   sfx_avatar_sigilFill:
     Guid:
       Data1: -1335558384
       Data2: 1156839809
       Data3: 113168257
       Data4: -1848579889
-    Path: event:/TempButtonSFX
+    Path: event:/SFX/TempButtonSFX
   sfx_target_hit:
     Guid:
-      Data1: 587661018
-      Data2: 1264140451
-      Data3: -459969656
-      Data4: 1274420188
-    Path: event:/TempHitSFX
+      Data1: 541934514
+      Data2: 1211792651
+      Data3: 1591307193
+      Data4: 40799201
+    Path: event:/SFX/sandTargetHitSFX
   sfx_target_miss:
     Guid:
       Data1: -1669819425
       Data2: 1338443173
       Data3: -774720349
       Data4: 1066764925
-    Path: event:/MissedTargetSFX002
+    Path: event:/SFX/missedTargetSFX002
   sfx_target_follow:
     Guid:
       Data1: 587661018
       Data2: 1264140451
       Data3: -459969656
       Data4: 1274420188
-    Path: event:/TempHitSFX
+    Path: event:/SFX/TempHitSFX
   sfx_target_chain:
     Guid:
       Data1: 587661018
       Data2: 1264140451
       Data3: -459969656
       Data4: 1274420188
-    Path: event:/TempHitSFX
+    Path: event:/SFX/TempHitSFX
   sfx_obstacle_hit:
     Guid:
-      Data1: -1335558384
-      Data2: 1156839809
-      Data3: 113168257
-      Data4: -1848579889
-    Path: event:/TempButtonSFX
+      Data1: -1597263419
+      Data2: 1251840378
+      Data3: 152948403
+      Data4: 2139335325
+    Path: event:/SFX/Apple Sand 8
   sfx_frontEnd_buttonPressed:
     Guid:
       Data1: -1335558384
       Data2: 1156839809
       Data3: 113168257
       Data4: -1848579889
-    Path: event:/TempButtonSFX
+    Path: event:/SFX/TempButtonSFX
   sfx_frontEnd_levelOrbPressed:
     Guid:
       Data1: -2090222520
       Data2: 1260062904
       Data3: -1781720170
       Data4: 818113567
-    Path: event:/lvlplanetgrab
+    Path: event:/SFX/lvlplanetgrab
   sfx_frontEnd_orbSelectionTransition:
     Guid:
       Data1: 583182982
       Data2: 1137362448
       Data3: 1617123255
       Data4: 502342849
-    Path: event:/lvlplanetflash
+    Path: event:/SFX/lvlplanetflash
 --- !u!114 &7597103051134100026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,5 +147,5 @@ MonoBehaviour:
       Data2: 1184837519
       Data3: -475216463
       Data4: -1713826036
-    Path: event:/Music Exploration
+    Path: event:/Music/Music Exploration
   levelToRecordTo: {fileID: 0}
