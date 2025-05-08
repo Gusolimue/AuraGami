@@ -11,9 +11,8 @@ public class PauseManager : MonoBehaviour
     public bool isPaused = false;
 
     [Header("Avatars/UI")]
-    [SerializeField] public GameObject naginiAvatar;
-    [SerializeField] public GameObject yataAvatar;
-    [SerializeField] public GameObject progressBar;
+    [SerializeField] GameObject[] toHide;
+    [SerializeField] public GameObject inGamePos;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI[] countdownTimer;
@@ -73,9 +72,7 @@ public class PauseManager : MonoBehaviour
         if (isPaused == false)
         {
             CanvasManager.Instance.ShowCanvasPauseMenu();
-            naginiAvatar.SetActive(false);
-            yataAvatar.SetActive(false);
-            progressBar.SetActive(false);
+            HideAndUnhideObjects(false);
             menuBG.SetActive(true);
             isPaused = true;
             BeatManager.Instance.PauseMusicTMP(true);
@@ -84,6 +81,7 @@ public class PauseManager : MonoBehaviour
         else if (isPaused == true)
         {
             PauseMenu.Instance.OnResumeGameButtonPressed();
+            HideAndUnhideObjects(true);
             Debug.Log("Is Unpaused!");
         }
     }
@@ -106,6 +104,15 @@ public class PauseManager : MonoBehaviour
     public void StartCountdown()
     {
         StartCoroutine(CountdownBehavior());
+    }
+
+    private void HideAndUnhideObjects(bool enabled)
+    {
+        foreach (var item in toHide)
+        {
+            Debug.Log("DOES IT WORK: "+ enabled);
+            item.SetActive(enabled);
+        }
     }
 
     private IEnumerator CountdownBehavior()

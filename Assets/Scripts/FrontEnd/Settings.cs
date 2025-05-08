@@ -4,6 +4,16 @@ public class Settings : MonoBehaviour
 {
     [SerializeField] GameObject[] settingMenus;
 
+
+    private void Awake()
+    {
+        if (LoadManager.Instance.currentScene >= 1)
+        {
+            PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
+            this.gameObject.transform.localPosition = PauseManager.Instance.inGamePos.transform.localPosition;
+        }
+    }
+
     public void OnBackButtonPressed() // When pressed, destroys Canvas_Settings and instantiates Canvas_FrontEnd.
     {
         if (LoadManager.Instance.currentScene == 0) CanvasManager.Instance.ShowCanvasFE();
