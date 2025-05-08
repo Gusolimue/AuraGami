@@ -27,9 +27,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeGameButtonPressed()
     {
-        PauseManager.Instance.menuBG.SetActive(false);
-        //PauseManager.Instance.StartCountdown();
-        PauseManager.Instance.isPaused = false;
+        PauseManager.Instance.PauseGame(false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }

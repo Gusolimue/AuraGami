@@ -71,18 +71,11 @@ public class PauseManager : MonoBehaviour
     {
         if (isPaused == false)
         {
-            CanvasManager.Instance.ShowCanvasPauseMenu();
-            HideAndUnhideObjects(false);
-            menuBG.SetActive(true);
-            isPaused = true;
-            BeatManager.Instance.PauseMusicTMP(true);
-            Debug.Log("Is Paused!");
+            PauseGame(true);
         }
         else if (isPaused == true)
         {
-            PauseMenu.Instance.OnResumeGameButtonPressed();
-            HideAndUnhideObjects(true);
-            Debug.Log("Is Unpaused!");
+            PauseGame(false);
         }
     }
 
@@ -101,17 +94,34 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void StartCountdown()
-    {
-        StartCoroutine(CountdownBehavior());
-    }
-
     private void HideAndUnhideObjects(bool enabled)
     {
         foreach (var item in toHide)
         {
             Debug.Log("DOES IT WORK: "+ enabled);
             item.SetActive(enabled);
+        }
+    }
+
+    public void PauseGame(bool paused)
+    {
+        if (paused)
+        {
+            isPaused = true;
+            CanvasManager.Instance.ShowCanvasPauseMenu();
+            HideAndUnhideObjects(false);
+            menuBG.SetActive(true);
+            BeatManager.Instance.PauseMusicTMP(true);
+            Debug.Log("Is Paused!");
+        }
+
+        if (!paused)
+        {
+            isPaused = false;
+            HideAndUnhideObjects(true);
+            menuBG.SetActive(false);
+            StartCoroutine(CountdownBehavior());
+            Debug.Log("Is Unpaused!");
         }
     }
 
