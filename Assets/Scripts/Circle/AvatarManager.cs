@@ -131,18 +131,24 @@ public class AvatarManager : MonoBehaviour
 
         Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
         Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
+        Vector3 startScaleLeft = leftAvatar.transform.localScale;
+        Vector3 startScaleRight = rightAvatar.transform.localScale;
 
-        Vector3 offset = new Vector3(.5f, 0, 0);
-
+        Vector3 offset = new Vector3(.1f, 0, 0);
+        float scaleAmt = .8f;
         // take control from player
         disableAvatarMovement = true;
         count = 0;
         while (count < 1)
         {
             count += Time.deltaTime;
+            Debug.Log(count);
             // lerp avatars to center
             leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft *scaleAmt, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            yield return null;
         }
         count = 0;
 
@@ -157,6 +163,7 @@ public class AvatarManager : MonoBehaviour
             yield return null;
         }
 
+        APManager.Instance.ResetAP();
         count = 0;
         yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
         if (_pass)//Gus A - here is where the pass animation begins. if the variable is true, all it does is fade the orb back to transparency and reset the ap meter.
@@ -186,12 +193,6 @@ public class AvatarManager : MonoBehaviour
                 evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
-            //Gus- made this quick change for you. this was only here because i was calling this method twice (one for each avatar) because we're only calling the method once now, we can always reset the ap on success
-            //if (eSide.right == side)
-            //{
-            //    APManager.Instance.ResetAP();
-            //}
-            APManager.Instance.ResetAP();
         }
         else
         {
@@ -209,17 +210,6 @@ public class AvatarManager : MonoBehaviour
                 evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
-
-            //Gus- see the comment about the similar change above
-            //if (eSide.right == side)
-            //{
-            //    CanvasManager.Instance.ShowCanvasStageFail();
-            //    PauseManager.Instance.isPaused = true;
-            //    BeatManager.Instance.PauseMusicTMP(true);
-            //}
-            CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
-            BeatManager.Instance.PauseMusicTMP(true);
         }
 
         leftAvatarStartingPosition = leftAvatar.transform.position;
@@ -234,10 +224,23 @@ public class AvatarManager : MonoBehaviour
             // Lerp avatars back to cursor positions
             leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count);
+            yield return null;
+        }
+        if(_pass)
+        {
+            disableAvatarMovement = false;
+
+        }
+        else
+        {
+            CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
         }
 
         // Give control of the avatars back to the player
-        disableAvatarMovement = false;
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
     public void StartEvolve()
