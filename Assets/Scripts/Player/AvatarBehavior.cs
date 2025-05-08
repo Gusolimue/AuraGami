@@ -1,32 +1,68 @@
 using System.Collections;
 using UnityEngine;
-//this is currently a dummy behavior used for collision detection and instantiating the avatar model
 
 public class AvatarBehavior : MonoBehaviour
 {
-    //[Header("Variables to Adjust")]
     [Header("Variables to Set")]
     public eSide side;
     public Renderer evolveSphereRenderer;
     public Animator animator;
-    Color startColor;
-    Color transparentColor;
-    Color failColor;
-    float evolveTime = 8;
     [SerializeField] GameObject avatarPrefab;
     public GameObject avatarObject;
-    //[Header("Variables to Call")]
-    
-    //
-    private void Awake()
+    public bool BirdBankingBehavior;
+    public int bankingMaxAngle;
+    public float bankingLerpTime;
+
+    float lerpTime;
+    Vector3 previousPosition;
+
+    private void Update()
     {
-        //transparentColor = new Color(1, 1, 1, 0);
-        //startColor = new Color(1, 1, 1, 1);
-        //failColor = new Color(1, .5f, .5f, 1);
-        //startColor = transparentColor;
-        //failColor = transparentColor;
-        //evolveSphereRenderer.material.color = transparentColor;
-        //Instantiate(avatarPrefab).transform.SetParent(this.transform);
+        // Assign the current direction of movement
+        Vector3 currentPosition = avatarObject.transform.position;
+        Vector3 velocity = currentPosition - previousPosition;
+        Vector3 direction = velocity.normalized;
+
+        Debug.Log(avatarObject.name + "currentPosition: " + currentPosition);
+        Debug.Log(avatarObject.name + "velocity: " + velocity);
+        Debug.Log(avatarObject.name + "direction: " + direction);
+
+        Vector3 rotation;
+
+        if (BirdBankingBehavior)
+        {
+            // BIRD
+            // Banking up (Y position goes up) - X rotation goes down
+            // Banking down (Y position goes down) - X rotation goes up
+            // Banking left (X position goes down) - Z rotation goes up
+            // Banking right (X position goes up) - Z rotation goes down
+
+            rotation = new Vector3(-direction.y * bankingMaxAngle, 0, -direction.x * bankingMaxAngle);
+        }
+        else
+        {
+            // SNAKE
+            // Banking up (Y position goes up) - X rotation goes down
+            // Banking down (Y position goes down) - X rotation goes up
+            // Banking left (X position goes down) - Y rotation goes down
+            // Banking right (X position goes up) - Y rotation goes up
+
+            rotation = new Vector3(-direction.y * bankingMaxAngle, direction.x * bankingMaxAngle, 0);
+        }
+
+        Quaternion quaternionRotation = Quaternion.Euler(rotation);
+
+        lerpTime = 0;
+        while (lerpTime < bankingLerpTime)
+        {
+            lerpTime += Time.deltaTime;
+            avatarObject.transform.rotation = Quaternion.Lerp(avatarObject.transform.rotation, quaternionRotation, lerpTime);
+        }
+        lerpTime = 0;
+
+        //avatarObject.transform.rotation = quaternionRotation;
+
+        previousPosition = currentPosition;
     }
 
     public void ObstacleCollision()
