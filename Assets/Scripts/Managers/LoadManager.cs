@@ -72,6 +72,7 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.levelFreedom:
+                CanvasManager.Instance.ShowCanvasPauseMenu();
                 currentScene = 2;
                 break;
 
