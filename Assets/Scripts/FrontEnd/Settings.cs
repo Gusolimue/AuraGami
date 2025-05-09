@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
     [SerializeField] GameObject[] settingMenus;
-
+    [SerializeField] SettingsButtonBehavior[] menuButtons;
 
     private void Awake()
     {
@@ -24,11 +25,18 @@ public class Settings : MonoBehaviour
 
     public void OnMenuButtonPressed(int menuIndex)
     {
+        for (int i = 0; i < menuButtons.Length; i++)
+        {
+            bool isSelected = (i == menuIndex);
+            menuButtons[i].SetSelected(isSelected);
+        }
+
         for (int i = 0; i < settingMenus.Length; i++)
         {
             settingMenus[i].SetActive(i == menuIndex);
-        }
 
+
+        }
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
 }

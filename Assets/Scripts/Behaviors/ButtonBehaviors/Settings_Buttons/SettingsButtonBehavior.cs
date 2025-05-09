@@ -4,12 +4,22 @@ using System.Collections;
 
 public class SettingsButtonBehavior : MonoBehaviour
 {
-    [SerializeField] Slider[] connectors;
-    public float connectorValueTarget;
-    public float fillSpeed = 1f;
+    [Header("Connectors")]
+    public static SettingsButtonBehavior Instance;
+    [SerializeField] public Slider[] connectors;
+    private float fillSpeed = 4f;
+    public bool isSelected;
 
+    [Header("Connector Shadows")]
+    [SerializeField] Image[] connectorShadows;
+    [SerializeField] Color[] targetColor;
+    private float hoverSpeed = 5f;
     private bool isHovering;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -17,8 +27,14 @@ public class SettingsButtonBehavior : MonoBehaviour
         {
             if (slider == null) continue;
 
-            float targetValue = isHovering ? 1f : 0f;
+            float targetValue = isSelected ? 1f : 0f;
             slider.value = Mathf.MoveTowards(slider.value, targetValue, fillSpeed * Time.deltaTime);
+        }
+
+        foreach (Image image in connectorShadows)
+        {
+            if (isHovering) image.color = Color.Lerp(image.color, targetColor[0], hoverSpeed * Time.deltaTime);
+            if (!isHovering) image.color = Color.Lerp(image.color, targetColor[1], hoverSpeed * Time.deltaTime);
         }
     }
 
@@ -30,6 +46,11 @@ public class SettingsButtonBehavior : MonoBehaviour
     public void DecreaseFill()
     {
         isHovering = false;
+    }
+
+    public void SetSelected(bool selected)
+    {
+        isSelected = selected;
     }
 
 }
