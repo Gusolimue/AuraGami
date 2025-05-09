@@ -5,7 +5,7 @@
 			<value>TempHitSFX</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{e9b701a7-ba65-483c-a0fa-08b865d76a16}</destination>
@@ -82,11 +82,7 @@
 			<destination>{b2d3e1f6-b5da-4d01-a34f-ba130ecba93c}</destination>
 		</relationship>
 	</object>
-	<object class="MultiSound" id="{2f419ddb-ab81-42bb-9b2d-4feebc6637c4}">
-		<relationship name="sounds">
-			<destination>{cb5fc30a-533c-46d4-841b-1c9baf41ae36}</destination>
-		</relationship>
-	</object>
+	<object class="MultiSound" id="{2f419ddb-ab81-42bb-9b2d-4feebc6637c4}" />
 	<object class="MixerBusEffectChain" id="{0eadf513-1f55-4e02-921f-9caa202d6035}">
 		<relationship name="effects">
 			<destination>{9911143f-66c9-43e2-b352-4dd39658e20e}</destination>
@@ -100,11 +96,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{df92f002-2d7c-4fc4-aaab-f809e3bbaa85}" />
-	<object class="SingleSound" id="{cb5fc30a-533c-46d4-841b-1c9baf41ae36}">
-		<relationship name="audioFile">
-			<destination>{1bace62f-9e6f-42f6-b8fd-ba9c21cfb752}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusFader" id="{9911143f-66c9-43e2-b352-4dd39658e20e}" />
 	<object class="MixerBusFader" id="{54df77bf-ee0f-4b17-919f-8bdc9eae26e8}" />
 	<object class="PitchShifterEffect" id="{bacfc043-58d0-4aa3-b196-240dc5bb38d4}">

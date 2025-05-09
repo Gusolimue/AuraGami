@@ -45,9 +45,9 @@ public class AudioManager : MonoBehaviour
 
     [Space]
     [Header("SFX: Sigils")]
-    public EventReference sfx_avatar_sigilTickUp;
-    public EventReference sfx_avatar_sigilTickDown;
-    public EventReference sfx_avatar_sigilDrainLoop;
+    public EventReference sfx_sigils_sigilTickUp;
+    public EventReference sfx_sigils_sigilTickDown;
+    public EventReference sfx_sigils_sigilDrainLoop;
 
     [Space]
     [Header("SFX: Targets")]
@@ -80,7 +80,7 @@ public class AudioManager : MonoBehaviour
     [Header("SFX: Pause")]
     public EventReference sfx_pause_menuOpen;
     public EventReference sfx_pause_menuClose;
-    public EventReference sfx_pause_countDown;
+    public EventReference sfx_pause_countdown;
     // This will be for when the orb reaches the player's chest and the scene transitions. This sound can be for the play button too. 
 
     void Awake()

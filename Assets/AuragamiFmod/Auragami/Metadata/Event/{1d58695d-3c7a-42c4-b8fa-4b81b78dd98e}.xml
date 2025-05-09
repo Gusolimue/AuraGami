@@ -5,7 +5,7 @@
 			<value>AuragamiExploration001_mixdown</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b32b4780-b43d-4a94-98ad-63b623ded49c}</destination>
@@ -59,17 +59,11 @@
 	<object class="EventAutomatableProperties" id="{30feddbe-9a1b-48e3-a895-6710ab49314e}" />
 	<object class="MarkerTrack" id="{777097d9-4a2e-49ef-941e-9e0d36bdd266}" />
 	<object class="GroupTrack" id="{3caf7f1d-41c9-4f3c-9885-7c2b4dfb747d}">
-		<relationship name="modules">
-			<destination>{f75d3a03-89ef-489a-b9b4-86d1456761f0}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{ef1e312d-b35b-40e2-bb9b-53be8a9f5d60}</destination>
 		</relationship>
 	</object>
 	<object class="Timeline" id="{c2d36504-8738-4fa5-aa72-08f17372f2e6}">
-		<relationship name="modules">
-			<destination>{f75d3a03-89ef-489a-b9b4-86d1456761f0}</destination>
-		</relationship>
 		<relationship name="markers">
 			<destination>{13b407fb-58be-4f67-8dce-83362fce9067}</destination>
 		</relationship>
@@ -91,14 +85,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{08765c8a-5458-46d6-b78a-2490fb968ab9}" />
-	<object class="SingleSound" id="{f75d3a03-89ef-489a-b9b4-86d1456761f0}">
-		<property name="length">
-			<value>234.048</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{7c997d3a-4a12-49e9-ac97-e5bda53fe7a6}</destination>
-		</relationship>
-	</object>
 	<object class="EventMixerGroup" id="{ef1e312d-b35b-40e2-bb9b-53be8a9f5d60}">
 		<property name="name">
 			<value>Audio 1</value>
