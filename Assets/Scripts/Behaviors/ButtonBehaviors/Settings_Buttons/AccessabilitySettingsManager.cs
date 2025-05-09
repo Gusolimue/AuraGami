@@ -5,10 +5,6 @@ public class AccessabilitySettingsManager : MonoBehaviour
 {
     public static AccessabilitySettingsManager Instance;
 
-    [Header("Accessibility Button Elements")]
-    [SerializeField] public GameObject accessabilityConstellationOn;
-    [SerializeField] public GameObject accessabilityConstellationOff;
-
     [Header("Player Circle/Slider")]
     [SerializeField] public Slider playCircleSlider;
     [SerializeField] GameObject playCircleDemo;
@@ -19,25 +15,10 @@ public class AccessabilitySettingsManager : MonoBehaviour
         Instance = this;
        // playCircleSlider.value = 1f;
 
-        accessabilityConstellationOn.SetActive(false);
-        accessabilityConstellationOff.SetActive(true);
-
         playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
         playCircleSlider.onValueChanged.AddListener(ChangeSlider);
 
         Debug.Log(playCircleSlider.value);
-    }
-
-    public void OnAccessabilityButtonEnter()
-    {
-        accessabilityConstellationOn.SetActive(true);
-        accessabilityConstellationOff.SetActive(false);
-    }
-
-    public void OnAccessabilityButtonExit()
-    {
-        accessabilityConstellationOn.SetActive(false);
-        accessabilityConstellationOff.SetActive(true);
     }
 
     public void ChangeSlider(float value)
