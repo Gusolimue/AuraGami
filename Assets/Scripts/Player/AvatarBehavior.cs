@@ -12,6 +12,7 @@ public class AvatarBehavior : MonoBehaviour
     public bool BirdBankingBehavior;
     public int bankingMaxAngle;
     public float bankingLerpTime;
+    public float directionBankingMinimum;
 
     float lerpTime;
     Vector3 previousPosition;
@@ -26,6 +27,16 @@ public class AvatarBehavior : MonoBehaviour
         Debug.Log(avatarObject.name + "currentPosition: " + currentPosition);
         Debug.Log(avatarObject.name + "velocity: " + velocity);
         Debug.Log(avatarObject.name + "direction: " + direction);
+
+        if (Mathf.Abs(direction.x) < directionBankingMinimum)
+        {
+            direction = new Vector3(0, direction.y, direction.z);
+        }
+
+        if (Mathf.Abs(direction.y) < directionBankingMinimum)
+        {
+            direction = new Vector3(direction.x, 0, direction.z);
+        }
 
         Vector3 rotation;
 
