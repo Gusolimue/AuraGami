@@ -49,8 +49,8 @@ public class LoadManager : MonoBehaviour
                 if (isTitleScreen == 0)
                 {
                     //CanvasManager.Instance.ShowCanvasFE();
-                    CanvasManager.Instance.ShowCanvasTitleScreen();
-                    //CanvasManager.Instance.ShowCanvasSettings();
+                    //CanvasManager.Instance.ShowCanvasTitleScreen();
+                    CanvasManager.Instance.ShowCanvasSettings();
                 }
                 else if (isTitleScreen == 1)
                 {

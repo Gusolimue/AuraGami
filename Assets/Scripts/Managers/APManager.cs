@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class APManager : MonoBehaviour
 {
@@ -69,6 +70,7 @@ public class APManager : MonoBehaviour
 
     public void IncreaseAP()
     {
+        APVFXManager.Instance.APVFXSpawn();
         sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)]
             * multLevels[GetStreakIndex(1)];
