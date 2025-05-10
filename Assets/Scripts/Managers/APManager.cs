@@ -18,7 +18,9 @@ public class APManager : MonoBehaviour
     [SerializeField]bool forceSuccess = false;
     [Space]
 
-    [SerializeField] GameObject avatars;
+   // [SerializeField] GameObject[] avatars;
+    public AvatarTargetVFXNagini avatar1;
+    public AvatarTargetVFXNagini avatar2;
 
     [Header("In Game Info")]
     public int curStreak;
@@ -71,7 +73,17 @@ public class APManager : MonoBehaviour
 
     public void IncreaseAP()
     {
-        APVFXManager.Instance.APVFXSpawn(avatars.transform.position, 2);
+        Vector3 spawnPos;
+        //spawnPos = avatars[0].transform.position;
+        if (avatar1.ShouldTriggerVFX(out spawnPos))
+        {
+            APVFXManager.Instance.APVfxSpawnNagini(spawnPos, 1);
+        }
+        if (avatar2.ShouldTriggerVFX(out spawnPos))
+        {
+            APVFXManager.Instance.APVfxSpawnYata(spawnPos, 1);
+        }
+
         sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length-1)]
             * multLevels[GetStreakIndex(1)];
