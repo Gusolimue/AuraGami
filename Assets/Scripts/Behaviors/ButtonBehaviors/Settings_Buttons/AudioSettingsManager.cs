@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class AudioSettingsManager : MonoBehaviour
 {
+
+
     [Header("Audio Sliders")]
     [SerializeField] public Slider masterAudioSlider;
     private float masterAudioSliderValue;

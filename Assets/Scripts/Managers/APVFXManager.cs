@@ -11,8 +11,10 @@ public class APVFXManager : MonoBehaviour
         Instance = this;   
     }
 
-    public void APVFXSpawn()
+    public void APVFXSpawn(Vector3 position, float particleCount)
     {
-         targetVFX.SendEvent("TargetHitEvent");
+        targetVFX.SetVector3("SpawnPosition", position);
+        targetVFX.SetFloat("ParticleCount", particleCount);
+        targetVFX.SendEvent("TargetHitEvent");
     }
 }
