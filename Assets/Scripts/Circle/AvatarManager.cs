@@ -43,9 +43,8 @@ public class AvatarManager : MonoBehaviour
     [SerializeField]
     public GameObject leftAvatar;
 
-    public GameObject cursorPrefab;
-    GameObject rightObject;
-    GameObject leftObject;
+    GameObject rightCursor;
+    GameObject leftCursor;
 
     public SoAvatar soAvatarLeft;
     public SoAvatar soAvatarRight;
@@ -68,9 +67,9 @@ public class AvatarManager : MonoBehaviour
         Instance = this;
         playerCircDiameter = playerDiameter;
         avatarCircDiameter = avatarDiameter;
-        GameObject tmpObject = Instantiate(new GameObject("Movement Targets"), this.transform);
-        rightObject = Instantiate(cursorPrefab, tmpObject.transform);
-        leftObject = Instantiate(cursorPrefab, tmpObject.transform);
+        GameObject tmpObject = Instantiate(new GameObject("Cursors"), this.transform);
+        rightCursor = Instantiate(soAvatarLeft.CursorPrefab, tmpObject.transform);
+        leftCursor = Instantiate(soAvatarRight.CursorPrefab, tmpObject.transform);
         evolutionCount = 0;
         transparentColor = new Color(1, 1, 1, 0);
         startColor = new Color(1, 1, 1, 1);
@@ -79,30 +78,32 @@ public class AvatarManager : MonoBehaviour
     }
     private void Start()
     {
-        scaleMult = avatarCircDiameter / playerCircDiameter;
-        playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerCircDiameter);
-        playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, playerCircDiameter);
-        avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, avatarCircDiameter);
-        avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, avatarCircDiameter);
-        // Temporary for testing, remove later
-        //StartCoroutine(CoEvolve(true));
+        scaleMult = avatarDiameter / playerDiameter;
+        avatarCircTransform.localScale *= avatarDiameter;
+        playerCircTransform.localScale *= playerDiameter;
+        //playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerCircDiameter);
+        //playerCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, playerCircDiameter);
+        //avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, avatarCircDiameter);
+        //avatarCircRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, avatarCircDiameter);
     }
     private void Update()
     {
         if(!disableMovement)
         {
-            rightObject.transform.position = GetAvatarPos(true);
-            leftObject.transform.position = GetAvatarPos(false);
+            rightCursor.transform.position = GetCursorPos(true);
+            leftCursor.transform.position = GetCursorPos(false);
         }
 
         if (!disableAvatarMovement)
         {
-            rightAvatar.transform.position = (rightObject.transform.position);
-            leftAvatar.transform.position = (leftObject.transform.position);
+            //rightAvatar.GetComponent<Rigidbody>().MovePosition(rightObject.transform.position);
+            //leftAvatar.GetComponent<Rigidbody>().MovePosition(leftObject.transform.position);
+            rightAvatar.transform.position = (rightCursor.transform.position);
+            leftAvatar.transform.position = (leftCursor.transform.position);
         }
     }
-    //Given a bool to determine which controller. Returns a vector3 of the position the avatar will be set to that update
-    Vector3 GetAvatarPos(bool right)
+    //Given a bool to determine which controller. Returns a vector3 of the position the cursor will be set to that update
+    Vector3 GetCursorPos(bool right)
     {
         Vector3 tmpPos;
         if(right)
@@ -142,7 +143,6 @@ public class AvatarManager : MonoBehaviour
         while (count < 1)
         {
             count += Time.deltaTime;
-            Debug.Log(count);
             // lerp avatars to center
             leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
@@ -181,8 +181,8 @@ public class AvatarManager : MonoBehaviour
             newRightAvatarModel.transform.localPosition = avatarBehaviorRight.avatarObject.transform.localPosition;
             // set newRightAvatarModel.transform.scale?
 
-            Destroy(avatarBehaviorLeft.avatarObject);
-            Destroy(avatarBehaviorRight.avatarObject);
+            avatarBehaviorLeft.avatarObject.SetActive(false);
+            avatarBehaviorRight.avatarObject.SetActive(false);
 
             avatarBehaviorLeft.avatarObject = newLeftAvatarModel;
             avatarBehaviorRight.avatarObject = newRightAvatarModel;
@@ -222,8 +222,8 @@ public class AvatarManager : MonoBehaviour
             count += Time.deltaTime;
 
             // Lerp avatars back to cursor positions
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftCursor.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightCursor.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
             leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count);
             rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count);
             yield return null;
@@ -246,5 +246,91 @@ public class AvatarManager : MonoBehaviour
     public void StartEvolve()
     {
         StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
+    }
+
+    public void StartEvolveFinal()
+    {
+        StartCoroutine(CoEvolveFinal(APManager.Instance.StagePassCheck()));
+    }
+    //alternate version of this method made for the final check to end level
+    IEnumerator CoEvolveFinal(bool _pass)
+    {
+        yield return new WaitForSeconds(1f);
+
+        Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
+        Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
+        Vector3 startScaleLeft = leftAvatar.transform.localScale;
+        Vector3 startScaleRight = rightAvatar.transform.localScale;
+
+        Vector3 offset = new Vector3(.1f, 0, 0);
+        float scaleAmt = .8f;
+        // take control from player
+        disableAvatarMovement = true;
+        count = 0;
+        while (count < 1)
+        {
+            count += Time.deltaTime;
+            // lerp avatars to center
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft * scaleAmt, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            yield return null;
+        }
+        count = 0;
+
+        while (count < 1)
+        {
+            count += Time.deltaTime;
+            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+
+            yield return null;
+        }
+
+        APManager.Instance.ResetAP();
+        count = 0;
+        yield return new WaitForSeconds(1f);
+        if (_pass)
+        {
+            avatarBehaviorLeft.avatarObject.SetActive(false);
+            avatarBehaviorRight.avatarObject.SetActive(false);
+
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+        }
+        else
+        {
+            //Gus B -  here is where the fail animation begins. its more complicated, but only slightly. 
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+            count = 0;
+            while (count < 1)
+            {
+                count += Time.deltaTime;
+                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                yield return null;
+            }
+        }
+        if (_pass)
+        {
+            Debug.Log("end level");
+            CanvasManager.Instance.ShowCanvasLevelEnd();
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
+        }
+        else
+        {
+            CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
+        }
     }
 }

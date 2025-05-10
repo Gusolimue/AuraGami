@@ -20,6 +20,7 @@ public class AvatarBehavior : MonoBehaviour
     //
     private void Awake()
     {
+        GetNewAnimator();
         //transparentColor = new Color(1, 1, 1, 0);
         //startColor = new Color(1, 1, 1, 1);
         //failColor = new Color(1, .5f, .5f, 1);
@@ -31,16 +32,33 @@ public class AvatarBehavior : MonoBehaviour
 
     public void ObstacleCollision()
     {
-        animator.SetTrigger("OnDamage");
+        if(avatarObject.GetComponent<Animator>() != null)
+        {
+            avatarObject.GetComponent<Animator>().SetTrigger("OnDamage");
+        }
+        else
+        {
+            Debug.LogError("No animator detected for "+side+ " avatar!");
+        }
     }
 
     public void StreakEnabled()
     {
-        animator.SetTrigger("OnStreak");
+        if (avatarObject.GetComponent<Animator>() != null)
+        {
+            avatarObject.GetComponent<Animator>().SetTrigger("OnStreak");
+        }
+        else
+        {
+            Debug.LogError("No animator detected for " + side + " avatar!");
+        }
     }
 
     public void TargetCollision()
     {
 
+    }
+    public void GetNewAnimator()
+    {
     }
 }
