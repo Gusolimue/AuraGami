@@ -119,6 +119,7 @@ public class PauseManager : MonoBehaviour
         {
             isPaused = false;
             HideAndUnhideObjects(true);
+            PauseMenu.Instance.DestroyMenu();
             menuBG.SetActive(false);
             StartCoroutine(CountdownBehavior());
             Debug.Log("Is Unpaused!");

@@ -14,8 +14,8 @@ public class AvatarTargetVFXNagini : MonoBehaviour
         if (triggerVFX)
         {
             triggerVFX = false;
-            //triggerPosition = this.gameObject.transform.position + Vector3.down * 1.5f;
-            pos = triggerPosition + Vector3.down * 1.5f;
+            triggerPosition = vfxContainer.transform.position;
+            pos = triggerPosition;
             return true;
         }
         pos = Vector3.zero;

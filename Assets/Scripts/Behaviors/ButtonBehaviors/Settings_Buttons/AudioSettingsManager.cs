@@ -3,18 +3,22 @@ using UnityEngine.UI;
 
 public class AudioSettingsManager : MonoBehaviour
 {
-
-
     [Header("Audio Sliders")]
+    [Space]
+    [Header("Master Vol")]
     [SerializeField] public Slider masterAudioSlider;
+    [SerializeField] Image masterHandle; 
     private float masterAudioSliderValue;
 
+    [Header("Music Vol")]
     [SerializeField] public Slider musicAudioSlider;
     private float musicAudioSliderValue;
 
+    [Header("SFX Vol")]
     [SerializeField] public Slider sfxAudioSlider;
     private float sfxAudioSliderValue;
-
+    [Space]
+    [SerializeField] Image targetHandleSize;
 
     private void Awake()
     {
