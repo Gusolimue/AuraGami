@@ -34615,7 +34615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -148.4, y: -102.6}
+  m_AnchoredPosition: {x: -212.4, y: 114.6}
   m_SizeDelta: {x: 1043.2546, y: 1209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8174921494655778834
@@ -34639,7 +34639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5707547, g: 1, b: 0.93369377, a: 1}
+  m_Color: {r: 0.5707547, g: 1, b: 0.93369377, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -34743,7 +34743,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54954,6 +54954,81 @@ Transform:
   - {fileID: 1633164667314994268}
   m_Father: {fileID: 8835198266236245778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4505908821125961167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4976043594215436598}
+  - component: {fileID: 1965583929975208929}
+  - component: {fileID: 2626153631270856041}
+  m_Layer: 0
+  m_Name: 'Freedom_Star '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4976043594215436598
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4505908821125961167}
+  m_LocalRotation: {x: -0, y: -0, z: 0.866025, w: 0.50000083}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.010553381, y: 0.010553381, z: 0.010553381}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2340616433965615354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 228.2, y: -60.7}
+  m_SizeDelta: {x: 1043.2546, y: 1209}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1965583929975208929
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4505908821125961167}
+  m_CullTransparentMesh: 1
+--- !u!114 &2626153631270856041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4505908821125961167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9811321, g: 0.6034522, b: 0.43040225, a: 0.5019608}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1157738079, guid: 4e2d59e98aa60b44895a9cff87788ca8, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4935912183720818565
 GameObject:
   m_ObjectHideFlags: 0
@@ -64652,6 +64727,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7058876743687023725}
+  - {fileID: 4976043594215436598}
   m_Father: {fileID: 6246079556584938149}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &8207144927435294682
@@ -74563,8 +74639,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.68874025, g: 0.8679245, b: 0.1760413, a: 0.6}
-      maxColor: {r: 0.8018868, g: 0.07186719, b: 0.34683177, a: 0.6}
+      minColor: {r: 0.9811321, g: 0.6570366, b: 0.49519405, a: 0.6}
+      maxColor: {r: 0.95469207, g: 0.5235849, b: 1, a: 0.6}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

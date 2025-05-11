@@ -4,8 +4,6 @@ using System.Collections;
 public class AvatarTargetVFXNagini : MonoBehaviour
 {
     public bool triggerVFX = false;
-    private int lastCollide = -1;
-
     [SerializeField] GameObject vfxContainer;
     private Vector3 triggerPosition;
 
@@ -26,20 +24,7 @@ public class AvatarTargetVFXNagini : MonoBehaviour
     {
         if (other.CompareTag("Target"))
         {
-            int targetID = other.gameObject.GetInstanceID();
-
-            if (targetID != lastCollide)
-            {
-                lastCollide = targetID;
-                triggerPosition = other.transform.position;
-                triggerVFX = true;
-            }
+            triggerVFX = true;
         }
-    }
-
-    IEnumerator ManageBool()
-    {
-        yield return new WaitForSeconds(.5f);
-        //isCollidingWithTarget = false;
     }
 }
