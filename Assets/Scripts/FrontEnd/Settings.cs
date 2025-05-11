@@ -11,7 +11,7 @@ public class Settings : MonoBehaviour
         if (LoadManager.Instance.currentScene >= 1)
         {
             PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
-            this.gameObject.transform.localPosition = PauseManager.Instance.inGamePos.transform.localPosition;
+            this.gameObject.transform.localPosition = new Vector3(-0.34f, 3.44f, 6.43f);
         }
     }
 

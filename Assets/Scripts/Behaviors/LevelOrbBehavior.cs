@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using FMODUnity;
 
 public class LevelOrbBehavior : MonoBehaviour
 {
     public static LevelOrbBehavior Instance;
+    [SerializeField] EventReference hoverSFX; 
 
     [Header("GameObjects")]
     [SerializeField] GameObject levelOrb;
@@ -22,6 +25,7 @@ public class LevelOrbBehavior : MonoBehaviour
     private bool isEntered;
     private bool isExited;
     public float orbScaleSpeed = 5f;
+    public int whichOrb;
 
     private void Awake()
     {
@@ -40,6 +44,12 @@ public class LevelOrbBehavior : MonoBehaviour
         if (isEntered == true && !isSelected) 
         {
             levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleUp.transform.localScale, Time.deltaTime * orbScaleSpeed);
+
+            AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
+
+            float musicVolDecrease = Mathf.Lerp(0, PlayerPrefs.GetFloat("saveMusic"), Time.deltaTime * .5f);
+            AudioManager.Instance.SetVolume(eBus.Music, musicVolDecrease);
+            
             //orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
             //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
         }
@@ -47,6 +57,14 @@ public class LevelOrbBehavior : MonoBehaviour
         if (isExited == true) 
         {
             levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleDown.transform.localScale, Time.deltaTime * orbScaleSpeed);
+
+            float sfxVolDecrease = Mathf.Lerp(0, PlayerPrefs.GetFloat("saveSFX"), Time.deltaTime * 1);
+            AudioManager.Instance.SetVolume(eBus.SFX, sfxVolDecrease);
+
+            float musicVolIncrease = Mathf.Lerp(PlayerPrefs.GetFloat("saveMusic"), 0, Time.deltaTime * .5f);
+            AudioManager.Instance.SetVolume(eBus.Music, musicVolIncrease);
+
+
             //orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
             //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
         }
@@ -58,13 +76,15 @@ public class LevelOrbBehavior : MonoBehaviour
         isEntered = false;
         isExited = true;
 
-        //AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
     }
 
     public void OnOrbButtonEntered()
     {
         isEntered = true;
         isExited = false;
+
+        AudioManager.Instance.PlaySFX(hoverSFX);
     }
 
     public void OnOrbButtonExit()

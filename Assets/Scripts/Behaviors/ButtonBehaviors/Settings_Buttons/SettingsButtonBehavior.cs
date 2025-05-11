@@ -41,11 +41,13 @@ public class SettingsButtonBehavior : MonoBehaviour
     public void IncreaseFill()
     {
         isHovering = true;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
     }
 
     public void DecreaseFill()
     {
         isHovering = false;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverExitSmall);
     }
 
     public void SetSelected(bool selected)

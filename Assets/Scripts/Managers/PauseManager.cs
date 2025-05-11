@@ -8,6 +8,7 @@ public class PauseManager : MonoBehaviour
     public static PauseManager Instance;
     public InputActionReference openPauseMenuAction;
     [SerializeField] public GameObject menuBG;
+    //[SerializeField] SpriteRenderer menuBGSprite;
     public bool isPaused = false;
 
     [Header("Avatars/UI")]
@@ -35,6 +36,8 @@ public class PauseManager : MonoBehaviour
         {
             countdownTimer[i].gameObject.SetActive(false);
         }
+
+        //menuBGSprite.color = countdownColor[1];
     }
 
     private void Update()
@@ -58,6 +61,9 @@ public class PauseManager : MonoBehaviour
                 Time.deltaTime * colorTransitionSpeed);
         }
 
+        //if (isPaused) menuBGSprite.color = Color.Lerp(menuBGSprite.color, countdownColor[1], Time.deltaTime * 5);
+        //else menuBGSprite.color = Color.Lerp(menuBGSprite.color, countdownColor[0], Time.deltaTime * 5);
+
     }
 
     private void OnDestroy()
@@ -69,11 +75,12 @@ public class PauseManager : MonoBehaviour
 
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
-        if (isPaused == false)
+        if (!isPaused)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
             PauseGame(true);
         }
-        else if (isPaused == true)
+        else if (isPaused)
         {
             PauseGame(false);
         }
@@ -129,21 +136,22 @@ public class PauseManager : MonoBehaviour
     private IEnumerator CountdownBehavior()
     {
         openPauseMenuAction.action.performed -= OnPauseButtonPressed;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_countdown);
 
         countdownTimer[0].color = countdownColor[0]; countdownTimer[0].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[0].gameObject.SetActive(true);
         timerOn = 3;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         countdownTimer[1].color = countdownColor[0]; countdownTimer[1].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[1].gameObject.SetActive(true);
         timerOn = 2;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         countdownTimer[2].color = countdownColor[0]; countdownTimer[2].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[2].gameObject.SetActive(true);
         timerOn = 1;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < countdownTimer.Length; i++)
         {
