@@ -34,8 +34,6 @@ public class Settings : MonoBehaviour
         for (int i = 0; i < settingMenus.Length; i++)
         {
             settingMenus[i].SetActive(i == menuIndex);
-
-
         }
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
