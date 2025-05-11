@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 public enum eControlType {restrictZ, free };
+public enum eAvatar {left, right };
 public class AvatarManager : MonoBehaviour
 {
     //Sets the size of the player's interaction circle and the avatar's movement circle. Moves avatars according to the player controllers
