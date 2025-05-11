@@ -10,7 +10,6 @@ public class APVFXManager : MonoBehaviour
     {
         Instance = this;   
     }
-
     public void APVfxSpawnNagini(Vector3 position, float particleCount)
     {
         targetVFX[0].SetVector3("SpawnPosition", position);

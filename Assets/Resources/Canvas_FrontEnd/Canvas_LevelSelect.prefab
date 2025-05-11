@@ -50,8 +50,6 @@ MonoBehaviour:
   orbMovementSpeed: 1
   levelOrbScaleUp: {fileID: 7852513917621721692}
   levelOrbScaleDown: {fileID: 3079141035255541597}
-  orbMaterial: {fileID: 0}
-  orbColors: []
   orbScaleSpeed: 5
 --- !u!1 &606398811742071396
 GameObject:
@@ -5143,45 +5141,12 @@ Transform:
   m_GameObject: {fileID: 1407750779032757302}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.784424, y: -278.82996, z: -418.7251}
+  m_LocalPosition: {x: -22.784424, y: -260.7, z: -418.7251}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1824319064643636698}
   - {fileID: 6535078069623346282}
-  m_Father: {fileID: 5063890370258840469}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1657697157421807192
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6351025698340263714}
-  m_Layer: 0
-  m_Name: Variable_Assets
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6351025698340263714
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657697157421807192}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 151.95923, y: -316.96777, z: -426.00003}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1546971273658257909}
-  - {fileID: 1671674093486751399}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1777764328910352056
@@ -5426,8 +5391,9 @@ RectTransform:
   - {fileID: 3611072013624478610}
   - {fileID: 7449115081269070381}
   - {fileID: 4374941863716100847}
-  - {fileID: 6351025698340263714}
   - {fileID: 4124314311099737034}
+  - {fileID: 1546971273658257909}
+  - {fileID: 1671674093486751399}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5720,11 +5686,11 @@ Transform:
   m_GameObject: {fileID: 3079141035255541597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7166138, y: -0.13342285, z: 0.07120056}
-  m_LocalScale: {x: 0.7286551, y: 0.7286551, z: 0.7286551}
+  m_LocalPosition: {x: -19.702148, y: -330.31006, z: -418.87997}
+  m_LocalScale: {x: 72.86551, y: 72.86551, z: 72.86551}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6351025698340263714}
+  m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6500969583904300985
 MeshFilter:
@@ -6328,10 +6294,6 @@ MonoBehaviour:
   orbMovementSpeed: 1
   levelOrbScaleUp: {fileID: 7852513917621721692}
   levelOrbScaleDown: {fileID: 3079141035255541597}
-  orbMaterial: {fileID: 2100000, guid: 86f34484455d8454fa2a63ed73c98ee4, type: 2}
-  orbColors:
-  - {r: 0.21568629, g: 0.8235295, b: 0.9960785, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
   orbScaleSpeed: 5
 --- !u!1 &7852513917621721692
 GameObject:
@@ -6362,11 +6324,11 @@ Transform:
   m_GameObject: {fileID: 7852513917621721692}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6936035, y: 1.462677, z: 0.07120056}
-  m_LocalScale: {x: 1.0893394, y: 1.0893394, z: 1.0893394}
+  m_LocalPosition: {x: -17.401123, y: -170.70007, z: -418.87997}
+  m_LocalScale: {x: 108.93394, y: 108.93394, z: 108.93394}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6351025698340263714}
+  m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9053552944738631229
 MeshFilter:
@@ -11472,7 +11434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7474213, y: -0.548}
+  m_AnchoredPosition: {x: 1.804, y: -0.548}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4030608720993920771

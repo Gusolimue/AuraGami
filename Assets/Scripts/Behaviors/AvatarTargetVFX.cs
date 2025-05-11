@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AvatarTargetVFXNagini : MonoBehaviour
+public class AvatarTargetVFX : MonoBehaviour
 {
     public bool triggerVFX = false;
     [SerializeField] GameObject vfxContainer;

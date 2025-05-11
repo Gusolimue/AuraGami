@@ -7,7 +7,7 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
     public int damageAmount = 1;
 
     // Check if the avatar is colliding with the inner circle (target) or just the outer ring (hazard)
-    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
+    public override void AvatarCollision(AvatarBehavior avatarBehavior)
     {
         // Create a temp box collider to check if the inner circle is being collided with
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(transform.localScale.x / 8, transform.localScale.y / 8, transform.localScale.z / 8), Quaternion.identity);
@@ -18,7 +18,7 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a normal target
             Debug.Log("Hit the target");
             APManager.Instance.IncreaseAP();
-            base.AvatarCollision();
+            base.AvatarCollision(avatarBehavior);
         }
         else
         {

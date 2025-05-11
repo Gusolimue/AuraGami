@@ -76,12 +76,15 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
 
     // Increments the current target point if one still exists, otherwise triggers collision like normal
-    public override void AvatarCollision(AvatarBehavior avatarBehavior = null)
+    public override void AvatarCollision(AvatarBehavior avatarBehavior)
     {
         if(isTracing)
         {
             APManager.Instance.IncreaseAP();
-            base.AvatarCollision();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
+            if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(endTargetRenderer.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+            else APVFXManager.Instance.APVfxSpawnYata(endTargetRenderer.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+            StopTarget();
         }
         else
         {

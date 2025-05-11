@@ -72,9 +72,11 @@ public class BaseInteractableBehavior : MonoBehaviour
 
     }
     //Method called when object's trigger collides with avatar
-    public virtual void AvatarCollision(AvatarBehavior avatarBehavior = null)
+    public virtual void AvatarCollision(AvatarBehavior avatarBehavior)
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
+        if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        else APVFXManager.Instance.APVfxSpawnYata(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
         StopTarget();
     }
 

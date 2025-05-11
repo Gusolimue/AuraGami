@@ -18,11 +18,6 @@ public class APManager : MonoBehaviour
     [SerializeField]bool forceSuccess = false;
     [Space]
 
-   // [SerializeField] GameObject[] avatars;
-    public AvatarTargetVFXNagini avatar1;
-    public AvatarTargetVFXNagini avatar2;
-    float particleValue;
-
     [Header("In Game Info")]
     public int curStreak;
     public float curAP;
@@ -69,7 +64,6 @@ public class APManager : MonoBehaviour
                 }
             }
             stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
-            particleValue = stageTargetValues[c];
         }
     }
 
@@ -82,7 +76,6 @@ public class APManager : MonoBehaviour
 
         UpdateSigils();
         UpdateAuraFX();
-        TargetParticleSpawn();
 
         if (sigil.value >= .999f)
         {
@@ -96,21 +89,7 @@ public class APManager : MonoBehaviour
         }
     }
 
-    private void TargetParticleSpawn()
-    {
-        Vector3 spawnPos;
-        int particleAmount = 1;
-        if (avatar1.ShouldTriggerVFX(out spawnPos))
-        {
-            APVFXManager.Instance.APVfxSpawnNagini(spawnPos, particleAmount);
-        }
-        if (avatar2.ShouldTriggerVFX(out spawnPos))
-        {
-            APVFXManager.Instance.APVfxSpawnYata(spawnPos, particleAmount);
-        }
-    }
-
-    int GetStreakIndex(int _change = 0)
+    public int GetStreakIndex(int _change = 0)
     {
         int tmpReturn;
         curStreak += _change;
