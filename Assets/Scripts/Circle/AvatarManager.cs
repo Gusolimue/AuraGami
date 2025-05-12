@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 public enum eControlType {restrictZ, free };
+public enum eAvatar {left, right };
 public class AvatarManager : MonoBehaviour
 {
     //Sets the size of the player's interaction circle and the avatar's movement circle. Moves avatars according to the player controllers
@@ -120,6 +121,7 @@ public class AvatarManager : MonoBehaviour
             return tmpPos;
         }
     }
+    public float count = 0;
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     IEnumerator CoEvolve(bool _pass)
     {
@@ -127,22 +129,27 @@ public class AvatarManager : MonoBehaviour
 
         //Gus- and then you will want a while loop here to lerp the avatars together (close but not exactly on top of eachother, as you dont want them clipping through each other)
         yield return new WaitForSeconds(1f);
-        float count = 0;
 
         Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
         Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
+        Vector3 startScaleLeft = leftAvatar.transform.localScale;
+        Vector3 startScaleRight = rightAvatar.transform.localScale;
 
-        Vector3 offset = new Vector3(.5f, 0, 0);
-
+        Vector3 offset = new Vector3(.1f, 0, 0);
+        float scaleAmt = .8f;
         // take control from player
         disableAvatarMovement = true;
-
+        count = 0;
         while (count < 1)
         {
             count += Time.deltaTime;
+            Debug.Log(count);
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft *scaleAmt, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            yield return null;
         }
         count = 0;
 
@@ -157,6 +164,7 @@ public class AvatarManager : MonoBehaviour
             yield return null;
         }
 
+        APManager.Instance.ResetAP();
         count = 0;
         yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
         if (_pass)//Gus A - here is where the pass animation begins. if the variable is true, all it does is fade the orb back to transparency and reset the ap meter.
@@ -186,12 +194,6 @@ public class AvatarManager : MonoBehaviour
                 evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
-            //Gus- made this quick change for you. this was only here because i was calling this method twice (one for each avatar) because we're only calling the method once now, we can always reset the ap on success
-            //if (eSide.right == side)
-            //{
-            //    APManager.Instance.ResetAP();
-            //}
-            APManager.Instance.ResetAP();
         }
         else
         {
@@ -209,17 +211,6 @@ public class AvatarManager : MonoBehaviour
                 evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
-
-            //Gus- see the comment about the similar change above
-            //if (eSide.right == side)
-            //{
-            //    CanvasManager.Instance.ShowCanvasStageFail();
-            //    PauseManager.Instance.isPaused = true;
-            //    BeatManager.Instance.PauseMusicTMP(true);
-            //}
-            CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
-            BeatManager.Instance.PauseMusicTMP(true);
         }
 
         leftAvatarStartingPosition = leftAvatar.transform.position;
@@ -234,10 +225,23 @@ public class AvatarManager : MonoBehaviour
             // Lerp avatars back to cursor positions
             leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightObject.transform.position, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count);
+            yield return null;
+        }
+        if(_pass)
+        {
+            disableAvatarMovement = false;
+
+        }
+        else
+        {
+            CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.isPaused = true;
+            BeatManager.Instance.PauseMusicTMP(true);
         }
 
         // Give control of the avatars back to the player
-        disableAvatarMovement = false;
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
     public void StartEvolve()

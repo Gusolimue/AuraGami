@@ -6,6 +6,16 @@ public class CanvasManager : MonoBehaviour
 
     private void Awake()
     {
+        //if (Instance != null && Instance != this)
+        //{
+        //    Debug.Log("Destroy New CanvasManager");
+        //    Destroy(this.gameObject);
+        //}
+        //else
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(this.gameObject);
+        //}
         Instance = this;
     }
 

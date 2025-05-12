@@ -78,7 +78,7 @@ public class StageProgressionManager : MonoBehaviour
                 if (isChangingStage)
                 {
                     isChangingStage = false;
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_avatar_sigilFill);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickUp);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ public class StageProgressionManager : MonoBehaviour
     // Raises and/or lowers the terrain and changes currentStage depending on if the stage was passed
     IEnumerator ProgressStage(bool _success)
     {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_avatar_sigilFill);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickUp);
         if (_success)
         {
             startTime = Time.time;
@@ -113,7 +113,7 @@ public class StageProgressionManager : MonoBehaviour
             isCheckingStage = true;
             if (willChangeHeight) targetHeight = new Vector3(currentHeight.x, currentHeight.y + ascendCheckDistance, currentHeight.z);
             if (willChangeSpeed) targetSpeed = speedIndex - 1;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_avatar_sigilFill);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickUp);
             FadeAllInteractables();
 
             PauseManager.Instance.isPaused = true;

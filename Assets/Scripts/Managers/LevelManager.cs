@@ -1,3 +1,4 @@
+using EditorAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,7 +67,7 @@ public class LevelManager : MonoBehaviour
                 break;
             case eTargetType.threadedTarget:
                 //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
-                tmpObject = Instantiate(threadedTargets[0]);
+                tmpObject = Instantiate(threadedTargets[threadedCount]);
                 threadedCount++;
                 tmpObject.transform.SetParent(currentBoard.transform);
                 tmpObject.transform.localPosition = Vector3.zero;
@@ -235,4 +236,78 @@ public class LevelManager : MonoBehaviour
     // set the spawn distance. set number of beats for travel time
     // targets will interpolate forwards (spawn distance/number of beats) * beats passed since spawn + 1 over the course of 1 beat
     //
+}
+
+
+// a class to hold one "plane" of interactables
+[System.Serializable]
+public class Board
+{
+    public Interactable[] interactables;
+    public Board(Interactable[] _interactables)
+    {
+        interactables = new Interactable[_interactables.Length];
+        for (int i = 0; i < _interactables.Length; i++)
+        {
+            TargetPoints[] tmpMultipoints = null;
+            if (_interactables[i].multiPoints != null)
+            {
+                tmpMultipoints = new TargetPoints[_interactables[i].multiPoints.Length];
+                for (int c = 0; c < _interactables[i].multiPoints.Length; c++)
+                {
+                    tmpMultipoints[c] = new TargetPoints(_interactables[i].multiPoints[c].boardsMoved,
+                        _interactables[i].multiPoints[c].interactableAngle, _interactables[i].multiPoints[c].interactableDistance);
+                }
+            }
+            //Debug.Log(_interactables[i].interactableType);
+            //Debug.Log(_interactables[i].side);
+            //Debug.Log(_interactables[i].interactableAngle);
+            //Debug.Log(_interactables[i].interactableDistance);
+            //Debug.Log(tmpMultipoints);
+            interactables[i] = new Interactable(_interactables[i].interactableType, _interactables[i].side,
+                _interactables[i].interactableAngle, _interactables[i].interactableDistance, tmpMultipoints);
+        }
+    }
+}
+//an interactable to be set for a board
+public enum eTargetType { regularTarget, multihitTarget, threadedTarget, precisionTarget, regularObstacle }
+public enum eOrientation { vertical, horizontal }
+public enum eSize { small, medium, large }
+[System.Serializable]
+public class Interactable
+{
+    public eTargetType interactableType;
+    public eSide side;
+    [Range(0, 359)]
+    public int interactableAngle;
+    [Range(0f, 1f)]
+    public float interactableDistance;
+    public TargetPoints[] multiPoints;
+    [FoldoutGroup("ObstacleSettings", nameof(obstacleOrientation), nameof(obstacleSize))]
+    [SerializeField] VoidStructure obstacleSettingsHolder;
+    [HideInInspector] public eOrientation obstacleOrientation;
+    [HideInInspector] public eSize obstacleSize;
+    public Interactable(eTargetType _interactableType, eSide _side, int _interactableAngle, float _interactableDistance, TargetPoints[] _multiPoints = null)
+    {
+        interactableType = _interactableType;
+        side = _side;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+        multiPoints = _multiPoints;
+    }
+}
+[System.Serializable]
+public class TargetPoints
+{
+    public int boardsMoved;
+    [Range(0, 359)]
+    public int interactableAngle;
+    [Range(0f, 1f)]
+    public float interactableDistance;
+    public TargetPoints(int _boardsMoved, int _interactableAngle, float _interactableDistance)
+    {
+        boardsMoved = _boardsMoved;
+        interactableAngle = _interactableAngle;
+        interactableDistance = _interactableDistance;
+    }
 }
