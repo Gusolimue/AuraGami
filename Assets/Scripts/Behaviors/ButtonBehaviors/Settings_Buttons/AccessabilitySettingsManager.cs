@@ -1,43 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class AccessabilitySettingsManager : MonoBehaviour
 {
     public static AccessabilitySettingsManager Instance;
 
-    [Header("Accessibility Button Elements")]
-    [SerializeField] public GameObject accessabilityConstellationOn;
-    [SerializeField] public GameObject accessabilityConstellationOff;
-
     [Header("Player Circle/Slider")]
     [SerializeField] public Slider playCircleSlider;
-    [SerializeField] GameObject playCircleDemo;
+    [SerializeField] Image playCircleDemo;
+    [SerializeField] GameObject playerCircle;
+    [SerializeField] Color[] colorChanges;
     public float playCircleSliderValue;
+    private bool demoOn = false;
 
     private void Awake()
     {
         Instance = this;
        // playCircleSlider.value = 1f;
 
-        accessabilityConstellationOn.SetActive(false);
-        accessabilityConstellationOff.SetActive(true);
-
-        playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
+        playCircleSlider.value = PlayerPrefs.GetFloat("playCircleScale");
         playCircleSlider.onValueChanged.AddListener(ChangeSlider);
+        playCircleDemo.color = colorChanges[1];
 
         Debug.Log(playCircleSlider.value);
     }
 
-    public void OnAccessabilityButtonEnter()
+    private void Update()
     {
-        accessabilityConstellationOn.SetActive(true);
-        accessabilityConstellationOff.SetActive(false);
-    }
-
-    public void OnAccessabilityButtonExit()
-    {
-        accessabilityConstellationOn.SetActive(false);
-        accessabilityConstellationOff.SetActive(true);
+        if (demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[0], Time.deltaTime * 5);
+        if (!demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[1], Time.deltaTime * 5);
     }
 
     public void ChangeSlider(float value)
@@ -45,13 +37,33 @@ public class AccessabilitySettingsManager : MonoBehaviour
         Debug.Log("Saving slider value: " + value);
 
         playCircleSliderValue = value;
-        PlayerPrefs.SetFloat("save", playCircleSliderValue);
+        PlayerPrefs.SetFloat("playCircleScale", value);
         PlayerPrefs.Save();
 
-        if (playCircleDemo != null) playCircleDemo.transform.localScale = new Vector3(value, value, value);
-        PlayerPrefs.SetFloat("playCircleScaleX", playCircleDemo.transform.localScale.x);
-        PlayerPrefs.SetFloat("playCircleScaleY", playCircleDemo.transform.localScale.y);
-        PlayerPrefs.SetFloat("playCircleScaleZ", playCircleDemo.transform.localScale.z);
-        PlayerPrefs.Save();
+        if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScale(PlayerPrefs.GetFloat("playCircleScale"));
+
+        }
+    }
+
+    public void IncreasePlayerCircleSize()
+    {
+        playCircleSlider.value += .1f;
+        StartCoroutine(ActivateCircleDemo());
+    }
+
+    public void DecreasePlayerCircleSize()
+    {
+        playCircleSlider.value -= .1f;
+        StartCoroutine(ActivateCircleDemo());
+    }
+
+    IEnumerator ActivateCircleDemo()
+    {
+        demoOn = true;
+        yield return new WaitForSeconds(5);
+        demoOn = false;
     }
 }

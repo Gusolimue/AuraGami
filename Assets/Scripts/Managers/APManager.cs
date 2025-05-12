@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class APManager : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class APManager : MonoBehaviour
     [Header("Cheats")]
     [SerializeField]bool forceSuccess = false;
     [Space]
-
 
     [Header("In Game Info")]
     public int curStreak;
@@ -88,7 +88,8 @@ public class APManager : MonoBehaviour
             }
         }
     }
-    int GetStreakIndex(int _change = 0)
+
+    public int GetStreakIndex(int _change = 0)
     {
         int tmpReturn;
         curStreak += _change;

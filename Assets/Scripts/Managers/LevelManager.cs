@@ -166,7 +166,7 @@ public class LevelManager : MonoBehaviour
         if (!APManager.Instance.StagePassCheck())
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
             //PauseManager.Instance.PauseGame(true);
         }
@@ -174,7 +174,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
             //PauseManager.Instance.PauseGame(true);
         }
         else

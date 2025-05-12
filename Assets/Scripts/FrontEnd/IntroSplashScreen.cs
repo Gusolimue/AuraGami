@@ -11,9 +11,7 @@ public class IntroSplashScreen : MonoBehaviour
     public InputActionReference skipIntroControllerAction;
 
     [Header("Logos/Assets")]
-    [SerializeField] Image teamAuragamiLogoSprite;
-    [SerializeField] Image fmodLogoSprite;
-    [SerializeField] Image unityLogoSprite;
+    [SerializeField] Image[] logoSprites;
     [Space]
     [SerializeField] GameObject introVideoContainer;
 
@@ -26,6 +24,7 @@ public class IntroSplashScreen : MonoBehaviour
     public Color noneTransparent;
 
     private bool isTeamAuragami;
+    private bool isACC;
     private bool isFmod;
     private bool isUnity;
 
@@ -53,29 +52,38 @@ public class IntroSplashScreen : MonoBehaviour
     {
        if (isTeamAuragami == true)
        {
-            teamAuragamiLogoSprite.color = Color.Lerp(teamAuragamiLogoSprite.color, noneTransparent, Time.deltaTime * transitionTime);
+            logoSprites[0].color = Color.Lerp(logoSprites[0].color, noneTransparent, Time.deltaTime * transitionTime);
        }
        if (isTeamAuragami == false)
        {
-            teamAuragamiLogoSprite.color = Color.Lerp(teamAuragamiLogoSprite.color, transparent, Time.deltaTime * transitionTime);
+            logoSprites[0].color = Color.Lerp(logoSprites[0].color, transparent, Time.deltaTime * transitionTime);
        }
+
+        if (isACC == true)
+        {
+            logoSprites[1].color = Color.Lerp(logoSprites[1].color, noneTransparent, Time.deltaTime * transitionTime);
+        }
+        if (isACC == false)
+        {
+            logoSprites[1].color = Color.Lerp(logoSprites[1].color, transparent, Time.deltaTime * transitionTime);
+        }
 
         if (isFmod == true)
         {
-            fmodLogoSprite.color = Color.Lerp(fmodLogoSprite.color, noneTransparent, Time.deltaTime * transitionTime);
+            logoSprites[2].color = Color.Lerp(logoSprites[2].color, noneTransparent, Time.deltaTime * transitionTime);
         }
         if (isFmod == false)
         {
-            fmodLogoSprite.color = Color.Lerp(fmodLogoSprite.color, transparent, Time.deltaTime * transitionTime);
+            logoSprites[2].color = Color.Lerp(logoSprites[2].color, transparent, Time.deltaTime * transitionTime);
         }
 
         if (isUnity == true)
         {
-            unityLogoSprite.color = Color.Lerp(unityLogoSprite.color, noneTransparent, Time.deltaTime * transitionTime);
+            logoSprites[3].color = Color.Lerp(logoSprites[3].color, noneTransparent, Time.deltaTime * transitionTime);
         }
         if (isUnity == false)
         {
-            unityLogoSprite.color = Color.Lerp(unityLogoSprite.color, transparent, Time.deltaTime * transitionTime);
+            logoSprites[3].color = Color.Lerp(logoSprites[3].color, transparent, Time.deltaTime * transitionTime);
         }
 
         if (isSkip == true)
@@ -106,18 +114,24 @@ public class IntroSplashScreen : MonoBehaviour
         yield return new WaitForSeconds(26);
         introVideoContainer.SetActive(false);
         yield return new WaitForSeconds(1);
+
         isTeamAuragami = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         isTeamAuragami = false;
         yield return new WaitForSeconds(1);
 
+        isACC = true;
+        yield return new WaitForSeconds(3);
+        isACC = false;
+        yield return new WaitForSeconds(1);
+
         isFmod = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         isFmod = false;
         yield return new WaitForSeconds(1);
 
         isUnity = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         isUnity = false;
         yield return new WaitForSeconds(1);
 

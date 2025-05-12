@@ -10,7 +10,7 @@ public class TargetTrigger : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
-            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
+            //GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
             //ScoreManager.Instance.scoreNum++;
             //ScoreManager.Instance.ChangeScore();
             //Destroy(gameObject);

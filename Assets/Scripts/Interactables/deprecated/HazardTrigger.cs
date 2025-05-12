@@ -4,9 +4,13 @@ public class HazardTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) // Destroys hazards when player characters collide with them.
     {
-        if (other.GetComponent<AvatarBehavior>() || other.GetComponentInParent<AvatarBehavior>())
+        if (other.GetComponent<AvatarBehavior>())
         {
-            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision();
+            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision(other.GetComponent<AvatarBehavior>());
+        }
+        else if (other.GetComponentInParent<AvatarBehavior>())
+        {
+            GetComponentInParent<BaseInteractableBehavior>().AvatarCollision(other.GetComponentInParent<AvatarBehavior>());
         }
     }
 }
