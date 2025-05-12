@@ -73,6 +73,7 @@ public class LevelOrbBehavior : MonoBehaviour
         isSelected = true;
         isEntered = false;
 
+        hoverInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
     }
 
