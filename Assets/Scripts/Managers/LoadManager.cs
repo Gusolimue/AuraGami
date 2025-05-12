@@ -15,16 +15,17 @@ public class LoadManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Debug.Log("Destory New LoadManager");
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        //if (Instance != null && Instance != this)
+        //{
+        //    Debug.Log("Destory New LoadManager");
+        //    Destroy(this.gameObject);
+        //}
+        //else
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(this.gameObject);
+        //}
+        Instance = this;
     }
 
     private void OnEnable()
@@ -67,10 +68,12 @@ public class LoadManager : MonoBehaviour
 
 
             case eScene.levelExploration:
+                AudioManager.Instance.StopMusic();
                 currentScene = 1;
                 break;
 
             case eScene.levelFreedom:
+                AudioManager.Instance.StopMusic();
                 currentScene = 2;
                 break;
 
