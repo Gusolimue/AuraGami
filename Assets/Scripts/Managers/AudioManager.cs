@@ -106,14 +106,10 @@ public class AudioManager : MonoBehaviour
         Master = FMODUnity.RuntimeManager.GetBus("bus:/");
         SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX Bus");
         Music = FMODUnity.RuntimeManager.GetBus("bus:/Music Bus");
-        if (PlayerPrefs.HasKey("save")) SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
-        else
-        {
-            PlayerPrefs.SetFloat("save", .4f);
-            SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
-        }
-        SetVolume(eBus.SFX, .4f);
-        SetVolume(eBus.Music, .4f);
+
+        SetVolume(eBus.Master, PlayerPrefs.GetFloat("saveAll", .4f));
+        SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveMusic", .4f));
+        SetVolume(eBus.Music, PlayerPrefs.GetFloat("saveSFX", .4f));
     }
 
     public FMOD.Studio.EventInstance PlaySFX(EventReference sfxEvent)

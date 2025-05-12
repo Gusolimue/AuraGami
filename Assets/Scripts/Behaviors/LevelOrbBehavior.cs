@@ -7,6 +7,7 @@ public class LevelOrbBehavior : MonoBehaviour
 {
     public static LevelOrbBehavior Instance;
     [SerializeField] EventReference hoverSFX; 
+    FMOD.Studio.EventInstance hoverInstance;
 
     [Header("GameObjects")]
     [SerializeField] GameObject levelOrb;
@@ -25,7 +26,7 @@ public class LevelOrbBehavior : MonoBehaviour
     private bool isEntered;
     private bool isExited;
     public float orbScaleSpeed = 5f;
-    public int whichOrb;
+    private float count;
 
     private void Awake()
     {
@@ -33,48 +34,44 @@ public class LevelOrbBehavior : MonoBehaviour
         isSelected = false;
         levelOrb.transform.position = orbPosition.transform.position;
 
+        count = 50;
+
         //orbMaterial = new Material(orbMaterial); // clone if it's from Inspector
         //levelOrb.GetComponent<Renderer>().material = orbMaterial; // ensure assignment
     }
 
     private void Update()
     {
-        if (isSelected == true) levelOrb.transform.position = Vector3.Lerp(levelOrb.transform.position, zephyrBody.transform.position, Time.deltaTime * orbMovementSpeed);
+        count += Time.deltaTime;
+        if (isSelected) levelOrb.transform.position = Vector3.Lerp(levelOrb.transform.position, zephyrBody.transform.position, Time.deltaTime * orbMovementSpeed);
 
-        if (isEntered == true && !isSelected) 
+        if (isEntered && !isSelected) 
         {
             levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleUp.transform.localScale, Time.deltaTime * orbScaleSpeed);
 
-            AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
-
-            float musicVolDecrease = Mathf.Lerp(0, PlayerPrefs.GetFloat("saveMusic"), Time.deltaTime * .5f);
-            AudioManager.Instance.SetVolume(eBus.Music, musicVolDecrease);
+            //float musicVolDecrease = Mathf.Lerp(PlayerPrefs.GetFloat("saveMusic"), 0, count * .5f);
+            //AudioManager.Instance.SetVolume(eBus.Music, musicVolDecrease);
             
             //orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
             //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[1], Time.deltaTime * orbScaleSpeed);
         }
-
-        if (isExited == true) 
+        else
         {
             levelOrb.transform.localScale = Vector3.Lerp(levelOrb.transform.localScale, levelOrbScaleDown.transform.localScale, Time.deltaTime * orbScaleSpeed);
 
-            float sfxVolDecrease = Mathf.Lerp(0, PlayerPrefs.GetFloat("saveSFX"), Time.deltaTime * 1);
-            AudioManager.Instance.SetVolume(eBus.SFX, sfxVolDecrease);
-
-            float musicVolIncrease = Mathf.Lerp(PlayerPrefs.GetFloat("saveMusic"), 0, Time.deltaTime * .5f);
-            AudioManager.Instance.SetVolume(eBus.Music, musicVolIncrease);
-
+            //float musicVolIncrease = Mathf.Lerp(0, PlayerPrefs.GetFloat("saveMusic"), count * .5f);
+            //AudioManager.Instance.SetVolume(eBus.Music, musicVolIncrease);
 
             //orbMaterial.color = Color.Lerp(orbMaterial.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
             //levelOrb.GetComponent<Renderer>().material.color = Color.Lerp(levelOrb.GetComponent<Renderer>().material.color, orbColors[0], Time.deltaTime * orbScaleSpeed);
         }
+
     }
 
     public void OrbButtonPressed()
     {
         isSelected = true;
         isEntered = false;
-        isExited = true;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
     }
@@ -82,14 +79,17 @@ public class LevelOrbBehavior : MonoBehaviour
     public void OnOrbButtonEntered()
     {
         isEntered = true;
-        isExited = false;
 
-        AudioManager.Instance.PlaySFX(hoverSFX);
+        count = 0;
+        AudioManager.Instance.SetVolume(eBus.Music, 0);
+        hoverInstance = AudioManager.Instance.PlaySFX(hoverSFX);
     }
 
     public void OnOrbButtonExit()
     {
         isEntered = false;
-        isExited = true;
+
+        AudioManager.Instance.SetVolume(eBus.Music, PlayerPrefs.GetFloat("saveMusic"));
+        hoverInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
