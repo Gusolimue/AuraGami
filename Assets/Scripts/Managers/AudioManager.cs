@@ -116,12 +116,13 @@ public class AudioManager : MonoBehaviour
         SetVolume(eBus.Music, .4f);
     }
 
-    public void PlaySFX(EventReference sfxEvent)
+    public FMOD.Studio.EventInstance PlaySFX(EventReference sfxEvent)
     {
         FMOD.Studio.EventInstance sfxInstance;
 
         sfxInstance = FMODUnity.RuntimeManager.CreateInstance(sfxEvent);
         sfxInstance.start();
+        return sfxInstance;
     }
 
     public void PlayMusic(EventReference musicEvent, int loopPoint = 0)
