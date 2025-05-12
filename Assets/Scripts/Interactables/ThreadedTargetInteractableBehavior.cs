@@ -118,7 +118,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             tmpObject.transform.localRotation *= tmpRot;
             tmpObject.transform.Translate(Vector3.up * point.interactableDistance);
             tmpObject.transform.localRotation = Quaternion.identity;
-
+            Instantiate(Resources.Load("InGame/" + "Interactables/" + "navpoint"), tmpObject.transform);
             threadPositions.Add(tmpObject);
         }
         threadKnots = new BezierKnot[threadPositions.Count];

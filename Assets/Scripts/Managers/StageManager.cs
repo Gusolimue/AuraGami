@@ -75,7 +75,7 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage3CheckString)
         {
-            AvatarManager.Instance.StartEvolve();
+            AvatarManager.Instance.StartEvolveFinal();
             //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
 
@@ -92,10 +92,10 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == endString)
         {
-            Debug.Log("end level");
-            CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.isPaused = true;
-            BeatManager.Instance.PauseMusicTMP(true);
+            //Debug.Log("end level");
+            //CanvasManager.Instance.ShowCanvasLevelEnd();
+            //PauseManager.Instance.isPaused = true;
+            //BeatManager.Instance.PauseMusicTMP(true);
         }
     }
 

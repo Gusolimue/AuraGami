@@ -7,36 +7,29 @@ public class AvatarBehavior : MonoBehaviour
     //[Header("Variables to Adjust")]
     [Header("Variables to Set")]
     public eSide side;
-    public Renderer evolveSphereRenderer;
-    public Animator animator;
-    Color startColor;
-    Color transparentColor;
-    Color failColor;
-    float evolveTime = 8;
-    [SerializeField] GameObject avatarPrefab;
     public GameObject avatarObject;
-    //[Header("Variables to Call")]
-    
-    //
-    private void Awake()
-    {
-        //transparentColor = new Color(1, 1, 1, 0);
-        //startColor = new Color(1, 1, 1, 1);
-        //failColor = new Color(1, .5f, .5f, 1);
-        //startColor = transparentColor;
-        //failColor = transparentColor;
-        //evolveSphereRenderer.material.color = transparentColor;
-        //Instantiate(avatarPrefab).transform.SetParent(this.transform);
-    }
-
     public void ObstacleCollision()
     {
-        animator.SetTrigger("OnDamage");
+        if(avatarObject.GetComponent<Animator>() != null)
+        {
+            avatarObject.GetComponent<Animator>().SetTrigger("OnDamage");
+        }
+        else
+        {
+            Debug.LogError("No animator detected for "+side+ " avatar!");
+        }
     }
 
     public void StreakEnabled()
     {
-        animator.SetTrigger("OnStreak");
+        if (avatarObject.GetComponent<Animator>() != null)
+        {
+            avatarObject.GetComponent<Animator>().SetTrigger("OnStreak");
+        }
+        else
+        {
+            Debug.LogError("No animator detected for " + side + " avatar!");
+        }
     }
 
     public void TargetCollision()
