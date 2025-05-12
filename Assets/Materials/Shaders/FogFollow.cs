@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FogFollow : MonoBehaviour
 {
-    public Camera cam;
+    Camera cam;
     public bool isEnabled;
     // Update is called once per frame
     void Update()
@@ -11,6 +11,7 @@ public class FogFollow : MonoBehaviour
     }
     private void Awake()
     {
+        cam = Camera.main;
         GetComponent<MeshRenderer>().enabled = isEnabled;
     }
 }
