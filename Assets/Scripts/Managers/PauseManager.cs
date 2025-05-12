@@ -10,10 +10,10 @@ public class PauseManager : MonoBehaviour
     [SerializeField] public GameObject menuBG;
     //[SerializeField] SpriteRenderer menuBGSprite;
     public bool isPaused = false;
+    public bool isCountingDown;
 
     [Header("Avatars/UI")]
     [SerializeField] GameObject[] toHide;
-    [SerializeField] public GameObject inGamePos;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI[] countdownTimer;
@@ -46,19 +46,19 @@ public class PauseManager : MonoBehaviour
         {
             countdownTimer[0].color = Color.Lerp(countdownTimer[0].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
             countdownTimer[0].transform.localScale = Vector3.Lerp(countdownTimer[0].transform.localScale, countdownTimer_SizeChange.transform.localScale,
-                Time.deltaTime * colorTransitionSpeed);
+                Time.deltaTime * 2);
         }
         if (timerOn == 2)
         {
             countdownTimer[1].color = Color.Lerp(countdownTimer[1].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
             countdownTimer[1].transform.localScale = Vector3.Lerp(countdownTimer[1].transform.localScale, countdownTimer_SizeChange.transform.localScale,
-                Time.deltaTime * colorTransitionSpeed);
+                Time.deltaTime * 2);
         }
         if (timerOn == 1)
         {
             countdownTimer[2].color = Color.Lerp(countdownTimer[2].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
             countdownTimer[2].transform.localScale = Vector3.Lerp(countdownTimer[2].transform.localScale, countdownTimer_SizeChange.transform.localScale,
-                Time.deltaTime * colorTransitionSpeed);
+                Time.deltaTime * 2);
         }
 
         //if (isPaused) menuBGSprite.color = Color.Lerp(menuBGSprite.color, countdownColor[1], Time.deltaTime * 5);
@@ -105,36 +105,38 @@ public class PauseManager : MonoBehaviour
     {
         foreach (var item in toHide)
         {
-            Debug.Log("DOES IT WORK: "+ enabled);
             item.SetActive(enabled);
         }
     }
 
     public void PauseGame(bool paused)
     {
-        if (paused)
+        if (!isCountingDown && !FrontEndSceneTransitionManager.Instance.isTransitioning)
         {
-            isPaused = true;
-            CanvasManager.Instance.ShowCanvasPauseMenu();
-            HideAndUnhideObjects(false);
-            menuBG.SetActive(true);
-            BeatManager.Instance.PauseMusicTMP(true);
-            Debug.Log("Is Paused!");
-        }
+            if (paused)
+            {
+                isPaused = true;
+                CanvasManager.Instance.ShowCanvasPauseMenu();
+                HideAndUnhideObjects(false);
+                menuBG.SetActive(true);
+                BeatManager.Instance.PauseMusicTMP(true);
+                Debug.Log("Is Paused!");
+            }
 
-        if (!paused)
-        {
-            isPaused = false;
-            HideAndUnhideObjects(true);
-            PauseMenu.Instance.DestroyMenu();
-            menuBG.SetActive(false);
-            StartCoroutine(CountdownBehavior());
-            Debug.Log("Is Unpaused!");
+            if (!paused)
+            {
+                HideAndUnhideObjects(true);
+                PauseMenu.Instance.DestroyMenu();
+                menuBG.SetActive(false);
+                StartCoroutine(CountdownBehavior());
+                Debug.Log("Is Unpaused!");
+            }
         }
     }
 
     private IEnumerator CountdownBehavior()
     {
+        isCountingDown = true;
         openPauseMenuAction.action.performed -= OnPauseButtonPressed;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_countdown);
 
@@ -160,6 +162,7 @@ public class PauseManager : MonoBehaviour
         
         BeatManager.Instance.PauseMusicTMP(false);
         isPaused = false;
+        isCountingDown = false;
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
     }
 }

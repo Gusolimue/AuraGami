@@ -115,6 +115,7 @@ public class AvatarManager : MonoBehaviour
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     IEnumerator CoEvolve(bool _pass)
     {
+        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
         float count;
         //Gus- here you will want to take control of the avatars away from the player
 
@@ -227,10 +228,10 @@ public class AvatarManager : MonoBehaviour
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
-
+        PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
@@ -246,7 +247,7 @@ public class AvatarManager : MonoBehaviour
     //alternate version of this method made for the final check to end level
     IEnumerator CoEvolveFinal(bool _pass)
     {
-
+        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
         float count;
         yield return new WaitForSeconds(1f);
 
@@ -316,14 +317,15 @@ public class AvatarManager : MonoBehaviour
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.isPaused = true;
+            PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
+        PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
     }
 }

@@ -9,6 +9,7 @@ public class AccessabilitySettingsManager : MonoBehaviour
     [Header("Player Circle/Slider")]
     [SerializeField] public Slider playCircleSlider;
     [SerializeField] Image playCircleDemo;
+    [SerializeField] GameObject playerCircle;
     [SerializeField] Color[] colorChanges;
     public float playCircleSliderValue;
     private bool demoOn = false;
@@ -18,7 +19,7 @@ public class AccessabilitySettingsManager : MonoBehaviour
         Instance = this;
        // playCircleSlider.value = 1f;
 
-        playCircleSlider.value = PlayerPrefs.GetFloat("save", playCircleSliderValue);
+        playCircleSlider.value = PlayerPrefs.GetFloat("playCircleScale");
         playCircleSlider.onValueChanged.AddListener(ChangeSlider);
         playCircleDemo.color = colorChanges[1];
 
@@ -36,14 +37,15 @@ public class AccessabilitySettingsManager : MonoBehaviour
         Debug.Log("Saving slider value: " + value);
 
         playCircleSliderValue = value;
-        PlayerPrefs.SetFloat("save", playCircleSliderValue);
+        PlayerPrefs.SetFloat("playCircleScale", value);
         PlayerPrefs.Save();
 
-        if (playCircleDemo != null) playCircleDemo.transform.localScale = new Vector3(value, value, value);
-        PlayerPrefs.SetFloat("playCircleScaleX", playCircleDemo.transform.localScale.x);
-        PlayerPrefs.SetFloat("playCircleScaleY", playCircleDemo.transform.localScale.y);
-        PlayerPrefs.SetFloat("playCircleScaleZ", playCircleDemo.transform.localScale.z);
-        PlayerPrefs.Save();
+        if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScale(PlayerPrefs.GetFloat("playCircleScale"));
+
+        }
     }
 
     public void IncreasePlayerCircleSize()
