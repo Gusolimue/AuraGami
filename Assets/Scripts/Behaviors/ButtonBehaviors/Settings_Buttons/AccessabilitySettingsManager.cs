@@ -7,11 +7,6 @@ public class AccessabilitySettingsManager : MonoBehaviour
 {
     public static AccessabilitySettingsManager Instance;
 
-    [Header("Info Button")]
-    [SerializeField] Image infoBG;
-    [SerializeField] TextMeshProUGUI infoTXT;
-    private bool showInfo = false;
-
     [Space]
     [Header("Player Circle/Slider")]
     [SerializeField] public Slider[] playCircleSlider;
@@ -33,8 +28,6 @@ public class AccessabilitySettingsManager : MonoBehaviour
         playCircleSlider[1].value = PlayerPrefs.GetFloat("playCircleHeight");
         playCircleSlider[1].onValueChanged.AddListener(ChangePlayerCircleHeightSlider);
 
-        infoBG.color = colorChanges[1]; infoTXT.color = colorChanges[1];
-
         Debug.Log(playCircleSlider[0].value);
     }
 
@@ -42,17 +35,6 @@ public class AccessabilitySettingsManager : MonoBehaviour
     {
         if (demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[0], Time.deltaTime * 5);
         if (!demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[1], Time.deltaTime * 5);
-
-        if (showInfo)
-        {
-            infoBG.color = Color.Lerp(infoBG.color, colorChanges[2], Time.deltaTime * 8);
-            infoTXT.color = Color.Lerp(infoTXT.color, colorChanges[0], Time.deltaTime * 8);
-        }
-        else
-        {
-            infoBG.color = Color.Lerp(infoBG.color, colorChanges[1], Time.deltaTime * 8);
-            infoTXT.color = Color.Lerp(infoTXT.color, colorChanges[1], Time.deltaTime * 8);
-        }
     }
 
     public void ChangeSlider(float value)
@@ -83,16 +65,6 @@ public class AccessabilitySettingsManager : MonoBehaviour
             newYPosition.y = value * 1f;
             playCircleDemo.transform.position = newYPosition;
         }
-    }
-
-    public void ShowMovementCircleInfo()
-    {
-        showInfo = true;
-    }
-
-    public void HideMovementCircleInfo()
-    {
-        showInfo = false;
     }
 
     public void IncreasePlayerCircleSize()
