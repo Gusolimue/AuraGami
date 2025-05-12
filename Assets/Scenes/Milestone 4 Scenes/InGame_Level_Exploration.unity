@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.10106446, g: 0.023451408, b: 0.16037738, a: 1}
+  m_FogColor: {r: 0.039808873, g: 0.023529408, b: 0.16078432, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.03
+  m_FogDensity: 0.04
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d3c85e78b61fbe04d8daab068375b33f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ac3ebe27d00122b44b5847012cdd8300, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -914,6 +914,11 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &324793345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3185262873793664671, guid: c034a98089442814bbd124c813344de6, type: 3}
+  m_PrefabInstance: {fileID: 1804340344541740659}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &338323396 stripped
 GameObject:
@@ -2514,6 +2519,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1240751948}
   m_LocalEulerAnglesHint: {x: 34.498, y: 200.075, z: 165.949}
+--- !u!1 &1358024512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1773636642408454814, guid: c034a98089442814bbd124c813344de6, type: 3}
+  m_PrefabInstance: {fileID: 1804340344541740659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1438832661
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,6 +3199,8 @@ MonoBehaviour:
   - {fileID: 976638296}
   - {fileID: 162568817}
   - {fileID: 338323396}
+  - {fileID: 1358024512}
+  - {fileID: 324793345}
   countdownTimer:
   - {fileID: 1194061912}
   - {fileID: 82481840}
@@ -3313,6 +3325,23 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!1 &1899872421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 273841448378568016, guid: c034a98089442814bbd124c813344de6, type: 3}
+  m_PrefabInstance: {fileID: 1804340344541740659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1899872426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899872421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9631bd09f78bf7e41bf2495a49e9d6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1903837229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3621,7 +3650,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 273841448378568016, guid: c034a98089442814bbd124c813344de6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1899872426}
   m_SourcePrefab: {fileID: 100100000, guid: c034a98089442814bbd124c813344de6, type: 3}
 --- !u!4 &1804340344541740662 stripped
 Transform:

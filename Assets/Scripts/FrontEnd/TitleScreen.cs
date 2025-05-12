@@ -9,7 +9,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameTitle_TXT;
     [SerializeField] TextMeshProUGUI button_TXT;
     public Color transparent;
-    public float alphaSpeed = 5f;
+    public float alphaSpeed = 3f;
     private float threshold = 0.01f;
     private bool isFrontEnd;
 
@@ -49,7 +49,7 @@ public class TitleScreen : MonoBehaviour
         isFrontEnd = true;
         yield return new WaitForSeconds(2);
         if (!isTutorial) CanvasManager.Instance.ShowCanvasFE();
-        else if (isTutorial == true) CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
+        else CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
         yield return new WaitForSeconds(1);
         Destroy(this.gameObject);
     }

@@ -17,6 +17,12 @@ public class AccessabilitySettingsManager : MonoBehaviour
     public float playCircleHeightSliderValue;
     private bool demoOn = false;
 
+    [Space]
+    [Header("Toggle")]
+    [SerializeField] Image toggleFill;
+    public bool isToggled;
+    public int toggleNum;
+
     private void Awake()
     {
         Instance = this;
@@ -28,13 +34,20 @@ public class AccessabilitySettingsManager : MonoBehaviour
         playCircleSlider[1].value = PlayerPrefs.GetFloat("playCircleHeight");
         playCircleSlider[1].onValueChanged.AddListener(ChangePlayerCircleHeightSlider);
 
+        toggleNum = PlayerPrefs.GetInt("toggleCircle");
+        if (toggleNum == 1) toggleFill.color = colorChanges[0];
+        else if (toggleNum == 2) toggleFill.color = colorChanges[2];
+
         Debug.Log(playCircleSlider[0].value);
     }
 
     private void Update()
     {
         if (demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[0], Time.deltaTime * 5);
-        if (!demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[1], Time.deltaTime * 5);
+        else playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[1], Time.deltaTime * 5);
+
+        if (toggleNum == 1) toggleFill.color = Color.Lerp(toggleFill.color, colorChanges[0], Time.deltaTime * 5);
+        else if (toggleNum == 2) toggleFill.color = Color.Lerp(toggleFill.color, colorChanges[2], Time.deltaTime * 5);
     }
 
     public void ChangeSlider(float value)
@@ -64,6 +77,25 @@ public class AccessabilitySettingsManager : MonoBehaviour
             Vector3 newYPosition = playCircleDemo.transform.position;
             newYPosition.y = value * 1f;
             playCircleDemo.transform.position = newYPosition;
+        }
+    }
+
+    public void TogglePlayerCircle()
+    {
+
+        if (!isToggled)
+        {
+            isToggled = true;
+            toggleNum = 1;
+            PlayerPrefs.SetInt("toggleCircle", toggleNum);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            isToggled = false;
+            toggleNum = 2;
+            PlayerPrefs.SetInt("toggleCircle", toggleNum);
+            PlayerPrefs.Save();
         }
     }
 
