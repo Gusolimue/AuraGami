@@ -78,6 +78,11 @@ public class AccessabilitySettingsManager : MonoBehaviour
             newYPosition.y = value * 1f;
             playCircleDemo.transform.position = newYPosition;
         }
+
+        if (AvatarManager.Instance != null)
+        {
+           
+        }
     }
 
     public void TogglePlayerCircle()
@@ -97,6 +102,8 @@ public class AccessabilitySettingsManager : MonoBehaviour
             PlayerPrefs.SetInt("toggleCircle", toggleNum);
             PlayerPrefs.Save();
         }
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
 
     public void IncreasePlayerCircleSize()

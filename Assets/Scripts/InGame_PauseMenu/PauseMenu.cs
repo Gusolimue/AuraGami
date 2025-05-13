@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         isRestarting = false;
+        //this.gameObject.transform.localPosition = new Vector3(-.13f, 4.15f, 5.77f);
     }
 
     public void OnRestartGameButtonPressed()

@@ -10,6 +10,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] public GameObject menuBG;
     //[SerializeField] SpriteRenderer menuBGSprite;
     public bool isPaused = false;
+    public bool showPauseMenu;
     public bool isCountingDown;
 
     [Header("Avatars/UI")]
@@ -78,6 +79,7 @@ public class PauseManager : MonoBehaviour
         if (!isPaused)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
+            showPauseMenu = true;
             PauseGame(true);
         }
         else if (isPaused)
@@ -115,21 +117,28 @@ public class PauseManager : MonoBehaviour
         {
             if (paused)
             {
+                if (showPauseMenu)
+                {
+                    CanvasManager.Instance.ShowCanvasPauseMenu();
+                    menuBG.SetActive(true);
+                }
+
                 isPaused = true;
-                CanvasManager.Instance.ShowCanvasPauseMenu();
                 HideAndUnhideObjects(false);
-                menuBG.SetActive(true);
                 BeatManager.Instance.PauseMusicTMP(true);
                 Debug.Log("Is Paused!");
             }
 
             if (!paused)
             {
-                HideAndUnhideObjects(true);
-                PauseMenu.Instance.DestroyMenu();
-                menuBG.SetActive(false);
-                StartCoroutine(CountdownBehavior());
-                Debug.Log("Is Unpaused!");
+                if (showPauseMenu)
+                {
+                    HideAndUnhideObjects(true);
+                    PauseMenu.Instance.DestroyMenu();
+                    menuBG.SetActive(false);
+                    StartCoroutine(CountdownBehavior());
+                    Debug.Log("Is Unpaused!");
+                }
             }
         }
     }
