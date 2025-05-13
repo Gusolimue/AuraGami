@@ -23,6 +23,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         base.InitInteractable(_eSide, _stage, _board, _interactable);
         endTargetObject = endTargetModelSelect.SelectModel(side);
         endTargetObject.GetComponent<MeshRenderer>().sharedMaterials = interactableObject.GetComponent<MeshRenderer>().sharedMaterials;
+        endTargetObject = endTargetModelSelect.gameObject;
         splineRenderer = threadSpline.GetComponent<Renderer>();
         targetBoardIndex = boardIndex;
         //splineExtrude = threadSpline.gameObject.AddComponent<SplineExtrude>();

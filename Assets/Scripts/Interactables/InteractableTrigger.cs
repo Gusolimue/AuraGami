@@ -4,10 +4,10 @@ public class InteractableTrigger : MonoBehaviour
 {
     bool leftTriggered = false;
     bool rightTriggered = false;
-    AvatarBehavior ab;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<AvatarBehavior>() != null)
+        AvatarBehavior ab = null;
+        if (other.GetComponent<AvatarBehavior>() != null)
         {
             ab = other.GetComponent<AvatarBehavior>();
         }
