@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         isRestarting = false;
+        //this.gameObject.transform.localPosition = new Vector3(-.13f, 4.15f, 5.77f);
     }
 
     public void OnRestartGameButtonPressed()
@@ -27,11 +28,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeGameButtonPressed()
     {
-        PauseManager.Instance.yataAvatar.SetActive(true);
-        PauseManager.Instance.naginiAvatar.SetActive(true);
-        PauseManager.Instance.progressBar.SetActive(true);
-        PauseManager.Instance.menuBG.SetActive(false);
-        PauseManager.Instance.StartCountdown();
+        PauseManager.Instance.PauseGame(false);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
@@ -40,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     {
         CanvasManager.Instance.ShowCanvasLevelSelect();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
     public void OnSettingsButtonPressed()
@@ -52,10 +49,15 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
-        LevelSelectManager.Instance.whichLevel = 1;
+        LevelSelectManager.Instance.whichLevel = (int)eScene.frontEnd;
         LoadManager.Instance.isTitleScreen = 1;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+    }
+
+    public void DestroyMenu()
+    {
+        Destroy(this.gameObject);
     }
 }

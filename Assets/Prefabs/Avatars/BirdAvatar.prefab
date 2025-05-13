@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8436021521563711846}
   - component: {fileID: 8263594913150121191}
-  - component: {fileID: 6951212118944629833}
   - component: {fileID: 3835025320555080431}
   m_Layer: 0
   m_Name: BirdAvatar
@@ -64,27 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!65 &6951212118944629833
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907314388109661173}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.45, y: 0.45, z: 0.05}
-  m_Center: {x: 0, y: 0.07, z: 0}
 --- !u!114 &3835025320555080431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,9 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 1
-  evolveSphereRenderer: {fileID: 0}
-  animator: {fileID: 4175019241907209155}
-  avatarPrefab: {fileID: 7173559843112634191, guid: 57b1bdf07dfba644b9d871a34f580ab6, type: 3}
+  avatarObject: {fileID: 7318610955834024040}
 --- !u!1 &3810331884534047471
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +238,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3308215150341842751}
-  - component: {fileID: 1286255781811751010}
+  - component: {fileID: 3409764059573310026}
+  - component: {fileID: 2182427092745259243}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -285,8 +262,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8436021521563711846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1286255781811751010
-BoxCollider:
+--- !u!136 &3409764059573310026
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -300,12 +277,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.13}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.23
+  m_Height: 0.36
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.21}
+--- !u!114 &2182427092745259243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516981893453140931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680f3e1e01e5ce643a85971d41380db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &440639493707966247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,9 +366,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b1bdf07dfba644b9d871a34f580ab6, type: 3}
---- !u!95 &4175019241907209155 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4606569620050306276, guid: 57b1bdf07dfba644b9d871a34f580ab6, type: 3}
+--- !u!1 &7318610955834024040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7173559843112634191, guid: 57b1bdf07dfba644b9d871a34f580ab6, type: 3}
   m_PrefabInstance: {fileID: 440639493707966247}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7988045777433049810 stripped

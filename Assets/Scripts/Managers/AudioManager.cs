@@ -32,17 +32,29 @@ public class AudioManager : MonoBehaviour
     [Space]
     [Header("Music: Level")]
     public EventReference music_level_Freedom;
+    public EventReference music_level_Fail;
+    public EventReference music_level_Complete;
 
     [Space]
     [Header("SFX: Avatars")]
-    public EventReference sfx_avatar_sigilFill;
+    public EventReference sfx_avatar_yataHit;
+    public EventReference sfx_avatar_naginiHit;
+    public EventReference sfx_avatar_evolveStart;
+    public EventReference sfx_avatar_evolveFail;
+    public EventReference sfx_avatar_evolveSuccess;
+
+    [Space]
+    [Header("SFX: Sigils")]
+    public EventReference sfx_sigils_sigilTickUp;
+    public EventReference sfx_sigils_sigilTickDown;
+    public EventReference sfx_sigils_sigilDrainLoop;
 
     [Space]
     [Header("SFX: Targets")]
     public EventReference sfx_target_hit;
     public EventReference sfx_target_miss;
-    public EventReference sfx_target_follow;
-    public EventReference sfx_target_chain;
+    public EventReference sfx_target_threadedLoop;
+    public EventReference sfx_target_multiHit;
 
     [Space]
     [Header("SFX: Obstacles")]
@@ -52,7 +64,23 @@ public class AudioManager : MonoBehaviour
     [Header("SFX: FrontEnd")]
     public EventReference sfx_frontEnd_buttonPressed;
     public EventReference sfx_frontEnd_levelOrbPressed;
+    public EventReference sfx_frontEnd_levelStart;
     public EventReference sfx_frontEnd_orbSelectionTransition;
+    public EventReference sfx_frontEnd_orbHoverExploration;
+    public EventReference sfx_frontEnd_orbHoverFreedom;
+    public EventReference sfx_frontEnd_menuHoverLarge;
+    public EventReference sfx_frontEnd_menuHoverMedium;
+    public EventReference sfx_frontEnd_menuHoverSmall;
+    public EventReference sfx_frontEnd_menuHoverExitLarge;
+    public EventReference sfx_frontEnd_menuHoverExitMedium;
+    public EventReference sfx_frontEnd_menuHoverExitSmall;
+    public EventReference sfx_frontEnd_menuTransition;
+
+    [Space]
+    [Header("SFX: Pause")]
+    public EventReference sfx_pause_menuOpen;
+    public EventReference sfx_pause_menuClose;
+    public EventReference sfx_pause_countdown;
     // This will be for when the orb reaches the player's chest and the scene transitions. This sound can be for the play button too. 
 
     void Awake()
@@ -78,22 +106,19 @@ public class AudioManager : MonoBehaviour
         Master = FMODUnity.RuntimeManager.GetBus("bus:/");
         SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX Bus");
         Music = FMODUnity.RuntimeManager.GetBus("bus:/Music Bus");
-        if (PlayerPrefs.HasKey("save")) SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
-        else
-        {
-            PlayerPrefs.SetFloat("save", .4f);
-            SetVolume(eBus.Master, PlayerPrefs.GetFloat("save"));
-        }
-        SetVolume(eBus.SFX, .4f);
-        SetVolume(eBus.Music, .4f);
+
+        SetVolume(eBus.Master, PlayerPrefs.GetFloat("saveAll", .4f));
+        SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveMusic", .4f));
+        SetVolume(eBus.Music, PlayerPrefs.GetFloat("saveSFX", .4f));
     }
 
-    public void PlaySFX(EventReference sfxEvent)
+    public FMOD.Studio.EventInstance PlaySFX(EventReference sfxEvent)
     {
         FMOD.Studio.EventInstance sfxInstance;
 
         sfxInstance = FMODUnity.RuntimeManager.CreateInstance(sfxEvent);
         sfxInstance.start();
+        return sfxInstance;
     }
 
     public void PlayMusic(EventReference musicEvent, int loopPoint = 0)

@@ -5,10 +5,10 @@
 			<value>auragami piano prototype 1_9 (184bpm)(1)</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
-			<destination>{9ad9124f-79c8-4629-9c0e-d5c5af908f40}</destination>
+			<destination>{b32b4780-b43d-4a94-98ad-63b623ded49c}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{b006b407-e61c-434f-a430-1dadccafc847}</destination>
@@ -59,17 +59,11 @@
 	<object class="EventAutomatableProperties" id="{b33c5150-17af-432d-b80c-6d6790db71ed}" />
 	<object class="MarkerTrack" id="{7ea56177-dac2-4d0f-9d99-6d0004784f41}" />
 	<object class="GroupTrack" id="{6c1db550-c788-47ff-bcbe-0ea4cb239201}">
-		<relationship name="modules">
-			<destination>{35080e12-6022-426c-92f3-040a99df270d}</destination>
-		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{e6b08bcd-2ccd-4db6-908b-1741fce03f62}</destination>
 		</relationship>
 	</object>
 	<object class="Timeline" id="{f1099b35-159c-4510-ad4c-5321e939b0f6}">
-		<relationship name="modules">
-			<destination>{35080e12-6022-426c-92f3-040a99df270d}</destination>
-		</relationship>
 		<relationship name="markers">
 			<destination>{2eddedfc-6b0c-43c3-b295-d1baf55be4db}</destination>
 		</relationship>
@@ -91,14 +85,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0f943e9a-97df-4422-9778-bb36d1f8b22c}" />
-	<object class="SingleSound" id="{35080e12-6022-426c-92f3-040a99df270d}">
-		<property name="length">
-			<value>229.49710416666667</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{3f4b21f2-1446-46ad-a06f-a171535228b6}</destination>
-		</relationship>
-	</object>
 	<object class="EventMixerGroup" id="{e6b08bcd-2ccd-4db6-908b-1741fce03f62}">
 		<property name="name">
 			<value>Audio 1</value>

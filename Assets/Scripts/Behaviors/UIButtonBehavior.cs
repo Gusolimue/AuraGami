@@ -12,24 +12,12 @@ public class UIButtonBehavior : MonoBehaviour
     public void OnButtonEnter()
     {
         highlightNebula.gameObject.SetActive(true);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
     }
 
     public void OnButtonExit()
     {
         highlightNebula.gameObject.SetActive(false);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverExitSmall);
     }
-
-    /*public IEnumerator StarRadiusIncrease()
-    {
-        buttonStarRadius = 1.1f;
-
-        while (buttonStarRadius > 1f)
-        {
-            buttonStarRadius -= .1f;
-            var shape = buttonStars.shape;
-            shape.radius = buttonStarRadius;
-            Debug.Log(buttonStarRadius);
-        }
-        yield return null;
-    }*/
 }
