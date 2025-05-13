@@ -45,11 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65ff1552540dc540a22351075c63eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftMat: {fileID: 2100000, guid: 41f26f09cd01dbf42af63b0c1ff719fa, type: 2}
-  rightMat: {fileID: 2100000, guid: fec9d6fee127fe4408f67a1de2e306a1, type: 2}
-  anyMat: {fileID: 2100000, guid: fd2c6b0a3288e9f4ca50842edf28a644, type: 2}
-  bothMat: {fileID: 2100000, guid: 8ab64c6f12f2ee04bb452a5cf27f69de, type: 2}
   interactableRenderer: {fileID: 961774633838126151}
+  targetBase: {fileID: 6950802605519174233}
   side: 0
   type: 0
   fadeOutTime: 0
@@ -60,6 +57,8 @@ MonoBehaviour:
     interactableAngle: 0
     interactableDistance: 0
     multiPoints: []
+    obstacleOrientation: 0
+    obstacleSize: 0
   stageIndex: 0
   boardIndex: 0
 --- !u!1001 &6807096004792067050
@@ -129,3 +128,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
   m_PrefabInstance: {fileID: 6807096004792067050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6950802605519174233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4468028110021384627, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
+  m_PrefabInstance: {fileID: 6807096004792067050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3de7486740df8844a3dadab0c2022ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

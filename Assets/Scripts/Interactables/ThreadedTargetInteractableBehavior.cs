@@ -10,9 +10,9 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     public Material failedTraceMat;
     public SplineContainer threadSpline;
     Renderer splineRenderer;
-    SplineExtrude splineExtrude;
     public BezierKnot[] threadKnots;
-    public Renderer endTargetRenderer;
+    public TargetBaseModelSelect endTargetModelSelect;
+    GameObject endTargetObject;
     float count;
     int currentPoint;
     int targetBoardIndex = 0;
@@ -21,8 +21,8 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         base.InitInteractable(_eSide, _stage, _board, _interactable);
-        endTargetRenderer.sharedMaterials[0] = interactableRenderer.sharedMaterials[0];
-        endTargetRenderer.sharedMaterials[1] = interactableRenderer.sharedMaterials[1];
+        endTargetObject = endTargetModelSelect.SelectModel(side);
+        endTargetObject.GetComponent<MeshRenderer>().sharedMaterials = interactableObject.GetComponent<MeshRenderer>().sharedMaterials;
         splineRenderer = threadSpline.GetComponent<Renderer>();
         targetBoardIndex = boardIndex;
         //splineExtrude = threadSpline.gameObject.AddComponent<SplineExtrude>();
@@ -84,8 +84,8 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             Debug.Log("targetComlpete");
             APManager.Instance.IncreaseAP();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-            if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(endTargetRenderer.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
-            else APVFXManager.Instance.APVfxSpawnYata(endTargetRenderer.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+            if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+            else APVFXManager.Instance.APVfxSpawnYata(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
             StopTarget();
         }
         else
@@ -139,8 +139,8 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         //}
         //threadLine.enabled = true;
         //threadLine.positionCount = threadPositions.Count;
-        endTargetRenderer.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
-        endTargetRenderer.gameObject.transform.localPosition = Vector3.zero;
+        endTargetObject.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
+        endTargetObject.gameObject.transform.localPosition = Vector3.zero;
         ThreadSplineUpdate();
     }
 }
