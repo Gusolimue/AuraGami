@@ -53,7 +53,7 @@ public class AvatarManager : MonoBehaviour
 
     [Header("Variables to Call")]
     public static AvatarManager Instance;
-
+    AudioManager am;
 
     float scaleMult;
 
@@ -74,6 +74,7 @@ public class AvatarManager : MonoBehaviour
     }
     private void Start()
     {
+        am = AudioManager.Instance;
         SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
     }
     private void Update()
@@ -134,6 +135,7 @@ public class AvatarManager : MonoBehaviour
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     IEnumerator CoEvolve(bool _pass)
     {
+        am.PlaySFX(am.sfx_avatar_evolveStart);
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
         float count;
         //Gus- here you will want to take control of the avatars away from the player
@@ -180,6 +182,7 @@ public class AvatarManager : MonoBehaviour
         yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
         if (_pass)//Gus A - here is where the pass animation begins. if the variable is true, all it does is fade the orb back to transparency and reset the ap meter.
         {
+            am.PlaySFX(am.sfx_avatar_evolveSuccess);
             //Gus- and then here, outside of the while loop and therefore after you have finished changing the color of the sphere, you can change out the old avatar prefabs for the next evolution. you dont want to do this earlier, because we want the models to stay the same if the player didnt pass.
             evolutionCount++;
             GameObject newLeftAvatarModel = Instantiate(soAvatarLeft.AvatarPrefab[evolutionCount]);
