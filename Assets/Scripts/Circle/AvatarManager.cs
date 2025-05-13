@@ -253,8 +253,8 @@ public class AvatarManager : MonoBehaviour
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
-            BeatManager.Instance.PauseMusicTMP(true);
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
@@ -348,7 +348,7 @@ public class AvatarManager : MonoBehaviour
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            BeatManager.Instance.PauseMusicTMP(true);
+            PauseManager.Instance.showPauseMenu = false;
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
     }
