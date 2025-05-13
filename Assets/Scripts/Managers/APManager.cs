@@ -76,16 +76,8 @@ public class APManager : MonoBehaviour
     }
     void APDelay()
     {
-        count = 0;
-        sigilSliderSpeed = 5f;
-        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
-            * multLevels[GetStreakIndex(1)];
-        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
 
-        UpdateSigils();
-        UpdateAuraFX();
-
-        if (sigil.value >= .999f)
+        if (curAP  >= 1f)
         {
             SigilShieldBehavior.Instance.shieldPoints++;
 
@@ -95,6 +87,19 @@ public class APManager : MonoBehaviour
                 SigilShieldBehavior.Instance.IncreaseShield();
             }
         }
+        else
+        {
+
+            count = 0;
+            sigilSliderSpeed = 5f;
+            curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
+                * multLevels[GetStreakIndex(1)];
+            curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+
+            UpdateSigils();
+            UpdateAuraFX();
+        }
+        
     }
     public int GetStreakIndex(int _change = 0)
     {
@@ -175,10 +180,10 @@ public class APManager : MonoBehaviour
         while (curAP > 0)
         {
             count = 0;
-            DecreaseAP(1);
+            DecreaseAP(4.5f);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
             APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveSphereRenderer.gameObject.transform.position);
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.1f);
             //while(sigil.value != targetSigilValue)
             //{
             //    yield return null;

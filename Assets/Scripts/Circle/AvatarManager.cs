@@ -102,10 +102,10 @@ public class AvatarManager : MonoBehaviour
         switch (playerVis)
         {
             case 1:
-                playerCircCanvas.enabled = false;
+                playerCircCanvas.enabled = true;
                 break;
             case 2:
-                playerCircCanvas.enabled = true;
+                playerCircCanvas.enabled = false;
                 break;
             default:
                 playerCircCanvas.enabled = false;
