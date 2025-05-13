@@ -429,11 +429,17 @@ MonoBehaviour:
   - eventString: Stage3Check
   stage1:
   - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
-      multiPoints: []
+    - interactableType: 2
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0
+      multiPoints:
+      - boardsMoved: 2
+        interactableAngle: 0
+        interactableDistance: 0.003
+      - boardsMoved: 2
+        interactableAngle: 0
+        interactableDistance: 0
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
