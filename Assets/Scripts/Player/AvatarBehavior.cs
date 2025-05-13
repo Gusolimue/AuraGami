@@ -25,9 +25,9 @@ public class AvatarBehavior : MonoBehaviour
         Vector3 velocity = currentPosition - previousPosition;
         Vector3 direction = velocity.normalized;
 
-        Debug.Log(avatarObject.name + "currentPosition: " + currentPosition);
-        Debug.Log(avatarObject.name + "velocity: " + velocity);
-        Debug.Log(avatarObject.name + "direction: " + direction);
+        //Debug.Log(avatarObject.name + "currentPosition: " + currentPosition);
+        //Debug.Log(avatarObject.name + "velocity: " + velocity);
+        //Debug.Log(avatarObject.name + "direction: " + direction);
 
         if (Mathf.Abs(direction.x) < directionBankingMinimum)
         {
@@ -89,21 +89,23 @@ public class AvatarBehavior : MonoBehaviour
 
             if (avatarObject.transform.eulerAngles.z < bankingMaxAngle && avatarObject.transform.eulerAngles.z > -bankingMaxAngle)
             {
+                Debug.Log("bird rotationX movement");
                 avatarObject.transform.eulerAngles += rotationX;
             }
-
-            if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.z != 0)
+            else if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.z != 0)
             {
+                Debug.Log("bird no rotationX movement");
                 avatarObject.transform.eulerAngles -= rotationX;
             }
 
             if (avatarObject.transform.eulerAngles.x < bankingMaxAngle && avatarObject.transform.eulerAngles.x > -bankingMaxAngle)
             {
+                Debug.Log("bird rotationY movement");
                 avatarObject.transform.eulerAngles += rotationY;
             }
-
-            if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
+            else if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
             {
+                Debug.Log("bird no rotationY movement");
                 avatarObject.transform.eulerAngles -= rotationY;
             }
 
@@ -122,21 +124,23 @@ public class AvatarBehavior : MonoBehaviour
 
             if (avatarObject.transform.eulerAngles.y < bankingMaxAngle && avatarObject.transform.eulerAngles.y > -bankingMaxAngle)
             {
+                Debug.Log("snake rotationX movement");
                 avatarObject.transform.eulerAngles += rotationX;
             }
-
-            if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.y != 0)
+            else if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.y != 0)
             {
+                Debug.Log("snake no rotationX movement");
                 avatarObject.transform.eulerAngles -= rotationX;
             }
 
             if (avatarObject.transform.eulerAngles.x < bankingMaxAngle && avatarObject.transform.eulerAngles.x > -bankingMaxAngle)
             {
+                Debug.Log("snake rotationY movement");
                 avatarObject.transform.eulerAngles += rotationY;
             }
-
-            if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
+            else if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
             {
+                Debug.Log("snake no rotationY movement");
                 avatarObject.transform.eulerAngles -= rotationY;
             }
 
