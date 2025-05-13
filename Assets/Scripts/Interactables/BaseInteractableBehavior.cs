@@ -10,6 +10,8 @@ public class BaseInteractableBehavior : MonoBehaviour
     //[SerializeField] static Material anyMat;
     //[SerializeField] static Material bothMat;
     public Renderer interactableRenderer;
+    public TargetBaseModelSelect targetBase;
+    internal GameObject interactableObject;
     public eSide side;
     public eTargetType type;
 
@@ -38,7 +40,10 @@ public class BaseInteractableBehavior : MonoBehaviour
         //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
         interactable = _interactable;
         side = _eSide;
+
+        interactableObject = targetBase.SelectModel(side);
         List<Material> tmpMats = new List<Material>(0);
+        
         switch (side)
         {
             case eSide.left:
@@ -60,7 +65,7 @@ public class BaseInteractableBehavior : MonoBehaviour
             default:
                 break;
         }
-        interactableRenderer.SetMaterials(tmpMats);
+        interactableObject.GetComponent<MeshRenderer>().SetMaterials(tmpMats);
 
     }
     public virtual void InteractableMissed()

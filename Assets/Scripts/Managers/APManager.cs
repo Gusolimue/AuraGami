@@ -176,6 +176,7 @@ public class APManager : MonoBehaviour
         {
             count = 0;
             DecreaseAP(1);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
             APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveSphereRenderer.gameObject.transform.position);
             yield return new WaitForSeconds(0.02f);
             //while(sigil.value != targetSigilValue)

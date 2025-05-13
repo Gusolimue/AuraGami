@@ -12,7 +12,6 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
         // Create a temp box collider to check if the inner circle is being collided with
         Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(transform.localScale.x / 8, transform.localScale.y / 8, transform.localScale.z / 8), Quaternion.identity);
         Debug.Log("Precision target has hit: " + hitColliders.Length + " colliders");
-
         if (hitColliders.Length > 1)
         {
             // Act like a normal target

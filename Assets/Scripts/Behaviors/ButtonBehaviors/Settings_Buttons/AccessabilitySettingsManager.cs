@@ -61,8 +61,7 @@ public class AccessabilitySettingsManager : MonoBehaviour
         if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale"));
-
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
     }
 
@@ -78,10 +77,9 @@ public class AccessabilitySettingsManager : MonoBehaviour
             newYPosition.y = value * 1f;
             playCircleDemo.transform.position = newYPosition;
         }
-
         if (AvatarManager.Instance != null)
         {
-           
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
     }
 
@@ -104,6 +102,10 @@ public class AccessabilitySettingsManager : MonoBehaviour
         }
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        }
     }
 
     public void IncreasePlayerCircleSize()

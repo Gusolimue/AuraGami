@@ -49,7 +49,7 @@ public class PauseMenu : MonoBehaviour
     [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
-        LevelSelectManager.Instance.whichLevel = 1;
+        LevelSelectManager.Instance.whichLevel = (int)eScene.frontEnd;
         LoadManager.Instance.isTitleScreen = 1;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
