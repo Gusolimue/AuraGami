@@ -31,6 +31,7 @@ public class InfoButtonBehavior : MonoBehaviour
     public void ShowInfo()
     {
         showInfo = true;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverLarge);
     }
 
     public void HideInfo()
