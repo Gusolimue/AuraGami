@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.DualShock.LowLevel;
 
 public class AvatarBehavior : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class AvatarBehavior : MonoBehaviour
     public GameObject avatarObject;
     public bool BirdBankingBehavior;
     public int bankingMaxAngle;
-    public float bankingLerpTime;
     public float directionBankingMinimum;
+    public int bankingSpeedFactor;
 
     float lerpTime;
     Vector3 previousPosition;
@@ -32,13 +33,48 @@ public class AvatarBehavior : MonoBehaviour
         {
             direction = new Vector3(0, direction.y, direction.z);
         }
-
+        
         if (Mathf.Abs(direction.y) < directionBankingMinimum)
         {
             direction = new Vector3(direction.x, 0, direction.z);
         }
 
-        Vector3 rotation;
+        //Vector3 rotationAdditionX;
+        //Vector3 rotationAdditionY;
+
+        //if (BirdBankingBehavior)
+        //{
+        //    rotationAdditionX = new Vector3(0, 0, Mathf.Ceil(direction.x) * bankingSpeedFactor);
+        //    rotationAdditionY = new Vector3(0, Mathf.Ceil(direction.y) * bankingSpeedFactor, 0);
+
+        //    if (avatarObject.transform.eulerAngles.z < bankingMaxAngle)
+        //    {
+        //        avatarObject.transform.eulerAngles += rotationAdditionX;
+        //    }
+
+        //    if (avatarObject.transform.eulerAngles.y < bankingMaxAngle)
+        //    {
+        //        avatarObject.transform.eulerAngles += rotationAdditionY;
+        //    }
+        //}
+        //else
+        //{
+        //    rotationAdditionX = new Vector3(Mathf.Ceil(direction.x) * bankingSpeedFactor, 0, 0);
+        //    rotationAdditionY = new Vector3(0, Mathf.Ceil(direction.y) * bankingSpeedFactor, 0);
+
+        //    if (avatarObject.transform.eulerAngles.x < bankingMaxAngle)
+        //    {
+        //        avatarObject.transform.eulerAngles += rotationAdditionX;
+        //    }
+
+        //    if (avatarObject.transform.eulerAngles.y < bankingMaxAngle)
+        //    {
+        //        avatarObject.transform.eulerAngles += rotationAdditionY;
+        //    }
+        //}
+
+        Vector3 rotationX;
+        Vector3 rotationY;
 
         if (BirdBankingBehavior)
         {
@@ -48,7 +84,30 @@ public class AvatarBehavior : MonoBehaviour
             // Banking left (X position goes down) - Z rotation goes up
             // Banking right (X position goes up) - Z rotation goes down
 
-            rotation = new Vector3(-direction.y * bankingMaxAngle, 0, -direction.x * bankingMaxAngle);
+            rotationX = new Vector3(0, 0, -Mathf.Ceil(direction.x) * bankingSpeedFactor);
+            rotationY = new Vector3(-Mathf.Ceil(direction.y) * bankingSpeedFactor, 0, 0);
+
+            if (avatarObject.transform.eulerAngles.z < bankingMaxAngle && avatarObject.transform.eulerAngles.z > -bankingMaxAngle)
+            {
+                avatarObject.transform.eulerAngles += rotationX;
+            }
+
+            if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.z != 0)
+            {
+                avatarObject.transform.eulerAngles -= rotationX;
+            }
+
+            if (avatarObject.transform.eulerAngles.x < bankingMaxAngle && avatarObject.transform.eulerAngles.x > -bankingMaxAngle)
+            {
+                avatarObject.transform.eulerAngles += rotationY;
+            }
+
+            if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
+            {
+                avatarObject.transform.eulerAngles -= rotationY;
+            }
+
+            // rotation = new Vector3(-direction.y * bankingMaxAngle, 0, -direction.x * bankingMaxAngle);
         }
         else
         {
@@ -58,20 +117,31 @@ public class AvatarBehavior : MonoBehaviour
             // Banking left (X position goes down) - Y rotation goes down
             // Banking right (X position goes up) - Y rotation goes up
 
-            rotation = new Vector3(-direction.y * bankingMaxAngle, direction.x * bankingMaxAngle, 0);
+            rotationX = new Vector3(0, Mathf.Ceil(direction.x) * bankingSpeedFactor, 0);
+            rotationY = new Vector3(-Mathf.Ceil(direction.y) * bankingSpeedFactor, 0, 0);
+
+            if (avatarObject.transform.eulerAngles.y < bankingMaxAngle && avatarObject.transform.eulerAngles.y > -bankingMaxAngle)
+            {
+                avatarObject.transform.eulerAngles += rotationX;
+            }
+
+            if (Mathf.Abs(direction.x) < directionBankingMinimum && avatarObject.transform.eulerAngles.y != 0)
+            {
+                avatarObject.transform.eulerAngles -= rotationX;
+            }
+
+            if (avatarObject.transform.eulerAngles.x < bankingMaxAngle && avatarObject.transform.eulerAngles.x > -bankingMaxAngle)
+            {
+                avatarObject.transform.eulerAngles += rotationY;
+            }
+
+            if (Mathf.Abs(direction.y) < directionBankingMinimum && avatarObject.transform.eulerAngles.x != 0)
+            {
+                avatarObject.transform.eulerAngles -= rotationY;
+            }
+
+            //rotation = new Vector3(-direction.y * bankingMaxAngle, direction.x * bankingMaxAngle, 0);
         }
-
-        Quaternion quaternionRotation = Quaternion.Euler(rotation);
-
-        lerpTime = 0;
-        while (lerpTime < bankingLerpTime)
-        {
-            lerpTime += Time.deltaTime;
-            avatarObject.transform.rotation = Quaternion.Lerp(avatarObject.transform.rotation, quaternionRotation, lerpTime);
-        }
-        lerpTime = 0;
-
-        //avatarObject.transform.rotation = quaternionRotation;
 
         previousPosition = currentPosition;
     }
