@@ -61,7 +61,7 @@ public class AccessabilitySettingsManager : MonoBehaviour
         if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScale(PlayerPrefs.GetFloat("playCircleScale"));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale"));
 
         }
     }

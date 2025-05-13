@@ -37,6 +37,7 @@ public class AvatarManager : MonoBehaviour
     public SoAvatar soAvatarRight;
 
     public Renderer evolveSphereRenderer;
+    public Canvas playerCircCanvas;
 
     int evolutionCount;
     Color startColor;
@@ -48,6 +49,7 @@ public class AvatarManager : MonoBehaviour
     AvatarBehavior avatarBehaviorLeft;
     AvatarBehavior avatarBehaviorRight;
 
+    Vector3 playerCircStartingPos;
 
     [Header("Variables to Call")]
     public static AvatarManager Instance;
@@ -58,6 +60,7 @@ public class AvatarManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerCircStartingPos = playerCircTransform.position;
         avatarBehaviorLeft = leftAvatar.GetComponent<AvatarBehavior>();
         avatarBehaviorRight = rightAvatar.GetComponent<AvatarBehavior>();
         GameObject tmpObject = Instantiate(new GameObject("Cursors"), this.transform);
@@ -71,7 +74,7 @@ public class AvatarManager : MonoBehaviour
     }
     private void Start()
     {
-        SetScale(PlayerPrefs.GetFloat("playCircleScale", 1f));
+        SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
     }
     private void Update()
     {
@@ -87,11 +90,27 @@ public class AvatarManager : MonoBehaviour
             leftAvatar.transform.position = (leftCursor.transform.position);
         }
     }
-    public void SetScale(float playerScale = 1f)
+    public void SetScaleHeightVis(float playerScale = 1f, float playerHeight = 1f, int playerVis = 1)
     {
         scaleMult = avatarDiameter / playerScale;
         avatarCircTransform.localScale = Vector3.one * avatarDiameter;
         playerCircTransform.localScale = Vector3.one * playerScale;
+
+        playerCircTransform.position = new Vector3(playerCircStartingPos.x, (playerCircStartingPos.y * playerHeight), playerCircStartingPos.z);
+
+        switch (playerVis)
+        {
+            case 1:
+                playerCircCanvas.enabled = false;
+                break;
+            case 2:
+                playerCircCanvas.enabled = true;
+                break;
+            default:
+                playerCircCanvas.enabled = false;
+                break;
+        }
+
     }
     //Given a bool to determine which controller. Returns a vector3 of the position the cursor will be set to that update
     Vector3 GetCursorPos(bool right)
@@ -128,7 +147,7 @@ public class AvatarManager : MonoBehaviour
         Vector3 startScaleRight = rightAvatar.transform.localScale;
 
         Vector3 offset = new Vector3(.1f, 0, 0);
-        float scaleAmt = .8f;
+        float scaleAmt = .5f;
         // take control from player
         disableAvatarMovement = true;
         count = 0;
@@ -136,10 +155,8 @@ public class AvatarManager : MonoBehaviour
         {
             count += Time.deltaTime;
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
-            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft *scaleAmt, count);
-            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, evolveSphereRenderer.transform.position - offset, count);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, evolveSphereRenderer.transform.position + offset, count);
             yield return null;
         }
         count = 0;
@@ -149,13 +166,16 @@ public class AvatarManager : MonoBehaviour
             count += Time.deltaTime;
             // fade in the sphere
             evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            
+            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft * scaleAmt, count);
+            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+
             // proceed with sphere fadeout / color change if fail
 
             yield return null;
         }
 
-        APManager.Instance.ResetAP();
+        APManager.Instance.DrainAP();
+        while (APManager.Instance.isDraining) yield return null;
         count = 0;
         yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
         if (_pass)//Gus A - here is where the pass animation begins. if the variable is true, all it does is fade the orb back to transparency and reset the ap meter.
@@ -179,10 +199,15 @@ public class AvatarManager : MonoBehaviour
             avatarBehaviorLeft.avatarObject = newLeftAvatarModel;
             avatarBehaviorRight.avatarObject = newRightAvatarModel;
 
+            newRightAvatarModel.transform.localScale *= scaleAmt;
+            newLeftAvatarModel.transform.localScale *= scaleAmt;
+
             while (count < 1)
             {
                 count += Time.deltaTime;
                 evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
         }
@@ -200,6 +225,8 @@ public class AvatarManager : MonoBehaviour
             {
                 count += Time.deltaTime;
                 evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
         }
@@ -216,8 +243,6 @@ public class AvatarManager : MonoBehaviour
             // Lerp avatars back to cursor positions
             leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftCursor.transform.position, count);
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightCursor.transform.position, count);
-            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count);
-            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count);
             yield return null;
         }
         if(_pass)
@@ -228,7 +253,6 @@ public class AvatarManager : MonoBehaviour
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
@@ -248,7 +272,7 @@ public class AvatarManager : MonoBehaviour
     //alternate version of this method made for the final check to end level
     IEnumerator CoEvolveFinal(bool _pass)
     {
-        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
+        PauseManager.Instance.isCountingDown = true;
         float count;
         yield return new WaitForSeconds(1f);
 
@@ -258,7 +282,7 @@ public class AvatarManager : MonoBehaviour
         Vector3 startScaleRight = rightAvatar.transform.localScale;
 
         Vector3 offset = new Vector3(.1f, 0, 0);
-        float scaleAmt = .8f;
+        float scaleAmt = .5f;
         // take control from player
         disableAvatarMovement = true;
         count = 0;
@@ -266,8 +290,8 @@ public class AvatarManager : MonoBehaviour
         {
             count += Time.deltaTime;
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, avatarCircTransform.position - offset, count);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, avatarCircTransform.position + offset, count);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, evolveSphereRenderer.transform.position - offset, count);
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, evolveSphereRenderer.transform.position + offset, count);
             leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft * scaleAmt, count);
             rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
             yield return null;
@@ -282,7 +306,9 @@ public class AvatarManager : MonoBehaviour
             yield return null;
         }
 
-        APManager.Instance.ResetAP();
+        APManager.Instance.DrainAP();
+        while (APManager.Instance.isDraining) yield return null;
+
         count = 0;
         yield return new WaitForSeconds(1f);
         if (_pass)
@@ -318,15 +344,10 @@ public class AvatarManager : MonoBehaviour
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
-            PauseManager.Instance.showPauseMenu = false;
-            PauseManager.Instance.PauseGame(true);
-            BeatManager.Instance.PauseMusicTMP(true);
         }
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.showPauseMenu = false;
-            PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
