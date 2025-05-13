@@ -75,7 +75,7 @@ public class AvatarManager : MonoBehaviour
     private void Start()
     {
         am = AudioManager.Instance;
-        SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 2));
     }
     private void Update()
     {
@@ -102,10 +102,10 @@ public class AvatarManager : MonoBehaviour
         switch (playerVis)
         {
             case 1:
-                playerCircCanvas.enabled = false;
+                playerCircCanvas.enabled = true;
                 break;
             case 2:
-                playerCircCanvas.enabled = true;
+                playerCircCanvas.enabled = false;
                 break;
             default:
                 playerCircCanvas.enabled = false;
