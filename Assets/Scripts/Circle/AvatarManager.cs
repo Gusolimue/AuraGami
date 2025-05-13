@@ -228,6 +228,7 @@ public class AvatarManager : MonoBehaviour
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
@@ -317,12 +318,14 @@ public class AvatarManager : MonoBehaviour
         {
             Debug.Log("end level");
             CanvasManager.Instance.ShowCanvasLevelEnd();
+            PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }
         else
         {
             CanvasManager.Instance.ShowCanvasStageFail();
+            PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
             BeatManager.Instance.PauseMusicTMP(true);
         }

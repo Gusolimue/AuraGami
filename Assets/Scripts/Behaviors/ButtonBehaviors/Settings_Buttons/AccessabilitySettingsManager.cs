@@ -78,6 +78,11 @@ public class AccessabilitySettingsManager : MonoBehaviour
             newYPosition.y = value * 1f;
             playCircleDemo.transform.position = newYPosition;
         }
+
+        if (AvatarManager.Instance != null)
+        {
+           
+        }
     }
 
     public void TogglePlayerCircle()
