@@ -4,10 +4,10 @@ public class InteractableTrigger : MonoBehaviour
 {
     bool leftTriggered = false;
     bool rightTriggered = false;
-    AvatarBehavior ab;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<AvatarBehavior>() != null)
+        AvatarBehavior ab = null;
+        if (other.GetComponent<AvatarBehavior>() != null)
         {
             ab = other.GetComponent<AvatarBehavior>();
         }
@@ -18,15 +18,16 @@ public class InteractableTrigger : MonoBehaviour
 
         if (ab != null && GetComponentInParent<BaseInteractableBehavior>() != null)
         {
-            if (ab.side == GetComponentInParent<BaseInteractableBehavior>().side || GetComponentInParent<BaseInteractableBehavior>().side == eSide.any)
+            BaseInteractableBehavior ib = GetComponentInParent<BaseInteractableBehavior>();
+            if (ab.side == ib.side || ib.side == eSide.any)
             {
-                GetComponentInParent<BaseInteractableBehavior>().AvatarCollision(ab);
+                ib.AvatarCollision(ab);
             }
-            else if (GetComponentInParent<BaseInteractableBehavior>().side == eSide.both)
+            else if (ib.side == eSide.both)
             {
                 if (ab.side == eSide.left) leftTriggered = true;
                 if (ab.side == eSide.right) rightTriggered = true;
-                if (leftTriggered == rightTriggered == true) GetComponentInParent<BaseInteractableBehavior>().AvatarCollision(ab);
+                if (leftTriggered == rightTriggered == true) ib.AvatarCollision(ab);
             }
             else if (GetComponentInParent<HazardInteractableBehavior>() != null)
             {

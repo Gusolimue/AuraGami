@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableRenderer: {fileID: 1204711827312171539}
+  targetBase: {fileID: 9050302093441893389}
   side: 0
   type: 0
   fadeOutTime: 0
@@ -206,8 +207,11 @@ MonoBehaviour:
     interactableAngle: 0
     interactableDistance: 0
     multiPoints: []
+    obstacleOrientation: 0
+    obstacleSize: 0
   stageIndex: 0
   boardIndex: 0
+  multiPositions: []
 --- !u!1001 &4870852080670924222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,3 +279,14 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5994081300220970925, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
   m_PrefabInstance: {fileID: 4870852080670924222}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9050302093441893389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4468028110021384627, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
+  m_PrefabInstance: {fileID: 4870852080670924222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3de7486740df8844a3dadab0c2022ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

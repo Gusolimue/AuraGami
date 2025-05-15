@@ -8,14 +8,14 @@ public class LevelSelectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        whichLevel = 1;
+        whichLevel = (int)eScene.frontEnd;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Level_Exploration"))
         {
-            whichLevel = 2;
+            whichLevel = (int)eScene.levelExploration;
 
             other.gameObject.SetActive(false);
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
@@ -24,7 +24,7 @@ public class LevelSelectManager : MonoBehaviour
 
         if (other.CompareTag("Level_Freedom"))
         {
-            whichLevel = 3;
+            whichLevel = (int)eScene.levelFreedom;
 
             other.gameObject.SetActive(false);
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
