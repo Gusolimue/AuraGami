@@ -11,6 +11,8 @@ public class soTrack : ScriptableObject
     public EventReference trackReference;
     public int trackLength;
     public int bpm;
+    public float beatLength;
+
 
     //[ButtonField(nameof(SetTrackLength), "!WARNING! Set Stage List !WARNING!", 30f)]
     //[SerializeField, HideInInspector] VoidStructure setStageListButtonHolder;
