@@ -7,45 +7,64 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
     public InputActionReference openPauseMenuAction;
+    [SerializeField] public GameObject menuBG;
+    //[SerializeField] SpriteRenderer menuBGSprite;
     public bool isPaused = false;
+    public bool showPauseMenu;
+    public bool isCountingDown;
 
-    [Header("Avatars")]
-    [SerializeField] GameObject naginiAvatar;
-    [SerializeField] GameObject yataAvatar;
+    [Header("Avatars/UI")]
+    [SerializeField] GameObject[] toHide;
 
     [Header("Unpause Elements")]
-    [SerializeField] public TextMeshProUGUI countdownTimer_TXT;
-    public float countdownTimer = 3;
-    public bool timerOn = false;
+    [SerializeField] public TextMeshProUGUI[] countdownTimer;
+    [SerializeField] GameObject countdownTimer_SizeChange;
+    [SerializeField] GameObject ogCountdownSize;
+    [SerializeField] Color[] countdownColor;
+    public float colorTransitionSpeed = 2.5f;
+    public int timerOn;
 
     private void Awake()
     {
         Instance = this;
-        countdownTimer_TXT.gameObject.SetActive(false);
-        PauseGame(false);
+        menuBG.SetActive(false);
+
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
         InputSystem.onDeviceChange += OnDeviceChange;
+
+        for (int i = 0; i < countdownTimer.Length; i++)
+        {
+            countdownTimer[i].gameObject.SetActive(false);
+        }
+
+        //menuBGSprite.color = countdownColor[1];
     }
 
     private void Update()
     {
-        OnPauseKeyPressed();
-
-        /*if (timerOn == true)
+        if (timerOn == 3)
         {
-            Debug.Log("Timer starts!");
-            countdownTimer_TXT.gameObject.SetActive(true);
-            countdownTimer -= Time.deltaTime;
-            timerCountdown(countdownTimer);
-            if (countdownTimer > 0f)
-            {
-                Debug.Log("Timer ends!");
-                timerOn = false;
-                countdownTimer = 0f;
-                countdownTimer_TXT.gameObject.SetActive(false);
-            }
-        }*/
+            countdownTimer[0].color = Color.Lerp(countdownTimer[0].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[0].transform.localScale = Vector3.Lerp(countdownTimer[0].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * 2);
+        }
+        if (timerOn == 2)
+        {
+            countdownTimer[1].color = Color.Lerp(countdownTimer[1].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[1].transform.localScale = Vector3.Lerp(countdownTimer[1].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * 2);
+        }
+        if (timerOn == 1)
+        {
+            countdownTimer[2].color = Color.Lerp(countdownTimer[2].color, countdownColor[1], Time.deltaTime * colorTransitionSpeed);
+            countdownTimer[2].transform.localScale = Vector3.Lerp(countdownTimer[2].transform.localScale, countdownTimer_SizeChange.transform.localScale,
+                Time.deltaTime * 2);
+        }
+
+        //if (isPaused) menuBGSprite.color = Color.Lerp(menuBGSprite.color, countdownColor[1], Time.deltaTime * 5);
+        //else menuBGSprite.color = Color.Lerp(menuBGSprite.color, countdownColor[0], Time.deltaTime * 5);
+
     }
 
     private void OnDestroy()
@@ -55,54 +74,18 @@ public class PauseManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    public void PauseGame(bool _pause)
-    {
-        if (_pause) Time.timeScale = 0; else Time.timeScale = 1;
-    }
-
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
-        if (isPaused == false)
+        if (!isPaused)
         {
-            CanvasManager.Instance.ShowCanvasPauseMenu();
-            naginiAvatar.SetActive(false);
-            yataAvatar.SetActive(false);
-            isPaused = true;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
+            showPauseMenu = true;
             PauseGame(true);
-            Debug.Log("Is Paused!");
         }
-        else if (isPaused == true)
+        else if (isPaused)
         {
-            isPaused = false;
             PauseGame(false);
-            PauseMenu.Instance.OnResumeGameButtonPressed();
-            naginiAvatar.SetActive(true);
-            yataAvatar.SetActive(true);
-            Debug.Log("Is Unpaused!");
         }
-    }
-
-    public void OnPauseKeyPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isPaused == false)
-            {
-                CanvasManager.Instance.ShowCanvasPauseMenu();
-                isPaused = true;
-                PauseGame(true);
-                Debug.Log("Is Paused!");
-            }
-            else if (isPaused == true)
-            {
-                isPaused = false;
-                PauseGame(false);
-                //StartCoroutine(Countdown(3));
-                PauseMenu.Instance.OnResumeGameButtonPressed();
-                Debug.Log("Is Unpaused!");
-            }
-        }
-        
     }
 
     private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -120,19 +103,75 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Countdown(int seconds)
+    private void HideAndUnhideObjects(bool enabled)
     {
-        countdownTimer = seconds;
-        countdownTimer_TXT.gameObject.SetActive(true);
-        Time.timeScale = 1;
-
-        while (countdownTimer > 0)
+        foreach (var item in toHide)
         {
-            countdownTimer_TXT.text = countdownTimer.ToString();
-            Debug.Log(countdownTimer);
-            yield return new WaitForSecondsRealtime(1f);
-            countdownTimer--;
+            item.SetActive(enabled);
         }
-        countdownTimer_TXT.gameObject.SetActive(false);
+    }
+
+    public void PauseGame(bool paused)
+    {
+        if (!isCountingDown && !FrontEndSceneTransitionManager.Instance.isTransitioning)
+        {
+            if (paused)
+            {
+                if (showPauseMenu)
+                {
+                    CanvasManager.Instance.ShowCanvasPauseMenu();
+                    menuBG.SetActive(true);
+                }
+
+                isPaused = true;
+                HideAndUnhideObjects(false);
+                BeatManager.Instance.PauseMusicTMP(true);
+                Debug.Log("Is Paused!");
+            }
+
+            if (!paused)
+            {
+                if (showPauseMenu)
+                {
+                    HideAndUnhideObjects(true);
+                    PauseMenu.Instance.DestroyMenu();
+                    menuBG.SetActive(false);
+                    StartCoroutine(CountdownBehavior());
+                    Debug.Log("Is Unpaused!");
+                }
+            }
+        }
+    }
+
+    private IEnumerator CountdownBehavior()
+    {
+        isCountingDown = true;
+        openPauseMenuAction.action.performed -= OnPauseButtonPressed;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_countdown);
+
+        countdownTimer[0].color = countdownColor[0]; countdownTimer[0].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[0].gameObject.SetActive(true);
+        timerOn = 3;
+        yield return new WaitForSeconds(1f);
+
+        countdownTimer[1].color = countdownColor[0]; countdownTimer[1].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[1].gameObject.SetActive(true);
+        timerOn = 2;
+        yield return new WaitForSeconds(1f);
+
+        countdownTimer[2].color = countdownColor[0]; countdownTimer[2].transform.localScale = ogCountdownSize.transform.localScale;
+        countdownTimer[2].gameObject.SetActive(true);
+        timerOn = 1;
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < countdownTimer.Length; i++)
+        {
+            countdownTimer[i].gameObject.SetActive(false);
+        }
+        
+        BeatManager.Instance.PauseMusicTMP(false);
+        isPaused = false;
+        isCountingDown = false;
+        openPauseMenuAction.action.performed += OnPauseButtonPressed;
     }
 }
