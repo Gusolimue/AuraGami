@@ -135,7 +135,8 @@ public class IntroSplashScreen : MonoBehaviour
         isUnity = false;
         yield return new WaitForSeconds(1);
 
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        //FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        LoadManager.Instance.LoadScene(eScene.tutorial);
     }
 
     IEnumerator SkipIconBehavior()
