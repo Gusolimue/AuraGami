@@ -138,4 +138,23 @@ public class AccessabilitySettingsManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         demoOn = false;
     }
+
+    public void DefaultSettings()
+    {
+        playCircleSlider[0].value = 1.25f;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        }
+
+        playCircleSlider[1].value = 1.25f;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        }
+
+        demoOn = false;
+        toggleNum = 2;
+        PlayerPrefs.SetInt("toggleCircle", toggleNum);
+    }
 }

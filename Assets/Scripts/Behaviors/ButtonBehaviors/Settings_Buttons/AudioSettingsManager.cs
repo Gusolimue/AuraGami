@@ -85,4 +85,16 @@ public class AudioSettingsManager : MonoBehaviour
     {
         sfxAudioSlider.value -= .1f;
     }
+
+    public void DefaultSettings()
+    {
+        masterAudioSlider.value = 1;
+        AudioManager.Instance.SetVolume(eBus.Master, PlayerPrefs.GetFloat("saveAll"));
+
+        musicAudioSlider.value = 1;
+        AudioManager.Instance.SetVolume(eBus.Music, PlayerPrefs.GetFloat("saveMusic"));
+
+        sfxAudioSlider.value = 1;
+        AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
+    }
 }
