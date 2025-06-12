@@ -7,8 +7,6 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
     public int damageAmount = 1;
     public int precisionSize = 8;
 
-    private bool hasHitAvatar;
-
     // Check if the avatar is colliding with the inner circle (target) or just the outer ring (hazard)
     public override void AvatarCollision(AvatarBehavior avatarBehavior)
     {
@@ -16,8 +14,8 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
         Collider[] hitColliders = Physics.OverlapBox(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f),
             new Vector3(transform.localScale.x / precisionSize, transform.localScale.y / precisionSize, transform.localScale.z / 6),
             Quaternion.identity);
-        Debug.Log("Precision target has hit: " + hitColliders.Length + " colliders");
-        hasHitAvatar = false;
+        // Check if the avatar is hitting the center
+        bool hasHitAvatar = false;
         foreach (Collider col in hitColliders)
         {
             if (col.gameObject.GetComponent<AvatarTrigger>() != null) // If colliding with an avatar
@@ -48,9 +46,9 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        // Check that it is being run in the Editor, so it doesn't try to draw this in Play mode
         if (Application.isEditor)
-            // Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+            // Draw a cube where the precision OverlapBox collider is
             Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f),
                 new Vector3(transform.localScale.x / (precisionSize-2), transform.localScale.y / (precisionSize-2), transform.localScale.z/4));
     }
