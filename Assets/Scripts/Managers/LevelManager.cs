@@ -22,9 +22,9 @@ public class LevelManager : MonoBehaviour
     GameObject[] stageContainers;
 
     GameObject[] trackPoints;
-    int boardCount;
-    GameObject currentBoard;
+    int boardIndex;
     bool isSubscribed;
+    bool isTutorial;
     private void Awake()
     {
         Instance = this;
@@ -36,61 +36,63 @@ public class LevelManager : MonoBehaviour
         StartStage();
     }
 
-    public void SpawnBoard(int num, List<Board> _stage, Transform transform, int _stageIndex = 0)
+    public GameObject InstantiateBoard(int _boardIndex, List<Board> _stage, int _stageIndex, Transform _parent = null)
     {
-        currentBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
-            as GameObject, transform);
-        foreach (var Target in _stage[num].interactables)
+        GameObject tmpBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
+            as GameObject);
+        foreach (var Target in _stage[_boardIndex].interactables)
         {
-            SpawnTarget(Target, _stageIndex);
+            InstantiateTarget(Target, _stageIndex, _boardIndex, tmpBoard.transform);
         }
-        if (_stage[num].interactables.Length == 0)
+        if (_stage[_boardIndex].interactables.Length == 0)
         {
-            currentBoard.name = "Empty Board";
+            tmpBoard.name = "Empty Board";
         }
-        boardCount += 1;
+        if (_parent != null) tmpBoard.transform.SetParent(_parent);
+        return tmpBoard;
     }
 
     //called to spawn every individual target when a board is spawned
-    void SpawnTarget(Interactable _target, int _index)
+    public GameObject InstantiateTarget(Interactable _target, int _stageIndex, int _boardIndex, Transform _parent = null)
     {
         GameObject tmpObject;
         switch (_target.interactableType)
         {
             case eTargetType.regularTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, currentBoard.transform);
+            as GameObject);
                 break;
             case eTargetType.multihitTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "multihitTargetPrefab")
-            as GameObject, currentBoard.transform);
+            as GameObject);
                 break;
             case eTargetType.threadedTarget:
                 //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
                 tmpObject = Instantiate(threadedTargets[threadedCount]);
                 threadedCount++;
-                tmpObject.transform.SetParent(currentBoard.transform);
                 tmpObject.transform.localPosition = Vector3.zero;
                 break;
             case eTargetType.precisionTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
-            as GameObject, currentBoard.transform);
+            as GameObject);
                 break;
             case eTargetType.regularObstacle:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularObstaclePrefab")
-            as GameObject, currentBoard.transform);
+            as GameObject);
                 break;
             default:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "regularTargetPrefab")
-            as GameObject, currentBoard.transform);
+            as GameObject);
                 break;
         }
-        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _index, boardCount, _target);
+        tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _stageIndex, _boardIndex, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
         tmpObject.transform.Translate(Vector3.up * _target.interactableDistance);
         tmpObject.transform.localRotation = Quaternion.identity;
+        if (_parent != null) tmpObject.transform.SetParent(_parent);
+        return tmpObject;
     }
     // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
@@ -104,10 +106,31 @@ public class LevelManager : MonoBehaviour
     {
         return trackPoints[Mathf.Clamp(_index, 0, trackPoints.Length-1)].transform;
     }
-    public void InitLevel()
+    public List<GameObject> InstantiateStage(List<Board> stage_, int _stageIndex, Transform _parent = null)
     {
-        stageContainers = new GameObject[3];
-        instantiatedStages = new List<GameObject>[3];
+        List<GameObject> tmpStage = new List<GameObject>(0);
+        for (int c = 0; c < stage_.Count; c++)
+        {
+            tmpStage.Add(InstantiateBoard(c, stage_, _stageIndex, _parent));
+            tmpStage[c].SetActive(false);
+
+        }
+        foreach (var board in tmpStage)
+        {
+            foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())
+            {
+                behavior.SpawnTargetPoints();
+            }
+            foreach (var behavior in board.GetComponentsInChildren<ThreadedTargetInteractableBehavior>())
+            {
+                behavior.SpawnTargetPoints();
+            }
+        }
+
+        return tmpStage;
+    }
+    public void InitTrackPoints()
+    {
         trackPoints = new GameObject[beatsToPlayer + 2];
         GameObject trackContainer = new GameObject("Track Container");
         trackContainer.transform.SetParent(this.transform);
@@ -118,9 +141,14 @@ public class LevelManager : MonoBehaviour
             trackPoints[i].transform.SetParent(trackContainer.transform);
             trackPoints[i].transform.localPosition = Vector3.zero;
             trackPoints[i].transform.Translate(Vector3.forward * spawnDistance);
-            trackPoints[i].transform.Translate(Vector3.back * spawnDistance/ beatsToPlayer * i);
+            trackPoints[i].transform.Translate(Vector3.back * spawnDistance / beatsToPlayer * i);
         }
-
+    }
+    public void InitLevel()
+    {
+        stageContainers = new GameObject[3];
+        instantiatedStages = new List<GameObject>[3];
+        InitTrackPoints();
         for (int i = 0; i < 3; i++)
         {
             stageContainers[i] = new GameObject("Stage " + (i + 1) + " Boards");
@@ -130,28 +158,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            for (int c = 0; c < level.GetStage(i + 1).Count; c++)
-            {
-                SpawnBoard(c, level.GetStage(i + 1), stageContainers[i].transform, i);
-                instantiatedStages[i].Add(currentBoard);
-                instantiatedStages[i][c].SetActive(false);
-
-            }
-            boardCount = 0;
-        }
-        foreach (var stage in instantiatedStages)
-        {
-            foreach (var board in stage)
-            {
-                foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())
-                {
-                    behavior.SpawnTargetPoints();
-                }
-                foreach (var behavior in board.GetComponentsInChildren<ThreadedTargetInteractableBehavior>())
-                {
-                    behavior.SpawnTargetPoints();
-                }
-            }
+            instantiatedStages[i] = InstantiateStage(level.GetStage(i+1), i+1, stageContainers[i].transform);
         }
 
         foreach (var container in stageContainers)
@@ -181,7 +188,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            boardCount = 0;
+            boardIndex = 0;
 
             APManager.Instance.ResetAP();
         }
@@ -191,7 +198,7 @@ public class LevelManager : MonoBehaviour
     public void StartStage()
     {
         Debug.Log("stage started: " + (currentStageIndex+1));
-        boardCount = 0;
+        boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
     }
@@ -205,7 +212,7 @@ public class LevelManager : MonoBehaviour
     void ActivateBoard()
     {
         //Debug.Log("board activated");
-        if(boardCount >= instantiatedStages[currentStageIndex].Count)
+        if(boardIndex >= instantiatedStages[currentStageIndex].Count)
         {
             EndStage();
             //if (currentStageIndex >= 2)
@@ -221,9 +228,9 @@ public class LevelManager : MonoBehaviour
         }
         else
         {          
-            instantiatedStages[currentStageIndex][boardCount].SetActive(true);
-            instantiatedStages[currentStageIndex][boardCount].GetComponent<BoardBehavior>().Init();
-            boardCount++;
+            instantiatedStages[currentStageIndex][boardIndex].SetActive(true);
+            instantiatedStages[currentStageIndex][boardIndex].GetComponent<BoardBehavior>().Init();
+            boardIndex++;
         }
     }
 

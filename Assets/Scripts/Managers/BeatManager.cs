@@ -43,7 +43,11 @@ public class BeatManager : MonoBehaviour
     [Button, SerializeField]
     public void StartSong()
     {
-        if(LevelManager.Instance != null)
+        if (TutorialManager.Instance != null)
+        {
+            music = TutorialManager.Instance.tutorialTrack.trackReference;
+        }
+        else if (LevelManager.Instance != null)
         {
             music = LevelManager.Instance.level.track.trackReference;
         }
