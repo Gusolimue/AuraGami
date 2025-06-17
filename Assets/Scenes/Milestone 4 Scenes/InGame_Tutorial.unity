@@ -4429,6 +4429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1672607257}
   - component: {fileID: 1672607258}
+  - component: {fileID: 1672607259}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -4470,6 +4471,22 @@ MonoBehaviour:
   tutorialTextContent: 
   fadeTime: 5
   apBar: {fileID: 162568817}
+--- !u!114 &1672607259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672607256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c11c3ad900ff664e922865c64b11113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 0}
+  tutorialList:
+  - {fileID: 11400000, guid: 766e3cfb2ce16214eb5f4bcd1c50a927, type: 2}
+  tutorialTrack: {fileID: 0}
 --- !u!4 &1705750273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}

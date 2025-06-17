@@ -51,7 +51,7 @@ public class APManager : MonoBehaviour
         sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, count * sigilSliderSpeed);
     }
 
-    public void SetTargetValues()
+    public float[] SetTargetValues()
     {
         for (int c = 0; c < 3; c++)
         {
@@ -68,6 +68,7 @@ public class APManager : MonoBehaviour
             }
             stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
+        return stageTargetValues;
     }
 
     public void IncreaseAP()

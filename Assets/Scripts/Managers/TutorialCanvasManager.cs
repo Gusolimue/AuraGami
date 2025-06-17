@@ -30,8 +30,9 @@ public class TutorialCanvasManager : MonoBehaviour
         else tutorialText.color = Color.Lerp(tutorialText.color, fadeOutColor, count * fadeTime);
     }
 
-    public void FadeInText()
+    public void FadeInText(string _text)
     {
+        tutorialText.text = _text;
         isFadeIn = true;
     }
 

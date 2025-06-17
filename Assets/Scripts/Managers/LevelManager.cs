@@ -32,8 +32,16 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
-        InitLevel();
-        StartStage();
+        InitTrackPoints();
+        if (TutorialManager.Instance == null)
+        {
+            InitLevel();
+            StartStage();
+        }
+        else
+        {
+            instantiatedStages = new List<GameObject>[1];
+        }
     }
 
     public GameObject InstantiateBoard(int _boardIndex, List<Board> _stage, int _stageIndex, Transform _parent = null)
@@ -148,7 +156,6 @@ public class LevelManager : MonoBehaviour
     {
         stageContainers = new GameObject[3];
         instantiatedStages = new List<GameObject>[3];
-        InitTrackPoints();
         for (int i = 0; i < 3; i++)
         {
             stageContainers[i] = new GameObject("Stage " + (i + 1) + " Boards");

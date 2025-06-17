@@ -7,4 +7,5 @@ public class SoTutorial : ScriptableObject
 {
     public string tutorialText;
     public List<Board> tutorialBoards;
+    public eTutorial tutorialType;
 }

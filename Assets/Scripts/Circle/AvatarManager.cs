@@ -133,7 +133,7 @@ public class AvatarManager : MonoBehaviour
         }
     }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
-    IEnumerator CoEvolve(bool _pass)
+    IEnumerator CoEvolve(bool _pass, bool _tutorial = false)
     {
         am.PlaySFX(am.sfx_avatar_evolveStart);
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
@@ -253,7 +253,7 @@ public class AvatarManager : MonoBehaviour
             disableAvatarMovement = false;
 
         }
-        else
+        else if (!_tutorial)
         {
             CanvasManager.Instance.ShowCanvasStageFail();
             PauseManager.Instance.showPauseMenu = false;
@@ -263,9 +263,11 @@ public class AvatarManager : MonoBehaviour
         // Give control of the avatars back to the player
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
-    public void StartEvolve()
+    public bool StartEvolve(bool _tutorial = false)
     {
-        StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
+        bool tmpBool = APManager.Instance.StagePassCheck();
+        StartCoroutine(CoEvolve(tmpBool, _tutorial));
+        return tmpBool;
     }
 
     public void StartEvolveFinal()
