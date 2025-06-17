@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class AccessabilitySettingsManager : MonoBehaviour
+public class GameplaySettingsManager : MonoBehaviour
 {
-    public static AccessabilitySettingsManager Instance;
+    public static GameplaySettingsManager Instance;
 
     [Space]
     [Header("Player Circle/Slider")]
