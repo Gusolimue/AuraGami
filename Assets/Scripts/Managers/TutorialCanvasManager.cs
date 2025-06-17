@@ -32,13 +32,17 @@ public class TutorialCanvasManager : MonoBehaviour
 
     public void FadeInText(string _text)
     {
+        Debug.Log("fading text in");
+        count = 0;
         tutorialText.text = _text;
         isFadeIn = true;
     }
 
     public void FadeOutText()
     {
+
         isFadeIn = false;
+        count = 0;
     }
 
     public void ShowApBar()
