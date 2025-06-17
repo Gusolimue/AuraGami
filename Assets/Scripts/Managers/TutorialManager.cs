@@ -38,7 +38,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("tutorial started: "+_tutorial.tutorialType);
         LevelManager.Instance.instantiatedStages[0] = instantiatedTutorials[(int)_tutorial.tutorialType];
         APManager.Instance.SetTargetValues();
-        tc.FadeInText(_tutorial.tutorialText);
+        //tc.FadeInText(_tutorial.tutorialText);
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
