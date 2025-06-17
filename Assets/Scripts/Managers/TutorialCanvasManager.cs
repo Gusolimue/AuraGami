@@ -16,6 +16,7 @@ public class TutorialCanvasManager : MonoBehaviour
     private bool isFadeIn;
     private string text;
     public float count;
+    private Coroutine textCycleCoroutine;
 
     [Header("AP Bar")]
     [SerializeField] GameObject apBar;
@@ -35,18 +36,12 @@ public class TutorialCanvasManager : MonoBehaviour
     public void FadeInText(string[] _texts)
     {
         Debug.Log("fading text in");
-        count = 0;
-        for (int i = 0; i < _texts.Length; i++)
-        {
-            text = _texts[i];
-            tutorialText.text = text;
-        }
-        isFadeIn = true;
+        textCycleCoroutine = StartCoroutine(TextCycle(_texts));
+        if (textCycleCoroutine != null) StopCoroutine(textCycleCoroutine);
     }
 
     public void FadeOutText()
     {
-
         isFadeIn = false;
         count = 0;
     }
@@ -56,10 +51,11 @@ public class TutorialCanvasManager : MonoBehaviour
         apBar.SetActive(true);
     }
 
-    IEnumerator TextCycle()
+    IEnumerator TextCycle(string[] texts)
     {
-        foreach (var _text in text)
+        foreach (var currentText in texts)
         {
+            tutorialText.text = currentText;
             isFadeIn = true;
             count = 0;
             while (count < fadeTime)
