@@ -1,9 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class TutorialCanvasManager : MonoBehaviour
 {
+    [Header("Tutorial Text")]
     [SerializeField] TextMeshProUGUI tutorialText;
     public Color fadeInColor;
     public Color fadeOutColor;
@@ -13,6 +15,14 @@ public class TutorialCanvasManager : MonoBehaviour
     private bool isFadeIn;
     private float count;
 
+    [Header("AP Bar")]
+    [SerializeField] GameObject apBar;
+
+    private void Awake()
+    {
+        apBar.SetActive(false);
+        isFadeIn = false;
+    }
     private void Update()
     {
         count += Time.deltaTime;
@@ -28,5 +38,10 @@ public class TutorialCanvasManager : MonoBehaviour
     public void FadeOutText()
     {
         isFadeIn = false;
+    }
+
+    public void ShowApBar()
+    {
+        apBar.SetActive(true);
     }
 }

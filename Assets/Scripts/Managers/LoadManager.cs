@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum eScene { splashScene, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
+public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -45,6 +45,10 @@ public class LoadManager : MonoBehaviour
             case eScene.splashScene:
                 break;
 
+            case eScene.tutorial:
+                
+                break;
+
             case eScene.frontEnd:
                 if (isTitleScreen == 0)
                 {
@@ -72,7 +76,6 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.levelFreedom:
-                //CanvasManager.Instance.ShowCanvasPauseMenu();
                 currentScene = 2;
                 break;
 
