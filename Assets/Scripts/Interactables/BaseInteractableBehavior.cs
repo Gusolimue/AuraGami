@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 //Base Script to source for all in game interactables (targets and hazards)
 public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
@@ -80,8 +81,19 @@ public class BaseInteractableBehavior : MonoBehaviour
     public virtual void AvatarCollision(AvatarBehavior avatarBehavior)
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-        if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
-        else APVFXManager.Instance.APVfxSpawnYata(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        if (avatarBehavior != null)
+        {
+            HapticsManager.Instance.TriggerVibration(avatarBehavior.leftController, .5f, .25f);
+        }
+
+        if (avatarBehavior.side == eSide.left)
+        {
+            APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        }
+        else
+        {
+            APVFXManager.Instance.APVfxSpawnYata(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        }
         StopTarget();
     }
 
