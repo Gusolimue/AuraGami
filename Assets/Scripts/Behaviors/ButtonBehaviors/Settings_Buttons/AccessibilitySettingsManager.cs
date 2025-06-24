@@ -12,9 +12,9 @@ public class ColorPallete
     [SerializeField] Material leftTargetOutline;
     [SerializeField] Material leftTarget;
 
-    [Header("United Material")]
+    /*[Header("United Material")]
     [SerializeField] Material unitedTargetOutline;
-    [SerializeField] Material unitedTarget;
+    [SerializeField] Material unitedTarget;*/
 }
 
 public class AccessibilitySettingsManager : MonoBehaviour
@@ -23,7 +23,7 @@ public class AccessibilitySettingsManager : MonoBehaviour
     private enum eColorBlindOptions {none, optionOne, optionTwo};
     private eColorBlindOptions curColorOption = eColorBlindOptions.none;
 
-    //[NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
+    [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
     [SerializeField] TextMeshProUGUI colorOptionsTXT;
     
@@ -63,13 +63,13 @@ public class AccessibilitySettingsManager : MonoBehaviour
                 break;
 
             case eColorBlindOptions.optionOne:
-                colorOptionsTXT.text = "OPTION ONE";
+                colorOptionsTXT.text = "OPTION ONE: DEWT-PRO";
                 PlayerPrefs.SetString("setCB1", "OPTION ONE");
                 PlayerPrefs.Save();
                 break;
 
             case eColorBlindOptions.optionTwo:
-                colorOptionsTXT.text = "OPTION TWO";
+                colorOptionsTXT.text = "OPTION TWO: TRITAN";
                 PlayerPrefs.SetString("setCB2", "OPTION TWO");
                 PlayerPrefs.Save();
                 break;
