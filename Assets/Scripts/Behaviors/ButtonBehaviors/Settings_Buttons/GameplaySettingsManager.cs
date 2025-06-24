@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class AccessabilitySettingsManager : MonoBehaviour
+public class GameplaySettingsManager : MonoBehaviour
 {
-    public static AccessabilitySettingsManager Instance;
+    public static GameplaySettingsManager Instance;
 
     [Space]
     [Header("Player Circle/Slider")]
@@ -137,5 +137,24 @@ public class AccessabilitySettingsManager : MonoBehaviour
         demoOn = true;
         yield return new WaitForSeconds(5);
         demoOn = false;
+    }
+
+    public void DefaultSettings()
+    {
+        playCircleSlider[0].value = 1.25f;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        }
+
+        playCircleSlider[1].value = 1.25f;
+        if (AvatarManager.Instance != null)
+        {
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+        }
+
+        demoOn = false;
+        toggleNum = 2;
+        PlayerPrefs.SetInt("toggleCircle", toggleNum);
     }
 }
