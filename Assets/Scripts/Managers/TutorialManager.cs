@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum eTutorial { basicTarget, precisionTarget, multiHitTarget, threadedTarget, final}
+public enum eTutorial { basicTarget, bothTarget, precisionTarget, multiHitTarget, threadedTarget, final}
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;

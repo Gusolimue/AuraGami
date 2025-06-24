@@ -10,7 +10,7 @@ public class TutorialCanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI tutorialText;
     public Color fadeInColor;
     public Color fadeOutColor;
-    public int messageTime;
+    public float messageTime;
     public float fadeTime = 5f;
     public bool textChanging = false;
      bool isFadeIn;
