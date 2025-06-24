@@ -46,7 +46,7 @@ public class AvatarBehavior : MonoBehaviour
                 }
             }
         }
-        else if (rightControllers.Count > 0)
+        if (rightControllers.Count > 0)
         {
             foreach (var device in rightControllers)
             {
