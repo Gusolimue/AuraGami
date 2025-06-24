@@ -5468,6 +5468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorPallete: []
+  rightTargetOutline: {fileID: 0}
+  rightTarget: {fileID: 0}
+  leftTargetOutline: {fileID: 0}
+  leftTarget: {fileID: 0}
   colorOptionsTXT: {fileID: 0}
 --- !u!114 &4728817933719534072
 MonoBehaviour:
@@ -89570,12 +89574,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorPallete:
-  - rightTargetOutline: {fileID: 0}
-    rightTarget: {fileID: 0}
-    leftTargetOutline: {fileID: 0}
-    leftTarget: {fileID: 0}
-    unitedTargetOutline: {fileID: 0}
-    unitedTarget: {fileID: 0}
+  - rightTargetOutline: {r: 0.28627452, g: 0.6156863, b: 1, a: 1}
+    rightOutlineEmissive: {r: 0.12941177, g: 0.56078434, b: 0.59607846, a: 0.6784314}
+    rightTarget: {r: 0, g: 0.4117647, b: 1, a: 0.6}
+    leftTargetOutline: {r: 0.8627451, g: 0.4745098, b: 0.20784314, a: 1}
+    leftOutlineEmissive: {r: 0.7294118, g: 0.19215687, b: 0.03529412, a: 1}
+    leftTarget: {r: 0.90588236, g: 0, b: 0.023529412, a: 0.6}
+  - rightTargetOutline: {r: 0.39215687, g: 0.56078434, b: 1, a: 1}
+    rightOutlineEmissive: {r: 0.39215687, g: 0.56078434, b: 1, a: 0.6784314}
+    rightTarget: {r: 0.39215687, g: 0.56078434, b: 1, a: 0.6}
+    leftTargetOutline: {r: 1, g: 0.6901961, b: 0, a: 1}
+    leftOutlineEmissive: {r: 1, g: 0.6901961, b: 0, a: 1}
+    leftTarget: {r: 1, g: 0.6901961, b: 0, a: 0.6}
+  - rightTargetOutline: {r: 0, g: 0.9019608, b: 0.9019608, a: 1}
+    rightOutlineEmissive: {r: 0, g: 0.9019608, b: 0.9019608, a: 0.6784314}
+    rightTarget: {r: 0, g: 0.9019608, b: 0.9019608, a: 0.6}
+    leftTargetOutline: {r: 1, g: 0, b: 0.4, a: 1}
+    leftOutlineEmissive: {r: 1, g: 0, b: 0.4, a: 1}
+    leftTarget: {r: 1, g: 0, b: 0.4, a: 0.6}
+  rightTargetOutline: {fileID: 2100000, guid: 3d297c5330da9464b8b5a6eb52f6ecfc, type: 2}
+  rightTarget: {fileID: 2100000, guid: f340ebb3e73b638438a4bae89393aec4, type: 2}
+  leftTargetOutline: {fileID: 2100000, guid: 9f5956655dab4f441b3c450f1f5450a5, type: 2}
+  leftTarget: {fileID: 2100000, guid: 3fe5a3c7da8027f408c264222c171f1c, type: 2}
   colorOptionsTXT: {fileID: 8658046855220727737}
 --- !u!1 &7109568048486038182
 GameObject:
