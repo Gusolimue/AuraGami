@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
     [Header("Music: Level")]
     public EventReference music_level_Freedom;
     public EventReference music_level_Fail;
+    public EventReference music_level_Tutorial;
     public EventReference music_level_Complete;
 
     [Space]

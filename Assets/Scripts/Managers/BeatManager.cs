@@ -5,6 +5,7 @@ using FMODUnity;
 using System;
 using EditorAttributes;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BeatManager : MonoBehaviour
 {
@@ -43,7 +44,11 @@ public class BeatManager : MonoBehaviour
     [Button, SerializeField]
     public void StartSong()
     {
-        if(LevelManager.Instance != null)
+        if (TutorialManager.Instance != null)
+        {
+            music = TutorialManager.Instance.tutorialTrack.trackReference;
+        }
+        else if (LevelManager.Instance != null)
         {
             music = LevelManager.Instance.level.track.trackReference;
         }
@@ -56,6 +61,10 @@ public class BeatManager : MonoBehaviour
         musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
             | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         start = true;
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.trackInstance = musicInstance;
+        }
     }
     [Button, SerializeField]
     public void RecordSongData()
@@ -67,6 +76,25 @@ public class BeatManager : MonoBehaviour
         FMOD.Studio.EventDescription eventDescription;
         musicInstance.getDescription(out eventDescription);
         eventDescription.getLength(out levelToRecordTo.track.trackLength);
+        StartCoroutine(CORecordBeatLength());
+    }
+    public float c;
+    IEnumerator CORecordBeatLength()
+    {
+        Debug.Log("1");
+        c = 0;
+        int lb = lastBeat;
+        yield return new WaitUntil(() => lastBeat > lb);
+        Debug.Log("2");
+        lb = lastBeat;
+        while (lb >= lastBeat)
+        {
+        Debug.Log("3");
+            c += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("4");
+        levelToRecordTo.track.beatLength = c;
     }
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
