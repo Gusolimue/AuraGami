@@ -46,10 +46,10 @@ public class TutorialManager : MonoBehaviour
     }
     public void EndTutorial()
     {
+        if (tutorialIndex >= tutorialList.Length-1) MoveOn();
         Debug.Log("stage finished");
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
-        if (tutorialIndex >= tutorialList.Length) MoveOn();
         if (AvatarManager.Instance.StartEvolve(true))
         {
             tutorialIndex++;
