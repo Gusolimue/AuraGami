@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
 
 public class HapticsManager : MonoBehaviour
 {
@@ -9,8 +9,8 @@ public class HapticsManager : MonoBehaviour
         Instance = this;
     }
 
-    public void TriggerVibration(XRBaseController controller, float amplitude, float duration)
+    public void TriggerVibration(InputDevice controller, float amplitude, float duration)
     {
-        controller.SendHapticImpulse(amplitude, duration);
+        controller.SendHapticImpulse(1, amplitude, duration);
     }
 }
