@@ -1,39 +1,27 @@
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class HapticsManager : MonoBehaviour
 {
     public static HapticsManager Instance;
-
-    uint channel = 0;
-    bool success;
+    public HapticImpulsePlayer leftImpulsePlayer;
+    public HapticImpulsePlayer rightImpulsePlayer;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void TriggerVibration(InputDevice controller, float amplitude, float duration)
+    public void TriggerVibration(bool leftController, float amplitude, float duration)
     {
-        UnityEngine.XR.HapticCapabilities capabilities;
-        if (controller.TryGetHapticCapabilities(out capabilities))
+        if (leftController)
         {
-            if (capabilities.supportsImpulse)
-            {
-                success = controller.SendHapticImpulse(channel, amplitude, duration);
-                if (success)
-                {
-                    Debug.Log("Vibrating " + controller.name);
-                }
-                else
-                {
-                    Debug.Log("Failed to vibrate " + controller.name);
-                }
-            }
+            leftImpulsePlayer.SendHapticImpulse(amplitude, duration);
         }
         else
         {
-            Debug.Log("Device " + controller.name + " has no haptic capabilities");
+            rightImpulsePlayer.SendHapticImpulse(amplitude, duration);
         }
     }
 }

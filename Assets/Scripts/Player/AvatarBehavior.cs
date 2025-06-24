@@ -15,67 +15,67 @@ public class AvatarBehavior : MonoBehaviour
     [Header("Variables to Set")]
     public eSide side;
     public GameObject avatarObject;
-    public UnityEngine.XR.InputDevice controller;
+    public bool leftController;
 
-    void TryInitialize()
-    {
-        // Get all currently connected controllers
-        var controllers = new List<UnityEngine.XR.InputDevice>();
+    //void TryInitialize()
+    //{
+    //    // Get all currently connected controllers
+    //    var controllers = new List<UnityEngine.XR.InputDevice>();
 
-        // Create desired characteristics to filter out left and right controllers
-        var desiredCharacteristicsLeft = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Controller | UnityEngine.XR.InputDeviceCharacteristics.Left;
-        var desiredCharacteristicsRight = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Controller | UnityEngine.XR.InputDeviceCharacteristics.Right;
+    //    // Create desired characteristics to filter out left and right controllers
+    //    var desiredCharacteristicsLeft = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Controller | UnityEngine.XR.InputDeviceCharacteristics.Left;
+    //    var desiredCharacteristicsRight = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Controller | UnityEngine.XR.InputDeviceCharacteristics.Right;
 
-        // Initialize left and right controllers to contain every connected controller
-        var leftControllers = controllers;
-        var rightControllers = controllers;
+    //    // Initialize left and right controllers to contain every connected controller
+    //    var leftControllers = controllers;
+    //    var rightControllers = controllers;
 
-        // Sets the left and right controllers list to contain left and right controllers filtered out by the desired characteristics
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristicsLeft, leftControllers);
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristicsRight, rightControllers);
+    //    // Sets the left and right controllers list to contain left and right controllers filtered out by the desired characteristics
+    //    UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristicsLeft, leftControllers);
+    //    UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristicsRight, rightControllers);
 
-        if (leftControllers.Count > 0)
-        {
-            foreach (var device in leftControllers)
-            {
-                Debug.Log(device.name);
-                if (side == eSide.left)
-                {
-                    Debug.Log("Set left side controller");
-                    controller = device;
-                }
-            }
-        }
-        if (rightControllers.Count > 0)
-        {
-            foreach (var device in rightControllers)
-            {
-                Debug.Log(device.name);
-                if (side == eSide.right)
-                {
-                    Debug.Log("Set right side controller");
-                    controller = device;
-                }
-            }
-        }
-        else
-        {
-            return;
-        }
-    }
+    //    if (leftControllers.Count > 0)
+    //    {
+    //        foreach (var device in leftControllers)
+    //        {
+    //            Debug.Log(device.name);
+    //            if (side == eSide.left)
+    //            {
+    //                Debug.Log("Set left side controller");
+    //                leftController = device;
+    //            }
+    //        }
+    //    }
+    //    if (rightControllers.Count > 0)
+    //    {
+    //        foreach (var device in rightControllers)
+    //        {
+    //            Debug.Log(device.name);
+    //            if (side == eSide.right)
+    //            {
+    //                Debug.Log("Set right side controller");
+    //                leftController = device;
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
 
-    private void Start()
-    {
-        TryInitialize();
-    }
+    //private void Start()
+    //{
+    //    TryInitialize();
+    //}
 
-    void Update()
-    {
-        if (!controller.isValid)
-        {
-            TryInitialize();
-        }
-    }
+    //void Update()
+    //{
+    //    if (!leftController.isValid)
+    //    {
+    //        TryInitialize();
+    //    }
+    //}
 
     public void ObstacleCollision()
     {

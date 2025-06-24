@@ -81,11 +81,9 @@ public class BaseInteractableBehavior : MonoBehaviour
     public virtual void AvatarCollision(AvatarBehavior avatarBehavior)
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-        Debug.Log(avatarBehavior.name);
-        Debug.Log(avatarBehavior.controller.name);
-        if (avatarBehavior.controller != null)
+        if (avatarBehavior != null)
         {
-            HapticsManager.Instance.TriggerVibration(avatarBehavior.controller, .5f, .25f);
+            HapticsManager.Instance.TriggerVibration(avatarBehavior.leftController, .5f, .25f);
         }
 
         if (avatarBehavior.side == eSide.left)
