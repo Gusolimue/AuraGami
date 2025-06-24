@@ -67,12 +67,9 @@ public class TutorialCanvasManager : MonoBehaviour
             //}
             isFadeIn = true;
             yield return new WaitForSeconds(messageTime);
-            if (i != texts.Length - 1)
-            {
-                count = 0;
-                isFadeIn = false;
-                yield return new WaitUntil(() => count > fadeTime);
-            }
+            count = 0;
+            isFadeIn = false;
+            yield return new WaitUntil(() => count > fadeTime);
             //while (count < fadeTime)
             //{
             //    count += Time.deltaTime;

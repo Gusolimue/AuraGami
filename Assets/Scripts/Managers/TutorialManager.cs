@@ -42,21 +42,20 @@ public class TutorialManager : MonoBehaviour
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
-        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
+        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex + 1);
     }
     public void EndTutorial()
     {
         Debug.Log("stage finished");
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
-        tc.FadeOutText();
+        if (tutorialIndex >= tutorialList.Length) MoveOn();
         if (AvatarManager.Instance.StartEvolve(true))
         {
             tutorialIndex++;
         }
         AvatarManager.Instance.readyMove = false;
-        if(tutorialIndex >= tutorialList.Length) MoveOn();
-        else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
+        StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
     void ActivateBoard()
     {
@@ -77,8 +76,7 @@ public class TutorialManager : MonoBehaviour
         string[] strings = { "I Understand You", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
-        tc.FadeOutText();
-
+        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
         StartCoroutine(AvatarManager.Instance.COTutorialIntro());
         yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
         AvatarManager.Instance.readyMove = true;
