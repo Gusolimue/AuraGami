@@ -560,6 +560,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-5290138304575810908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music Tutorial/Fade
+  m_EditorClassIdentifier: 
+  Name: Fade
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3445296751
+    data2: 3684776138
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5073501090086319277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,7 +923,7 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638826887335178197
+  lastModified: 638845639739122805
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -957,7 +981,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 243816
+  Length: 243750
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,12 +1039,13 @@ MonoBehaviour:
   - {fileID: 6733954592779851264}
   - {fileID: -4108607539254688671}
   - {fileID: -7425238372385842604}
+  - {fileID: 6289242940712833024}
   EditorParameters: []
   MasterBanks:
   - {fileID: -761348971546921552}
   StringsBanks:
   - {fileID: 66794975293037789}
-  cacheTime: 638826887742435062
+  cacheTime: 638863705347228493
   cacheVersion: 131622
 --- !u!114 &66794975293037789
 MonoBehaviour:
@@ -1037,10 +1062,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638826887335188370
+  lastModified: 638863705346877106
   FileSizes:
   - Name: Desktop
-    Value: 2990
+    Value: 3124
   Exists: 1
 --- !u!114 &137400113076986137
 MonoBehaviour:
@@ -1239,10 +1264,34 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638825949237145632
+  lastModified: 638863705347228493
   FileSizes:
   - Name: Desktop
-    Value: 5445696
+    Value: 7599136
+  Exists: 1
+--- !u!114 &1511261225227147230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music Tutorial/Tutorial Progress
+  m_EditorClassIdentifier: 
+  Name: Tutorial Progress
+  StudioPath: 
+  Min: 0
+  Max: 6
+  Default: 0
+  ID:
+    data1: 2795662230
+    data2: 946874126
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &1938859282971571459
 MonoBehaviour:
@@ -1568,6 +1617,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4249327966174818024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music Tutorial/Tutorial Progress
+  m_EditorClassIdentifier: 
+  Name: Tutorial Progress
+  StudioPath: 
+  Min: 0
+  Max: 6
+  Default: 0
+  ID:
+    data1: 2795662230
+    data2: 946874126
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &4535413485865173428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1777,6 +1850,35 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 937
+--- !u!114 &6289242940712833024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music Tutorial
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music Tutorial
+  Guid:
+    Data1: -1078022733
+    Data2: 1225089830
+    Data3: 1874371209
+    Data4: 1439399263
+  Banks:
+  - {fileID: 1252184368327833304}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4249327966174818024}
+  - {fileID: 8282074070545083071}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 220540
 --- !u!114 &6311956578796579537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,11 +2056,40 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638826887742435062
+  lastModified: 638845639740003142
   FileSizes:
   - Name: Desktop
     Value: 1083392
   Exists: 1
+--- !u!114 &7513250719191794386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music Tutorial
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music Tutorial
+  Guid:
+    Data1: -1078022733
+    Data2: 1225089830
+    Data3: 1874371209
+    Data4: 1439399263
+  Banks:
+  - {fileID: 1252184368327833304}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1511261225227147230}
+  - {fileID: -5290138304575810908}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 220540
 --- !u!114 &7796387881002960523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,6 +2137,30 @@ MonoBehaviour:
   ID:
     data1: 2081002824
     data2: 3948732772
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8282074070545083071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music Tutorial/Fade
+  m_EditorClassIdentifier: 
+  Name: Fade
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 3445296751
+    data2: 3684776138
   Type: 0
   IsGlobal: 0
   Labels: []
