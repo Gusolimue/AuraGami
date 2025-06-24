@@ -51,7 +51,23 @@ public class APManager : MonoBehaviour
         sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, count * sigilSliderSpeed);
     }
 
-    public float[] SetTargetValues()
+    public void SetTutorialTargetValues(SoTutorial _tutorial)
+    {
+        stageTargetTotals[0] = 0;
+        List<Board> tmpStage = _tutorial.tutorialBoards;
+        for (int i = 0; i < tmpStage.Count; i++)
+        {
+            foreach (var item in tmpStage[i].interactables)
+            {
+                if (item.interactableType != eTargetType.regularObstacle)
+                {
+                    stageTargetTotals[0]++;
+                }
+            }
+        }
+        stageTargetValues[0] = 1.05f/stageTargetTotals[0];
+    }
+    public void SetTargetValues()
     {
         for (int c = 0; c < 3; c++)
         {
@@ -68,7 +84,6 @@ public class APManager : MonoBehaviour
             }
             stageTargetValues[c] = (2 - stagePassPercent[c]) / stageTargetTotals[c];
         }
-        return stageTargetValues;
     }
 
     public void IncreaseAP()

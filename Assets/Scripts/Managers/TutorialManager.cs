@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum eTutorial { leftTarget, rightTarget, bothTarget}
+public enum eTutorial { basicTarget, precisionTarget, multiHitTarget, threadedTarget, final}
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
@@ -21,8 +21,9 @@ public class TutorialManager : MonoBehaviour
     }
     private void Start()
     {
+        LevelManager.Instance.instantiatedStages = new List<GameObject>[1];
         InitTutorialStages();
-        StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
+        StartCoroutine(COTutorialIntro());
     }
     void InitTutorialStages()
     {
@@ -36,9 +37,8 @@ public class TutorialManager : MonoBehaviour
     void PlayTutorial(SoTutorial _tutorial)
     {
         Debug.Log("tutorial started: "+_tutorial.tutorialType);
-        LevelManager.Instance.instantiatedStages[0] = instantiatedTutorials[(int)_tutorial.tutorialType];
-        APManager.Instance.SetTargetValues();
-        //tc.FadeInText(_tutorial.tutorialText);
+        LevelManager.Instance.instantiatedStages[0] = LevelManager.Instance.InstantiateStage(tutorialList[(int)_tutorial.tutorialType].tutorialBoards, 0);
+        APManager.Instance.SetTutorialTargetValues(_tutorial);
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
@@ -49,16 +49,14 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("stage finished");
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
+        tc.FadeOutText();
         if (AvatarManager.Instance.StartEvolve(true))
         {
-            tc.FadeOutText();
             tutorialIndex++;
-            StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
         }
-        else
-        {
-            StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
-        }
+        AvatarManager.Instance.readyMove = false;
+        if(tutorialIndex >= tutorialList.Length) MoveOn();
+        else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
     void ActivateBoard()
     {
@@ -74,20 +72,39 @@ public class TutorialManager : MonoBehaviour
             boardIndex++;
         }
     }
+    IEnumerator COTutorialIntro()
+    {
+        string[] strings = { "I Understand You", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
+        tc.FadeInText(strings);
+        yield return new WaitUntil(() => !tc.textChanging);
+        tc.FadeOutText();
+
+        StartCoroutine(AvatarManager.Instance.COTutorialIntro());
+        yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
+        AvatarManager.Instance.readyMove = true;
+        StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
+    }
     IEnumerator COPlayNextTutorial(SoTutorial _tutorial)
     {
-        yield return new WaitForSeconds(5f);
-        if(tutorialIndex < tutorialList.Length)
+        //if(!AvatarManager.Instance.disableAvatarMovement) yield return new WaitUntil(()=> AvatarManager.Instance.disableAvatarMovement);
+        yield return new WaitUntil(()=> AvatarManager.Instance.readyMove);
+        Debug.Log("i waitedddd");
+        if (tutorialIndex < tutorialList.Length)
         {
+            yield return new WaitForSeconds(2f);
+            tc.FadeInText(_tutorial.tutorialText);
+            yield return new WaitUntil(()=> !tc.textChanging);
             PlayTutorial(_tutorial);
         }
         else
         {
+            yield return new WaitForSeconds(2f);
             MoveOn();
         }
     }
     void MoveOn()
     {
         Debug.Log("doneWithTutorials");
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
     }
 }

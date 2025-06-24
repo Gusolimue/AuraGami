@@ -38,10 +38,6 @@ public class LevelManager : MonoBehaviour
             InitLevel();
             StartStage();
         }
-        else
-        {
-            instantiatedStages = new List<GameObject>[1];
-        }
     }
 
     public GameObject InstantiateBoard(int _boardIndex, List<Board> _stage, int _stageIndex, Transform _parent = null)
@@ -123,6 +119,7 @@ public class LevelManager : MonoBehaviour
             tmpStage[c].SetActive(false);
 
         }
+        instantiatedStages[_stageIndex] = tmpStage;
         foreach (var board in tmpStage)
         {
             foreach (var behavior in board.GetComponentsInChildren<MultiHitTargetInteractableBehavior>())

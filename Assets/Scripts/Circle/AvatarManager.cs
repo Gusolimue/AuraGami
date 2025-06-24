@@ -132,6 +132,35 @@ public class AvatarManager : MonoBehaviour
             return tmpPos;
         }
     }
+    public bool readyMove = false;
+    public IEnumerator COTutorialIntro()
+    {
+        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
+        float count;
+        disableAvatarMovement = true;
+        Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
+        Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
+        float timetill = 3f;
+        count = 0;
+        while (count < timetill)
+        {
+            count += Time.deltaTime;
+            // lerp avatars to center
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightCursor.transform.position, count/timetill);
+            yield return null;
+        }
+        count = 0;
+        while (count < timetill)
+        {
+            count += Time.deltaTime;
+            // lerp avatars to center
+            rightAvatar.transform.position = Vector3.Lerp(rightAvatar.transform.position, rightCursor.transform.position, count / timetill);
+            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftCursor.transform.position, count/ timetill);
+            yield return null;
+        }
+        disableAvatarMovement = false;
+        PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
+    }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     IEnumerator CoEvolve(bool _pass, bool _tutorial = false)
     {
@@ -184,26 +213,29 @@ public class AvatarManager : MonoBehaviour
         {
             am.PlaySFX(am.sfx_avatar_evolveSuccess);
             //Gus- and then here, outside of the while loop and therefore after you have finished changing the color of the sphere, you can change out the old avatar prefabs for the next evolution. you dont want to do this earlier, because we want the models to stay the same if the player didnt pass.
-            evolutionCount++;
-            GameObject newLeftAvatarModel = Instantiate(soAvatarLeft.AvatarPrefab[evolutionCount]);
-            GameObject newRightAvatarModel = Instantiate(soAvatarRight.AvatarPrefab[evolutionCount]);
+            if(!_tutorial)
+            {
+                evolutionCount++;
+                GameObject newLeftAvatarModel = Instantiate(soAvatarLeft.AvatarPrefab[evolutionCount]);
+                GameObject newRightAvatarModel = Instantiate(soAvatarRight.AvatarPrefab[evolutionCount]);
 
-            newLeftAvatarModel.transform.SetParent(leftAvatar.transform);
-            newLeftAvatarModel.transform.localPosition = avatarBehaviorLeft.avatarObject.transform.localPosition;
-            // set newLeftAvatarModel.transform.scale?
+                newLeftAvatarModel.transform.SetParent(leftAvatar.transform);
+                newLeftAvatarModel.transform.localPosition = avatarBehaviorLeft.avatarObject.transform.localPosition;
+                // set newLeftAvatarModel.transform.scale?
 
-            newRightAvatarModel.transform.SetParent(rightAvatar.transform);
-            newRightAvatarModel.transform.localPosition = avatarBehaviorRight.avatarObject.transform.localPosition;
-            // set newRightAvatarModel.transform.scale?
+                newRightAvatarModel.transform.SetParent(rightAvatar.transform);
+                newRightAvatarModel.transform.localPosition = avatarBehaviorRight.avatarObject.transform.localPosition;
+                // set newRightAvatarModel.transform.scale?
 
-            avatarBehaviorLeft.avatarObject.SetActive(false);
-            avatarBehaviorRight.avatarObject.SetActive(false);
+                avatarBehaviorLeft.avatarObject.SetActive(false);
+                avatarBehaviorRight.avatarObject.SetActive(false);
 
-            avatarBehaviorLeft.avatarObject = newLeftAvatarModel;
-            avatarBehaviorRight.avatarObject = newRightAvatarModel;
+                avatarBehaviorLeft.avatarObject = newLeftAvatarModel;
+                avatarBehaviorRight.avatarObject = newRightAvatarModel;
 
-            newRightAvatarModel.transform.localScale *= scaleAmt;
-            newLeftAvatarModel.transform.localScale *= scaleAmt;
+                newRightAvatarModel.transform.localScale *= scaleAmt;
+                newLeftAvatarModel.transform.localScale *= scaleAmt;
+            }
 
             while (count < 1)
             {
@@ -248,7 +280,7 @@ public class AvatarManager : MonoBehaviour
             rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightCursor.transform.position, count);
             yield return null;
         }
-        if(_pass)
+        if(_pass || _tutorial)
         {
             disableAvatarMovement = false;
 
@@ -261,6 +293,7 @@ public class AvatarManager : MonoBehaviour
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
+        readyMove = true;
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
     public bool StartEvolve(bool _tutorial = false)

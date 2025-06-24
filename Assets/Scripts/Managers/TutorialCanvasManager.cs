@@ -12,8 +12,8 @@ public class TutorialCanvasManager : MonoBehaviour
     public Color fadeOutColor;
     public int messageTime;
     public float fadeTime = 5f;
-
-    private bool isFadeIn;
+    public bool textChanging = false;
+     bool isFadeIn;
     private string text;
     public float count;
     private Coroutine textCycleCoroutine;
@@ -23,21 +23,21 @@ public class TutorialCanvasManager : MonoBehaviour
 
     private void Awake()
     {
-        apBar.SetActive(false);
-        isFadeIn = false;
+        FadeOutText();
     }
     private void Update()
     {
-       /* count += Time.deltaTime;
-        if (isFadeIn) tutorialText.color = Color.Lerp(tutorialText.color, fadeInColor, count * fadeTime);
-        else tutorialText.color = Color.Lerp(tutorialText.color, fadeOutColor, count * fadeTime); */
+        count += Time.deltaTime;
+        if (isFadeIn) tutorialText.color = Color.Lerp(tutorialText.color, fadeInColor, count / fadeTime);
+        else tutorialText.color = Color.Lerp(tutorialText.color, fadeOutColor, count / fadeTime);
     }
 
     public void FadeInText(string[] _texts)
     {
+        isFadeIn = textChanging = true;
         Debug.Log("fading text in");
         textCycleCoroutine = StartCoroutine(TextCycle(_texts));
-        if (textCycleCoroutine != null) StopCoroutine(textCycleCoroutine);
+        //if (textCycleCoroutine != null) StopCoroutine(textCycleCoroutine);
     }
 
     public void FadeOutText()
@@ -53,27 +53,36 @@ public class TutorialCanvasManager : MonoBehaviour
 
     IEnumerator TextCycle(string[] texts)
     {
+        for (int i = 0; i < texts.Length; i++)
+        {
+            tutorialText.text = texts[i];
+            count = 0;
+            //while (count < fadeTime)
+            //{
+            //    Debug.Log("fading in message");
+            //    count += Time.deltaTime;
+            //    Debug.Log(count);
+            //    tutorialText.color = Color.Lerp(fadeOutColor, fadeInColor, count / fadeTime);
+            //    yield return null;
+            //}
+            isFadeIn = true;
+            yield return new WaitForSeconds(messageTime);
+            if (i != texts.Length - 1)
+            {
+                count = 0;
+                isFadeIn = false;
+                yield return new WaitUntil(() => count > fadeTime);
+            }
+            //while (count < fadeTime)
+            //{
+            //    count += Time.deltaTime;
+            //    tutorialText.color = Color.Lerp(fadeInColor, fadeOutColor, count / fadeTime);
+            //    yield return null;
+            //}
+        }
+        textChanging = false;
         foreach (var currentText in texts)
         {
-            tutorialText.text = currentText;
-            isFadeIn = true;
-            count = 0;
-            while (count < fadeTime)
-            {
-                yield return null;
-                count += Time.deltaTime;
-                if (isFadeIn) tutorialText.color = Color.Lerp(tutorialText.color, fadeInColor, count / fadeTime);
-            }
-            yield return new WaitForSeconds(messageTime);
-
-            isFadeIn = false;
-            count = 0;
-            while (count < fadeTime)
-            {
-                yield return null;
-                count += Time.deltaTime;
-                if (!isFadeIn) tutorialText.color = Color.Lerp(tutorialText.color, fadeOutColor, count / fadeTime);
-            }
         }
     }
 }
