@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
@@ -84,8 +85,14 @@ public class LoadManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(eScene scene)
+    public void LoadScene (eScene scene)
     {
-        SceneManager.LoadScene((int)scene);
+        StartCoroutine(LoadSceneAsync(scene));
+    }
+
+    private IEnumerator LoadSceneAsync(eScene scene)
+    {
+       SceneManager.LoadSceneAsync((int)scene);
+       yield return null;
     }
 }
