@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
     [NamedArray(typeof(eTutorial))]
     public SoTutorial[] tutorialList;
     public soTrack tutorialTrack;
+    [HideInInspector] public FMOD.Studio.EventInstance trackInstance;
     List<List<GameObject>> instantiatedTutorials;
     GameObject[] tutorialContainers;
     int boardIndex;
@@ -33,7 +34,6 @@ public class TutorialManager : MonoBehaviour
             instantiatedTutorials.Add(LevelManager.Instance.InstantiateStage(tutorialList[i].tutorialBoards, 0));
         }
     }
-    int lastIndex;
     void PlayTutorial(SoTutorial _tutorial)
     {
         Debug.Log("tutorial started: "+_tutorial.tutorialType);
@@ -42,7 +42,7 @@ public class TutorialManager : MonoBehaviour
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
-        lastIndex = tutorialIndex;
+        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
     }
     public void EndTutorial()
     {

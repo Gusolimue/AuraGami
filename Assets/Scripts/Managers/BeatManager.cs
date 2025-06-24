@@ -60,6 +60,10 @@ public class BeatManager : MonoBehaviour
         musicInstance.setCallback(beatCallback, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT
             | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         start = true;
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.trackInstance = musicInstance;
+        }
     }
     [Button, SerializeField]
     public void RecordSongData()
