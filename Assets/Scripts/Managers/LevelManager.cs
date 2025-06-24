@@ -162,7 +162,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            instantiatedStages[i] = InstantiateStage(level.GetStage(i+1), i+1, stageContainers[i].transform);
+            InstantiateStage(level.GetStage(i+1), i, stageContainers[i].transform);
         }
 
         foreach (var container in stageContainers)

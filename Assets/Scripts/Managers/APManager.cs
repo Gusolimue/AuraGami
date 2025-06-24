@@ -96,7 +96,7 @@ public class APManager : MonoBehaviour
         sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
             * multLevels[GetStreakIndex(1)];
-        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+        curAP = Mathf.Clamp(curAP, 0, 1.1f);
 
         UpdateSigils();
         UpdateAuraFX();
@@ -160,7 +160,7 @@ public class APManager : MonoBehaviour
     public bool StagePassCheck()
     {
         bool tmp = false;
-        if (curAP >= /*LevelManager.currentStageIndex*/ 1) tmp = true;
+        if (curAP >= /*LevelManager.currentStageIndex*/ 1 || forceSuccess) tmp = true;
         return tmp;
     }
     public void ResetAP()
