@@ -51,6 +51,22 @@ public class APManager : MonoBehaviour
         sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, count * sigilSliderSpeed);
     }
 
+    public void SetTutorialTargetValues(SoTutorial _tutorial)
+    {
+        stageTargetTotals[0] = 0;
+        List<Board> tmpStage = _tutorial.tutorialBoards;
+        for (int i = 0; i < tmpStage.Count; i++)
+        {
+            foreach (var item in tmpStage[i].interactables)
+            {
+                if (item.interactableType != eTargetType.regularObstacle)
+                {
+                    stageTargetTotals[0]++;
+                }
+            }
+        }
+        stageTargetValues[0] = 1.05f/stageTargetTotals[0];
+    }
     public void SetTargetValues()
     {
         for (int c = 0; c < 3; c++)
@@ -80,7 +96,7 @@ public class APManager : MonoBehaviour
         sigilSliderSpeed = 5f;
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
             * multLevels[GetStreakIndex(1)];
-        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
+        curAP = Mathf.Clamp(curAP, 0, 1.1f);
 
         UpdateSigils();
         UpdateAuraFX();
@@ -144,7 +160,7 @@ public class APManager : MonoBehaviour
     public bool StagePassCheck()
     {
         bool tmp = false;
-        if (curAP >= /*LevelManager.currentStageIndex*/ 1) tmp = true;
+        if (curAP >= /*LevelManager.currentStageIndex*/ 1 || forceSuccess) tmp = true;
         return tmp;
     }
     public void ResetAP()
