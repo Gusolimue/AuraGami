@@ -117,7 +117,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             boardsMovedBack = boardsMovedBack + point.boardsMoved;
             // Create and name the target point as a child of the correct board
             GameObject tmpObject = new GameObject("ThreadPoint " + pointCount);
-            tmpObject.transform.SetParent(this.transform);
+            tmpObject.transform.SetParent(this.transform.parent);
             tmpObject.transform.localPosition = Vector3.zero;
             tmpObject.transform.Translate(Vector3.forward * (LevelManager.Instance.spawnDistance / LevelManager.beatsToPlayer)* (boardsMovedBack));
             Quaternion tmpRot = new Quaternion();
