@@ -5,6 +5,7 @@ using FMODUnity;
 using System;
 using EditorAttributes;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BeatManager : MonoBehaviour
 {
@@ -75,6 +76,25 @@ public class BeatManager : MonoBehaviour
         FMOD.Studio.EventDescription eventDescription;
         musicInstance.getDescription(out eventDescription);
         eventDescription.getLength(out levelToRecordTo.track.trackLength);
+        StartCoroutine(CORecordBeatLength());
+    }
+    public float c;
+    IEnumerator CORecordBeatLength()
+    {
+        Debug.Log("1");
+        c = 0;
+        int lb = lastBeat;
+        yield return new WaitUntil(() => lastBeat > lb);
+        Debug.Log("2");
+        lb = lastBeat;
+        while (lb >= lastBeat)
+        {
+        Debug.Log("3");
+            c += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("4");
+        levelToRecordTo.track.beatLength = c;
     }
     [StructLayout(LayoutKind.Sequential)]
     public class TimelineInfo
