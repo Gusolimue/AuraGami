@@ -1,13 +1,32 @@
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
+public class ColorPallete
+{
+    [Header("Right Material")]
+    [SerializeField] Material rightTargetOutline;
+    [SerializeField] Material rightTarget;
+
+    [Header("Left Material")]
+    [SerializeField] Material leftTargetOutline;
+    [SerializeField] Material leftTarget;
+
+    [Header("United Material")]
+    [SerializeField] Material unitedTargetOutline;
+    [SerializeField] Material unitedTarget;
+}
+
 public class AccessibilitySettingsManager : MonoBehaviour
 {
     public static AccessibilitySettingsManager Instance;
     private enum eColorBlindOptions {none, optionOne, optionTwo};
     private eColorBlindOptions curColorOption = eColorBlindOptions.none;
 
+    //[NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
+
     [SerializeField] TextMeshProUGUI colorOptionsTXT;
+    
 
     private void Awake()
     {
