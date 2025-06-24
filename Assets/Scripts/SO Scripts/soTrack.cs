@@ -10,6 +10,7 @@ public class soTrack : ScriptableObject
     public string trackName;
     public EventReference trackReference;
     public int trackLength;
+    public float beatLength;
     public int bpm;
 
     //[ButtonField(nameof(SetTrackLength), "!WARNING! Set Stage List !WARNING!", 30f)]
