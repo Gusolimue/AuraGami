@@ -105,7 +105,7 @@ public class IntroSplashScreen : MonoBehaviour
         if (isSkip == true) 
         {
             StopAllCoroutines();
-            FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+            LoadManager.Instance.LoadScene(eScene.tutorial);
         }
     }
 
