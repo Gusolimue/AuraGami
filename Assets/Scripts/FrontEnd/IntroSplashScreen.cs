@@ -32,6 +32,7 @@ public class IntroSplashScreen : MonoBehaviour
     private bool isSkip;
 
     public float transitionTime = 5f;
+    private int isTutorial;
 
     private void Awake()
     {
@@ -137,8 +138,8 @@ public class IntroSplashScreen : MonoBehaviour
         isUnity = false;
         yield return new WaitForSeconds(1);
 
-        //FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
-        LoadManager.Instance.LoadScene(eScene.tutorial);
+        if (isTutorial == 1) LoadManager.Instance.LoadScene(eScene.tutorial);
+        else if (isTutorial == 2) LoadManager.Instance.LoadScene(eScene.levelExploration);
     }
 
     IEnumerator SkipIconBehavior()
