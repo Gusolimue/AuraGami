@@ -7,6 +7,7 @@ using TMPro;
 
 public class IntroSplashScreen : MonoBehaviour
 {
+    public static IntroSplashScreen Instance;
     [Header("Controller Interactor")]
     public InputActionReference skipIntroControllerAction;
 
@@ -34,6 +35,7 @@ public class IntroSplashScreen : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         StartCoroutine(SplashSequence());
 
         skipIntroControllerAction.action.Enable();
