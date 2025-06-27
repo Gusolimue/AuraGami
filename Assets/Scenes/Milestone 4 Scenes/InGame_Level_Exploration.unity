@@ -2441,11 +2441,11 @@ Transform:
   m_Children:
   - {fileID: 1599856768}
   - {fileID: 6350480523238926804}
-  - {fileID: 1804340344541740662}
   - {fileID: 6942055184235646035}
   - {fileID: 1761525754}
   - {fileID: 748010018}
   - {fileID: 745909517}
+  - {fileID: 1804340344541740662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &788942136 stripped
@@ -12673,11 +12673,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475211475102548159, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: leftControllerTransform
+      propertyPath: 'controllerTransforms.Array.data[0]'
       value: 
       objectReference: {fileID: 527163423}
     - target: {fileID: 6475211475102548159, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: rightControllerTransform
+      propertyPath: 'controllerTransforms.Array.data[1]'
       value: 
       objectReference: {fileID: 289625775}
     m_RemovedComponents: []

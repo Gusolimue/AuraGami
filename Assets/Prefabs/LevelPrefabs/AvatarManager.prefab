@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2317487305663852625}
   - component: {fileID: 3843230707115663979}
   - component: {fileID: 3618730322459207566}
+  - component: {fileID: 5917692530615372961}
   m_Layer: 5
   m_Name: Ring Canvas
   m_TagString: Untagged
@@ -117,6 +118,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3618730322459207566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273841448378568016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9631bd09f78bf7e41bf2495a49e9d6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5917692530615372961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,14 +542,18 @@ MonoBehaviour:
   avatarDiameter: 2.5
   disableMovement: 0
   disableAvatarMovement: 0
+  smoothing: 17
   playerCircTransform: {fileID: 5395284330243674188}
   avatarCircTransform: {fileID: 5722022802260472507}
-  rightControllerTransform: {fileID: 0}
-  leftControllerTransform: {fileID: 0}
-  rightAvatar: {fileID: 6002718031920468881}
-  leftAvatar: {fileID: 4472178437775977092}
-  soAvatarLeft: {fileID: 11400000, guid: ed407649a5879fd40a0a9407e561b8b1, type: 2}
-  soAvatarRight: {fileID: 11400000, guid: fa1818a2c2c40274490e1dae7db98369, type: 2}
+  controllerTransforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  avatarObjects:
+  - {fileID: 4472178437775977092}
+  - {fileID: 6002718031920468881}
+  soAvatars:
+  - {fileID: 11400000, guid: ed407649a5879fd40a0a9407e561b8b1, type: 2}
+  - {fileID: 11400000, guid: fa1818a2c2c40274490e1dae7db98369, type: 2}
   evolveSphereRenderer: {fileID: 138210001148948857}
   playerCircCanvas: {fileID: 2736877081743546173}
   readyMove: 0
@@ -671,6 +688,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8830406709785507839, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.67800003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -698,6 +719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirdAvatar
       objectReference: {fileID: 0}
+    - target: {fileID: 7988045777433049810, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -712,19 +737,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99997175
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0075246375
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -736,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 0.862
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
