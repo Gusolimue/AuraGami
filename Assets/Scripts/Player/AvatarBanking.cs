@@ -6,7 +6,7 @@ public class AvatarBanking : MonoBehaviour
     [SerializeField] bool bankingEnabled;
     [SerializeField] float bankMax;
     [SerializeField] float bankSpeed;
-    [SerializeField] float bankAmount;
+    float bankAmount;
 
     Quaternion startRot;
     Quaternion leftRot;
