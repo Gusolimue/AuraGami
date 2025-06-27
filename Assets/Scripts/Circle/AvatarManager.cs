@@ -15,26 +15,17 @@ public class AvatarManager : MonoBehaviour
 
     public bool disableMovement;
     public bool disableAvatarMovement;
-
+    public float smoothing;
     [Header("Variables to Set")]
 
     [SerializeField]
     Transform playerCircTransform;
     [SerializeField]
     public Transform avatarCircTransform;
-    
-    [SerializeField]
-    Transform rightControllerTransform;
-    [SerializeField]
-    Transform leftControllerTransform;
 
-    [SerializeField]
-    public GameObject rightAvatar;
-    [SerializeField]
-    public GameObject leftAvatar;
-
-    public SoAvatar soAvatarLeft;
-    public SoAvatar soAvatarRight;
+    [SerializeField, NamedArray(typeof(eSide))] Transform[] controllerTransforms;
+    [NamedArray(typeof(eSide))] public GameObject[] avatarObjects;
+    [NamedArray(typeof(eSide))] public SoAvatar[] soAvatars;
 
     public Renderer evolveSphereRenderer;
     public Canvas playerCircCanvas;
@@ -43,12 +34,8 @@ public class AvatarManager : MonoBehaviour
     Color startColor;
     Color transparentColor;
     Color failColor;
-
-    GameObject rightCursor;
-    GameObject leftCursor;
-    AvatarBehavior avatarBehaviorLeft;
-    AvatarBehavior avatarBehaviorRight;
-
+    [NamedArray(typeof(eSide))] GameObject[] cursorObjects;
+    [NamedArray(typeof(eSide))] AvatarBehavior[] avatarBehaviors;
     Vector3 playerCircStartingPos;
 
     [Header("Variables to Call")]
@@ -61,11 +48,17 @@ public class AvatarManager : MonoBehaviour
     {
         Instance = this;
         playerCircStartingPos = playerCircTransform.position;
-        avatarBehaviorLeft = leftAvatar.GetComponent<AvatarBehavior>();
-        avatarBehaviorRight = rightAvatar.GetComponent<AvatarBehavior>();
+        avatarBehaviors = new AvatarBehavior[2];
+        cursorObjects = new GameObject[2];
+        for (int i = 0; i < avatarBehaviors.Length; i++)
+        {
+            avatarBehaviors[i] = avatarObjects[i].GetComponent<AvatarBehavior>();
+        }
         GameObject tmpObject = Instantiate(new GameObject("Cursors"), this.transform);
-        rightCursor = Instantiate(soAvatarLeft.CursorPrefab, tmpObject.transform);
-        leftCursor = Instantiate(soAvatarRight.CursorPrefab, tmpObject.transform);
+        for (int i = 0; i < cursorObjects.Length; i++)
+        {
+            cursorObjects[i] = Instantiate(soAvatars[i].CursorPrefab, tmpObject.transform);
+        }
         evolutionCount = 0;
         transparentColor = new Color(1, 1, 1, 0);
         startColor = new Color(1, 1, 1, 1);
@@ -81,14 +74,19 @@ public class AvatarManager : MonoBehaviour
     {
         if(!disableMovement)
         {
-            rightCursor.transform.position = GetCursorPos(true);
-            leftCursor.transform.position = GetCursorPos(false);
+            for (int i = 0; i < cursorObjects.Length; i++)
+            {
+                cursorObjects[i].transform.position = GetCursorPos((eSide)i);
+            }
         }
 
         if (!disableAvatarMovement)
         {
-            rightAvatar.transform.position = (rightCursor.transform.position);
-            leftAvatar.transform.position = (leftCursor.transform.position);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                avatarObjects[i].transform.position = Vector3.Lerp(avatarObjects[i].transform.position, cursorObjects[i].transform.position, Time.deltaTime * smoothing);
+                avatarObjects[i].transform.LookAt(cursorObjects[i].transform.position + new Vector3(0, 0, .2f));
+            }
         }
     }
     public void SetScaleHeightVis(float playerScale = 1f, float playerHeight = 1f, int playerVis = 1)
@@ -114,26 +112,45 @@ public class AvatarManager : MonoBehaviour
 
     }
     //Given a bool to determine which controller. Returns a vector3 of the position the cursor will be set to that update
-    Vector3 GetCursorPos(bool right)
+    Vector3 GetCursorPos(eSide _side)
     {
-        Vector3 tmpPos;
-        if(right)
+        Vector3 tmpPos = avatarCircTransform.position;
+        tmpPos += (controllerTransforms[(int)_side].transform.position - playerCircTransform.position) * scaleMult;
+        tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
+        return tmpPos;
+    }
+    public bool readyMove = false;
+    public IEnumerator COTutorialIntro()
+    {
+        PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
+        float count;
+        disableAvatarMovement = true;
+        Vector3[] avatarStartingPositions = new Vector3[2];
+        for (int i = 0; i < avatarStartingPositions.Length; i++)
         {
-            tmpPos = avatarCircTransform.position;
-            tmpPos += (rightControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
-            tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
-            return tmpPos;
+            avatarStartingPositions[i] = avatarObjects[i].transform.position;
         }
-        else
+        float timetill = 3f;
+        count = 0;
+        while (count < timetill)
         {
-            tmpPos = avatarCircTransform.position;
-            tmpPos += (leftControllerTransform.transform.position - playerCircTransform.position) * scaleMult;
-            tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
-            return tmpPos;
+            count += Time.deltaTime;
+            avatarObjects[(int)eSide.right].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.right], cursorObjects[(int)eSide.right].transform.position, count/timetill);
+            yield return null;
         }
+        count = 0;
+        while (count < timetill)
+        {
+            count += Time.deltaTime;
+            avatarObjects[(int)eSide.right].transform.position = Vector3.Lerp(avatarObjects[(int)eSide.right].transform.position, cursorObjects[(int)eSide.right].transform.position, count / timetill);
+            avatarObjects[(int)eSide.left].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.left], cursorObjects[(int)eSide.left].transform.position, count/ timetill);
+            yield return null;
+        }
+        disableAvatarMovement = false;
+        PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
     }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
-    IEnumerator CoEvolve(bool _pass)
+    IEnumerator CoEvolve(bool _pass, bool _tutorial = false)
     {
         am.PlaySFX(am.sfx_avatar_evolveStart);
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
@@ -143,12 +160,18 @@ public class AvatarManager : MonoBehaviour
         //Gus- and then you will want a while loop here to lerp the avatars together (close but not exactly on top of eachother, as you dont want them clipping through each other)
         yield return new WaitForSeconds(1f);
 
-        Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
-        Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
-        Vector3 startScaleLeft = leftAvatar.transform.localScale;
-        Vector3 startScaleRight = rightAvatar.transform.localScale;
+        Vector3[] avatarStartingPositions = new Vector3[2];
+        for (int i = 0; i < avatarStartingPositions.Length; i++)
+        {
+            avatarStartingPositions[i] = avatarObjects[i].transform.position;
+        }
+        Vector3[] avatarStartingScales = new Vector3[2];
+        for (int i = 0; i < avatarStartingScales.Length; i++)
+        {
+            avatarStartingScales[i] = avatarObjects[i].transform.localScale;
+        }
 
-        Vector3 offset = new Vector3(.1f, 0, 0);
+        Vector3 offset = new Vector3(-.1f, 0, 0);
         float scaleAmt = .5f;
         // take control from player
         disableAvatarMovement = true;
@@ -157,8 +180,11 @@ public class AvatarManager : MonoBehaviour
         {
             count += Time.deltaTime;
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, evolveSphereRenderer.transform.position - offset, count);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, evolveSphereRenderer.transform.position + offset, count);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                offset *= -1;
+                avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], evolveSphereRenderer.transform.position + offset, count);
+            }
             yield return null;
         }
         count = 0;
@@ -168,8 +194,11 @@ public class AvatarManager : MonoBehaviour
             count += Time.deltaTime;
             // fade in the sphere
             evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft * scaleAmt, count);
-            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                offset *= -1;
+                avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i], avatarStartingScales[i] * scaleAmt, count);
+            }
 
             // proceed with sphere fadeout / color change if fail
 
@@ -184,33 +213,29 @@ public class AvatarManager : MonoBehaviour
         {
             am.PlaySFX(am.sfx_avatar_evolveSuccess);
             //Gus- and then here, outside of the while loop and therefore after you have finished changing the color of the sphere, you can change out the old avatar prefabs for the next evolution. you dont want to do this earlier, because we want the models to stay the same if the player didnt pass.
-            evolutionCount++;
-            GameObject newLeftAvatarModel = Instantiate(soAvatarLeft.AvatarPrefab[evolutionCount]);
-            GameObject newRightAvatarModel = Instantiate(soAvatarRight.AvatarPrefab[evolutionCount]);
-
-            newLeftAvatarModel.transform.SetParent(leftAvatar.transform);
-            newLeftAvatarModel.transform.localPosition = avatarBehaviorLeft.avatarObject.transform.localPosition;
-            // set newLeftAvatarModel.transform.scale?
-
-            newRightAvatarModel.transform.SetParent(rightAvatar.transform);
-            newRightAvatarModel.transform.localPosition = avatarBehaviorRight.avatarObject.transform.localPosition;
-            // set newRightAvatarModel.transform.scale?
-
-            avatarBehaviorLeft.avatarObject.SetActive(false);
-            avatarBehaviorRight.avatarObject.SetActive(false);
-
-            avatarBehaviorLeft.avatarObject = newLeftAvatarModel;
-            avatarBehaviorRight.avatarObject = newRightAvatarModel;
-
-            newRightAvatarModel.transform.localScale *= scaleAmt;
-            newLeftAvatarModel.transform.localScale *= scaleAmt;
+            if(!_tutorial)
+            {
+                evolutionCount++;
+                GameObject[] avatarReplacements = new GameObject[2];
+                for (int i = 0; i < avatarReplacements.Length; i++)
+                {
+                    avatarReplacements[i] = Instantiate(soAvatars[i].AvatarPrefab[evolutionCount]);
+                    avatarReplacements[i].transform.SetParent(avatarObjects[i].transform);
+                    avatarReplacements[i].transform.localPosition = avatarBehaviors[i].avatarObject.transform.localPosition;
+                    avatarReplacements[i].transform.localScale *= scaleAmt;
+                    avatarBehaviors[i].avatarObject.SetActive(false);
+                    avatarBehaviors[i].avatarObject = avatarReplacements[i];
+                }
+            }
 
             while (count < 1)
             {
                 count += Time.deltaTime;
                 evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                for (int i = 0; i < avatarObjects.Length; i++)
+                {
+                    avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                }
                 yield return null;
             }
         }
@@ -228,14 +253,18 @@ public class AvatarManager : MonoBehaviour
             {
                 count += Time.deltaTime;
                 evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft * scaleAmt, startScaleLeft, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight * scaleAmt, startScaleRight, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                for (int i = 0; i < avatarObjects.Length; i++)
+                {
+                    avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                }
                 yield return null;
             }
         }
 
-        leftAvatarStartingPosition = leftAvatar.transform.position;
-        rightAvatarStartingPosition = rightAvatar.transform.position;
+        for (int i = 0; i < avatarStartingPositions.Length; i++)
+        {
+            avatarStartingPositions[i] = avatarObjects[i].transform.position;
+        }
 
         count = 0;
 
@@ -244,16 +273,18 @@ public class AvatarManager : MonoBehaviour
             count += Time.deltaTime;
 
             // Lerp avatars back to cursor positions
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, leftCursor.transform.position, count);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, rightCursor.transform.position, count);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], cursorObjects[i].transform.position, count);
+            }
             yield return null;
         }
-        if(_pass)
+        if(_pass || _tutorial)
         {
             disableAvatarMovement = false;
 
         }
-        else
+        else if (!_tutorial)
         {
             CanvasManager.Instance.ShowCanvasStageFail();
             PauseManager.Instance.showPauseMenu = false;
@@ -261,11 +292,14 @@ public class AvatarManager : MonoBehaviour
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
+        readyMove = true;
     }
     //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
-    public void StartEvolve()
+    public bool StartEvolve(bool _tutorial = false)
     {
-        StartCoroutine(CoEvolve(APManager.Instance.StagePassCheck()));
+        bool tmpBool = APManager.Instance.StagePassCheck();
+        StartCoroutine(CoEvolve(tmpBool, _tutorial));
+        return tmpBool;
     }
 
     public void StartEvolveFinal()
@@ -279,12 +313,18 @@ public class AvatarManager : MonoBehaviour
         float count;
         yield return new WaitForSeconds(1f);
 
-        Vector3 leftAvatarStartingPosition = leftAvatar.transform.position;
-        Vector3 rightAvatarStartingPosition = rightAvatar.transform.position;
-        Vector3 startScaleLeft = leftAvatar.transform.localScale;
-        Vector3 startScaleRight = rightAvatar.transform.localScale;
+        Vector3[] avatarStartingPositions = new Vector3[2];
+        for (int i = 0; i < avatarStartingPositions.Length; i++)
+        {
+            avatarStartingPositions[i] = avatarObjects[i].transform.position;
+        }
+        Vector3[] avatarStartingScales = new Vector3[2];
+        for (int i = 0; i < avatarStartingScales.Length; i++)
+        {
+            avatarStartingScales[i] = avatarObjects[i].transform.localScale;
+        }
 
-        Vector3 offset = new Vector3(.1f, 0, 0);
+        Vector3 offset = new Vector3(-.1f, 0, 0);
         float scaleAmt = .5f;
         // take control from player
         disableAvatarMovement = true;
@@ -293,10 +333,11 @@ public class AvatarManager : MonoBehaviour
         {
             count += Time.deltaTime;
             // lerp avatars to center
-            leftAvatar.transform.position = Vector3.Lerp(leftAvatarStartingPosition, evolveSphereRenderer.transform.position - offset, count);
-            rightAvatar.transform.position = Vector3.Lerp(rightAvatarStartingPosition, evolveSphereRenderer.transform.position + offset, count);
-            leftAvatar.transform.localScale = Vector3.Lerp(startScaleLeft, startScaleLeft * scaleAmt, count);
-            rightAvatar.transform.localScale = Vector3.Lerp(startScaleRight, startScaleRight * scaleAmt, count);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                offset *= -1;
+                avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], evolveSphereRenderer.transform.position + offset, count);
+            }
             yield return null;
         }
         count = 0;
@@ -316,8 +357,10 @@ public class AvatarManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (_pass)
         {
-            avatarBehaviorLeft.avatarObject.SetActive(false);
-            avatarBehaviorRight.avatarObject.SetActive(false);
+            for (int i = 0; i < avatarObjects.Length; i++)
+            {
+                avatarObjects[i].SetActive(false);
+            }
 
             while (count < 1)
             {

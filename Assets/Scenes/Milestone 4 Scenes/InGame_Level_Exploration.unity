@@ -1253,6 +1253,93 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3185262873793664671, guid: c034a98089442814bbd124c813344de6, type: 3}
   m_PrefabInstance: {fileID: 1804340344541740659}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &326867929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326867930}
+  - component: {fileID: 326867931}
+  m_Layer: 2
+  m_Name: Platform_Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326867930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326867929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.11949064, y: 0.11949064, z: 0.11949064}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1581097197}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &326867931
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326867929}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: b342eb1e41a45ce41b5c7c684a17c465, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &333794157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
@@ -1698,9 +1785,39 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1767192437, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581097197}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!114 &441087507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4238984354899526239, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &441087508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5967689310316253315, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &441087509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &447961907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
@@ -2064,6 +2181,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de7486740df8844a3dadab0c2022ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &745909516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745909517}
+  - component: {fileID: 745909518}
+  m_Layer: 0
+  m_Name: HapticsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &745909517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745909516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 760334877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745909518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745909516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2b75752f217e44796da9732725a54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftImpulsePlayer: {fileID: 441087508}
+  rightImpulsePlayer: {fileID: 441087507}
 --- !u!1 &748010017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,10 +2441,11 @@ Transform:
   m_Children:
   - {fileID: 1599856768}
   - {fileID: 6350480523238926804}
-  - {fileID: 1804340344541740662}
   - {fileID: 6942055184235646035}
   - {fileID: 1761525754}
   - {fileID: 748010018}
+  - {fileID: 745909517}
+  - {fileID: 1804340344541740662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &788942136 stripped
@@ -4262,6 +4426,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1581097196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581097197}
+  m_Layer: 2
+  m_Name: PlayerPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1581097197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581097196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1706979221}
+  - {fileID: 326867930}
+  m_Father: {fileID: 441087509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1593954680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8643468695406512624, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -4690,6 +4887,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de7486740df8844a3dadab0c2022ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1706979220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1706979221}
+  - component: {fileID: 1706979222}
+  m_Layer: 2
+  m_Name: Platform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1706979221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706979220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.85858, y: 0.85858, z: 0.85858}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1581097197}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &1706979222
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706979220}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7edfa9a28dcc4584ba5194e74c74f93c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1710871895 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
@@ -5103,23 +5387,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3de7486740df8844a3dadab0c2022ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1899872421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 273841448378568016, guid: c034a98089442814bbd124c813344de6, type: 3}
-  m_PrefabInstance: {fileID: 1804340344541740659}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1899872426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899872421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9631bd09f78bf7e41bf2495a49e9d6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1903837229
@@ -9014,101 +9281,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119c32365dfdccc43a76508ec9add3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: {fileID: 11400000, guid: a950c0d7b039e2245a1dd8b54ec1f133, type: 2}
   stage1:
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
       side: 1
-      interactableAngle: 270
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 260
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 75
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.9
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 70
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.35
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 65
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
+      interactableAngle: 320
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9116,158 +9295,8 @@ MonoBehaviour:
   - interactables:
     - interactableType: 0
       side: 1
-      interactableAngle: 100
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 285
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.9
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 290
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 65
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.35
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 170
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 190
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 160
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 200
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 20
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 340
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 10
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 350
-      interactableDistance: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9276,134 +9305,25 @@ MonoBehaviour:
     - interactableType: 0
       side: 0
       interactableAngle: 40
-      interactableDistance: 1
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
     - interactableType: 0
       side: 1
       interactableAngle: 320
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 70
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 290
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 100
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 260
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 130
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 230
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 75
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 0.8
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.45
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 65
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.8
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9411,210 +9331,69 @@ MonoBehaviour:
   - interactables:
     - interactableType: 0
       side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.9
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 285
-      interactableDistance: 0.2
+      interactableAngle: 208
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
     - interactableType: 0
       side: 0
-      interactableAngle: 65
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.35
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
+      interactableAngle: 40
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
-  - interactables: []
   - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
       multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 75
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 65
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 285
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 295
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.2
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 20
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 340
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 10
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 40
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 130
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 145
-        interactableDistance: 0.6
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 350
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
+      - boardsMoved: 3
         interactableAngle: 320
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 230
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 215
-        interactableDistance: 0.7
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 208
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 40
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 152
+        interactableDistance: 0.4
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
@@ -9623,34 +9402,89 @@ MonoBehaviour:
   - interactables: []
   - interactables: []
   - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  stage2:
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+      side: 1
+      interactableAngle: 280
+      interactableDistance: 0.85
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 290
-      interactableDistance: 0.15
+      side: 1
+      interactableAngle: 248
+      interactableDistance: 1
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-  - interactables: []
-  - interactables:
     - interactableType: 0
       side: 0
-      interactableAngle: 30
+      interactableAngle: 260
       interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 225
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 135
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 80
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9659,13 +9493,6 @@ MonoBehaviour:
     - interactableType: 0
       side: 0
       interactableAngle: 40
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
       interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
@@ -9674,231 +9501,82 @@ MonoBehaviour:
   - interactables:
     - interactableType: 0
       side: 0
-      interactableAngle: 70
-      interactableDistance: 1
+      interactableAngle: 152
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 100
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 130
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 70
-      interactableDistance: 0.15
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 330
-      interactableDistance: 0.5
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.3
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 320
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 290
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 260
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 230
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+      interactableAngle: 340
+      interactableDistance: 0.55
       multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 0.15
-      - boardsMoved: 2
-        interactableAngle: 30
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 40
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 130
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 145
+      - boardsMoved: 3
+        interactableAngle: 340
+        interactableDistance: 0.55
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 20
+      interactableDistance: 0.55
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 20
         interactableDistance: 0.55
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
   - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 1
-      interactableAngle: 270
-      interactableDistance: 0.3
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 1
-      interactableAngle: 110
-      interactableDistance: 0.05
+      interactableAngle: 285
+      interactableDistance: 0.95
       multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 330
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 320
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 230
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 215
-        interactableDistance: 0.6
+      - boardsMoved: 3
+        interactableAngle: 285
+        interactableDistance: 0.95
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 75
+        interactableDistance: 0.95
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables: []
   - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 90
+      side: 1
+      interactableAngle: 320
       interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
     - interactableType: 0
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9906,31 +9584,26 @@ MonoBehaviour:
   - interactables:
     - interactableType: 0
       side: 0
-      interactableAngle: 290
-      interactableDistance: 0.15
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 70
-      interactableDistance: 0.15
+      interactableAngle: 152
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 30
-      interactableDistance: 0.5
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-    - interactableType: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
       side: 1
-      interactableAngle: 330
-      interactableDistance: 0.5
+      interactableAngle: 208
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -9939,653 +9612,2392 @@ MonoBehaviour:
     - interactableType: 0
       side: 0
       interactableAngle: 40
-      interactableDistance: 1
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables:
     - interactableType: 0
       side: 1
       interactableAngle: 320
-      interactableDistance: 1
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 70
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
     - interactableType: 0
       side: 1
-      interactableAngle: 290
-      interactableDistance: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 100
-      interactableDistance: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.75
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
     - interactableType: 0
       side: 1
       interactableAngle: 260
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 130
-      interactableDistance: 1
+      interactableDistance: 0.7
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
     - interactableType: 0
-      side: 1
-      interactableAngle: 230
-      interactableDistance: 1
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 130
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 40
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 230
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 320
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
       side: 0
       interactableAngle: 40
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 30
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 0.15
-      - boardsMoved: 2
-        interactableAngle: 255
-        interactableDistance: 0.6
+      interactableDistance: 0.3
+      multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-    - interactableType: 2
+  - interactables: []
+  - interactables:
+    - interactableType: 0
       side: 1
       interactableAngle: 320
-      interactableDistance: 1
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 340
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 20
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  stage2:
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
       multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 330
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 0.15
-      - boardsMoved: 2
-        interactableAngle: 105
-        interactableDistance: 0.6
+      - boardsMoved: 9
+        interactableAngle: 152
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 40
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 9
+        interactableAngle: 208
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 320
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 290
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 310
+      interactableDistance: 0.27
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 250
+      interactableDistance: 0.8
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 237
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 50
+      interactableDistance: 0.27
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 70
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 123
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 110
+      interactableDistance: 0.8
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 295
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 245
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 65
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 115
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 180
+      interactableDistance: 0.2
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 9
+        interactableAngle: 152
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 265
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 40
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 300
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 265
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 300
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 265
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 300
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 265
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 9
+        interactableAngle: 208
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 320
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 95
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 60
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 95
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 60
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 95
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 60
+      interactableDistance: 0.75
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 95
+      interactableDistance: 0.65
+      multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables: []
   - interactables: []
   - interactables: []
-  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 295
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 245
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 65
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 115
+      interactableDistance: 0.65
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.6
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.8
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.8
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
   - interactables: []
   stage3:
   - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
       multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 75
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 65
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.9
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.35
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 285
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 295
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.9
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 65
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 90
-      interactableDistance: 0.35
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 170
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 160
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 90
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 20
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 10
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 190
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 200
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 270
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 340
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 350
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 10
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 40
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 130
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 145
-        interactableDistance: 0.6
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 350
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
+      - boardsMoved: 3
         interactableAngle: 320
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 230
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 215
-        interactableDistance: 0.6
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 320
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 40
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 40
+        interactableDistance: 0.75
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
   - interactables: []
   - interactables:
-    - interactableType: 2
+    - interactableType: 3
       side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 75
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 65
-        interactableDistance: 1
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables:
     - interactableType: 0
       side: 1
-      interactableAngle: 270
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 0
+        interactableDistance: 0.55
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 285
+        interactableDistance: 0.95
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 75
+        interactableDistance: 0.95
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 280
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 248
       interactableDistance: 1
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-  - interactables:
     - interactableType: 0
-      side: 1
-      interactableAngle: 295
-      interactableDistance: 0.8
+      side: 0
+      interactableAngle: 260
+      interactableDistance: 0.5
       multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 270
-      interactableDistance: 0.45
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 245
-      interactableDistance: 0.8
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 285
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 295
-        interactableDistance: 1
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables:
     - interactableType: 0
       side: 0
-      interactableAngle: 90
+      interactableAngle: 225
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 135
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 80
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 85
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 120
       interactableDistance: 0.9
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 65
+      side: 3
+      interactableAngle: 275
       interactableDistance: 0.7
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables:
     - interactableType: 0
-      side: 0
-      interactableAngle: 90
+      side: 3
+      interactableAngle: 240
+      interactableDistance: 0.9
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.23
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 180
       interactableDistance: 0.35
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 10
+        interactableAngle: 208
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 8
+        interactableAngle: 320
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 152
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 4
+        interactableAngle: 40
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
   - interactables:
     - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
       side: 0
-      interactableAngle: 115
-      interactableDistance: 0.7
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables: []
   - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 255
-      interactableDistance: 0.6
+    - interactableType: 1
+      side: 1
+      interactableAngle: 280
+      interactableDistance: 0.85
       multiPoints:
-      - boardsMoved: 2
+      - boardsMoved: 10
         interactableAngle: 260
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 75
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 65
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 1
-      interactableAngle: 105
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 285
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 0.6
-      - boardsMoved: 2
-        interactableAngle: 295
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 145
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 90
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 20
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 10
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 215
-      interactableDistance: 0.6
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 270
-        interactableDistance: 0.2
-      - boardsMoved: 2
-        interactableAngle: 340
-        interactableDistance: 0.5
-      - boardsMoved: 2
-        interactableAngle: 350
-        interactableDistance: 1
-      obstacleOrientation: 0
-      obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables:
-    - interactableType: 2
-      side: 0
-      interactableAngle: 10
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 40
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 70
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 100
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 130
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 145
-        interactableDistance: 0.6
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 2
-      side: 1
-      interactableAngle: 350
-      interactableDistance: 1
-      multiPoints:
-      - boardsMoved: 2
-        interactableAngle: 320
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 290
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 260
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 230
-        interactableDistance: 1
-      - boardsMoved: 2
-        interactableAngle: 215
         interactableDistance: 0.7
       obstacleOrientation: 0
       obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 248
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 260
+      interactableDistance: 0.5
+      multiPoints:
+      - boardsMoved: 9
+        interactableAngle: 100
+        interactableDistance: 0.7
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 225
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 8
+        interactableAngle: 320
+        interactableDistance: 0.6
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 7
+        interactableAngle: 40
+        interactableDistance: 0.6
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 285
+        interactableDistance: 1
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 135
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 80
+      interactableDistance: 0.85
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 75
+        interactableDistance: 1
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
   - interactables: []
   - interactables: []
   - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
   currentBoard: {fileID: 0}
   levelPreview: {fileID: 0}
-  stageSelection: 1
+  stageSelection: 3
   startIndex: 0
-  endIndex: 0
-  copiedSelection: []
+  endIndex: 1000
+  copiedSelection:
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 320
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 320
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 40
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 40
+        interactableDistance: 0.75
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 260
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 100
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 0
+        interactableDistance: 0.55
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 285
+        interactableDistance: 0.95
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints:
+      - boardsMoved: 3
+        interactableAngle: 75
+        interactableDistance: 0.95
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 280
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 248
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 260
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 225
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 135
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 80
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 85
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 120
+      interactableDistance: 0.9
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 275
+      interactableDistance: 0.7
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 240
+      interactableDistance: 0.9
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.23
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 180
+      interactableDistance: 0.35
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 10
+        interactableAngle: 208
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 8
+        interactableAngle: 320
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 152
+        interactableDistance: 0.4
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints:
+      - boardsMoved: 4
+        interactableAngle: 40
+        interactableDistance: 0.3
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 280
+      interactableDistance: 0.85
+      multiPoints:
+      - boardsMoved: 10
+        interactableAngle: 260
+        interactableDistance: 0.7
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 248
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 260
+      interactableDistance: 0.5
+      multiPoints:
+      - boardsMoved: 9
+        interactableAngle: 100
+        interactableDistance: 0.7
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 225
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 320
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 8
+        interactableAngle: 320
+        interactableDistance: 0.6
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 208
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints:
+      - boardsMoved: 7
+        interactableAngle: 40
+        interactableDistance: 0.6
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 1
+      side: 1
+      interactableAngle: 100
+      interactableDistance: 0.5
+      multiPoints:
+      - boardsMoved: 6
+        interactableAngle: 285
+        interactableDistance: 1
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 135
+      interactableDistance: 0.85
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 1
+      side: 0
+      interactableAngle: 80
+      interactableDistance: 0.85
+      multiPoints:
+      - boardsMoved: 5
+        interactableAngle: 75
+        interactableDistance: 1
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 0
+      interactableAngle: 112
+      interactableDistance: 1
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 0
+      side: 3
+      interactableAngle: 0
+      interactableDistance: 0.55
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables:
+    - interactableType: 3
+      side: 1
+      interactableAngle: 285
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 3
+      side: 0
+      interactableAngle: 75
+      interactableDistance: 0.95
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
   selectionToPaste: 0
   threadedTargets: []
   iWantToDeleteMyStagePermanently: 0
@@ -11216,22 +12628,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 760334877}
     m_Modifications:
-    - target: {fileID: 254465315488324412, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5227
-      objectReference: {fileID: 0}
-    - target: {fileID: 254465315488324412, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5227
-      objectReference: {fileID: 0}
-    - target: {fileID: 254465315488324412, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5227
-      objectReference: {fileID: 0}
-    - target: {fileID: 5395284330243674188, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.098
-      objectReference: {fileID: 0}
     - target: {fileID: 5915372439740172865, guid: c034a98089442814bbd124c813344de6, type: 3}
       propertyPath: m_Name
       value: AvatarManager
@@ -11277,24 +12673,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6475211475102548159, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: disableMovement
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475211475102548159, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: leftControllerTransform
+      propertyPath: 'controllerTransforms.Array.data[0]'
       value: 
       objectReference: {fileID: 527163423}
     - target: {fileID: 6475211475102548159, guid: c034a98089442814bbd124c813344de6, type: 3}
-      propertyPath: rightControllerTransform
+      propertyPath: 'controllerTransforms.Array.data[1]'
       value: 
       objectReference: {fileID: 289625775}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 273841448378568016, guid: c034a98089442814bbd124c813344de6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1899872426}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c034a98089442814bbd124c813344de6, type: 3}
 --- !u!4 &1804340344541740662 stripped
 Transform:
@@ -14116,7 +15505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDistance: 12
-  level: {fileID: 11400000, guid: a950c0d7b039e2245a1dd8b54ec1f133, type: 2}
+  level: {fileID: 11400000, guid: c6a52905cb7d3a24189ba5a7f7f67d91, type: 2}
   threadedTargets:
   - {fileID: 8346461853774626851}
   - {fileID: 5919733986532173280}

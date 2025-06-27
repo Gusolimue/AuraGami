@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public enum eScene { splashScene, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
+public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -45,6 +46,10 @@ public class LoadManager : MonoBehaviour
             case eScene.splashScene:
                 break;
 
+            case eScene.tutorial:
+                
+                break;
+
             case eScene.frontEnd:
                 if (isTitleScreen == 0)
                 {
@@ -72,7 +77,6 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.levelFreedom:
-                //CanvasManager.Instance.ShowCanvasPauseMenu();
                 currentScene = 2;
                 break;
 
@@ -81,8 +85,14 @@ public class LoadManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(eScene scene)
+    public void LoadScene (eScene scene)
     {
-        SceneManager.LoadScene((int)scene);
+        StartCoroutine(LoadSceneAsync(scene));
+    }
+
+    private IEnumerator LoadSceneAsync(eScene scene)
+    {
+       SceneManager.LoadSceneAsync((int)scene);
+       yield return null;
     }
 }
