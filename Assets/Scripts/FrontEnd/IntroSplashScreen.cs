@@ -14,7 +14,8 @@ public class IntroSplashScreen : MonoBehaviour
     [Header("Logos/Assets")]
     [SerializeField] Image[] logoSprites;
     [Space]
-    [SerializeField] GameObject introVideoContainer;
+    [SerializeField] GameObject settings;
+    //[SerializeField] GameObject introVideoContainer;
 
     [Header("Pause Icon")]
     [SerializeField] Image skipIcon;
@@ -32,12 +33,16 @@ public class IntroSplashScreen : MonoBehaviour
     private bool isSkip;
 
     public float transitionTime = 5f;
-    private int isTutorial;
+    public int isTutorial;
 
     private void Awake()
     {
         Instance = this;
-        StartCoroutine(SplashSequence());
+       // isTutorial = PlayerPrefs.GetInt("frontEnd");
+
+        if (isTutorial <= 1) settings.SetActive(true);
+        else if (isTutorial >= 1) StartCoroutine(SplashSequence());
+
 
         skipIntroControllerAction.action.Enable();
         skipIntroControllerAction.action.performed += OnPauseButtonPressed;
@@ -112,11 +117,17 @@ public class IntroSplashScreen : MonoBehaviour
         }
     }
 
+    public void StartIntro()
+    {
+        StartCoroutine(SplashSequence());
+        settings.SetActive(false);
+    }
+
     IEnumerator SplashSequence()
     {
-        yield return new WaitForSeconds(26);
+        /*yield return new WaitForSeconds(26);
         introVideoContainer.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);*/
 
         isTeamAuragami = true;
         yield return new WaitForSeconds(3);
@@ -138,8 +149,12 @@ public class IntroSplashScreen : MonoBehaviour
         isUnity = false;
         yield return new WaitForSeconds(1);
 
-        if (isTutorial == 1) LoadManager.Instance.LoadScene(eScene.tutorial);
-        else if (isTutorial == 2) LoadManager.Instance.LoadScene(eScene.levelExploration);
+        isTutorial++;
+        PlayerPrefs.SetInt("frontEnd", isTutorial);
+        PlayerPrefs.Save();
+
+        if (isTutorial <= 1) LoadManager.Instance.LoadScene(eScene.tutorial);
+        else if (isTutorial >= 1) LoadManager.Instance.LoadScene(eScene.frontEnd);
     }
 
     IEnumerator SkipIconBehavior()
