@@ -50,6 +50,10 @@ public class StageManager : MonoBehaviour
             //    APManager.Instance.ResetAP();
             //}
         }
+        else if (tmpMarker == stage1StartString)
+        {
+            LevelManager.Instance.StartStage();
+        }
         else if (tmpMarker == stage2StartString)
         {
             LevelManager.Instance.StartStage();

@@ -13,10 +13,11 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     public BezierKnot[] threadKnots;
     public TargetBaseModelSelect endTargetModelSelect;
     GameObject endTargetObject;
-    float count;
+    [HideInInspector] public float count;
     int currentPoint;
     int targetBoardIndex = 0;
     bool isTracing = false;
+    bool missed;
     [HideInInspector] public bool onSpline = false;
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
@@ -26,34 +27,23 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         endTargetObject = endTargetModelSelect.gameObject;
         splineRenderer = threadSpline.GetComponent<Renderer>();
         targetBoardIndex = boardIndex;
-        //splineExtrude = threadSpline.gameObject.AddComponent<SplineExtrude>();
-        //splineExtrude.createMeshInstance = e
-        //splineExtrude.Container = threadSpline;
-        //splineExtrude.Radius = .05f;
-        //splineExtrude.RebuildOnSplineChange = true;
-        //threadSpline.gameObject.AddComponent<MeshCollider>();
-        //threadSpline.gameObject.GetComponent<MeshCollider>().providesContacts = true;
         currentPoint = 0;
     }
-
-    private void Start()
-    {
-        // Spawn targets points in Start so all boards have been created
-    }
-
     private void Update()
     {
-        //ThreadSplineUpdate();
         count += Time.deltaTime;
     }
     IEnumerator COTrace()
     {
         splineRenderer.sharedMaterial = tracingMat;
-        count = 0;
         yield return new WaitUntil(() => onSpline);
-        yield return new WaitUntil(()=> !onSpline);
-
+        while (onSpline && count < .1f)
+        {
+            yield return null;
+        }
+        missed = true;
         splineRenderer.sharedMaterial = failedTraceMat;
+        endTargetObject.GetComponent<MeshRenderer>().sharedMaterials[0] = failedTraceMat;
         isTracing = false;
     }
     public override void InteractableMissed()
@@ -76,25 +66,27 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         }
     }
 
-    // Increments the current target point if one still exists, otherwise triggers collision like normal
     public override void AvatarCollision(AvatarBehavior avatarBehavior)
     {
-        Debug.Log("ac called " + avatarBehavior);
-        if (isTracing)
+        if(!missed)
         {
-            Debug.Log("targetComlpete");
-            APManager.Instance.IncreaseAP();
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-            if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
-            else APVFXManager.Instance.APVfxSpawnYata(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
-            StopTarget();
-        }
-        else
-        {
-            Debug.Log("targetstart");
-            isTracing = true;
-            StartCoroutine(COTrace());
-            interactableRenderer.gameObject.SetActive(false);
+            Debug.Log("ac called " + avatarBehavior);
+            if (isTracing)
+            {
+                Debug.Log("targetComlpete");
+                APManager.Instance.IncreaseAP();
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
+                if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+                else APVFXManager.Instance.APVfxSpawnYata(endTargetObject.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+                StopTarget();
+            }
+            else
+            {
+                Debug.Log("targetstart");
+                isTracing = true;
+                StartCoroutine(COTrace());
+                interactableRenderer.gameObject.SetActive(false);
+            }
         }
     }
      void ThreadSplineUpdate()
@@ -133,13 +125,6 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         {
             threadSpline.Spline.Add(knot, TangentMode.AutoSmooth);
         }
-        //for (int i = 0; i < threadPositions.Count; i++)
-        //{
-        //    threadKnots.Add(new BezierKnot());
-        //    threadSpline.Spline.Add(threadKnots[i]);
-        //}
-        //threadLine.enabled = true;
-        //threadLine.positionCount = threadPositions.Count;
         endTargetObject.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
         endTargetObject.gameObject.transform.localPosition = Vector3.zero;
         ThreadSplineUpdate();
