@@ -36,7 +36,6 @@ public class LevelManager : MonoBehaviour
         if (TutorialManager.Instance == null)
         {
             InitLevel();
-            StartStage();
         }
     }
 
@@ -71,9 +70,12 @@ public class LevelManager : MonoBehaviour
             as GameObject);
                 break;
             case eTargetType.threadedTarget:
-                //tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "threadedTargetPrefab")as GameObject, currentBoard.transform);
                 tmpObject = Instantiate(threadedTargets[threadedCount]);
                 threadedCount++;
+                if(threadedCount >= threadedTargets.Length)
+                {
+                    threadedCount = 0;
+                }
                 tmpObject.transform.localPosition = Vector3.zero;
                 break;
             case eTargetType.precisionTarget:

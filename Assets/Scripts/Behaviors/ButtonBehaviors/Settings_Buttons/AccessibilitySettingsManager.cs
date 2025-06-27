@@ -4,13 +4,15 @@ using TMPro;
 [System.Serializable]
 public class ColorPallete
 {
-    [Header("Right Material")]
-    [SerializeField] Material rightTargetOutline;
-    [SerializeField] Material rightTarget;
+    [Header("Right Color")]
+    public Color rightTargetOutline;
+    public Color rightOutlineEmissive;
+    public Color rightTarget;
 
-    [Header("Left Material")]
-    [SerializeField] Material leftTargetOutline;
-    [SerializeField] Material leftTarget;
+    [Header("Left Color")]
+    public Color leftTargetOutline;
+    public Color leftOutlineEmissive;
+    public Color leftTarget;
 
     /*[Header("United Material")]
     [SerializeField] Material unitedTargetOutline;
@@ -25,54 +27,62 @@ public class AccessibilitySettingsManager : MonoBehaviour
 
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
+    [Space]
     [SerializeField] TextMeshProUGUI colorOptionsTXT;
     
 
     private void Awake()
     {
         Instance = this;
-
-        PlayerPrefs.GetString("setNone");
-        PlayerPrefs.GetString("setCB1");
-        PlayerPrefs.GetString("setCB2");
+        PlayerPrefs.GetInt("ColorModeIndex", 0);
     }
 
     public void ColorOptionsCycle(bool direction)
     {
+        int tmpInt = PlayerPrefs.GetInt("ColorModeIndex");
         if (direction)
         {
-            curColorOption++;
-            if (curColorOption > eColorBlindOptions.optionTwo) curColorOption--;
+            tmpInt++;
+            if ((eColorBlindOptions)tmpInt > eColorBlindOptions.optionTwo) tmpInt--;
         }
         else
         {
-            curColorOption--;
-            if (curColorOption < eColorBlindOptions.none) curColorOption++;
+            tmpInt--;
+            if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
         }
+        PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
         SwitchColorOptions();
+        SetColorPallet();
     }
 
     private void SwitchColorOptions()
     {
-        switch (curColorOption)
+        eColorBlindOptions tmpOption = (eColorBlindOptions)PlayerPrefs.GetInt("ColorModeIndex");
+        switch (tmpOption)
         {
             case eColorBlindOptions.none:
                 colorOptionsTXT.text = "STANDARD";
-                PlayerPrefs.SetString("setNone", "NONE");
-                PlayerPrefs.Save();
                 break;
 
             case eColorBlindOptions.optionOne:
                 colorOptionsTXT.text = "OPTION ONE: DEWT-PRO";
-                PlayerPrefs.SetString("setCB1", "OPTION ONE");
-                PlayerPrefs.Save();
                 break;
 
             case eColorBlindOptions.optionTwo:
                 colorOptionsTXT.text = "OPTION TWO: TRITAN";
-                PlayerPrefs.SetString("setCB2", "OPTION TWO");
-                PlayerPrefs.Save();
                 break;
         }
+    }
+
+    private void SetColorPallet()
+    {
+        int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
+        (Resources.Load("Materials/" + "Red", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTarget;
+        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTargetOutline;
+        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].leftOutlineEmissive);
+
+        (Resources.Load("Materials/" + "Blue", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTarget;
+        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTargetOutline;
+        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].rightOutlineEmissive); 
     }
 }
