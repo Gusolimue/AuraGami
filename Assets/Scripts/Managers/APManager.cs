@@ -118,8 +118,10 @@ public class APManager : MonoBehaviour
         curStreak += _change;
         if (curStreak%multIncrementStreak <= 0 && curStreak < multIncrementStreak * multLevels.Length)
         {
-            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
-            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
+            foreach (var avatar in AvatarManager.Instance.avatarObjects)
+            {
+                avatar.GetComponent<AvatarBehavior>().StreakEnabled();
+            }
         }
         curStreak = Mathf.FloorToInt(Mathf.Clamp(curStreak, 0, Mathf.Infinity));
         tmpReturn = Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1);

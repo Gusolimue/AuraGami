@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor.VersionControl;
 
 public class TutorialCanvasManager : MonoBehaviour
 {
