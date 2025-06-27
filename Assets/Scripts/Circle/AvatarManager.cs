@@ -85,7 +85,7 @@ public class AvatarManager : MonoBehaviour
             for (int i = 0; i < avatarObjects.Length; i++)
             {
                 avatarObjects[i].transform.position = Vector3.Lerp(avatarObjects[i].transform.position, cursorObjects[i].transform.position, Time.deltaTime * smoothing);
-                avatarObjects[i].transform.LookAt(cursorObjects[i].transform.position + new Vector3(0, 0, .2f));
+                avatarObjects[i].transform.LookAt(cursorObjects[i].transform.position + new Vector3(0, 0, .3f));
             }
         }
     }
@@ -182,8 +182,9 @@ public class AvatarManager : MonoBehaviour
             // lerp avatars to center
             for (int i = 0; i < avatarObjects.Length; i++)
             {
-                offset *= -1;
                 avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], evolveSphereRenderer.transform.position + offset, count);
+                avatarObjects[i].transform.rotation = Quaternion.Slerp(avatarObjects[i].transform.rotation, Quaternion.identity, count);
+                offset *= -1;
             }
             yield return null;
         }
@@ -220,7 +221,7 @@ public class AvatarManager : MonoBehaviour
                 for (int i = 0; i < avatarReplacements.Length; i++)
                 {
                     avatarReplacements[i] = Instantiate(soAvatars[i].AvatarPrefab[evolutionCount]);
-                    avatarReplacements[i].transform.SetParent(avatarObjects[i].transform);
+                    avatarReplacements[i].transform.SetParent(avatarBehaviors[i].avatarObject.transform.parent);
                     avatarReplacements[i].transform.localPosition = avatarBehaviors[i].avatarObject.transform.localPosition;
                     avatarReplacements[i].transform.localScale *= scaleAmt;
                     avatarBehaviors[i].avatarObject.SetActive(false);
