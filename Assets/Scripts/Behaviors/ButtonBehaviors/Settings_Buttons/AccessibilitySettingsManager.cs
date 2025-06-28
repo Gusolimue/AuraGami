@@ -51,6 +51,7 @@ public class AccessibilitySettingsManager : MonoBehaviour
             if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
         }
         PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
+        PlayerPrefs.Save();
         SwitchColorOptions();
         SetColorPallet();
     }

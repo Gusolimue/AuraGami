@@ -38,7 +38,7 @@ public class IntroSplashScreen : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-       // isTutorial = PlayerPrefs.GetInt("frontEnd");
+        //isTutorial = PlayerPrefs.GetInt("frontEnd");
 
         if (isTutorial <= 1) settings.SetActive(true);
         else if (isTutorial >= 1) StartCoroutine(SplashSequence());
