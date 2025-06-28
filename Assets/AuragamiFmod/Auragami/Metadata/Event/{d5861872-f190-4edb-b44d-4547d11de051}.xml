@@ -75,9 +75,9 @@
 	<object class="MarkerTrack" id="{d001e16f-b5be-4d42-adc5-530989830cfe}" />
 	<object class="GroupTrack" id="{3acd05a6-4207-44d1-9577-48c0f0bff2ac}">
 		<relationship name="modules">
-			<destination>{16170af6-54c2-4e48-8b9b-bed442374e3d}</destination>
 			<destination>{07e7f390-6458-4422-b325-1f51011c8a42}</destination>
 			<destination>{97e6a3f5-cf40-404e-86aa-e179a83e980e}</destination>
+			<destination>{6a108983-cb87-4e4f-bef0-6dc0cda251c1}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{c00fa97c-e2de-4c78-ba35-286287a8b250}</destination>
@@ -85,7 +85,7 @@
 	</object>
 	<object class="Timeline" id="{8c53b09f-f3bd-4d62-b48d-d695af04f5e2}">
 		<relationship name="modules">
-			<destination>{16170af6-54c2-4e48-8b9b-bed442374e3d}</destination>
+			<destination>{6a108983-cb87-4e4f-bef0-6dc0cda251c1}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{f94b40cb-09da-41f7-98de-b4c395c3ff60}</destination>
@@ -144,14 +144,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a1972f8f-ece4-4f1b-bacb-8e61b333c845}" />
-	<object class="SingleSound" id="{16170af6-54c2-4e48-8b9b-bed442374e3d}">
-		<property name="length">
-			<value>177</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{88002b42-d073-4a6f-984b-d5c9011e7bdc}</destination>
-		</relationship>
-	</object>
 	<object class="TransitionSourceSound" id="{07e7f390-6458-4422-b325-1f51011c8a42}">
 		<property name="length">
 			<value>1.5</value>
@@ -166,6 +158,14 @@
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{c843f997-37c8-438b-8b20-b01e0d1fd75f}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{6a108983-cb87-4e4f-bef0-6dc0cda251c1}">
+		<property name="length">
+			<value>178.20953802884628</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{607966c7-c3cf-411e-865d-0a7190de0d62}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{c00fa97c-e2de-4c78-ba35-286287a8b250}">
