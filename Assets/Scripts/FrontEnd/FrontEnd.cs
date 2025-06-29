@@ -22,6 +22,7 @@ public class FrontEnd : MonoBehaviour
     {
         Debug.Log("Play Level!");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
     }
@@ -36,6 +37,7 @@ public class FrontEnd : MonoBehaviour
     public void OnCreditsButtonPressed()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         CanvasManager.Instance.ShowCanvasCredits();
         Destroy(this.gameObject);
     }
@@ -43,6 +45,7 @@ public class FrontEnd : MonoBehaviour
     public void OnSettingsButtonPressed()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         CanvasManager.Instance.ShowCanvasSettings();
         Destroy(this.gameObject);
     }
@@ -50,6 +53,7 @@ public class FrontEnd : MonoBehaviour
     public void OnTutorialButtonPressed()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
         Destroy(this.gameObject);
     }
@@ -57,6 +61,7 @@ public class FrontEnd : MonoBehaviour
     public void OnQuitButtonPressed() // Will exit game (works for builds only).
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         Application.Quit();
     }
 }

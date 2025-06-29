@@ -36,5 +36,6 @@ public class Settings : MonoBehaviour
             settingMenus[i].SetActive(i == menuIndex);
         }
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
     }
 }
