@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExploration } // Will contain list of levels. Not in use currently!
+public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExploration } 
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
@@ -47,7 +47,6 @@ public class LoadManager : MonoBehaviour
                 break;
 
             case eScene.tutorial:
-                
                 break;
 
             case eScene.frontEnd:
@@ -67,17 +66,14 @@ public class LoadManager : MonoBehaviour
                     //CanvasManager.Instance.ShowCanvasCredits();
                 }
 
-                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
-                currentScene = 0;
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen); 
                 break;
 
 
             case eScene.levelExploration:
-                currentScene = 1;
                 break;
 
             case eScene.levelFreedom:
-                currentScene = 2;
                 break;
 
             default:

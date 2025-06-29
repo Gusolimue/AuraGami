@@ -20,9 +20,9 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         isTransitioning = false;
     }
 
-    public void SceneFadeInTransitionSplash()
+    public void SceneFadeInTransitionSplash(int scene)
     {
-        StartCoroutine(TransitionFadeIn());
+        StartCoroutine(TransitionFadeIn(scene));
     }
 
     public void SceneFadeInTransitionRestartSplash()
@@ -35,7 +35,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         StartCoroutine(TransitionFadeOut(1));
     }
 
-    public IEnumerator TransitionFadeIn()
+    public IEnumerator TransitionFadeIn(int scene)
     {
         float alpha = 0f;
         fadeInDuration = 1f;
@@ -49,7 +49,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
             yield return null; // Wait for the next frame
         }
         AudioManager.Instance.StopMusic();
-        LoadManager.Instance.LoadScene((eScene)LevelSelectManager.Instance.whichLevel);
+        LoadManager.Instance.LoadScene((eScene)scene);
         isTransitioning = false;
     }
     public IEnumerator TransitionFadeOut(float alpha)

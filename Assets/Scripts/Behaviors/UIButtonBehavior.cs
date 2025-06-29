@@ -4,20 +4,18 @@ using System.Collections;
 
 public class UIButtonBehavior : MonoBehaviour
 {
-    //[SerializeField] public ParticleSystem highlightNebula;
-
     [Header("Highlight Nebula")]
     [SerializeField] Image highLightNebula;
     [SerializeField] Color[] fadeColors;
+
     public int fadeSpeed;
-
-
     private bool isHighlight;
     private float count;
  
     private void Awake()
     {
-        //highlightNebula.gameObject.SetActive(false);
+        Color curColor = highLightNebula.color;
+        highLightNebula.color = new Color(curColor.r, curColor.g, curColor.b, 0);
     }
 
     private void Update()
@@ -27,28 +25,18 @@ public class UIButtonBehavior : MonoBehaviour
         else highLightNebula.color = Color.Lerp(highLightNebula.color, fadeColors[1], count / fadeSpeed);
     }
 
-    /*public void OnButtonEnter()
-    {
-        highlightNebula.gameObject.SetActive(true);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
-    }
-
-    public void OnButtonExit()
-    {
-        highlightNebula.gameObject.SetActive(false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverExitSmall);
-    }*/
-
     public void OnButtonEnter()
     {
         isHighlight = true;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
         count = 0;
     }
 
     public void OnButtonExit()
     {
         isHighlight = false;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverExitSmall);
         count = 0;
     }
 }

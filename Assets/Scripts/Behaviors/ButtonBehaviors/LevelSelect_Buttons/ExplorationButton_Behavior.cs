@@ -31,6 +31,6 @@ public class ExplorationButton_Behavior : MonoBehaviour
     public void OnExplorationButtonPressed()
     {
         LevelSelectManager.Instance.whichLevel = (int)eScene.levelExploration;
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3);
     }
 }
