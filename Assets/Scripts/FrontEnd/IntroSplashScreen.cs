@@ -159,8 +159,8 @@ public class IntroSplashScreen : MonoBehaviour
         PlayerPrefs.SetInt("frontEnd", isTutorial);
         PlayerPrefs.Save();
 
-        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1);
-        else FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2);
+        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
+        else FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
   
     public void StartIntro()
@@ -199,7 +199,7 @@ public class IntroSplashScreen : MonoBehaviour
         PlayerPrefs.SetInt("frontEnd", isTutorial);
         PlayerPrefs.Save();
 
-        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1);
-        else if (isTutorial >= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2);
+        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
+        else if (isTutorial >= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
 }

@@ -111,24 +111,28 @@ public class GameplaySettingsManager : MonoBehaviour
     public void IncreasePlayerCircleSize()
     {
         playCircleSlider[0].value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleSize()
     {
         playCircleSlider[0].value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void IncreasePlayerCircleHeight()
     {
         playCircleSlider[1].value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleHeight()
     {
         playCircleSlider[1].value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 

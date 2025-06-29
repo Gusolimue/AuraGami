@@ -32,6 +32,7 @@ public class InfoButtonBehavior : MonoBehaviour
     {
         showInfo = true;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverLarge);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     public void HideInfo()

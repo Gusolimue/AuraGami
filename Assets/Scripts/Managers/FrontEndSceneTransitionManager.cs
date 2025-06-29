@@ -7,6 +7,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
 {
     public static FrontEndSceneTransitionManager Instance;
     [SerializeField] Image transitionSplash;
+    [SerializeField] Color[] transitionColors;
 
     public float fadeInDuration;
     public float fadeOutDuration;
@@ -20,9 +21,10 @@ public class FrontEndSceneTransitionManager : MonoBehaviour
         isTransitioning = false;
     }
 
-    public void SceneFadeInTransitionSplash(int scene)
+    public void SceneFadeInTransitionSplash(int scene, int color)
     {
         StartCoroutine(TransitionFadeIn(scene));
+        transitionSplash.color = transitionColors[color];
     }
 
     public void SceneFadeInTransitionRestartSplash()

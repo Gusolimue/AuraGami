@@ -53,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         LoadManager.Instance.isTitleScreen = 1;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
 
     public void DestroyMenu()

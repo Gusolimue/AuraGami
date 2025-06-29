@@ -43,11 +43,13 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseMasterVol()
     {
         masterAudioSlider.value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     public void DecreaseMasterVol()
     {
         masterAudioSlider.value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     public void MusicVolumeSlider(float value)
