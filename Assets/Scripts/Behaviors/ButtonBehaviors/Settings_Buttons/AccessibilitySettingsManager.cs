@@ -62,15 +62,15 @@ public class AccessibilitySettingsManager : MonoBehaviour
         switch (tmpOption)
         {
             case eColorBlindOptions.none:
-                colorOptionsTXT.text = "STANDARD";
+                colorOptionsTXT.text = "Standard";
                 break;
 
             case eColorBlindOptions.optionOne:
-                colorOptionsTXT.text = "OPTION ONE: DEWT-PRO";
+                colorOptionsTXT.text = "Option One - Dewt-Pro";
                 break;
 
             case eColorBlindOptions.optionTwo:
-                colorOptionsTXT.text = "OPTION TWO: TRITAN";
+                colorOptionsTXT.text = "Option Two - Tritan";
                 break;
         }
     }

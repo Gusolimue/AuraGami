@@ -6,11 +6,6 @@ public class UITransitionBehavior : MonoBehaviour
     public float transitionTime = 15f;
     private float count;
 
-    private void Awake()
-    {
-        count = 0;
-    }
-
     private void Update()
     {
         count += Time.deltaTime;

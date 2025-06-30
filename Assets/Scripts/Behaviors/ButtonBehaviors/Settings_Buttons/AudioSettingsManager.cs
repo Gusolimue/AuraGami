@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class AudioSettingsManager : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class AudioSettingsManager : MonoBehaviour
     [Space]
     [SerializeField] Image targetHandleSize;
 
+    [Header("Reset")]
+    [SerializeField] Image resetFill;
+    [SerializeField] Color[] fillColor;
+    private float count;
+    private bool isReset;
+
     private void Awake()
     {
         masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", masterAudioSliderValue);
@@ -30,6 +37,13 @@ public class AudioSettingsManager : MonoBehaviour
 
         sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", musicAudioSliderValue);
         sfxAudioSlider.onValueChanged.AddListener(SFXVolumeSlider);
+    }
+
+    private void Update()
+    {
+        count += Time.deltaTime;
+        if (isReset) resetFill.color = Color.Lerp(resetFill.color, fillColor[0], count / 5);
+        else resetFill.color = Color.Lerp(resetFill.color, fillColor[1], count / 5);
     }
 
     public void MasterVolumeSlider(float value)
@@ -43,13 +57,13 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseMasterVol()
     {
         masterAudioSlider.value += .1f;
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseMasterVol()
     {
         masterAudioSlider.value -= .1f;
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void MusicVolumeSlider(float value)
@@ -81,15 +95,19 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseSFXVol()
     {
         sfxAudioSlider.value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseSFXVol()
     {
         sfxAudioSlider.value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DefaultSettings()
     {
+        StartCoroutine(ResetBehavior());
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         masterAudioSlider.value = 1;
         AudioManager.Instance.SetVolume(eBus.Master, PlayerPrefs.GetFloat("saveAll"));
 
@@ -98,5 +116,18 @@ public class AudioSettingsManager : MonoBehaviour
 
         sfxAudioSlider.value = 1;
         AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
+    }
+
+    public void OnResetEnter()
+    {
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+    }
+
+    private IEnumerator ResetBehavior()
+    {
+        isReset = true;
+        yield return new WaitForSeconds(.2f);
+        isReset = false;
+        count = 0;
     }
 }
