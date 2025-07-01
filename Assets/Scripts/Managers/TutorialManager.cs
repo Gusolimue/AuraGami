@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     GameObject[] tutorialContainers;
     int boardIndex;
     bool isSubscribed;
-    int tutorialIndex;
+    public int tutorialIndex;
     private void Awake()
     {
         Instance = this;
@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
         tc.FadeOutText();
-        if (AvatarManager.Instance.StartEvolve(true))
+        if (AvatarManager.Instance.StartEvolve(true) || tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
         }
