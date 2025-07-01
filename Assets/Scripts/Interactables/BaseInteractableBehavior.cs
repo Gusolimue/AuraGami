@@ -27,10 +27,14 @@ public class BaseInteractableBehavior : MonoBehaviour
     public int boardIndex;
     int interactableIndex;
     LevelManager lm;
+    ColourManager cm;
+    AccessibilitySettingsManager asm;
     internal virtual void Awake()
     {
         lm = LevelManager.Instance;
         isFading = false;
+        cm = ColourManager.Instance;
+        asm = AccessibilitySettingsManager.Instance;
     }
     public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
@@ -47,12 +51,38 @@ public class BaseInteractableBehavior : MonoBehaviour
         switch (side)
         {
             case eSide.left:
-                tmpMats.Add(Resources.Load("Materials/" + "Red", typeof(Material)) as Material);
-                tmpMats.Add(Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material);
+                if (cm.localColorNum == 1)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "Red", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material);
+                }
+                else if (cm.localColorNum == 2)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "DeutProYellow", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "DeutProYelGlow", typeof(Material)) as Material);
+                }
+                else if (cm.localColorNum == 3)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "TritanPink", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "TritanPinkGlow", typeof(Material)) as Material);
+                }
                 break;
             case eSide.right:
-                tmpMats.Add(Resources.Load("Materials/" + "Blue", typeof(Material)) as Material);
-                tmpMats.Add(Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material);
+                if (cm.localColorNum == 1)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "Blue", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material);
+                }
+                else if (cm.localColorNum == 2)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "DeutProBlue", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "DeutProBlueGlow", typeof(Material)) as Material);
+                }
+                else if (cm.localColorNum == 3)
+                {
+                    tmpMats.Add(Resources.Load("Materials/" + "TritanBlue", typeof(Material)) as Material);
+                    tmpMats.Add(Resources.Load("Materials/" + "TritanBlueGlow", typeof(Material)) as Material);
+                }
                 break;
             case eSide.any:
                 tmpMats.Add(Resources.Load("Materials/" + "Orange", typeof(Material)) as Material);
