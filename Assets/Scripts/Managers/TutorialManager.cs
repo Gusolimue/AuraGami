@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum eTutorial { basicTarget, precisionTarget, multiHitTarget, threadedTarget, final}
+public enum eTutorial { basicTarget, bothTarget, precisionTarget, multiHitTarget, threadedTarget, test, final}
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
@@ -74,7 +74,8 @@ public class TutorialManager : MonoBehaviour
     }
     IEnumerator COTutorialIntro()
     {
-        string[] strings = { "I Understand You", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
+        yield return new WaitForSeconds(3);
+        string[] strings = { "YOU", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
         tc.FadeOutText();
