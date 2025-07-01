@@ -37,10 +37,7 @@ public class Settings : MonoBehaviour
 
         if (curMenuInstance != null) Destroy(curMenuInstance);
         if (menuIndex >= 0 && menuIndex < settingMenus.Length) curMenuInstance = Instantiate(settingMenus[menuIndex], transform);
-        /*for (int i = 0; i < settingMenus.Length; i++)
-        {
-            settingMenus[i].SetActive(i == menuIndex);
-        }*/
+ 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
     }
