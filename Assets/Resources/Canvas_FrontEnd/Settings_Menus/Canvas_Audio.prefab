@@ -5342,6 +5342,9 @@ MonoBehaviour:
   - {fileID: 2592893930947578723}
   - {fileID: 5163317728539170987}
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  semiTransparentAssets: []
+  isSemiTransparent: 0
+  alphaAmount: 0
 --- !u!1 &5185481544792793750
 GameObject:
   m_ObjectHideFlags: 0
@@ -7505,7 +7508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7759214764143209227}
-  - component: {fileID: 7975855275650554741}
+  - component: {fileID: 6549380909526523094}
   m_Layer: 0
   m_Name: Reset
   m_TagString: Untagged
@@ -7533,7 +7536,7 @@ Transform:
   - {fileID: 6311992296432337687}
   m_Father: {fileID: 3957654853411822738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7975855275650554741
+--- !u!114 &6549380909526523094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7542,13 +7545,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7924695373371018931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c2da8bdb5b80b47aa935e486b6839b, type: 3}
+  m_Script: {fileID: 11500000, guid: 195c3cf6e5a3ef94aac4f0749c7bbf62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backNebulaBG: {fileID: 0}
-  scaleDuration: 0.5
-  targetScale: {x: 1, y: 1, z: 1}
-  originalScale: {x: 0, y: 0, z: 0}
+  connectors:
+  - {fileID: 3434192669026967678}
+  - {fileID: 7071519764681687467}
+  - {fileID: 3761299856069708435}
+  - {fileID: 3670219711642046842}
+  fillSpeed: 5
 --- !u!1 &8015368021446205089
 GameObject:
   m_ObjectHideFlags: 0
