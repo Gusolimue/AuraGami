@@ -35,6 +35,8 @@ public class AccessibilitySettingsManager : MonoBehaviour
     {
         Instance = this;
         PlayerPrefs.GetInt("ColorModeIndex", 0);
+
+        colorOptionsTXT.text = PlayerPrefs.GetString("text");
     }
 
     public void ColorOptionsCycle(bool direction)
@@ -63,14 +65,17 @@ public class AccessibilitySettingsManager : MonoBehaviour
         {
             case eColorBlindOptions.none:
                 colorOptionsTXT.text = "Standard";
+                PlayerPrefs.SetString("text", "Standard");
                 break;
 
             case eColorBlindOptions.optionOne:
                 colorOptionsTXT.text = "Option One - Dewt-Pro";
+                PlayerPrefs.SetString("text", "Option One - Dewt-Pro");
                 break;
 
             case eColorBlindOptions.optionTwo:
                 colorOptionsTXT.text = "Option Two - Tritan";
+                PlayerPrefs.SetString("text", "Option Two - Tritan");
                 break;
         }
     }
@@ -78,12 +83,13 @@ public class AccessibilitySettingsManager : MonoBehaviour
     private void SetColorPallet()
     {
         int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
+
         (Resources.Load("Materials/" + "Red", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTarget;
         (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTargetOutline;
-        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].leftOutlineEmissive);
+        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).SetColor("ColorModeIndex", colorPallete[_eColorBlindOption].leftOutlineEmissive);
 
         (Resources.Load("Materials/" + "Blue", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTarget;
         (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTargetOutline;
-        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].rightOutlineEmissive); 
+        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).SetColor("ColorModeIndex", colorPallete[_eColorBlindOption].rightOutlineEmissive); 
     }
 }
