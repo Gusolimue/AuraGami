@@ -22,13 +22,20 @@ public class ColorPallete
 public class AccessibilitySettingsManager : MonoBehaviour
 {
     public static AccessibilitySettingsManager Instance;
+    [Header("Materials")]
+    [SerializeField] Material leftTarget;
+    [SerializeField] Material leftTargetOutline;
+    [Space]
+    [SerializeField] Material rightTarget;
+    [SerializeField] Material rightTargetOutline;
     private enum eColorBlindOptions {none, optionOne, optionTwo};
-    private eColorBlindOptions curColorOption = eColorBlindOptions.none;
 
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
     [Space]
     [SerializeField] TextMeshProUGUI colorOptionsTXT;
+
+
     
 
     private void Awake()
@@ -84,12 +91,14 @@ public class AccessibilitySettingsManager : MonoBehaviour
     {
         int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
 
-        (Resources.Load("Materials/" + "Red", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTarget;
-        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTargetOutline;
-        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).SetColor("ColorModeIndex", colorPallete[_eColorBlindOption].leftOutlineEmissive);
+        leftTarget.color = colorPallete[_eColorBlindOption].leftTarget;
+        leftTargetOutline.color = colorPallete[_eColorBlindOption].leftTargetOutline;
 
-        (Resources.Load("Materials/" + "Blue", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTarget;
-        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTargetOutline;
-        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).SetColor("ColorModeIndex", colorPallete[_eColorBlindOption].rightOutlineEmissive); 
+        rightTarget.color = colorPallete[_eColorBlindOption].rightTarget;
+        rightTargetOutline.color = colorPallete[_eColorBlindOption].rightTargetOutline;
+
+        leftTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].leftOutlineEmissive);
+
+        rightTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].rightOutlineEmissive);
     }
 }
