@@ -6,15 +6,9 @@ public class InteractableTrigger : MonoBehaviour
     bool rightTriggered = false;
     private void OnTriggerEnter(Collider other)
     {
-        AvatarBehavior ab = null;
-        if (other.GetComponent<AvatarBehavior>() != null)
-        {
-            ab = other.GetComponent<AvatarBehavior>();
-        }
-        else if (other.GetComponentInParent<AvatarBehavior>() != null)
-        {
-            ab = other.GetComponentInParent<AvatarBehavior>();
-        }
+        AvatarBehavior ab;
+        other.TryGetComponent<AvatarBehavior>(out ab);
+        other.transform.parent.TryGetComponent<AvatarBehavior>(out ab);
 
         if (ab != null && GetComponentInParent<BaseInteractableBehavior>() != null)
         {

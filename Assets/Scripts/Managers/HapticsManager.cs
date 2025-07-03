@@ -1,9 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class HapticsManager : MonoBehaviour
 {
+    [Header("Haptic Timelines")]
+    public HapticTimeline[] testTimeline;
+    [Header("Variables To Set")]
     public static HapticsManager Instance;
     public HapticImpulsePlayer leftImpulsePlayer;
     public HapticImpulsePlayer rightImpulsePlayer;
@@ -12,16 +16,41 @@ public class HapticsManager : MonoBehaviour
     {
         Instance = this;
     }
-
-    public void TriggerVibration(bool leftController, float amplitude, float duration)
+    public void TriggerVibrationTimeline(eSide side, HapticTimeline[] hapticTimeline)
     {
-        if (leftController)
+        StartCoroutine(COStartHapticTimeline(side, hapticTimeline));
+    }
+    IEnumerator COStartHapticTimeline( eSide side, HapticTimeline[] hapticTimeline)
+    {
+        foreach (var tl in hapticTimeline)
         {
-            leftImpulsePlayer.SendHapticImpulse(amplitude, duration);
-        }
-        else
-        {
-            rightImpulsePlayer.SendHapticImpulse(amplitude, duration);
+            TriggerSimpleVibration( side, tl.amplitude, tl.duration, tl.frequency);
+            yield return new WaitForSeconds(tl.duration);
         }
     }
+    public void TriggerSimpleVibration(eSide _side, float amplitude, float duration, float frequency = 0f)
+    {
+        switch (_side)
+        {
+            case eSide.left:
+                leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                break;
+            case eSide.right:
+                rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                break;
+            case eSide.both:
+                leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                break;
+            default:
+                break;
+        }
+    }
+}
+[System.Serializable]
+public class HapticTimeline
+{
+    public float amplitude;
+    public float duration;
+    public float frequency;
 }

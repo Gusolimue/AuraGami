@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum eTutorial { basicTarget, bothTarget, precisionTarget, multiHitTarget, threadedTarget, final}
+public enum eTutorial { basicTarget, bothTarget, precisionTarget, multiHitTarget, threadedTarget, test, final}
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     GameObject[] tutorialContainers;
     int boardIndex;
     bool isSubscribed;
-    int tutorialIndex;
+    public int tutorialIndex;
     private void Awake()
     {
         Instance = this;
@@ -42,20 +42,21 @@ public class TutorialManager : MonoBehaviour
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
-        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex + 1);
+        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
     }
     public void EndTutorial()
     {
-        if (tutorialIndex >= tutorialList.Length-1) MoveOn();
         Debug.Log("stage finished");
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
-        if (AvatarManager.Instance.StartEvolve(true))
+        tc.FadeOutText();
+        if (AvatarManager.Instance.StartEvolve(true) || tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
         }
         AvatarManager.Instance.readyMove = false;
-        StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
+        if(tutorialIndex >= tutorialList.Length) MoveOn();
+        else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
     void ActivateBoard()
     {
@@ -74,10 +75,11 @@ public class TutorialManager : MonoBehaviour
     IEnumerator COTutorialIntro()
     {
         yield return new WaitForSeconds(3);
-        string[] strings = { "I Understand You", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
+        string[] strings = { "YOU", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
-        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
+        tc.FadeOutText();
+
         StartCoroutine(AvatarManager.Instance.COTutorialIntro());
         yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
         AvatarManager.Instance.readyMove = true;
