@@ -21,6 +21,12 @@ public class AudioSettingsManager : MonoBehaviour
     [Space]
     [SerializeField] Image targetHandleSize;
 
+    [Header("Slider Handle")]
+    [SerializeField] Image[] sliderHandle;
+    private float masterHandleSize = .035f;
+    private float musicHandleSize = .035f;
+    private float sfxHandleSize = .035f;
+
     [Header("Reset")]
     [SerializeField] Image resetFill;
     [SerializeField] Color[] fillColor;
@@ -31,6 +37,9 @@ public class AudioSettingsManager : MonoBehaviour
     {
         masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", masterAudioSliderValue);
         masterAudioSlider.onValueChanged.AddListener(MasterVolumeSlider);
+
+        masterHandleSize = PlayerPrefs.GetFloat("masterHandle");
+        sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
 
         musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", musicAudioSliderValue);
         musicAudioSlider.onValueChanged.AddListener(MusicVolumeSlider);
@@ -57,6 +66,11 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseMasterVol()
     {
         masterAudioSlider.value += .1f;
+
+        masterHandleSize -= .005f;
+        sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
+        PlayerPrefs.SetFloat("masterHandle", masterHandleSize);
+
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 

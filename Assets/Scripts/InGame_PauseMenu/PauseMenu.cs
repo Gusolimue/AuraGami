@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
-    [SerializeField] GameObject settingsMenu;
+    [Header("Pause Menus")]
+    [SerializeField] public GameObject pauseOptions;
+    [SerializeField] GameObject pauseSettings;
 
     [Header("Connector Behavior")]
     [SerializeField] public Slider[] connectors;
@@ -22,13 +24,13 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         isRestarting = false;
-        settingsMenu.SetActive(false);
-        StartCoroutine(FillConnectors());
+        Instantiate(pauseOptions, transform);
+
         foreach (Slider slider in connectors)
         {
             slider.value = 0f;
         }
-        //this.gameObject.transform.localPosition = new Vector3(-.13f, 4.15f, 5.77f);
+        StartCoroutine(FillConnectors());
     }
 
     private void Update()
@@ -58,8 +60,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnSettingsButtonPressed()
     {
-        //CanvasManager.Instance.ShowCanvasSettings();
-        settingsMenu.SetActive(true);
+        Instantiate(pauseSettings, transform);
+        Destroy(pauseOptions);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
 
