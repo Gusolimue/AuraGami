@@ -6,8 +6,8 @@ public enum eScene { splashScene, tutorial, frontEnd, levelFreedom, levelExplora
 public class LoadManager : MonoBehaviour
 {
     public static LoadManager Instance;
+    public bool isTutorial;
     public int isTitleScreen;
-    public int currentScene;
 
     private void Start()
     {

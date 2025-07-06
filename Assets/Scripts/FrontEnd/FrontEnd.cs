@@ -18,6 +18,7 @@ public class FrontEnd : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        LoadManager.Instance.isTutorial = false;
         if (isTutorial == true) tutorialButton.SetActive(true);
         else tutorialButton.SetActive(false);
         foreach (Slider slider in connectors)

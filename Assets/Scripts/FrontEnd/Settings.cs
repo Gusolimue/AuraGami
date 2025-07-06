@@ -28,7 +28,8 @@ public class Settings : MonoBehaviour
 
     public void OnPauseBackButtonPressed()
     {
-        Instantiate(PauseMenu.Instance.pauseOptions);
+        if (LoadManager.Instance.isTutorial == false) PauseMenu.Instance.InstantiatePauseOptions();
+        else PauseMenu.Instance.InstantiateTutorialPauseOptions();
         Destroy(this.gameObject);
     }
 

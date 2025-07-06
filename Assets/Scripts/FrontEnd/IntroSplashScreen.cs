@@ -44,7 +44,11 @@ public class IntroSplashScreen : MonoBehaviour
         Instance = this;
         //isTutorial = PlayerPrefs.GetInt("frontEnd");
 
-        if (isTutorial <= 1) settings.SetActive(true);
+        if (isTutorial <= 1) 
+        {
+            settings.SetActive(true);
+            LoadManager.Instance.isTutorial = true;
+        }
         else if (isTutorial >= 1) StartCoroutine(SplashSequence());
     }
 
