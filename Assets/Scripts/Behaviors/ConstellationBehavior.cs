@@ -16,7 +16,7 @@ public class ConstellationBehavior : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update() // Any slider within the connectors array will fill from zero to one. This script handles the constellation connector trace effect outside of the buttons.
     {
         count += Time.deltaTime;
         foreach (Slider sliders in connectors)

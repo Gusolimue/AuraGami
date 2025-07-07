@@ -9,6 +9,12 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
+        /*if (LoadManager.Instance.currentScene >= 1)
+        {
+            PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
+            this.gameObject.transform.localPosition = new Vector3(-0.34f, 3.44f, 6.43f);
+        }
+        */
         curMenuInstance = Instantiate(settingMenus[0],transform);
         menuButtons[0].SetSelected(true);
     }
@@ -20,14 +26,14 @@ public class Settings : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnPauseBackButtonPressed() // A seperate method for a seperate back button tied to the pause menu.
+    public void OnPauseBackButtonPressed()
     {
         if (LoadManager.Instance.isTutorial == false) PauseMenu.Instance.InstantiatePauseOptions();
         else PauseMenu.Instance.InstantiateTutorialPauseOptions();
         Destroy(this.gameObject);
     }
 
-    public void OnMenuButtonPressed(int menuIndex) // A method that is tied to several settings menu buttons. I assigned each button a menuIndex number that is tied to a menu. When pressed, the corresponding menu will instantiate.
+    public void OnMenuButtonPressed(int menuIndex)
     {
         for (int i = 0; i < menuButtons.Length; i++)
         {
