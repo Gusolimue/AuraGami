@@ -1368,7 +1368,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3808,7 +3808,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4792,6 +4792,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fd29e0a485989f4d8f84070ce7028fe, type: 2}
   - {fileID: 11400000, guid: 7d757e8b83dbae946b485895a96849c8, type: 2}
   tutorialTrack: {fileID: 11400000, guid: 7d71322a44f60a84aaf087fcc92ebd74, type: 2}
+  tutorialIndex: 0
 --- !u!4 &1705750273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856127191112776898, guid: 085288f4a26d37d4ca7321f1b7ef1b5a, type: 3}
@@ -4909,7 +4910,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openPauseMenuAction: {fileID: -1671955593117125952, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  menuBG: {fileID: 1851291645}
   isPaused: 0
   showPauseMenu: 0
   isCountingDown: 0
