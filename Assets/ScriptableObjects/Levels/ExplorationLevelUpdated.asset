@@ -1043,9 +1043,25 @@ MonoBehaviour:
   stage2:
   - interactables:
     - interactableType: 0
+      side: 0
+      interactableAngle: 40
+      interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+  - interactables: []
+  - interactables:
+    - interactableType: 0
       side: 1
       interactableAngle: 320
       interactableDistance: 0.3
+      multiPoints: []
+      obstacleOrientation: 0
+      obstacleSize: 0
+    - interactableType: 0
+      side: 0
+      interactableAngle: 152
+      interactableDistance: 0.4
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
@@ -1233,39 +1249,49 @@ MonoBehaviour:
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
+  - interactables: []
+  - interactables: []
   - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 0
       interactableAngle: 40
       interactableDistance: 0.3
-      multiPoints: []
+      multiPoints:
+      - boardsMoved: 2
+        interactableAngle: 152
+        interactableDistance: 0.4
+      - boardsMoved: 2
+        interactableAngle: 40
+        interactableDistance: 0.3
+      - boardsMoved: 2
+        interactableAngle: 152
+        interactableDistance: 0.4
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
   - interactables:
-    - interactableType: 0
+    - interactableType: 1
       side: 1
       interactableAngle: 320
       interactableDistance: 0.3
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
-    - interactableType: 0
-      side: 0
-      interactableAngle: 152
-      interactableDistance: 0.4
-      multiPoints: []
+      multiPoints:
+      - boardsMoved: 2
+        interactableAngle: 208
+        interactableDistance: 0.4
+      - boardsMoved: 2
+        interactableAngle: 320
+        interactableDistance: 0.3
+      - boardsMoved: 2
+        interactableAngle: 208
+        interactableDistance: 0.4
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
-  - interactables:
-    - interactableType: 0
-      side: 1
-      interactableAngle: 208
-      interactableDistance: 0.4
-      multiPoints: []
-      obstacleOrientation: 0
-      obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
   - interactables: []
   - interactables: []
   - interactables: []
@@ -1778,14 +1804,6 @@ MonoBehaviour:
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
   stage3:
   - interactables:
     - interactableType: 1
@@ -1973,6 +1991,9 @@ MonoBehaviour:
       - boardsMoved: 4
         interactableAngle: 0
         interactableDistance: 0.55
+      - boardsMoved: 4
+        interactableAngle: 0
+        interactableDistance: 0.7
       obstacleOrientation: 0
       obstacleSize: 0
   - interactables: []
@@ -1985,6 +2006,9 @@ MonoBehaviour:
       - boardsMoved: 4
         interactableAngle: 285
         interactableDistance: 0.95
+      - boardsMoved: 4
+        interactableAngle: 275
+        interactableDistance: 0.95
       obstacleOrientation: 0
       obstacleSize: 0
     - interactableType: 1
@@ -1995,8 +2019,15 @@ MonoBehaviour:
       - boardsMoved: 4
         interactableAngle: 75
         interactableDistance: 0.95
+      - boardsMoved: 4
+        interactableAngle: 85
+        interactableDistance: 0.95
       obstacleOrientation: 0
       obstacleSize: 0
+  - interactables: []
+  - interactables: []
+  - interactables: []
+  - interactables: []
   - interactables: []
   - interactables: []
   - interactables: []
@@ -2517,10 +2548,6 @@ MonoBehaviour:
       multiPoints: []
       obstacleOrientation: 0
       obstacleSize: 0
-  - interactables: []
-  - interactables: []
-  - interactables: []
-  - interactables: []
   - interactables: []
   - interactables: []
   - interactables: []
