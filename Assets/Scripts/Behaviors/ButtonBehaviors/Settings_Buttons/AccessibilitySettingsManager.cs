@@ -59,6 +59,7 @@ public class AccessibilitySettingsManager : MonoBehaviour
             tmpInt--;
             if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
         }
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
         PlayerPrefs.Save();
         SwitchColorOptions();

@@ -90,11 +90,13 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseMusicVol()
     {
         musicAudioSlider.value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseMusicVol()
     {
         musicAudioSlider.value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void SFXVolumeSlider(float value)
@@ -108,12 +110,14 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseSFXVol()
     {
         sfxAudioSlider.value += .1f;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseSFXVol()
     {
         sfxAudioSlider.value -= .1f;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
@@ -129,6 +133,9 @@ public class AudioSettingsManager : MonoBehaviour
 
         sfxAudioSlider.value = 1;
         AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void OnResetEnter()
