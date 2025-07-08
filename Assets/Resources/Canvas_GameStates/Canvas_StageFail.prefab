@@ -10001,7 +10001,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightNebula: {fileID: 7445461985192385543}
+  highLightNebula: {fileID: 0}
+  fadeColors: []
+  fadeSpeed: 0
 --- !u!1 &1595613685607253823
 GameObject:
   m_ObjectHideFlags: 0
@@ -10173,7 +10175,7 @@ GameObject:
   - component: {fileID: 1267571754117999439}
   - component: {fileID: 1250513558494721737}
   - component: {fileID: 1391947736261083105}
-  - component: {fileID: 7274147545183836492}
+  - component: {fileID: 8919482799265677838}
   m_Layer: 5
   m_Name: Canvas_StageFail
   m_TagString: Untagged
@@ -10272,7 +10274,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &7274147545183836492
+--- !u!114 &8919482799265677838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10281,9 +10283,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2751529164868806702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87feb428adb8de54d91b19c919863bdc, type: 3}
+  m_Script: {fileID: 11500000, guid: ac8abd4206714b7459879e966bb92366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectors: []
+  targetValue: 1
+  fillSpeed: 4
   isRestarting: 0
 --- !u!1 &3463003862238560912
 GameObject:
@@ -10297,7 +10302,6 @@ GameObject:
   - component: {fileID: 6154032137525429793}
   - component: {fileID: 8800794115343198766}
   - component: {fileID: 7202165678268809815}
-  - component: {fileID: 9036734187890776068}
   m_Layer: 5
   m_Name: MainMenu_Button
   m_TagString: Untagged
@@ -10406,8 +10410,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7274147545183836492}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 8919482799265677838}
+        m_TargetAssemblyTypeName: PauseOptions, Assembly-CSharp
         m_MethodName: OnMainMenuButtonPressed
         m_Mode: 1
         m_Arguments:
@@ -10418,51 +10422,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &9036734187890776068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463003862238560912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4639126313510093602}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4639126313510093602}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &3566067245969707687
 GameObject:
   m_ObjectHideFlags: 0
@@ -30343,7 +30302,6 @@ GameObject:
   - component: {fileID: 6926359840586096351}
   - component: {fileID: 7671423219662949538}
   - component: {fileID: 7190198844336521664}
-  - component: {fileID: 3371310521920942410}
   m_Layer: 5
   m_Name: Restart_Button
   m_TagString: Untagged
@@ -30452,8 +30410,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7274147545183836492}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 8919482799265677838}
+        m_TargetAssemblyTypeName: PauseOptions, Assembly-CSharp
         m_MethodName: OnRestartGameButtonPressed
         m_Mode: 1
         m_Arguments:
@@ -30464,51 +30422,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3371310521920942410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411991858827975755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2038121112330039349}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2038121112330039349}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &8476006211216648602
 GameObject:
   m_ObjectHideFlags: 0
@@ -30557,4 +30470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightNebula: {fileID: 68079502203363806}
+  highLightNebula: {fileID: 0}
+  fadeColors: []
+  fadeSpeed: 0
