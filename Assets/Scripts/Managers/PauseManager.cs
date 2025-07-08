@@ -109,6 +109,15 @@ public class PauseManager : MonoBehaviour
         {
             item.SetActive(enabled);
         }
+        foreach (var item in AvatarManager.Instance.avatarObjects)
+        {
+            item.SetActive(enabled);
+        }
+        foreach (var item in AvatarManager.Instance.cursorObjects)
+        {
+            item.SetActive(enabled);
+        }
+
     }
 
     public void PauseGame(bool paused)

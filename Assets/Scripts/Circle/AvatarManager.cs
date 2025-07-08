@@ -34,7 +34,7 @@ public class AvatarManager : MonoBehaviour
     Color startColor;
     Color transparentColor;
     Color failColor;
-    [NamedArray(typeof(eSide))] GameObject[] cursorObjects;
+    [NamedArray(typeof(eSide))] public GameObject[] cursorObjects;
     [NamedArray(typeof(eSide))] AvatarBehavior[] avatarBehaviors;
     Vector3 playerCircStartingPos;
 
