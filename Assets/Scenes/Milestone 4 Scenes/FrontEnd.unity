@@ -10076,7 +10076,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85858, y: 0.85858, z: 0.85858}
+  m_LocalScale: {x: 0.09427205, y: 0.09427205, z: 0.09427205}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 607541926}
@@ -10125,7 +10125,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7edfa9a28dcc4584ba5194e74c74f93c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9172b241c4cb2c499af247be1f19f84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11659,6 +11659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2b75752f217e44796da9732725a54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testTimeline: []
   leftImpulsePlayer: {fileID: 441087508}
   rightImpulsePlayer: {fileID: 441087507}
 --- !u!4 &815578919
@@ -13295,6 +13296,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionSplash: {fileID: 1646270275}
+  transitionColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
   fadeInDuration: 10
   fadeOutDuration: 20
   isTransitioning: 0

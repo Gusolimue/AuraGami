@@ -23,6 +23,12 @@ public class GameplaySettingsManager : MonoBehaviour
     public bool isToggled;
     public int toggleNum;
 
+    [Header("Reset")]
+    [SerializeField] Image resetFill;
+    [SerializeField] Color[] fillColor;
+    private float count;
+    private bool isReset;
+
     private void Awake()
     {
         Instance = this;
@@ -48,6 +54,10 @@ public class GameplaySettingsManager : MonoBehaviour
 
         if (toggleNum == 1) toggleFill.color = Color.Lerp(toggleFill.color, colorChanges[0], Time.deltaTime * 5);
         else if (toggleNum == 2) toggleFill.color = Color.Lerp(toggleFill.color, colorChanges[2], Time.deltaTime * 5);
+
+        count += Time.deltaTime;
+        if (isReset) resetFill.color = Color.Lerp(resetFill.color, fillColor[0], count / 5);
+        else resetFill.color = Color.Lerp(resetFill.color, fillColor[1], count / 5);
     }
 
     public void ChangeSlider(float value)
@@ -101,6 +111,7 @@ public class GameplaySettingsManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         if (AvatarManager.Instance != null)
         {
@@ -111,24 +122,28 @@ public class GameplaySettingsManager : MonoBehaviour
     public void IncreasePlayerCircleSize()
     {
         playCircleSlider[0].value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleSize()
     {
         playCircleSlider[0].value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void IncreasePlayerCircleHeight()
     {
         playCircleSlider[1].value += .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleHeight()
     {
         playCircleSlider[1].value -= .1f;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         StartCoroutine(ActivateCircleDemo());
     }
 
@@ -141,6 +156,7 @@ public class GameplaySettingsManager : MonoBehaviour
 
     public void DefaultSettings()
     {
+        StartCoroutine(ResetBehavior());
         playCircleSlider[0].value = 1.25f;
         if (AvatarManager.Instance != null)
         {
@@ -156,5 +172,20 @@ public class GameplaySettingsManager : MonoBehaviour
         demoOn = false;
         toggleNum = 2;
         PlayerPrefs.SetInt("toggleCircle", toggleNum);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
+    }
+
+    public void OnResetEnter()
+    {
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+    }
+
+    private IEnumerator ResetBehavior()
+    {
+        isReset = true;
+        yield return new WaitForSeconds(.2f);
+        isReset = false;
+        count = 0;
     }
 }
