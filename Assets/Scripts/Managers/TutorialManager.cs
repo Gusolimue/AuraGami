@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum eTutorial { basicTarget, precisionTarget, multiHitTarget, threadedTarget, final}
+public enum eTutorial { basicTarget, bothTarget, precisionTarget, multiHitTarget, threadedTarget, test, final}
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     GameObject[] tutorialContainers;
     int boardIndex;
     bool isSubscribed;
-    int tutorialIndex;
+    public int tutorialIndex;
     private void Awake()
     {
         Instance = this;
@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
         tc.FadeOutText();
-        if (AvatarManager.Instance.StartEvolve(true))
+        if (AvatarManager.Instance.StartEvolve(true) || tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
         }
@@ -74,7 +74,8 @@ public class TutorialManager : MonoBehaviour
     }
     IEnumerator COTutorialIntro()
     {
-        string[] strings = { "I Understand You", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
+        yield return new WaitForSeconds(3);
+        string[] strings = { "YOU", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
         tc.FadeOutText();
