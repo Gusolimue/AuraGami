@@ -125,13 +125,13 @@ public class AudioSettingsManager : MonoBehaviour
     {
         StartCoroutine(ResetBehavior());
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
-        masterAudioSlider.value = 1;
+        masterAudioSlider.value = .5f;
         AudioManager.Instance.SetVolume(eBus.Master, PlayerPrefs.GetFloat("saveAll"));
 
-        musicAudioSlider.value = 1;
+        musicAudioSlider.value = .5f;
         AudioManager.Instance.SetVolume(eBus.Music, PlayerPrefs.GetFloat("saveMusic"));
 
-        sfxAudioSlider.value = 1;
+        sfxAudioSlider.value = .5f;
         AudioManager.Instance.SetVolume(eBus.SFX, PlayerPrefs.GetFloat("saveSFX"));
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
