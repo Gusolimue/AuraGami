@@ -26,7 +26,10 @@ public class TutorialCanvasManager : MonoBehaviour
     }
     private void Update()
     {
-        count += Time.deltaTime;
+        if(!PauseManager.Instance.isPaused)
+        {
+            count += Time.deltaTime;
+        }
         if (isFadeIn) tutorialText.color = Color.Lerp(tutorialText.color, fadeInColor, count / fadeTime);
         else tutorialText.color = Color.Lerp(tutorialText.color, fadeOutColor, count / fadeTime);
     }
@@ -65,7 +68,7 @@ public class TutorialCanvasManager : MonoBehaviour
             //    yield return null;
             //}
             isFadeIn = true;
-            yield return new WaitForSeconds(messageTime);
+            yield return new WaitUntil(() => count > messageTime);
             count = 0;
             isFadeIn = false;
             yield return new WaitUntil(() => count > fadeTime);
