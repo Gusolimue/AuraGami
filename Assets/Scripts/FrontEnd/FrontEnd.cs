@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class FrontEnd : MonoBehaviour
+public class FrontEnd : MonoBehaviour // This script handles all main menu button functionality. 
 {
     public static FrontEnd Instance;
 
@@ -28,7 +28,7 @@ public class FrontEnd : MonoBehaviour
         StartCoroutine(FillConnectors());
     }
 
-    private void Update()
+    private void Update() // To add more flare to opening the main menu, I have the connectors between each one fill in. 
     {
         foreach (Slider slider in connectors)
         {
@@ -38,7 +38,7 @@ public class FrontEnd : MonoBehaviour
         }
     }
 
-    public void OnPlayButtonPressed()
+    public void OnPlayButtonPressed() // Opens the level selection menu.
     {
         Debug.Log("Play Level!");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
@@ -47,14 +47,14 @@ public class FrontEnd : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnLevelsButtonPressed()
+    /*public void OnLevelsButtonPressed() 
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasLevelSelect();
         Destroy(this.gameObject);
-    }
+    }*/
 
-    public void OnCreditsButtonPressed()
+    public void OnCreditsButtonPressed() // Opens the credits menu to view all the team members.
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
@@ -62,7 +62,7 @@ public class FrontEnd : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnSettingsButtonPressed()
+    public void OnSettingsButtonPressed() // Opens the settings menu.
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
@@ -70,7 +70,7 @@ public class FrontEnd : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnTutorialButtonPressed()
+    public void OnTutorialButtonPressed() // More of a temp button to fill out the space. 
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
@@ -86,7 +86,7 @@ public class FrontEnd : MonoBehaviour
         Application.Quit();
     }
 
-    private IEnumerator FillConnectors()
+    private IEnumerator FillConnectors() // Gives a slight delay to filling the connectors. This is to time it with the buttons settling.
     {
         isFilling = false;
         yield return new WaitForSeconds(1);

@@ -296,7 +296,7 @@ public class AvatarManager : MonoBehaviour
         }
         else if (!_tutorial)
         {
-            CanvasManager.Instance.ShowCanvasStageFail();
+            CanvasManager.Instance.ShowCanvasLevelProgress();
             PauseManager.Instance.showPauseMenu = false;
             PauseManager.Instance.PauseGame(true);
         }
@@ -399,11 +399,11 @@ public class AvatarManager : MonoBehaviour
         if (_pass)
         {
             Debug.Log("end level");
-            CanvasManager.Instance.ShowCanvasLevelEnd();
+            CanvasManager.Instance.ShowCanvasLevelProgress();
         }
         else
         {
-            CanvasManager.Instance.ShowCanvasStageFail();
+            CanvasManager.Instance.ShowCanvasLevelProgress();
             PauseManager.Instance.showPauseMenu = false;
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;

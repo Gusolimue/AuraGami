@@ -21,12 +21,12 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         isRestarting = false;
-        if (LoadManager.Instance.isTutorial == false) 
+        if (LoadManager.Instance.isTutorial == false)
         {
             Instantiate(pauseOptions, transform);
             bgBlur.SetActive(false);
         }
-        else 
+        else
         {
             Instantiate(pauseOptionsTutorial, transform);
             bgBlur.SetActive(true);

@@ -106,6 +106,6 @@ public class TutorialManager : MonoBehaviour
     void MoveOn()
     {
         Debug.Log("doneWithTutorials");
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 1);
     }
 }
