@@ -42,6 +42,7 @@ public class TitleScreen : MonoBehaviour
     public void OnPressAnywherePressed()
     {
         StartCoroutine(TitleTransition());
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .2f);
     }
 
     IEnumerator TitleTransition()

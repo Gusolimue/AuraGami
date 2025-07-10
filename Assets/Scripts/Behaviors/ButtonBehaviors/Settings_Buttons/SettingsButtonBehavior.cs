@@ -42,12 +42,14 @@ public class SettingsButtonBehavior : MonoBehaviour
     {
         isHovering = true;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     public void DecreaseFill()
     {
         isHovering = false;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverExitSmall);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     public void SetSelected(bool selected)

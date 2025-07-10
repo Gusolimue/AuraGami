@@ -22,19 +22,28 @@ public class ColorPallete
 public class AccessibilitySettingsManager : MonoBehaviour
 {
     public static AccessibilitySettingsManager Instance;
+    [Header("Materials")]
+    [SerializeField] Material leftTarget;
+    [SerializeField] Material leftTargetOutline;
+    [Space]
+    [SerializeField] Material rightTarget;
+    [SerializeField] Material rightTargetOutline;
     private enum eColorBlindOptions {none, optionOne, optionTwo};
-    private eColorBlindOptions curColorOption = eColorBlindOptions.none;
 
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
     [Space]
     [SerializeField] TextMeshProUGUI colorOptionsTXT;
+
+
     
 
     private void Awake()
     {
         Instance = this;
         PlayerPrefs.GetInt("ColorModeIndex", 0);
+
+        colorOptionsTXT.text = PlayerPrefs.GetString("text");
     }
 
     public void ColorOptionsCycle(bool direction)
@@ -50,7 +59,9 @@ public class AccessibilitySettingsManager : MonoBehaviour
             tmpInt--;
             if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
         }
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
+        PlayerPrefs.Save();
         SwitchColorOptions();
         SetColorPallet();
     }
@@ -61,15 +72,18 @@ public class AccessibilitySettingsManager : MonoBehaviour
         switch (tmpOption)
         {
             case eColorBlindOptions.none:
-                colorOptionsTXT.text = "STANDARD";
+                colorOptionsTXT.text = "Standard";
+                PlayerPrefs.SetString("text", "Standard");
                 break;
 
             case eColorBlindOptions.optionOne:
-                colorOptionsTXT.text = "OPTION ONE: DEWT-PRO";
+                colorOptionsTXT.text = "Option One - Dewt-Pro";
+                PlayerPrefs.SetString("text", "Option One - Dewt-Pro");
                 break;
 
             case eColorBlindOptions.optionTwo:
-                colorOptionsTXT.text = "OPTION TWO: TRITAN";
+                colorOptionsTXT.text = "Option Two - Tritan";
+                PlayerPrefs.SetString("text", "Option Two - Tritan");
                 break;
         }
     }
@@ -77,12 +91,15 @@ public class AccessibilitySettingsManager : MonoBehaviour
     private void SetColorPallet()
     {
         int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
-        (Resources.Load("Materials/" + "Red", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTarget;
-        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].leftTargetOutline;
-        (Resources.Load("Materials/" + "RedGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].leftOutlineEmissive);
 
-        (Resources.Load("Materials/" + "Blue", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTarget;
-        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).color = colorPallete[_eColorBlindOption].rightTargetOutline;
-        (Resources.Load("Materials/" + "BlueGlow", typeof(Material)) as Material).SetColor("_EmissionMap", colorPallete[_eColorBlindOption].rightOutlineEmissive); 
+        leftTarget.color = colorPallete[_eColorBlindOption].leftTarget;
+        leftTargetOutline.color = colorPallete[_eColorBlindOption].leftTargetOutline;
+
+        rightTarget.color = colorPallete[_eColorBlindOption].rightTarget;
+        rightTargetOutline.color = colorPallete[_eColorBlindOption].rightTargetOutline;
+
+        leftTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].leftOutlineEmissive);
+
+        rightTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].rightOutlineEmissive);
     }
 }

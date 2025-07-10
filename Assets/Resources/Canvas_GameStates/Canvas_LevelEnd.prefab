@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4760212963075095114}
   - component: {fileID: 3707670003584670321}
   - component: {fileID: 6618627773621352831}
-  - component: {fileID: 3641312731924972561}
   m_Layer: 5
   m_Name: MainMenu_Button
   m_TagString: Untagged
@@ -121,8 +120,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7274147545183836492}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 1180282594140021412}
+        m_TargetAssemblyTypeName: PauseOptions, Assembly-CSharp
         m_MethodName: OnMainMenuButtonPressed
         m_Mode: 1
         m_Arguments:
@@ -133,51 +132,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3641312731924972561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420997824096225443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 9127307788557168471}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 9127307788557168471}
-          m_TargetAssemblyTypeName: UIButtonBehavior, Assembly-CSharp
-          m_MethodName: OnButtonExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1830082381056436897
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +314,7 @@ GameObject:
   - component: {fileID: 1267571754117999439}
   - component: {fileID: 1250513558494721737}
   - component: {fileID: 1391947736261083105}
-  - component: {fileID: 7274147545183836492}
+  - component: {fileID: 1180282594140021412}
   m_Layer: 5
   m_Name: Canvas_LevelEnd
   m_TagString: Untagged
@@ -456,7 +410,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &7274147545183836492
+--- !u!114 &1180282594140021412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,9 +419,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2751529164868806702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87feb428adb8de54d91b19c919863bdc, type: 3}
+  m_Script: {fileID: 11500000, guid: ac8abd4206714b7459879e966bb92366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectors: []
+  targetValue: 1
+  fillSpeed: 4
   isRestarting: 0
 --- !u!1 &3416803004367057918
 GameObject:
@@ -841,7 +798,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1498166661683003939}
-  - component: {fileID: 9127307788557168471}
   m_Layer: 0
   m_Name: 'MainMenu_Button_Container '
   m_TagString: Untagged
@@ -867,19 +823,6 @@ Transform:
   - {fileID: 7215596566166627930}
   m_Father: {fileID: 5063890370258840469}
   m_LocalEulerAnglesHint: {x: -180, y: -7.8549805, z: 0}
---- !u!114 &9127307788557168471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4065815034676659572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ccf5abac997c44fb7b328841b8d49e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlightNebula: {fileID: 1722539782146907604}
 --- !u!1 &5328541621594220322
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,7 +6195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7274147545183836492}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: OnRestartGameButtonPressed
         m_Mode: 1

@@ -34,7 +34,7 @@ public class AvatarManager : MonoBehaviour
     Color startColor;
     Color transparentColor;
     Color failColor;
-    [NamedArray(typeof(eSide))] GameObject[] cursorObjects;
+    [NamedArray(typeof(eSide))] public GameObject[] cursorObjects;
     [NamedArray(typeof(eSide))] AvatarBehavior[] avatarBehaviors;
     Vector3 playerCircStartingPos;
 
@@ -122,6 +122,7 @@ public class AvatarManager : MonoBehaviour
     public bool readyMove = false;
     public IEnumerator COTutorialIntro()
     {
+        TutorialCanvasManager tc = TutorialManager.Instance.tc;
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
         float count;
         disableAvatarMovement = true;
@@ -132,12 +133,18 @@ public class AvatarManager : MonoBehaviour
         }
         float timetill = 3f;
         count = 0;
+        string[] text = { "This Is Yata" };
+        tc.FadeInText(text);
         while (count < timetill)
         {
             count += Time.deltaTime;
             avatarObjects[(int)eSide.right].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.right], cursorObjects[(int)eSide.right].transform.position, count/timetill);
             yield return null;
         }
+        tc.FadeOutText();
+        yield return new WaitUntil(() => !tc.textChanging);
+        text[0] = "And This Is Nagini";
+        tc.FadeInText(text);
         count = 0;
         while (count < timetill)
         {
@@ -146,7 +153,9 @@ public class AvatarManager : MonoBehaviour
             avatarObjects[(int)eSide.left].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.left], cursorObjects[(int)eSide.left].transform.position, count/ timetill);
             yield return null;
         }
+        tc.FadeOutText();
         disableAvatarMovement = false;
+        yield return new WaitUntil(() => !tc.textChanging);
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
     }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below

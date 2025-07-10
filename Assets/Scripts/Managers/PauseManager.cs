@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
     public InputActionReference openPauseMenuAction;
-    [SerializeField] public GameObject menuBG;
+    //[SerializeField] public GameObject menuBG;
     //[SerializeField] SpriteRenderer menuBGSprite;
     public bool isPaused = false;
     public bool showPauseMenu;
@@ -27,7 +27,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        menuBG.SetActive(false);
+       // menuBG.SetActive(false);
 
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
@@ -109,6 +109,15 @@ public class PauseManager : MonoBehaviour
         {
             item.SetActive(enabled);
         }
+        foreach (var item in AvatarManager.Instance.avatarObjects)
+        {
+            item.SetActive(enabled);
+        }
+        foreach (var item in AvatarManager.Instance.cursorObjects)
+        {
+            item.SetActive(enabled);
+        }
+
     }
 
     public void PauseGame(bool paused)
@@ -120,7 +129,7 @@ public class PauseManager : MonoBehaviour
                 if (showPauseMenu)
                 {
                     CanvasManager.Instance.ShowCanvasPauseMenu();
-                    menuBG.SetActive(true);
+                    //menuBG.SetActive(true);
                 }
 
                 isPaused = true;
@@ -135,7 +144,7 @@ public class PauseManager : MonoBehaviour
                 {
                     HideAndUnhideObjects(true);
                     PauseMenu.Instance.DestroyMenu();
-                    menuBG.SetActive(false);
+                    //menuBG.SetActive(false);
                     StartCoroutine(CountdownBehavior());
                     Debug.Log("Is Unpaused!");
                 }
