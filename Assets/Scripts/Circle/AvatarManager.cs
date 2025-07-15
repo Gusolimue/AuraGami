@@ -63,7 +63,7 @@ public class AvatarManager : MonoBehaviour
         transparentColor = new Color(1, 1, 1, 0);
         startColor = new Color(1, 1, 1, 1);
         failColor = new Color(1, .5f, .5f, 1);
-        evolveSphereRenderer.material.color = transparentColor;
+        //evolveSphereRenderer.material.color = transparentColor;
     }
     private void Start()
     {
@@ -203,7 +203,7 @@ public class AvatarManager : MonoBehaviour
         { //Gus- this while loop should be used just for changing the color of the sphere(after the avatars are already together, so the sphere is closing around them
             count += Time.deltaTime;
             // fade in the sphere
-            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            //evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
             for (int i = 0; i < avatarObjects.Length; i++)
             {
                 offset *= -1;
@@ -241,7 +241,7 @@ public class AvatarManager : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 for (int i = 0; i < avatarObjects.Length; i++)
                 {
                     avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
@@ -255,14 +255,14 @@ public class AvatarManager : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
             count = 0;
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 for (int i = 0; i < avatarObjects.Length; i++)
                 {
                     avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
@@ -346,7 +346,7 @@ public class AvatarManager : MonoBehaviour
             for (int i = 0; i < avatarObjects.Length; i++)
             {
                 offset *= -1;
-                avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], evolveSphereRenderer.transform.position + offset, count);
+                //avatarObjects[i].transform.position = Vector3.Lerp(avatarStartingPositions[i], evolveSphereRenderer.transform.position + offset, count);
             }
             yield return null;
         }
@@ -355,7 +355,7 @@ public class AvatarManager : MonoBehaviour
         while (count < 1)
         {
             count += Time.deltaTime;
-            evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+            //evolveSphereRenderer.material.color = Color.Lerp(transparentColor, startColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
 
             yield return null;
         }
@@ -375,7 +375,7 @@ public class AvatarManager : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
         }
@@ -385,14 +385,14 @@ public class AvatarManager : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
             count = 0;
             while (count < 1)
             {
                 count += Time.deltaTime;
-                evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                //evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
                 yield return null;
             }
         }
