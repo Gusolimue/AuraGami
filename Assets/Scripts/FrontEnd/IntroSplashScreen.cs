@@ -7,17 +7,23 @@ using TMPro;
 
 public class IntroSplashScreen : MonoBehaviour
 {
+    public static IntroSplashScreen Instance;
     [Header("Controller Interactor")]
     public InputActionReference skipIntroControllerAction;
 
     [Header("Logos/Assets")]
     [SerializeField] Image[] logoSprites;
     [Space]
-    [SerializeField] GameObject introVideoContainer;
+    [SerializeField] GameObject settings;
+    //[SerializeField] GameObject introVideoContainer;
 
-    [Header("Pause Icon")]
+    [Header("Skip Icon")]
     [SerializeField] Image skipIcon;
     [SerializeField] TextMeshProUGUI skip_TXT;
+    [SerializeField] Slider skipSlider;
+    public float holdTime = 2f;
+    private float holdTimer = 0f;
+    private bool isHolding = false;
     [Space]
 
     public Color transparent;
@@ -31,33 +37,51 @@ public class IntroSplashScreen : MonoBehaviour
     private bool isSkip;
 
     public float transitionTime = 5f;
+    public int isTutorial;
 
     private void Awake()
     {
-        StartCoroutine(SplashSequence());
+        Instance = this;
+        //isTutorial = PlayerPrefs.GetInt("frontEnd");
 
-        skipIntroControllerAction.action.Enable();
-        skipIntroControllerAction.action.performed += OnPauseButtonPressed;
-        InputSystem.onDeviceChange += OnDeviceChange;
+        if (isTutorial <= 1) 
+        {
+            settings.SetActive(true);
+            LoadManager.Instance.isTutorial = true;
+        }
+        else if (isTutorial >= 1) StartCoroutine(SplashSequence());
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        skipIntroControllerAction.action.Disable();
-        skipIntroControllerAction.action.performed -= OnPauseButtonPressed;
-        InputSystem.onDeviceChange -= OnDeviceChange;
+        if (skipIntroControllerAction != null)
+        {
+            skipIntroControllerAction.action.started += OnHoldStarted;
+            skipIntroControllerAction.action.canceled += OnHoldCanceled;
+            skipIntroControllerAction.action.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (skipIntroControllerAction != null)
+        {
+            skipIntroControllerAction.action.started -= OnHoldStarted;
+            skipIntroControllerAction.action.canceled -= OnHoldCanceled;
+            skipIntroControllerAction.action.Disable();
+        }
     }
 
     private void Update()
     {
-       if (isTeamAuragami == true)
-       {
+        if (isTeamAuragami == true)
+        {
             logoSprites[0].color = Color.Lerp(logoSprites[0].color, noneTransparent, Time.deltaTime * transitionTime);
-       }
-       if (isTeamAuragami == false)
-       {
+        }
+        if (isTeamAuragami == false)
+        {
             logoSprites[0].color = Color.Lerp(logoSprites[0].color, transparent, Time.deltaTime * transitionTime);
-       }
+        }
 
         if (isACC == true)
         {
@@ -97,24 +121,64 @@ public class IntroSplashScreen : MonoBehaviour
             skip_TXT.color = Color.Lerp(skip_TXT.color, transparent, Time.deltaTime * 10f);
         }
 
+        //if (!isSkip) return;
+
+        if (isHolding)
+        {
+            holdTimer += Time.deltaTime;
+            if (holdTimer >= holdTime)
+            {
+                SkipIntro();
+            }
+        }
+        else
+        {
+            holdTimer -= Time.deltaTime;
+        }
+        holdTimer = Mathf.Clamp(holdTimer, 0f, holdTime);
+        skipSlider.value = holdTimer / holdTime;
+
     }
 
-    public void OnPauseButtonPressed(InputAction.CallbackContext context)
+    private void OnHoldStarted(InputAction.CallbackContext context)
     {
-        if (isSkip == false) StartCoroutine(SkipIconBehavior());
-        if (isSkip == true) 
-        {
-            StopAllCoroutines();
-            LoadManager.Instance.LoadScene(eScene.tutorial);
-        }
+        Debug.Log("Hold Started");
+        isSkip = true;
+        isHolding = true;
+    }
+
+    private void OnHoldCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log("Hold Released");
+        isSkip = false;
+        isHolding = false;
+    }
+
+    private void SkipIntro()
+    {
+        isHolding = false;
+        StopAllCoroutines();
+
+        isTutorial++;
+        PlayerPrefs.SetInt("frontEnd", isTutorial);
+        PlayerPrefs.Save();
+
+        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
+        else FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
+    }
+  
+    public void StartIntro()
+    {
+        StartCoroutine(SplashSequence());
+        settings.SetActive(false);
     }
 
     IEnumerator SplashSequence()
     {
-        yield return new WaitForSeconds(26);
+        /*yield return new WaitForSeconds(26);
         introVideoContainer.SetActive(false);
+        yield return new WaitForSeconds(1);*/
         yield return new WaitForSeconds(1);
-
         isTeamAuragami = true;
         yield return new WaitForSeconds(3);
         isTeamAuragami = false;
@@ -135,30 +199,11 @@ public class IntroSplashScreen : MonoBehaviour
         isUnity = false;
         yield return new WaitForSeconds(1);
 
-        //FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
-        LoadManager.Instance.LoadScene(eScene.tutorial);
-    }
+        isTutorial++;
+        PlayerPrefs.SetInt("frontEnd", isTutorial);
+        PlayerPrefs.Save();
 
-    IEnumerator SkipIconBehavior()
-    {
-        yield return new WaitForSeconds(.1f);
-        isSkip = true;
-        yield return new WaitForSeconds(5);
-        isSkip = false;
-    }
-
-    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
-    {
-        switch (change)
-        {
-            case InputDeviceChange.Disconnected:
-                skipIntroControllerAction.action.Disable();
-                skipIntroControllerAction.action.performed -= OnPauseButtonPressed;
-                break;
-            case InputDeviceChange.Reconnected:
-                skipIntroControllerAction.action.Enable();
-                skipIntroControllerAction.action.performed += OnPauseButtonPressed;
-                break;
-        }
+        if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
+        else if (isTutorial >= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
 }

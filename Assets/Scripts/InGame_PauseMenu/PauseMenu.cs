@@ -3,11 +3,17 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine;
 using EditorAttributes;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
+    [Header("Pause Menus")]
+    [SerializeField] public GameObject pauseOptions;
+    [SerializeField] public GameObject pauseOptionsTutorial;
+    [SerializeField] public GameObject settingsOptions;
+
+    [SerializeField] GameObject bgBlur;
 
     public bool isRestarting;
 
@@ -15,45 +21,31 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
         isRestarting = false;
-        //this.gameObject.transform.localPosition = new Vector3(-.13f, 4.15f, 5.77f);
+        if (LoadManager.Instance.isTutorial == false) 
+        {
+            Instantiate(pauseOptions, transform);
+            bgBlur.SetActive(false);
+        }
+        else 
+        {
+            Instantiate(pauseOptionsTutorial, transform);
+            bgBlur.SetActive(true);
+        }
     }
 
-    public void OnRestartGameButtonPressed()
+    public void InstantiateSettingsMenu()
     {
-        isRestarting = true;
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionRestartSplash();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
+        Instantiate(settingsOptions, transform);
     }
 
-    public void OnResumeGameButtonPressed()
+    public void InstantiatePauseOptions()
     {
-        PauseManager.Instance.PauseGame(false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
+        Instantiate(pauseOptions, transform);
     }
 
-    public void OnLevelsButtonPressed()
+    public void InstantiateTutorialPauseOptions()
     {
-        CanvasManager.Instance.ShowCanvasLevelSelect();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        //Destroy(this.gameObject);
-    }
-
-    public void OnSettingsButtonPressed()
-    {
-        CanvasManager.Instance.ShowCanvasSettings();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
-    }
-    [Button, SerializeField]
-    public void OnMainMenuButtonPressed()
-    {
-        LevelSelectManager.Instance.whichLevel = (int)eScene.frontEnd;
-        LoadManager.Instance.isTitleScreen = 1;
-
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        Instantiate(pauseOptionsTutorial, transform);
     }
 
     public void DestroyMenu()

@@ -75,7 +75,7 @@ public class TutorialManager : MonoBehaviour
     IEnumerator COTutorialIntro()
     {
         yield return new WaitForSeconds(3);
-        string[] strings = { "YOU", "You Sleep", "Yet, You Do Not", "Look Around", "Move Your Arms", "Now, Accept Your Other Halves" };
+        string[] strings = { "You...", "You Sleep", "Yet, You Do Not", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
         tc.FadeOutText();
@@ -106,6 +106,6 @@ public class TutorialManager : MonoBehaviour
     void MoveOn()
     {
         Debug.Log("doneWithTutorials");
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
 }
