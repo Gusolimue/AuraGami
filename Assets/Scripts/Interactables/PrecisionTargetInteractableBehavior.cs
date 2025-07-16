@@ -29,6 +29,7 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a normal target
             Debug.Log("Hit the target");
             APManager.Instance.IncreaseAP();
+            HapticsManager.Instance.TriggerSimpleVibration(side, .2f, .25f);
             base.AvatarCollision(avatarBehavior);
         }
         else
