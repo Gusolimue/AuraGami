@@ -52,14 +52,18 @@ public class LevelEditor : MonoBehaviour
     int boardCount;
     void ShowLevel()
     {
+        points = new List<PointData>(0);
         boardCount = 0;
         GameObject tmpLastBoard;
         if (levelPreview != null)
         {
             DestroyImmediate(levelPreview);
         }
+        List<GameObject> previews = new List<GameObject>(0);
+        GameObject.FindGameObjectsWithTag("Preview", previews);
         levelPreview = new GameObject("Level Preview");
         levelPreview.transform.parent = this.transform;
+        levelPreview.tag = "Preview";
         stage1Preview = new GameObject("Stage 1 Preview");
         stage1Preview.transform.parent = levelPreview.transform;
         stage2Preview = new GameObject("Stage 2 Preview");
@@ -67,32 +71,38 @@ public class LevelEditor : MonoBehaviour
         stage3Preview = new GameObject("Stage 3 Preview");
         stage3Preview.transform.parent = levelPreview.transform;
         stage3Preview.transform.position = levelPreview.transform.position = stage1Preview.transform.position = stage2Preview.transform.position = Vector3.zero;
+        boardCount = 0;
+        float amountToMove = .4f;
         for (int i = 0; i < stage1.Count; i++)
         {
             SpawnBoard(i, stage1, stage1Preview.transform, 0);
-            boardCount = 0;
-            currentBoard.transform.position += new Vector3(0, 0, .2f * i);
+            currentBoard.transform.position += new Vector3(0, 0, amountToMove * i);
+            SpawnNavPoint();
         }
         tmpLastBoard = currentBoard;
+        boardCount = 0;
         for (int i = 0; i < stage2.Count; i++)
         {
             SpawnBoard(i, stage2, stage2Preview.transform, 1);
-            boardCount = 0;
-            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, amountToMove * i);
+            SpawnNavPoint();
         }
         tmpLastBoard = currentBoard;
+        boardCount = 0;
         for (int i = 0; i < stage3.Count; i++)
         {
             SpawnBoard(i, stage3, stage3Preview.transform, 2);
-            boardCount = 0;
-            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, .2f * i);
+            currentBoard.transform.position += tmpLastBoard.transform.position + new Vector3(0, 0, amountToMove * i);
+            SpawnNavPoint();
         }
     }
     private void Awake()
     {
-        if (levelPreview != null)
+        List<GameObject> previews = new List<GameObject>(0);
+        GameObject.FindGameObjectsWithTag("Preview", previews);
+        foreach (var item in previews)
         {
-            levelPreview.SetActive(false);
+            item.SetActive(false);
         }
     }
     //spawns a board with its targets when called
@@ -136,6 +146,12 @@ public class LevelEditor : MonoBehaviour
                 threadedCount++;
                 tmpObject.transform.SetParent(currentBoard.transform);
                 tmpObject.transform.localPosition = Vector3.zero;
+                int totalMoves = 0;
+                foreach (var point in _target.multiPoints)
+                {
+                    totalMoves += point.boardsMoved;
+                    AddNavPoint(new PointData(boardCount + totalMoves, point.interactableAngle, point.interactableDistance, tmpObject.transform));
+                }
                 break;
             case eTargetType.precisionTarget:
                 tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "precisionTargetPrefab")
@@ -150,26 +166,51 @@ public class LevelEditor : MonoBehaviour
             as GameObject, currentBoard.transform);
                 break;
         }
-
-        //int stageCount = 1; // Used to give the target a reference for the stage it's in
-
-        //if (boardCount < GetStage(2).Count * 2)
-        //{
-        //    stageCount = 2;
-        //}
-        //else if (boardCount < GetStage(3).Count * 3)
-        //{
-        //    stageCount = 3;
-        //}
-
         tmpObject.GetComponent<BaseInteractableBehavior>().InitInteractable(_target.side, _index, boardCount, _target);
         Quaternion tmpRot = new Quaternion();
         tmpRot.eulerAngles = new Vector3(0, 0, _target.interactableAngle);
         tmpObject.transform.localRotation *= tmpRot;
         tmpObject.transform.Translate(Vector3.up * _target.interactableDistance);
         tmpObject.transform.localRotation = Quaternion.identity;
+        if (tmpObject.TryGetComponent<ThreadedTargetInteractableBehavior>(out ThreadedTargetInteractableBehavior t))
+        {
+            t.endTargetModelSelect.gameObject.SetActive(false);
+        }
     }
+    List<PointData> points;
+    void AddNavPoint(PointData _point)
+    {
+        if (points == null) points = new List<PointData>(0);
+        points.Add(_point);
+    }
+    void SpawnNavPoint()
+    {
+        List<PointData> pointsToRemove = new List<PointData>(0);
 
+        if (points == null) points = new List<PointData>(0);
+        foreach (var point in points)
+        {
+            Debug.Log("spawning navpoint");
+            Debug.Log("board index = " + boardCount + ", point index = " + point.boardIndex);
+            if (boardCount == point.boardIndex)
+            {
+                GameObject tmpObject = Instantiate(Resources.Load("InGame/" + "Interactables/" + "navpoint") as GameObject, currentBoard.transform);
+                tmpObject.transform.localPosition = Vector3.zero;
+                Quaternion tmpRot = new Quaternion();
+                tmpRot.eulerAngles = new Vector3(0, 0, point.angle);
+                tmpObject.transform.localRotation *= tmpRot;
+                tmpObject.transform.Translate(Vector3.up * point.distance);
+                tmpObject.transform.localRotation = Quaternion.identity;
+                tmpObject.transform.SetParent(point.parent);
+                pointsToRemove.Add(point);
+                Debug.Log("spawning navpoint");
+            }
+        }
+        foreach (var point in pointsToRemove)
+        {
+            points.Remove(point);
+        }
+    }
 
 
     [Header("Level Editing")]
@@ -328,4 +369,18 @@ public class LevelEditor : MonoBehaviour
             }
         }
     }
+}
+public class PointData
+{
+    public PointData(int _boardIndex, float _angle, float _distance, Transform _parent)
+    {
+        boardIndex = _boardIndex;
+        angle = _angle;
+        distance = _distance;
+        parent = _parent;
+    }
+    public int boardIndex;
+    public float angle;
+    public float distance;
+    public Transform parent;
 }

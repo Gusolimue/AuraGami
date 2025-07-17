@@ -125,6 +125,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         {
             threadSpline.Spline.Add(knot, TangentMode.AutoSmooth);
         }
+        endTargetModelSelect.gameObject.SetActive(true);
         endTargetObject.gameObject.transform.SetParent(threadPositions[threadPositions.Count-1].transform);
         endTargetObject.gameObject.transform.localPosition = Vector3.zero;
         ThreadSplineUpdate();
