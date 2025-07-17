@@ -23,21 +23,21 @@ public class DissolveBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetDissolve(Mathf.Lerp(GetDissolveAmount(), fillTarget, count / fillTime));
+        SetDissolve(Mathf.Lerp(GetDissolvePercent(), fillTarget, count / fillTime));
         count += Time.deltaTime;
+        Debug.Log(GetDissolvePercent());
     }
 
     //shader float is really .21f to .84f for full to empty
     void SetDissolve(float _percentage)
     {
-        r.sharedMaterials[0].SetFloat("Vector1_9e41d94fb3a847cea58826d26a43525d",  .84f + (_percentage / -.63f));
+        r.sharedMaterials[0].SetFloat("Vector1_9e41d94fb3a847cea58826d26a43525d",  Mathf.Lerp(.84f, .21f, _percentage));
     }
 
-    float GetDissolveAmount()
+    float GetDissolvePercent()
     {
         float tmpFloat = r.sharedMaterials[0].GetFloat("Vector1_9e41d94fb3a847cea58826d26a43525d");
-        tmpFloat /= -.63f;
-        return tmpFloat;
+        return Mathf.InverseLerp(.84f, .21f, tmpFloat);
     }
     public void ResetSphereFill()
     {
