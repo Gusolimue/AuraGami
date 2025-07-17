@@ -437,7 +437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichLevel: 0
+  levelStars: []
+  starSizes: []
+  selectPos: {fileID: 0}
+  leftPos: []
+  rightPos: []
+  starColors: []
 --- !u!1 &1883231110618370108
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +866,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,7 +911,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialButton: {fileID: 0}
+  connectors: []
   isTutorial: 0
+  targetValue: 1
+  fillSpeed: 4
 --- !u!1 &3012349356612135546
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,7 +6893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichLevel: 0
+  levelStars: []
+  starSizes: []
+  selectPos: {fileID: 0}
+  leftPos: []
+  rightPos: []
+  starColors: []
 --- !u!1 &7187025056865490224
 GameObject:
   m_ObjectHideFlags: 0
@@ -7138,7 +7151,6 @@ MonoBehaviour:
     Path: 
   levelOrb: {fileID: 0}
   zephyrBody: {fileID: 0}
-  orbPosition: {fileID: 0}
   orbMovementSpeed: 1
   levelOrbScaleUp: {fileID: 0}
   levelOrbScaleDown: {fileID: 0}

@@ -30,12 +30,15 @@ public class PetIconBehavior : MonoBehaviour
     public void IconSizeIncrease()
     {
         isHover = true;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         count = 0;
     }
 
     public void IconSizeDecrease()
     {
         isHover = false;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
         count = 0;
     }
 }

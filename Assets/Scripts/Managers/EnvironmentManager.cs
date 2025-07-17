@@ -13,7 +13,7 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Variables to Adjust")]
     [SerializeField] int spawnDistance = -50;
     [SerializeField] int destroyBound = -350;
-    [SerializeField] int environmentSpeed;
+    [SerializeField] public static int environmentSpeed;
 
     [Header("Current Environment Rows")]
     [SerializeField] List<GameObject> environmentRows;

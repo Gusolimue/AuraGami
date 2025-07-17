@@ -1,105 +1,62 @@
 using UnityEngine;
 using TMPro;
 
-[System.Serializable]
-public class ColorPallete
-{
-    [Header("Right Color")]
-    public Color rightTargetOutline;
-    public Color rightOutlineEmissive;
-    public Color rightTarget;
-
-    [Header("Left Color")]
-    public Color leftTargetOutline;
-    public Color leftOutlineEmissive;
-    public Color leftTarget;
-
-    /*[Header("United Material")]
-    [SerializeField] Material unitedTargetOutline;
-    [SerializeField] Material unitedTarget;*/
-}
-
 public class AccessibilitySettingsManager : MonoBehaviour
 {
-    public static AccessibilitySettingsManager Instance;
-    [Header("Materials")]
-    [SerializeField] Material leftTarget;
-    [SerializeField] Material leftTargetOutline;
-    [Space]
-    [SerializeField] Material rightTarget;
-    [SerializeField] Material rightTargetOutline;
-    private enum eColorBlindOptions {none, optionOne, optionTwo};
-
-    [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
-
-    [Space]
-    [SerializeField] TextMeshProUGUI colorOptionsTXT;
-
-
-    
+    [SerializeField] TextMeshProUGUI terrainSpeedTXT;
+    private enum eTerrainSpeedTypes { normal, slow, none};
 
     private void Awake()
     {
-        Instance = this;
-        PlayerPrefs.GetInt("ColorModeIndex", 0);
-
-        colorOptionsTXT.text = PlayerPrefs.GetString("text");
+        terrainSpeedTXT.text = PlayerPrefs.GetString("terrainText");
     }
 
-    public void ColorOptionsCycle(bool direction)
+    public void ChangeOption(bool direction)
     {
-        int tmpInt = PlayerPrefs.GetInt("ColorModeIndex");
+        int tptInt = PlayerPrefs.GetInt("TerrainSpeedIndex");
         if (direction)
         {
-            tmpInt++;
-            if ((eColorBlindOptions)tmpInt > eColorBlindOptions.optionTwo) tmpInt--;
+            tptInt++;
+            if ((eTerrainSpeedTypes)tptInt > eTerrainSpeedTypes.none) tptInt--;
         }
         else
         {
-            tmpInt--;
-            if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
+            tptInt--;
+            if ((eTerrainSpeedTypes)tptInt < eTerrainSpeedTypes.normal) tptInt++;
         }
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
-        PlayerPrefs.Save();
-        SwitchColorOptions();
-        SetColorPallet();
+        TerrainSpeedOptions();
+        PlayerPrefs.SetInt("TerrainSpeedIndex", tptInt);
     }
 
-    private void SwitchColorOptions()
+    private void TerrainSpeedOptions()
     {
-        eColorBlindOptions tmpOption = (eColorBlindOptions)PlayerPrefs.GetInt("ColorModeIndex");
-        switch (tmpOption)
+        eTerrainSpeedTypes tpt = (eTerrainSpeedTypes)PlayerPrefs.GetInt("TerrainSpeedIndex");
+        switch (tpt)
         {
-            case eColorBlindOptions.none:
-                colorOptionsTXT.text = "Standard";
-                PlayerPrefs.SetString("text", "Standard");
+            case eTerrainSpeedTypes.normal:
+                EnvironmentManager.environmentSpeed = 5;
+                PlayerPrefs.SetInt("terrainSpeed", 5);
+
+                terrainSpeedTXT.text = "Normal";
+                PlayerPrefs.SetString("terrainText", "Normal");
                 break;
 
-            case eColorBlindOptions.optionOne:
-                colorOptionsTXT.text = "Option One - Dewt-Pro";
-                PlayerPrefs.SetString("text", "Option One - Dewt-Pro");
+            case eTerrainSpeedTypes.slow:
+                EnvironmentManager.environmentSpeed = 2;
+                PlayerPrefs.SetInt("terrainSpeed", 2);
+
+                terrainSpeedTXT.text = "Slow";
+                PlayerPrefs.SetString("terrainText", "Slow");
                 break;
 
-            case eColorBlindOptions.optionTwo:
-                colorOptionsTXT.text = "Option Two - Tritan";
-                PlayerPrefs.SetString("text", "Option Two - Tritan");
+            case eTerrainSpeedTypes.none:
+                EnvironmentManager.environmentSpeed = 0;
+                PlayerPrefs.SetInt("terrainSpeed", 0);
+
+                terrainSpeedTXT.text = "No Movement";
+                PlayerPrefs.SetString("terrainText", "No Movement");
                 break;
         }
-    }
-
-    private void SetColorPallet()
-    {
-        int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
-
-        leftTarget.color = colorPallete[_eColorBlindOption].leftTarget;
-        leftTargetOutline.color = colorPallete[_eColorBlindOption].leftTargetOutline;
-
-        rightTarget.color = colorPallete[_eColorBlindOption].rightTarget;
-        rightTargetOutline.color = colorPallete[_eColorBlindOption].rightTargetOutline;
-
-        leftTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].leftOutlineEmissive);
-
-        rightTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].rightOutlineEmissive);
     }
 }

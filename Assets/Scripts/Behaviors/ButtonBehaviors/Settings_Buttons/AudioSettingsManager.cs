@@ -69,6 +69,7 @@ public class AudioSettingsManager : MonoBehaviour
         masterHandleSize -= .005f;
         //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
         PlayerPrefs.SetFloat("masterHandle", masterHandleSize);
+        Debug.Log("Welp");
 
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }

@@ -47,13 +47,6 @@ public class FrontEnd : MonoBehaviour // This script handles all main menu butto
         Destroy(this.gameObject);
     }
 
-    /*public void OnLevelsButtonPressed() 
-    {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        CanvasManager.Instance.ShowCanvasLevelSelect();
-        Destroy(this.gameObject);
-    }*/
-
     public void OnCreditsButtonPressed() // Opens the credits menu to view all the team members.
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
