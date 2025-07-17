@@ -28,6 +28,7 @@ public class AvatarManager : MonoBehaviour
     [NamedArray(typeof(eSide))] public SoAvatar[] soAvatars;
 
     public Renderer evolveSphereRenderer;
+    public DissolveBehavior sphere;
     public Canvas playerCircCanvas;
 
     int evolutionCount;
@@ -199,6 +200,7 @@ public class AvatarManager : MonoBehaviour
         }
         count = 0;
 
+        APManager.Instance.DrainAP();
         while (count < 1)//Gus- these while loops are just to wait for an amount of time within a coroutine without moving on. you can use these instead of "yield return new WaitForSeconds(float);" if theres code youd like to be running each frame the game is waiting. you will want to do things you only want to happen once outside of the loop (like instantiating or deleting avatars), because if they are inside the loop they will happen every frame until the time has passed
         { //Gus- this while loop should be used just for changing the color of the sphere(after the avatars are already together, so the sphere is closing around them
             count += Time.deltaTime;
@@ -215,7 +217,6 @@ public class AvatarManager : MonoBehaviour
             yield return null;
         }
 
-        APManager.Instance.DrainAP();
         while (APManager.Instance.isDraining) yield return null;
         count = 0;
         yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
@@ -251,18 +252,11 @@ public class AvatarManager : MonoBehaviour
         }
         else
         {
-            //Gus B -  here is where the fail animation begins. its more complicated, but only slightly. 
-            while (count < 1)
-            {
-                count += Time.deltaTime;
-                //evolveSphereRenderer.material.color = Color.Lerp(startColor, failColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
-                yield return null;
-            }
             count = 0;
             while (count < 1)
             {
-                count += Time.deltaTime;
-                //evolveSphereRenderer.material.color = Color.Lerp(failColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                count += Time.deltaTime; 
+                sphere.ResetSphereFill(1f);
                 for (int i = 0; i < avatarObjects.Length; i++)
                 {
                     avatarObjects[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
