@@ -15,7 +15,7 @@ public class LevelSelectManager : MonoBehaviour
 
     [SerializeField] Color[] starColors;
 
-    private float moveSpeed = 10f;
+    private float moveSpeed = 5f;
     private int centerIndex = 0;
 
     private void Awake()
@@ -26,30 +26,22 @@ public class LevelSelectManager : MonoBehaviour
 
     private void Update()
     {
-        // Continuously lerp to their target positions and sizes
         for (int i = 0; i < levelStars.Length; i++)
         {
             Transform targetPos = GetStarPos(i);
 
-            levelStars[i].transform.position = Vector3.Lerp(
-                levelStars[i].transform.position,
-                targetPos.position,
-                Time.deltaTime * moveSpeed
-            );
+            levelStars[i].transform.position = Vector3.Lerp(levelStars[i].transform.position, targetPos.position, Time.deltaTime * moveSpeed);
+         
+            bool isCenter = (i == centerIndex);
 
-           /* bool isCenter = (i == centerIndex);
+            levelStars[i].transform.localScale = Vector2.Lerp(levelStars[i].transform.localScale, isCenter ? starSizes[0].transform.localScale : starSizes[1].transform.localScale,
+                Time.deltaTime * moveSpeed);
 
-            levelStars[i].rectTransform.sizeDelta = Vector2.Lerp(
-                levelStars[i].rectTransform.sizeDelta,
-                isCenter ? starSizes[0].transform.localScale : starSizes[1].transform.localScale,
-                Time.deltaTime * moveSpeed
-            );
+            bool isVisible = targetPos == selectPos || targetPos == leftPos[0] || targetPos == rightPos[0];
+            Color targetColor = levelStars[i].color;
+            targetColor.a = isVisible ? 1f : 0f;
 
-            levelStars[i].color = Color.Lerp(
-                levelStars[i].color,
-                isCenter ? starColors[0] : starColors[1],
-                Time.deltaTime * moveSpeed
-            );*/
+            levelStars[i].color = Color.Lerp(levelStars[i].color, targetColor, Time.deltaTime * moveSpeed);
         }
     }
 
@@ -72,7 +64,6 @@ public class LevelSelectManager : MonoBehaviour
     }
     private void PositionStarsInstant()
     {
-        // Place them immediately in the right positions on start
         for (int i = 0; i < levelStars.Length; i++)
         {
             levelStars[i].transform.position = GetStarPos(i).position;
@@ -109,6 +100,6 @@ public class LevelSelectManager : MonoBehaviour
 
     public void OnExplorationPressed()
     {
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 1);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 2);
     }
 }
