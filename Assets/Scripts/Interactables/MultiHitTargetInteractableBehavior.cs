@@ -54,6 +54,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
         {
             currentPoint++;
             HapticsManager.Instance.TriggerSimpleVibration(side, currentPoint * (1 / totalPoints), .25f);
+            Debug.Log("Multi Hit Target Vibrating");
             if (currentPoint - 1 < totalPoints) // If a future point still exists
             {
                 isMoving = true;

@@ -55,7 +55,6 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             this.transform.SetParent(LevelManager.Instance.GetSpawnedBoard(targetBoardIndex, LevelManager.currentStageIndex).gameObject.transform);
             if (currentPoint > interactable.multiPoints.Length)
             {
-                HapticsManager.Instance.ToggleVibration(side, false, .3f);
                 isTracing = false;
             }
             currentPoint++;
@@ -85,7 +84,6 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             {
                 Debug.Log("targetstart");
                 isTracing = true;
-                HapticsManager.Instance.ToggleVibration(side, true, .3f);
                 StartCoroutine(COTrace());
                 interactableRenderer.gameObject.SetActive(false);
             }

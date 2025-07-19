@@ -47,14 +47,16 @@ public class HapticsManager : MonoBehaviour
         }
     }
 
-    public void ToggleVibration(eSide _side, bool toggle, float amplitude, float frequency = 0f)
+    public void ToggleVibration(eSide _side, bool toggle, float amplitude = 0f, float frequency = 0f)
     {
         if (toggle)
         {
+            Debug.Log("Vibration toggled on " + amplitude);
             TriggerSimpleVibration(_side, amplitude, float.MaxValue, frequency);
         }
         else
         {
+            Debug.Log("Vibration toggled off");
             TriggerSimpleVibration(_side, amplitude, 0f, frequency);
         }
     }
