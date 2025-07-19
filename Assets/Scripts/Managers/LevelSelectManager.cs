@@ -6,7 +6,7 @@ public class LevelSelectManager : MonoBehaviour
     public static LevelSelectManager Instance;
 
     [Header("Level Stars")]
-    [SerializeField] Image[] levelStars;
+    [SerializeField] public Image[] levelStars;
     [SerializeField] Image[] starSizes;
 
     [SerializeField] Transform selectPos;
@@ -16,7 +16,7 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField] Color[] starColors;
 
     private float moveSpeed = 5f;
-    private int centerIndex = 0;
+    public int centerIndex = 0;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class LevelSelectManager : MonoBehaviour
             Color targetColor = levelStars[i].color;
             targetColor.a = isVisible ? 1f : 0f;
 
-            levelStars[i].color = Color.Lerp(levelStars[i].color, targetColor, Time.deltaTime * moveSpeed);
+            levelStars[i].color = Color.Lerp(levelStars[i].color, targetColor, Time.deltaTime * 15);
         }
     }
 
@@ -51,16 +51,30 @@ public class LevelSelectManager : MonoBehaviour
 
         if (starIndex == centerIndex)
             return selectPos;
-        else if (relativeIndex == 1 || relativeIndex == -levelStars.Length + 1)
-            return rightPos[0];
-        else if (relativeIndex == 2 || relativeIndex == -levelStars.Length + 2)
-            return rightPos[1];
-        else if (relativeIndex == levelStars.Length - 1)
-            return leftPos[0];
-        else if (relativeIndex == levelStars.Length - 2)
-            return leftPos[1];
+
+        if (levelStars.Length <= 3)
+        {
+            if (relativeIndex == 1 || relativeIndex == -levelStars.Length + 1)
+                return rightPos[0];
+            else if (relativeIndex == levelStars.Length - 1)
+                return leftPos[0];
+            else
+                return leftPos[leftPos.Length - 1]; 
+        }
+
         else
-            return leftPos[leftPos.Length - 1];
+        {
+            if (relativeIndex == 1 || relativeIndex == -levelStars.Length + 1)
+                return rightPos[0];
+            else if (relativeIndex == 2 || relativeIndex == -levelStars.Length + 2)
+                return rightPos[1];
+            else if (relativeIndex == levelStars.Length - 1)
+                return leftPos[0];
+            else if (relativeIndex == levelStars.Length - 2)
+                return leftPos[1];
+            else
+                return leftPos[leftPos.Length - 1];
+        }
     }
     private void PositionStarsInstant()
     {
@@ -73,11 +87,15 @@ public class LevelSelectManager : MonoBehaviour
     public void MoveRight()
     {
         centerIndex = (centerIndex + 1) % levelStars.Length;
+        LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex + 1) % levelStars.Length;
+        LevelSelect.Instance.ChangeLevelName();
     }
 
     public void MoveLeft()
     {
         centerIndex = (centerIndex - 1 + levelStars.Length) % levelStars.Length;
+        LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex - 1 + levelStars.Length) % levelStars.Length;
+        LevelSelect.Instance.ChangeLevelName();
     }
 
 
@@ -96,10 +114,5 @@ public class LevelSelectManager : MonoBehaviour
             FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(4, 1);
             Debug.Log("LEVEL_FREEDOM");
         }
-    }
-
-    public void OnExplorationPressed()
-    {
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 2);
     }
 }

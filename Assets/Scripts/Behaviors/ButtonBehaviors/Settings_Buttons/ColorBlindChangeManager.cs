@@ -13,10 +13,6 @@ public class ColorPallete
     public Color leftTargetOutline;
     public Color leftOutlineEmissive;
     public Color leftTarget;
-
-    /*[Header("United Material")]
-    [SerializeField] Material unitedTargetOutline;
-    [SerializeField] Material unitedTarget;*/
 }
 
 public class ColorBlindChangeManager : MonoBehaviour
@@ -33,10 +29,7 @@ public class ColorBlindChangeManager : MonoBehaviour
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
     [Space]
-    [SerializeField] TextMeshProUGUI colorOptionsTXT;
-
-
-    
+    [SerializeField] TextMeshProUGUI colorOptionsTXT;  
 
     private void Awake()
     {
