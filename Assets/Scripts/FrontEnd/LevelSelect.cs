@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class LevelSelect : MonoBehaviour
 {
     public static LevelSelect Instance;
     public enum Levels { tutorial, exploration, freedom}
     public int curIndex;
+    private float fadeInDuration;
 
     [Header("Level Names")]
     [SerializeField] string[] levelNames;
@@ -44,10 +46,28 @@ public class LevelSelect : MonoBehaviour
 
     public void ChangeLevelName()
     {
+        StartCoroutine(LevelNameTextTranstion());
         levelNameTXT.text = levelNames[curIndex];       
     }
 
-   public void OnBackButtonPressed() // When pressed, destroys Canvas_LevelSelect and instantiates Canvas_FrontEnd.
+    public IEnumerator LevelNameTextTranstion()
+    {
+        float alpha = 0f;
+        fadeInDuration = 1f;
+
+        Color curColor = levelNameTXT.color;
+        levelNameTXT.color = new Color(curColor.r, curColor.g, curColor.b, 0);
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / fadeInDuration;
+            levelNameTXT.color = new Color(levelNameTXT.color.r, levelNameTXT.color.g,
+                levelNameTXT.color.b, alpha);
+            yield return new WaitForSecondsRealtime(.01f);
+        }
+    }
+
+    public void OnBackButtonPressed() // When pressed, destroys Canvas_LevelSelect and instantiates Canvas_FrontEnd.
    {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         CanvasManager.Instance.ShowCanvasFE();

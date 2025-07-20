@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 public class LevelSelectManager : MonoBehaviour
 {
@@ -9,6 +11,11 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField] public Image[] levelStars;
     [SerializeField] Image[] starSizes;
 
+    [Header("Level Index Assets")]
+    [SerializeField] TextMeshProUGUI levelIndexTXT;
+    [SerializeField] TextMeshProUGUI curLevelTXT;
+    
+    [Header("Star Positions/Colors")]
     [SerializeField] Transform selectPos;
     [SerializeField] Transform[] leftPos;
     [SerializeField] Transform[] rightPos;
@@ -17,11 +24,15 @@ public class LevelSelectManager : MonoBehaviour
 
     private float moveSpeed = 5f;
     public int centerIndex = 0;
+    private float fadeInDuration;
 
     private void Awake()
     {
         Instance = this;
         PositionStarsInstant();
+
+        levelIndexTXT.text = levelStars.Length.ToString();
+        UpdateCurrentLevel();
     }
 
     private void Update()
@@ -61,7 +72,6 @@ public class LevelSelectManager : MonoBehaviour
             else
                 return leftPos[leftPos.Length - 1]; 
         }
-
         else
         {
             if (relativeIndex == 1 || relativeIndex == -levelStars.Length + 1)
@@ -88,16 +98,42 @@ public class LevelSelectManager : MonoBehaviour
     {
         centerIndex = (centerIndex + 1) % levelStars.Length;
         LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex + 1) % levelStars.Length;
+        StartCoroutine(CurrentLevelTextTransition());
         LevelSelect.Instance.ChangeLevelName();
+        UpdateCurrentLevel();
     }
 
     public void MoveLeft()
     {
         centerIndex = (centerIndex - 1 + levelStars.Length) % levelStars.Length;
         LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex - 1 + levelStars.Length) % levelStars.Length;
+        StartCoroutine(CurrentLevelTextTransition());
         LevelSelect.Instance.ChangeLevelName();
+        UpdateCurrentLevel();
     }
 
+    private void UpdateCurrentLevel()
+    {
+        int curLevel = centerIndex + 1;
+        curLevelTXT.text = curLevel.ToString();
+    }
+
+    public IEnumerator CurrentLevelTextTransition()
+    {
+        float alpha = 0f;
+        fadeInDuration = 1f;
+
+        Color curColor = curLevelTXT.color;
+        curLevelTXT.color = new Color(curColor.r, curColor.g, curColor.b, 0);
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / fadeInDuration;
+            curLevelTXT.color = new Color(curLevelTXT.color.r, curLevelTXT.color.g,
+                curLevelTXT.color.b, alpha);
+            yield return new WaitForSecondsRealtime(.01f);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

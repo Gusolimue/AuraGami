@@ -11351,7 +11351,6 @@ GameObject:
   - component: {fileID: 613676096}
   - component: {fileID: 613676104}
   - component: {fileID: 613676105}
-  - component: {fileID: 613676107}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11399,19 +11398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2057e81792bdf4a9d1d631301e7121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &613676107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613676094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whichLevel: 0
 --- !u!1 &693708857
 GameObject:
   m_ObjectHideFlags: 0
@@ -11663,6 +11649,7 @@ MonoBehaviour:
   testTimeline: []
   leftImpulsePlayer: {fileID: 441087508}
   rightImpulsePlayer: {fileID: 441087507}
+  hapticsOn: 1
 --- !u!4 &815578919
 Transform:
   m_ObjectHideFlags: 0

@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1539326333825500570}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
         m_MethodName: OnBackButtonPressed
         m_Mode: 1
@@ -439,10 +439,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelStars: []
   starSizes: []
+  levelIndexTXT: {fileID: 0}
+  curLevelTXT: {fileID: 0}
   selectPos: {fileID: 0}
   leftPos: []
   rightPos: []
   starColors: []
+  centerIndex: 0
 --- !u!1 &1883231110618370108
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +788,6 @@ GameObject:
   - component: {fileID: 1267571754117999439}
   - component: {fileID: 1250513558494721737}
   - component: {fileID: 1391947736261083105}
-  - component: {fileID: 1539326333825500570}
   - component: {fileID: 2893707274678163836}
   m_Layer: 5
   m_Name: Canvas_LevelSelect_Grab_v
@@ -866,7 +868,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1391947736261083105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,18 +888,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &1539326333825500570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751529164868806702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617c3886c7c311449852d3bdabf7e62d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2893707274678163836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6895,10 +6885,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelStars: []
   starSizes: []
+  levelIndexTXT: {fileID: 0}
+  curLevelTXT: {fileID: 0}
   selectPos: {fileID: 0}
   leftPos: []
   rightPos: []
   starColors: []
+  centerIndex: 0
 --- !u!1 &7187025056865490224
 GameObject:
   m_ObjectHideFlags: 0
