@@ -197,7 +197,7 @@ public class APManager : MonoBehaviour
             float spendAmount = 2f;
             DecreaseAP(spendAmount);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
-            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveSphereRenderer.gameObject.transform.position);
+            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
             sphere.FillSphere(stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex-1, 0, stageTargetValues.Length - 1)] * spendAmount);
             yield return new WaitForSeconds(sphere.fillTime);
         }

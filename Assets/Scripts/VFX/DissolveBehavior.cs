@@ -5,7 +5,7 @@ public class DissolveBehavior : MonoBehaviour
 {
 
     Renderer r;
-    public float fillTarget;
+    public float fillTarget ;
     public float count;
     public float fillTime = .2f;
     float time;
@@ -13,11 +13,13 @@ public class DissolveBehavior : MonoBehaviour
     Transform uprightSphere;
     private void Awake()
     {
+        fillTarget = 0f;
         r = GetComponent<Renderer>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SetDissolve(0f);
         ResetSphereFill();
     }
 
@@ -32,12 +34,12 @@ public class DissolveBehavior : MonoBehaviour
     //shader float is really .21f to .84f for full to empty
     void SetDissolve(float _percentage)
     {
-        r.sharedMaterials[0].SetFloat("Vector1_9e41d94fb3a847cea58826d26a43525d",  Mathf.Lerp(.84f, .21f, _percentage));
+        r.sharedMaterials[0].SetFloat("Dissolve",  Mathf.Lerp(.84f, .21f, _percentage));
     }
 
     float GetDissolvePercent()
     {
-        float tmpFloat = r.sharedMaterials[0].GetFloat("Vector1_9e41d94fb3a847cea58826d26a43525d");
+        float tmpFloat = r.sharedMaterials[0].GetFloat("Dissolve");
         return Mathf.InverseLerp(.84f, .21f, tmpFloat);
     }
     public void ResetSphereFill(float _time = 0)
