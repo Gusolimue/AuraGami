@@ -68,7 +68,7 @@ public class PauseOptions : MonoBehaviour
         LoadManager.Instance.isTitleScreen = 1;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 1);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
     }
 
     private IEnumerator FillConnectors()

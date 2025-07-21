@@ -26,6 +26,8 @@ public class EnvironmentManager : MonoBehaviour
         SpawnEnvironment(spawnDistance);
         SpawnEnvironment(spawnDistance);
         SpawnEnvironment(spawnDistance);
+
+        environmentSpeed = PlayerPrefs.GetInt("terrainSpeed");
     }
 
     // Controls environment movement and removal
