@@ -24,6 +24,10 @@ public class ColorBlindChangeManager : MonoBehaviour
     [Space]
     [SerializeField] Material rightTarget;
     [SerializeField] Material rightTargetOutline;
+
+    [Header("Avatars")]
+    [SerializeField] SoAvatar yata;
+    [SerializeField] SoAvatar nagini;
     private enum eColorBlindOptions {none, optionOne, optionTwo};
 
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
@@ -81,6 +85,49 @@ public class ColorBlindChangeManager : MonoBehaviour
         }
     }
 
+    private void UpdateAvatarColors(SoAvatar avatar, int colorBlindIndex)
+    {
+        bool isStandard = colorBlindIndex == 0;
+
+        Color baseColor;
+        Color emissiveColor;
+
+        if (avatar == nagini)
+        {
+            baseColor = colorPallete[colorBlindIndex].leftTarget;
+            emissiveColor = colorPallete[colorBlindIndex].leftOutlineEmissive;
+        }
+        else if (avatar == yata)
+        {
+            baseColor = colorPallete[colorBlindIndex].rightTarget;
+            emissiveColor = colorPallete[colorBlindIndex].rightOutlineEmissive;
+        }
+        else
+        {
+            baseColor = Color.white;
+            emissiveColor = Color.black;
+        }
+
+        for (int i = 0; i < avatar.avatarMats.Length; i++)
+        {
+            Material mat = avatar.avatarMats[i];
+            Texture texture;
+
+            if (isStandard) texture = avatar.avatarTextures[i].textures[0];
+            else texture = avatar.avatarTextures[i].textures[1];
+
+            mat.SetTexture("_BaseMap", texture);
+            if (isStandard) mat.color = Color.white;
+            else mat.color = baseColor;
+
+            if (isStandard) mat.SetColor("_EmissionColor", Color.black);
+            else 
+            {
+                mat.SetColor("_EmissionColor", emissiveColor);
+            }
+        }
+    }
+
     private void SetColorPallet()
     {
         int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
@@ -92,7 +139,9 @@ public class ColorBlindChangeManager : MonoBehaviour
         rightTargetOutline.color = colorPallete[_eColorBlindOption].rightTargetOutline;
 
         leftTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].leftOutlineEmissive);
-
         rightTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].rightOutlineEmissive);
+
+        UpdateAvatarColors(yata, _eColorBlindOption);
+        UpdateAvatarColors(nagini, _eColorBlindOption);
     }
 }
