@@ -171,17 +171,9 @@ public class EvolveBehavior : MonoBehaviour
         }
         else if (!_tutorial)
         {
-            if (_final)
-            {
-                Debug.Log("end level");
-                CanvasManager.Instance.ShowCanvasLevelEnd();
-            }
-            else
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.showPauseMenu = false;
-                PauseManager.Instance.PauseGame(true);
-            }
+            CanvasManager.Instance.ShowCanvasLevelProgress();
+            PauseManager.Instance.showPauseMenu = false;
+            PauseManager.Instance.PauseGame(true);
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
