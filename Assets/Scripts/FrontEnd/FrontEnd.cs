@@ -26,7 +26,6 @@ public class FrontEnd : MonoBehaviour // This script handles all main menu butto
             slider.value = 0f;
         }
         StartCoroutine(FillConnectors());
-        idleSoundInstance = AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_titleIdle);
     }
 
     private void Update() // To add more flare to opening the main menu, I have the connectors between each one fill in. 
