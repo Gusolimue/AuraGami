@@ -14,7 +14,9 @@ public class AvatarTrigger : MonoBehaviour
                 if (avatarBehavior.side == ti.side || ti.side == eSide.any)
                 {
                     ti.onSpline = true;
-                    //Debug.Log("threadedEnter");
+                    Debug.Log("threadedEnter");
+                    HapticsManager.Instance.ToggleVibration(avatarBehavior.side, true, 0.3f);
+
                     ti.count = 0;
                 }
                 else if (ti.side == eSide.both)
@@ -24,7 +26,8 @@ public class AvatarTrigger : MonoBehaviour
                     if (leftTriggered == rightTriggered == true)
                     {
                         ti.onSpline = true;
-                        //Debug.Log("threadedEnter");
+                        Debug.Log("threadedEnter");
+                        HapticsManager.Instance.ToggleVibration(avatarBehavior.side, true, 0.3f);
                         ti.count = 0;
                     }
                 }
@@ -41,7 +44,8 @@ public class AvatarTrigger : MonoBehaviour
                 if (avatarBehavior.side == ti.side || ti.side == eSide.any)
                 {
                     ti.onSpline = false;
-                    //Debug.Log("threadedExit");
+                    Debug.Log("threadedExit");
+                    HapticsManager.Instance.ToggleVibration(avatarBehavior.side, false);
                 }
                 else if (ti.side == eSide.both)
                 {
@@ -50,7 +54,8 @@ public class AvatarTrigger : MonoBehaviour
                     if (leftTriggered || rightTriggered == false)
                     {
                         ti.onSpline = false;
-                        //Debug.Log("threadedExit");
+                        Debug.Log("threadedExit");
+                        HapticsManager.Instance.ToggleVibration(avatarBehavior.side, false);
                     }
                 }
             }
