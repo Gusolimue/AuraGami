@@ -1,12 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
-
+using EditorAttributes;
 public class EvolveBehavior : MonoBehaviour
 {
     [Header("Variables to Adjust")]
-
-    public float scaleMult;
+    [Range(0f, 1f)]
+    public float cheatAP;
     [Header("Variables to Set")]
 
 
@@ -23,7 +22,22 @@ public class EvolveBehavior : MonoBehaviour
         audioManager = AudioManager.Instance;
         avatarManager = AvatarManager.Instance;
     }
-    
+
+    //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
+    [Button]
+    public void StartCheatEvolve()
+    {
+        BeatManager.Instance.PauseMusicTMP(true);
+        APManager.Instance.curAP = cheatAP;
+        APManager.Instance.IncreaseAP();
+        StartEvolve();
+    }
+    public bool StartEvolve(bool _tutorial = false, bool _final = false)
+    {
+        bool tmpBool = APManager.Instance.StagePassCheck();
+        StartCoroutine(CoEvolve(tmpBool, _tutorial, _final));
+        return tmpBool;
+    }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     public IEnumerator CoEvolve(bool _pass, bool _tutorial = false, bool _final = false)
     {
@@ -51,7 +65,7 @@ public class EvolveBehavior : MonoBehaviour
         float scaleAmt = .5f;
         if (_final) scaleAmt = .25f;
         // take control from player
-        //disableAvatarMovement = true;
+        avatarManager.disableAvatarMovement = true;
         count = 0;
         while (count < 1)
         {
@@ -109,7 +123,7 @@ public class EvolveBehavior : MonoBehaviour
             while (count < 1)
             {
                 count += Time.deltaTime;
-                //evolveSphereRenderer.material.color = Color.Lerp(startColor, transparentColor, count / (60f / LevelManager.Instance.level.track.bpm) * 2);
+                sphere.ResetSphereFill(1f);
                 for (int i = 0; i < avatars.Length; i++)
                 {
                     avatars[i].transform.localScale = Vector3.Lerp(avatarStartingScales[i] * scaleAmt, avatarStartingScales[i], count / (60f / LevelManager.Instance.level.track.bpm) * 2);
@@ -150,27 +164,28 @@ public class EvolveBehavior : MonoBehaviour
             }
             yield return null;
         }
-        if (_pass || _tutorial)
+        if (_pass && !_final || _tutorial)
         {
-            //disableAvatarMovement = false;
+            avatarManager.disableAvatarMovement = false;
 
         }
         else if (!_tutorial)
         {
-            CanvasManager.Instance.ShowCanvasStageFail();
-            PauseManager.Instance.showPauseMenu = false;
-            PauseManager.Instance.PauseGame(true);
+            if (_final)
+            {
+                Debug.Log("end level");
+                CanvasManager.Instance.ShowCanvasLevelEnd();
+            }
+            else
+            {
+                CanvasManager.Instance.ShowCanvasStageFail();
+                PauseManager.Instance.showPauseMenu = false;
+                PauseManager.Instance.PauseGame(true);
+            }
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
         //readyMove = true;
-    }
-    //Gus- Called by the stage manager at the end of a stages section in the music. the StagePassCheck method returns a bool based on if the player has enough points to pass the stage.
-    public bool StartEvolve(bool _tutorial = false)
-    {
-        bool tmpBool = APManager.Instance.StagePassCheck();
-        StartCoroutine(CoEvolve(tmpBool, _tutorial));
-        return tmpBool;
     }
     //alternate version of this method made for the final check to end level
     IEnumerator CoEvolveFinal(bool _pass)

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ public class DissolveBehavior : MonoBehaviour
     public float fillTime = .2f;
     float time;
 
-    Transform uprightSphere;
     private void Awake()
     {
         fillTarget = 0f;
@@ -19,15 +19,17 @@ public class DissolveBehavior : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetDissolve(0f);
+
         ResetSphereFill();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetDissolve(Mathf.Lerp(GetDissolvePercent(), fillTarget, count / time));
-        count += Time.deltaTime;
+        //r.sharedMaterials[0].SetFloat("Dissolve", Mathf.Lerp(.84f, .21f, 0f));
+
+        //SetDissolve(Mathf.Lerp(GetDissolvePercent(), fillTarget, count / time));
+        //count += Time.deltaTime;
         //Debug.Log(GetDissolvePercent());
     }
 
@@ -49,10 +51,25 @@ public class DissolveBehavior : MonoBehaviour
         fillTarget = 0;
         SetDissolve(0);
     }
-    public void FillSphere(float _percentage)
+    public void FillSphere(float _percentage, float _time)
     {
-        count = 0;
-        time = fillTime;
-        fillTarget += _percentage;
+        //ResetSphereFill();
+        //count = 0;
+        //time = _time;
+        //fillTarget = _percentage;
+        StartCoroutine(COSphereFill(_percentage, _time));
+    }
+
+    IEnumerator COSphereFill(float _percentage, float _time)
+    {
+        SetDissolve(0f);
+        float dissolveAmount = _percentage;
+        float count = 0;
+        while (count < _time)
+        {
+            SetDissolve(Mathf.Lerp(0f, _percentage, count / _time));
+            count += Time.deltaTime;
+            yield return null;
+        }
     }
 }

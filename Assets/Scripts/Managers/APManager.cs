@@ -192,14 +192,16 @@ public class APManager : MonoBehaviour
     IEnumerator CODrainAP()
     {
         SigilShieldBehavior.Instance.ShieldReset();
+        float spendAmount = 2f;
+        float maxLength = 1.5f;
+        float tmpLength = maxLength / (curAP / stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * spendAmount);
+        sphere.FillSphere(curAP, curAP * maxLength);
         while (curAP > 0)
         {
-            float spendAmount = 2f;
             DecreaseAP(spendAmount);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
             APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
-            sphere.FillSphere(stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex-1, 0, stageTargetValues.Length - 1)] * spendAmount);
-            yield return new WaitForSeconds(sphere.fillTime);
+            yield return new WaitForSeconds(tmpLength);
         }
         isDraining = false;
     }
