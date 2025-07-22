@@ -797,6 +797,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2592324025496712292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/gentle breeze sfx (wind chimes) v2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/gentle breeze sfx (wind chimes) v2
+  Guid:
+    Data1: -185922353
+    Data2: 1207417876
+    Data3: 595487931
+    Data4: -167055887
+  Banks:
+  - {fileID: 7380030307056029526}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 56000
 --- !u!114 &-1937613235859230366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +974,7 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638885450723437104
+  lastModified: 638860432298928412
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -1065,12 +1092,13 @@ MonoBehaviour:
   - {fileID: -7425238372385842604}
   - {fileID: 6289242940712833024}
   - {fileID: 5501584210331763380}
+  - {fileID: -2592324025496712292}
   EditorParameters: []
   MasterBanks:
   - {fileID: -761348971546921552}
   StringsBanks:
   - {fileID: 66794975293037789}
-  cacheTime: 638885450723726539
+  cacheTime: 638887770868173088
   cacheVersion: 131622
 --- !u!114 &66794975293037789
 MonoBehaviour:
@@ -1087,10 +1115,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638885450723437104
+  lastModified: 638887770868004716
   FileSizes:
   - Name: Desktop
-    Value: 3172
+    Value: 3248
   Exists: 1
 --- !u!114 &137400113076986137
 MonoBehaviour:
@@ -1289,7 +1317,7 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638885450723696080
+  lastModified: 638875786478611872
   FileSizes:
   - Name: Desktop
     Value: 10656896
@@ -2109,10 +2137,10 @@ MonoBehaviour:
   Path: Assets/AuragamiFmod/Auragami/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638885450723726539
+  lastModified: 638887770868173088
   FileSizes:
   - Name: Desktop
-    Value: 1083392
+    Value: 1806784
   Exists: 1
 --- !u!114 &7513250719191794386
 MonoBehaviour:
