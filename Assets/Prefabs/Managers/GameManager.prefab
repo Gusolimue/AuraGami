@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf661f8ae86084bb76d52d44896730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTutorial: 0
   isTitleScreen: 0
-  currentScene: 0
 --- !u!1 &4207287557808507905
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,55 +77,9 @@ Transform:
   m_Children:
   - {fileID: 2632847492711915463}
   - {fileID: 4050513536343082901}
-  - {fileID: 117520410813962970}
   - {fileID: 7624580806312907246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7549871783537721193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 117520410813962970}
-  - component: {fileID: 4086343406119551525}
-  m_Layer: 0
-  m_Name: LevelSelectManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &117520410813962970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7549871783537721193}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 301074815518635727}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4086343406119551525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7549871783537721193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9439b2c99cd654481844ade397025f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whichLevel: 0
 --- !u!1 &9045910937402570544
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d7db134f2656e40bef965e4817a980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLevelProgress: 0
 --- !u!1001 &1845761873482448171
 PrefabInstance:
   m_ObjectHideFlags: 0

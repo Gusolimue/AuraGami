@@ -41,6 +41,7 @@ public class TitleScreen : MonoBehaviour
 
     public void OnPressAnywherePressed()
     {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen); 
         StartCoroutine(TitleTransition());
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .2f);
     }
