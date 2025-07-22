@@ -80,6 +80,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision(AvatarBehavior avatarBehavior)
     {
+        Debug.Log("target collision");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
         HapticsManager.Instance.TriggerSimpleVibration(interactable.side, .5f, .25f);
         if (avatarBehavior.side == eSide.left)
@@ -96,7 +97,6 @@ public class BaseInteractableBehavior : MonoBehaviour
     internal void StopTarget()
     {
         gameObject.SetActive(false);
-        gameObject.transform.SetParent(null);
     }
 
     public void FadeOutTarget()
