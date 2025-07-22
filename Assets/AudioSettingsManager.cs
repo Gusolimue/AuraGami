@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -36,6 +37,7 @@ public class AudioSettingsManager : MonoBehaviour
     {
         masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", masterAudioSliderValue);
         masterAudioSlider.onValueChanged.AddListener(MasterVolumeSlider);
+        //masterAudioSlider.OnDrag();
 
         masterHandleSize = PlayerPrefs.GetFloat("masterHandle");
         //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
@@ -151,4 +153,24 @@ public class AudioSettingsManager : MonoBehaviour
         isReset = false;
         count = 0;
     }
+
+    //public class CustomSlider : Slider
+    //{
+    //    public override void OnPointerDown(PointerEventData eventData)
+    //    {
+    //        base.OnPointerDown(eventData);
+
+
+    //        // Both controllers vibrating is temporary behavior until I figure out how to target specifically which controller is currently selecting the slider
+    //        HapticsManager.Instance.ToggleVibration(eSide.both, true, base.value);
+    //    }
+
+    //    public override void OnPointerUp(PointerEventData eventData)
+    //    {
+    //        base.OnPointerUp(eventData);
+
+    //        // Both controllers disabling vibration is temporary behavior until I figure out how to target specifically which controller is currently deselecting the slider
+    //        HapticsManager.Instance.ToggleVibration(eSide.both, false, base.value);
+    //    }
+    //}
 }

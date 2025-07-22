@@ -22,11 +22,11 @@ public class HapticsManager : MonoBehaviour
     {
         StartCoroutine(COStartHapticTimeline(side, hapticTimeline));
     }
-    IEnumerator COStartHapticTimeline( eSide side, HapticTimeline[] hapticTimeline)
+    IEnumerator COStartHapticTimeline(eSide side, HapticTimeline[] hapticTimeline)
     {
         foreach (var tl in hapticTimeline)
         {
-            TriggerSimpleVibration( side, tl.amplitude, tl.duration, tl.frequency);
+            TriggerSimpleVibration(side, tl.amplitude, tl.duration, tl.frequency);
             yield return new WaitForSeconds(tl.duration);
         }
     }
@@ -51,7 +51,22 @@ public class HapticsManager : MonoBehaviour
             }
         }
     }
+
+    public void ToggleVibration(eSide _side, bool toggle, float amplitude = 0f, float frequency = 0f)
+    {
+        if (toggle)
+        {
+            Debug.Log("Vibration toggled on " + amplitude);
+            TriggerSimpleVibration(_side, amplitude, float.MaxValue, frequency);
+        }
+        else
+        {
+            Debug.Log("Vibration toggled off");
+            TriggerSimpleVibration(_side, amplitude, 0f, frequency);
+        }
+    }
 }
+
 [System.Serializable]
 public class HapticTimeline
 {

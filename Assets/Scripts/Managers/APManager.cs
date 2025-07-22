@@ -98,7 +98,7 @@ public class APManager : MonoBehaviour
         curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
             * multLevels[GetStreakIndex(1)];
         curAP = Mathf.Clamp(curAP, 0, 1.1f);
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+        //HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         UpdateSigils();
         UpdateAuraFX();
 
@@ -151,7 +151,7 @@ public class APManager : MonoBehaviour
             {
                 SigilShieldBehavior.Instance.DecreaseShield();
             }
-            HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .75f);
+            //HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .75f);
         }
      
     }
