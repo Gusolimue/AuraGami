@@ -8,7 +8,7 @@ public class InteractableTrigger : MonoBehaviour
     {
         AvatarBehavior ab;
         other.TryGetComponent<AvatarBehavior>(out ab);
-        other.transform.parent.TryGetComponent<AvatarBehavior>(out ab);
+        if(other.transform.parent != null) other.transform.parent.TryGetComponent<AvatarBehavior>(out ab);
 
         if (ab != null && GetComponentInParent<BaseInteractableBehavior>() != null)
         {

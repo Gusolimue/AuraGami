@@ -12,7 +12,7 @@ public class LevelOrbBehavior : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] GameObject levelOrb;
     [SerializeField] GameObject zephyrBody;
-    [SerializeField] GameObject orbPosition;
+   // [SerializeField] GameObject orbPosition;
 
     [Header("Orb Selection Variables")]
     private bool isSelected;
@@ -32,7 +32,7 @@ public class LevelOrbBehavior : MonoBehaviour
     {
         Instance = this;
         isSelected = false;
-        levelOrb.transform.position = orbPosition.transform.position;
+        //levelOrb.transform.position = orbPosition.transform.position;
 
         count = 50;
 

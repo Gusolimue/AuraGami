@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class SettingsButtonBehavior : MonoBehaviour
+public class SettingsButtonBehavior : MonoBehaviour // This script is almost identical with the one that handles the nebula buttons. In this case, instead of fading in an image, it fills an array of sliders from zero to one.
 {
     [Header("Connectors")]
     public static SettingsButtonBehavior Instance;
@@ -38,7 +38,7 @@ public class SettingsButtonBehavior : MonoBehaviour
         }
     }
 
-    public void IncreaseFill()
+    public void IncreaseFill() 
     {
         isHovering = true;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);

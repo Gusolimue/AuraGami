@@ -1,105 +1,100 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-
-[System.Serializable]
-public class ColorPallete
-{
-    [Header("Right Color")]
-    public Color rightTargetOutline;
-    public Color rightOutlineEmissive;
-    public Color rightTarget;
-
-    [Header("Left Color")]
-    public Color leftTargetOutline;
-    public Color leftOutlineEmissive;
-    public Color leftTarget;
-
-    /*[Header("United Material")]
-    [SerializeField] Material unitedTargetOutline;
-    [SerializeField] Material unitedTarget;*/
-}
 
 public class AccessibilitySettingsManager : MonoBehaviour
 {
     public static AccessibilitySettingsManager Instance;
-    [Header("Materials")]
-    [SerializeField] Material leftTarget;
-    [SerializeField] Material leftTargetOutline;
-    [Space]
-    [SerializeField] Material rightTarget;
-    [SerializeField] Material rightTargetOutline;
-    private enum eColorBlindOptions {none, optionOne, optionTwo};
+    [Header("Terrain Speed Assets")]
+    [SerializeField] TextMeshProUGUI terrainSpeedTXT;
 
-    [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
-
-    [Space]
-    [SerializeField] TextMeshProUGUI colorOptionsTXT;
-
-
-    
+    [Header("Haptics Toggle Assets")]
+    [SerializeField] Image toggleFill;
+    [SerializeField] Color[] toggleColors;
+    private int toggleNum = 1;
+    private enum eTerrainSpeedTypes { normal, slow, none};
 
     private void Awake()
     {
         Instance = this;
-        PlayerPrefs.GetInt("ColorModeIndex", 0);
+        terrainSpeedTXT.text = PlayerPrefs.GetString("terrainText");
 
-        colorOptionsTXT.text = PlayerPrefs.GetString("text");
+        toggleNum = PlayerPrefs.GetInt("toggleHaptics");
+        if (toggleNum == 1) toggleFill.color = toggleColors[0];
+        else if (toggleNum == 2) toggleFill.color = toggleColors[1];
     }
 
-    public void ColorOptionsCycle(bool direction)
+    private void Update()
     {
-        int tmpInt = PlayerPrefs.GetInt("ColorModeIndex");
+        if (toggleNum == 1) toggleFill.color = Color.Lerp(toggleFill.color, toggleColors[0], Time.deltaTime * 5);
+        else if (toggleNum == 2)toggleFill.color = Color.Lerp(toggleFill.color, toggleColors[1], Time.deltaTime * 5);
+    }
+
+    public void ChangeOption(bool direction)
+    {
+        int tptInt = PlayerPrefs.GetInt("TerrainSpeedIndex");
         if (direction)
         {
-            tmpInt++;
-            if ((eColorBlindOptions)tmpInt > eColorBlindOptions.optionTwo) tmpInt--;
+            tptInt++;
+            if ((eTerrainSpeedTypes)tptInt > eTerrainSpeedTypes.none) tptInt--;
         }
         else
         {
-            tmpInt--;
-            if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
+            tptInt--;
+            if ((eTerrainSpeedTypes)tptInt < eTerrainSpeedTypes.normal) tptInt++;
         }
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
-        PlayerPrefs.Save();
-        SwitchColorOptions();
-        SetColorPallet();
+        TerrainSpeedOptions();
+        PlayerPrefs.SetInt("TerrainSpeedIndex", tptInt);
     }
 
-    private void SwitchColorOptions()
+    private void TerrainSpeedOptions()
     {
-        eColorBlindOptions tmpOption = (eColorBlindOptions)PlayerPrefs.GetInt("ColorModeIndex");
-        switch (tmpOption)
+        eTerrainSpeedTypes tpt = (eTerrainSpeedTypes)PlayerPrefs.GetInt("TerrainSpeedIndex");
+        switch (tpt)
         {
-            case eColorBlindOptions.none:
-                colorOptionsTXT.text = "Standard";
-                PlayerPrefs.SetString("text", "Standard");
+            case eTerrainSpeedTypes.normal:
+                EnvironmentManager.environmentSpeed = 5;
+                PlayerPrefs.SetInt("terrainSpeed", 5);
+
+                terrainSpeedTXT.text = "Normal";
+                PlayerPrefs.SetString("terrainText", "Normal");
                 break;
 
-            case eColorBlindOptions.optionOne:
-                colorOptionsTXT.text = "Option One - Dewt-Pro";
-                PlayerPrefs.SetString("text", "Option One - Dewt-Pro");
+            case eTerrainSpeedTypes.slow:
+                EnvironmentManager.environmentSpeed = 2;
+                PlayerPrefs.SetInt("terrainSpeed", 2);
+
+                terrainSpeedTXT.text = "Slow";
+                PlayerPrefs.SetString("terrainText", "Slow");
                 break;
 
-            case eColorBlindOptions.optionTwo:
-                colorOptionsTXT.text = "Option Two - Tritan";
-                PlayerPrefs.SetString("text", "Option Two - Tritan");
+            case eTerrainSpeedTypes.none:
+                EnvironmentManager.environmentSpeed = 0;
+                PlayerPrefs.SetInt("terrainSpeed", 0);
+
+                terrainSpeedTXT.text = "No Movement";
+                PlayerPrefs.SetString("terrainText", "No Movement");
                 break;
         }
     }
 
-    private void SetColorPallet()
+    public void ToggleHaptics()
     {
-        int _eColorBlindOption = PlayerPrefs.GetInt("ColorModeIndex");
+        if (HapticsManager.Instance.hapticsOn == false)
+        {
+            HapticsManager.Instance.hapticsOn = true;
+            toggleNum = 1;
+            PlayerPrefs.SetInt("toggleHaptics", toggleNum);
+        }
+        else
+        {
+            HapticsManager.Instance.hapticsOn = false;
+            toggleNum = 2;
+            PlayerPrefs.SetInt("toggleHaptics", toggleNum);
+        }
 
-        leftTarget.color = colorPallete[_eColorBlindOption].leftTarget;
-        leftTargetOutline.color = colorPallete[_eColorBlindOption].leftTargetOutline;
-
-        rightTarget.color = colorPallete[_eColorBlindOption].rightTarget;
-        rightTargetOutline.color = colorPallete[_eColorBlindOption].rightTargetOutline;
-
-        leftTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].leftOutlineEmissive);
-
-        rightTargetOutline.SetColor("_Emissive", colorPallete[_eColorBlindOption].rightOutlineEmissive);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
 }

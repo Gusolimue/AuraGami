@@ -11,7 +11,7 @@ public class EvolveBehavior : MonoBehaviour
 
     public DissolveBehavior sphere;
     [Header("Variables to Call")]
-
+    public bool readyMove;
 
     GameObject[] avatars;
     AudioManager audioManager;
@@ -41,6 +41,7 @@ public class EvolveBehavior : MonoBehaviour
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     public IEnumerator CoEvolve(bool _pass, bool _tutorial = false, bool _final = false)
     {
+        if(_pass && !_tutorial) LevelManager.currentStageIndex++;
         avatars = avatarManager.avatarObjects;
         audioManager.PlaySFX(audioManager.sfx_avatar_evolveStart);
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
@@ -171,22 +172,15 @@ public class EvolveBehavior : MonoBehaviour
         }
         else if (!_tutorial)
         {
-            if (_final)
-            {
-                Debug.Log("end level");
-                CanvasManager.Instance.ShowCanvasLevelEnd();
-            }
-            else
-            {
-                CanvasManager.Instance.ShowCanvasStageFail();
-                PauseManager.Instance.showPauseMenu = false;
-                PauseManager.Instance.PauseGame(true);
-            }
+            CanvasManager.Instance.ShowCanvasLevelProgress();
+            PauseManager.Instance.showPauseMenu = false;
+            PauseManager.Instance.PauseGame(true);
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
-        //readyMove = true;
+        readyMove = true;
     }
+
     //alternate version of this method made for the final check to end level
     IEnumerator CoEvolveFinal(bool _pass)
     {
