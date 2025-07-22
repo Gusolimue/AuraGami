@@ -31,6 +31,7 @@ public class APManager : MonoBehaviour
     [Header("To Set/Call")]
     public AuraFXBehavior[] auraFXBehaviors;
     public Slider sigil;
+    public DissolveBehavior sphere;
     public static APManager Instance;
 
     private void Awake()
@@ -187,20 +188,20 @@ public class APManager : MonoBehaviour
         isDraining = true;
         StartCoroutine(CODrainAP());
     }
+    public float targetVal;
     IEnumerator CODrainAP()
     {
         SigilShieldBehavior.Instance.ShieldReset();
+        float spendAmount = 2f;
+        float maxLength = 1.5f;
+        float tmpLength = maxLength / (curAP / stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * spendAmount);
+        sphere.FillSphere(curAP, curAP * maxLength);
         while (curAP > 0)
         {
-            count = 0;
-            DecreaseAP(1);
+            DecreaseAP(spendAmount);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
-            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveSphereRenderer.gameObject.transform.position);
-            yield return new WaitForSeconds(0.01f);
-            //while(sigil.value != targetSigilValue)
-            //{
-            //    yield return null;
-            //}
+            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
+            yield return new WaitForSeconds(tmpLength);
         }
         isDraining = false;
     }
