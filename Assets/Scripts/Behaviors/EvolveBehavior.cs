@@ -11,7 +11,7 @@ public class EvolveBehavior : MonoBehaviour
 
     public DissolveBehavior sphere;
     [Header("Variables to Call")]
-
+    public bool readyMove;
 
     GameObject[] avatars;
     AudioManager audioManager;
@@ -185,8 +185,9 @@ public class EvolveBehavior : MonoBehaviour
         }
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
         // Give control of the avatars back to the player
-        //readyMove = true;
+        readyMove = true;
     }
+
     //alternate version of this method made for the final check to end level
     IEnumerator CoEvolveFinal(bool _pass)
     {

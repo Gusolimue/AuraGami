@@ -129,7 +129,6 @@ public class AvatarManager : MonoBehaviour
         StartCoroutine(evolveBehavior.CoEvolve(tmpBool, _tutorial));
         return tmpBool;
     }
-    public bool readyMove = false;
     public IEnumerator COTutorialIntro()
     {
         TutorialCanvasManager tc = TutorialManager.Instance.tc;
