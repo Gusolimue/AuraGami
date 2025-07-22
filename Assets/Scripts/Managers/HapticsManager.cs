@@ -12,6 +12,8 @@ public class HapticsManager : MonoBehaviour
     public HapticImpulsePlayer leftImpulsePlayer;
     public HapticImpulsePlayer rightImpulsePlayer;
 
+    public bool hapticsOn = true;
+
     void Awake()
     {
         Instance = this;
@@ -30,20 +32,23 @@ public class HapticsManager : MonoBehaviour
     }
     public void TriggerSimpleVibration(eSide _side, float amplitude, float duration, float frequency = 0f)
     {
-        switch (_side)
+        if (hapticsOn)
         {
-            case eSide.left:
-                leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
-                break;
-            case eSide.right:
-                rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
-                break;
-            case eSide.both:
-                leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
-                rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
-                break;
-            default:
-                break;
+            switch (_side)
+            {
+                case eSide.left:
+                    leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                    break;
+                case eSide.right:
+                    rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                    break;
+                case eSide.both:
+                    leftImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                    rightImpulsePlayer.SendHapticImpulse(amplitude, duration, frequency);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

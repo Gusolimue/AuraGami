@@ -33,7 +33,7 @@ public class StageManager : MonoBehaviour
 
         if(tmpMarker == stage1CheckString)
         {
-            AvatarManager.Instance.StartEvolve();
+            AvatarManager.Instance.evolveBehavior.StartEvolve();
             //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
             //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve(); 
 
@@ -60,7 +60,7 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage2CheckString)
         {
-            AvatarManager.Instance.StartEvolve();
+            AvatarManager.Instance.evolveBehavior.StartEvolve();
             //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
 
@@ -79,7 +79,7 @@ public class StageManager : MonoBehaviour
         }
         else if (tmpMarker == stage3CheckString)
         {
-            AvatarManager.Instance.StartEvolveFinal();
+            AvatarManager.Instance.evolveBehavior.StartEvolve(false, true);
             //AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StartEvolve();
             //AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StartEvolve();
 

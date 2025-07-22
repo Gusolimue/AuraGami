@@ -71,7 +71,7 @@ public class BoardBehavior : MonoBehaviour
         //BeatManager.beatUpdated -= UpdateMovementTarget;
         foreach (var interactable in this.GetComponentsInChildren<BaseInteractableBehavior>())
         {
-            if(interactable.isActiveAndEnabled)
+            if(interactable.isActiveAndEnabled && interactable.gameObject.activeSelf)
             {
                 interactable.InteractableMissed();
             }

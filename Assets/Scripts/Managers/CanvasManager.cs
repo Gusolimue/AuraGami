@@ -3,6 +3,7 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager Instance;
+    public bool isLevelProgress;
 
     private void Awake()
     {
@@ -66,5 +67,10 @@ public class CanvasManager : MonoBehaviour
     public void ShowCanvasLevelEnd()
     {
         Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_LevelEnd") as GameObject);
+    }
+
+    public void ShowCanvasLevelProgress()
+    {
+        Instantiate(Resources.Load("Canvas_GameStates/" + "Canvas_LevelProgress") as GameObject);
     }
 }
