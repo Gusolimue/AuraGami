@@ -2658,6 +2658,7 @@ GameObject:
   - component: {fileID: 1539326333825500570}
   - component: {fileID: 8954014882955863498}
   - component: {fileID: 6469508409127958667}
+  - component: {fileID: 7272590632901569828}
   m_Layer: 5
   m_Name: Canvas_LevelSelect
   m_TagString: Untagged
@@ -2786,7 +2787,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectors:
-  - {fileID: 317360023978352494}
+  - {fileID: 5134440493823496739}
+  - {fileID: 4626864893224422298}
+  - {fileID: 6391596372551196080}
+  - {fileID: 6090101741622091436}
+  - {fileID: 7613959001159475071}
   fillSpeed: 5
 --- !u!114 &6469508409127958667
 MonoBehaviour:
@@ -2820,6 +2825,33 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 0, a: 0}
   centerIndex: 0
+--- !u!114 &7272590632901569828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751529164868806702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cccc82eff1baf9249a9dde37f86378d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageAssets:
+  - {fileID: 5547987088716227158}
+  - {fileID: 6085384362758762355}
+  - {fileID: 4382226428157651231}
+  - {fileID: 7178828030044767670}
+  - {fileID: 2032320373968302131}
+  - {fileID: 5408026957849938971}
+  - {fileID: 7763628353768896968}
+  - {fileID: 3114577896871770779}
+  textAssets:
+  - {fileID: 2467993239392110056}
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  semiTransparentAssets: []
+  isSemiTransparent: 0
+  alphaAmount: 0
 --- !u!1 &2900510734966929208
 GameObject:
   m_ObjectHideFlags: 0

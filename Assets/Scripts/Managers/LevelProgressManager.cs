@@ -31,7 +31,11 @@ public class LevelProgressManager : MonoBehaviour
         if (curStage < 4) messageTXT.text = "Do You Continue?";
         if (curStage == 1) StartCoroutine(StarColorChange(1));
         if (curStage == 2) StartCoroutine(StarColorChange(2));
-        if (curStage == 3) messageTXT.text = "And You Continue...";
+        if (curStage == 3) 
+        {
+            StartCoroutine(StarColorChange(3));
+            messageTXT.text = "And You Continue...";
+        }
     }
 
     private void Update()
