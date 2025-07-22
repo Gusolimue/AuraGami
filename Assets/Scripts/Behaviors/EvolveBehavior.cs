@@ -41,6 +41,7 @@ public class EvolveBehavior : MonoBehaviour
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
     public IEnumerator CoEvolve(bool _pass, bool _tutorial = false, bool _final = false)
     {
+        if(_pass && !_tutorial) LevelManager.currentStageIndex++;
         avatars = avatarManager.avatarObjects;
         audioManager.PlaySFX(audioManager.sfx_avatar_evolveStart);
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;

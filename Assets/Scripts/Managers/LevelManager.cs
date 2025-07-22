@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     int boardIndex;
     bool isSubscribed;
     bool isTutorial;
+    public int indexTest;
     private void Awake()
     {
         Instance = this;
@@ -38,7 +39,10 @@ public class LevelManager : MonoBehaviour
             InitLevel();
         }
     }
-
+    private void Update()
+    {
+        indexTest = currentStageIndex;
+    }
     public GameObject InstantiateBoard(int _boardIndex, List<Board> _stage, int _stageIndex, Transform _parent = null)
     {
         GameObject tmpBoard = Instantiate(Resources.Load("InGame/" + "Interactables/" + "BoardPrefab")
@@ -103,6 +107,7 @@ public class LevelManager : MonoBehaviour
     // Returns the board GameObject at the given index and stage
     public GameObject GetSpawnedBoard(int _boardIndex, int _stageIndex)
     {
+        if (_boardIndex >= instantiatedStages[_stageIndex].Count) return null;
         //Debug.Log("stage index" + _stageIndex);
         //Debug.Log("board index" + _boardIndex);
         return instantiatedStages[_stageIndex][_boardIndex];
@@ -199,7 +204,6 @@ public class LevelManager : MonoBehaviour
             APManager.Instance.ResetAP();
         }
 
-        currentStageIndex += 1;
     }
     public void StartStage()
     {
@@ -213,7 +217,6 @@ public class LevelManager : MonoBehaviour
         Debug.Log("stage finished :" + (currentStageIndex + 1));
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
-        currentStageIndex += 1;
     }
     void ActivateBoard()
     {

@@ -26,7 +26,7 @@ public class LevelProgressManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        curStage = LevelManager.currentStageIndex - 1;
+        curStage = LevelManager.currentStageIndex;
 
         if (curStage < 4) messageTXT.text = "Do You Continue?";
         if (curStage == 1) StartCoroutine(StarColorChange(1));
