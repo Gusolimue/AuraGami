@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5382276509812138766}
   - component: {fileID: 8085694177927223303}
   - component: {fileID: 3618098313313321919}
+  - component: {fileID: 2816330159915885857}
   m_Layer: 0
   m_Name: EvolutionSphere
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5571407655091638069}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.018, z: 3.139}
   m_LocalScale: {x: 1.5227, y: 1.5227, z: 1.5227}
   m_ConstrainProportionsScale: 0
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9215167fc08c4f4fa59d253e00da565, type: 2}
+  - {fileID: 2100000, guid: 143e4b8db96ce7a429026b9d62f8705e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,4 +124,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillTarget: 0
   count: 0
-  fillTime: 0.2
+  fillTime: 0.1
+--- !u!114 &2816330159915885857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571407655091638069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c9cd39a986c384a93fa9c5fbafb9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheatAP: 0.453
+  sphere: {fileID: 3618098313313321919}

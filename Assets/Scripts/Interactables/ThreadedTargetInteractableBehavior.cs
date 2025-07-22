@@ -48,7 +48,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
     public override void InteractableMissed()
     {
-        if (currentPoint <= interactable.multiPoints.Length)
+        if (currentPoint <= interactable.multiPoints.Length && LevelManager.Instance.GetSpawnedBoard(targetBoardIndex, LevelManager.currentStageIndex) != null)
         {
             targetBoardIndex += interactable.multiPoints[Mathf.Clamp(currentPoint, 0, interactable.multiPoints.Length - 1)].boardsMoved;
             //Debug.Log("threaded moved");
@@ -61,7 +61,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         }
         else
         {
-            //Debug.Log("threadedMissed");
+            Debug.Log("threadedMissedfallback");
             base.InteractableMissed();
         }
     }

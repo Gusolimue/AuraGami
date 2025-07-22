@@ -96,7 +96,7 @@ public class BaseInteractableBehavior : MonoBehaviour
     internal void StopTarget()
     {
         gameObject.SetActive(false);
-        
+        gameObject.transform.SetParent(null);
     }
 
     public void FadeOutTarget()

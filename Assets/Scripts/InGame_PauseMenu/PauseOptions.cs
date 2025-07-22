@@ -11,6 +11,7 @@ public class PauseOptions : MonoBehaviour
     public float targetValue = 1f;
     public float fillSpeed = 4f;
     private bool isFilling;
+    public bool isLevelProgress;
 
     public bool isRestarting;
 
@@ -19,11 +20,14 @@ public class PauseOptions : MonoBehaviour
         Instance = this;
         isRestarting = false;
 
-        foreach (Slider slider in connectors)
+        if (!isLevelProgress)
         {
-            slider.value = 0f;
+            foreach (Slider slider in connectors)
+            {
+                slider.value = 0f;
+            }
+            StartCoroutine(FillConnectors());
         }
-        StartCoroutine(FillConnectors());
     }
 
     private void Update()
@@ -61,7 +65,6 @@ public class PauseOptions : MonoBehaviour
     // [Button, SerializeField]
     public void OnMainMenuButtonPressed()
     {
-        LevelSelectManager.Instance.whichLevel = (int)eScene.frontEnd;
         LoadManager.Instance.isTitleScreen = 1;
 
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
