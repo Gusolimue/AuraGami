@@ -35,6 +35,7 @@ public class LevelSelect : MonoBehaviour
 
     public void ChangeLevels()
     {
+        FrontEnd.Instance.idleSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StartCoroutine(LevelTransition());
     }
 
