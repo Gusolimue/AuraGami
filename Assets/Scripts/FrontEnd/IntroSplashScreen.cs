@@ -21,6 +21,7 @@ public class IntroSplashScreen : MonoBehaviour
     [SerializeField] Image skipIcon;
     [SerializeField] TextMeshProUGUI skip_TXT;
     [SerializeField] Slider skipSlider;
+    [SerializeField] GameObject sliderFull;
     public float holdTime = 2f;
     private float holdTimer = 0f;
     private bool isHolding = false;
@@ -50,6 +51,8 @@ public class IntroSplashScreen : MonoBehaviour
             LoadManager.Instance.isTutorial = true;
         }
         else if (isTutorial >= 1) StartCoroutine(SplashSequence());
+
+        sliderFull.SetActive(false);
     }
 
     private void OnEnable()
@@ -145,6 +148,8 @@ public class IntroSplashScreen : MonoBehaviour
         Debug.Log("Hold Started");
         isSkip = true;
         isHolding = true;
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
     }
 
     private void OnHoldCanceled(InputAction.CallbackContext context)
@@ -156,12 +161,15 @@ public class IntroSplashScreen : MonoBehaviour
 
     private void SkipIntro()
     {
+
+        sliderFull.SetActive(true);
         isHolding = false;
         StopAllCoroutines();
 
         isTutorial++;
         PlayerPrefs.SetInt("frontEnd", isTutorial);
         PlayerPrefs.Save();
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
 
         if (isTutorial <= 1) FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
         else FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
@@ -171,6 +179,8 @@ public class IntroSplashScreen : MonoBehaviour
     {
         StartCoroutine(SplashSequence());
         settings.SetActive(false);
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
     }
 
     IEnumerator SplashSequence()
