@@ -108,6 +108,17 @@ public class AvatarManager : MonoBehaviour
         Vector3 tmpPos = avatarCircTransform.position;
         tmpPos += (controllerTransforms[(int)_side].transform.position - playerCircTransform.position) * scaleMult;
         tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
+        switch (_side)
+        {
+            case eSide.left:
+                tmpPos.x += .15f;
+                break;
+            case eSide.right:
+                tmpPos.x -= .15f;
+                break;
+            default:
+                break;
+        }
         return tmpPos;
     }
     public void SetNewAvatars(int _index, float _scale)

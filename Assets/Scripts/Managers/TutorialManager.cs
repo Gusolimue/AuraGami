@@ -50,11 +50,19 @@ public class TutorialManager : MonoBehaviour
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
         tc.FadeOutText();
-        if (AvatarManager.Instance.evolveBehavior.StartEvolve(true) || tutorialIndex >= tutorialList.Length - 1)
+        if (tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
         }
-        AvatarManager.Instance.evolveBehavior.readyMove = false;
+        else if(tutorialIndex >= tutorialList.Length - 2)
+        {
+            AvatarManager.Instance.evolveBehavior.StartEvolve(false);
+        }
+        else if (AvatarManager.Instance.evolveBehavior.StartEvolve(true))
+        {
+            tutorialIndex++;;
+        }
+            AvatarManager.Instance.evolveBehavior.readyMove = false;
         if(tutorialIndex >= tutorialList.Length) MoveOn();
         else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }

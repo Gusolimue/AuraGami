@@ -67,7 +67,7 @@ public class APManager : MonoBehaviour
                 }
             }
         }
-        stageTargetValues[0] = 1.05f/stageTargetTotals[0];
+        stageTargetValues[0] = (2 - stagePassPercent[0]) / stageTargetTotals[0];
     }
     public void SetTargetValues()
     {
@@ -88,16 +88,19 @@ public class APManager : MonoBehaviour
         }
     }
 
-    public void IncreaseAP()
+    public void IncreaseAP(float _amount = 1f, bool streakIncrease = true)
     {
-        Invoke(nameof(APDelay), apGainDelay);
+        StartCoroutine(APDelay(_amount, streakIncrease)); 
     }
-    void APDelay()
+    IEnumerator APDelay(float _amount, bool streakIncrease)
     {
+        int tmpStreakIncrease = 1;
+        if (!streakIncrease) tmpStreakIncrease = 0;
+        yield return new WaitForSeconds(apGainDelay);
         count = 0;
         sigilSliderSpeed = 5f;
-        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
-            * multLevels[GetStreakIndex(1)];
+        curAP += _amount * (stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
+            * multLevels[GetStreakIndex(tmpStreakIncrease)]);
         curAP = Mathf.Clamp(curAP, 0, 1.1f);
         //HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         UpdateSigils();
@@ -196,12 +199,13 @@ public class APManager : MonoBehaviour
         float spendAmount = 2f;
         float maxLength = 1.5f;
         float tmpLength = maxLength / (curAP / stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * spendAmount);
-        sphere.FillSphere(curAP, curAP * maxLength);
+        if(TutorialManager.Instance == null) sphere.FillSphere(curAP, curAP * maxLength);
         while (curAP > 0)
         {
             DecreaseAP(spendAmount);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
-            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
+            Vector3 targetPos = AvatarManager.Instance.evolveBehavior.transform.position;
+            if (TutorialManager.Instance == null) APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
             yield return new WaitForSeconds(tmpLength);
         }
         isDraining = false;
