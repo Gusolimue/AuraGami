@@ -17,9 +17,9 @@ public class AccessibilitySettingsManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        terrainSpeedTXT.text = PlayerPrefs.GetString("terrainText");
+        terrainSpeedTXT.text = PlayerPrefs.GetString("terrainText", "Normal");
 
-        toggleNum = PlayerPrefs.GetInt("toggleHaptics");
+        toggleNum = PlayerPrefs.GetInt("toggleHaptics", 1);
         if (toggleNum == 1) toggleFill.color = toggleColors[0];
         else if (toggleNum == 2) toggleFill.color = toggleColors[1];
     }

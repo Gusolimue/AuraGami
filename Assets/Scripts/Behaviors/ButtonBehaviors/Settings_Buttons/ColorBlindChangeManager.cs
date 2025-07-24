@@ -45,7 +45,7 @@ public class ColorBlindChangeManager : MonoBehaviour
         Instance = this;
         PlayerPrefs.GetInt("ColorModeIndex", 0);
 
-        colorOptionsTXT.text = PlayerPrefs.GetString("text");
+        colorOptionsTXT.text = PlayerPrefs.GetString("text", "Standard");
     }
 
     public void ColorOptionsCycle(bool direction)
