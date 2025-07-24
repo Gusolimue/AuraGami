@@ -43,6 +43,7 @@ public class APManager : MonoBehaviour
         stageTargetValues = new float[3];
         UpdateSigils();
         UpdateAuraFX();
+        forceSuccess = false;
     }
     float count;
     private void Update()
