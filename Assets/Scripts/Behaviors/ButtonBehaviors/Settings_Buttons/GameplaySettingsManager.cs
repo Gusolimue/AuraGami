@@ -33,14 +33,14 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         Instance = this;
 
-        playCircleSlider[0].value = PlayerPrefs.GetFloat("playCircleScale");
+        playCircleSlider[0].value = PlayerPrefs.GetFloat("playCircleScale", .5f);
         playCircleSlider[0].onValueChanged.AddListener(ChangeSlider);
         playCircleDemo.color = colorChanges[1];
 
-        playCircleSlider[1].value = PlayerPrefs.GetFloat("playCircleHeight");
+        playCircleSlider[1].value = PlayerPrefs.GetFloat("playCircleHeight", .5f);
         playCircleSlider[1].onValueChanged.AddListener(ChangePlayerCircleHeightSlider);
 
-        toggleNum = PlayerPrefs.GetInt("toggleCircle");
+        toggleNum = PlayerPrefs.GetInt("toggleCircle", 2);
         if (toggleNum == 1) toggleFill.color = colorChanges[0];
         else if (toggleNum == 2) toggleFill.color = colorChanges[2];
 
