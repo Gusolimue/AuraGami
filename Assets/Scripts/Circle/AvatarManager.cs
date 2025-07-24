@@ -142,7 +142,7 @@ public class AvatarManager : MonoBehaviour
         }
         float timetill = 3f;
         count = 0;
-        string[] text = { "This Is Yata" };
+        string[] text = { "This Is Yata; The Mind"};
         tc.FadeInText(text);
         while (count < timetill)
         {
@@ -152,7 +152,7 @@ public class AvatarManager : MonoBehaviour
         }
         tc.FadeOutText();
         yield return new WaitUntil(() => !tc.textChanging);
-        text[0] = "And This Is Nagini";
+        text[0] = "And This Is Nagini; The Body";
         tc.FadeInText(text);
         count = 0;
         while (count < timetill)
