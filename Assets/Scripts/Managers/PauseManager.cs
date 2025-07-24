@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour
 
     [Header("Avatars/UI")]
     [SerializeField] GameObject[] toHide;
+    [SerializeField] GameObject[] toShow;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI[] countdownTimer;
@@ -79,11 +80,15 @@ public class PauseManager : MonoBehaviour
         if (!isPaused)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
+            toShow[0].SetActive(true);
+            toShow[1].SetActive(true);
             showPauseMenu = true;
             PauseGame(true);
         }
         else if (isPaused)
         {
+            toShow[0].SetActive(false);
+            toShow[1].SetActive(false);
             PauseGame(false);
         }
     }
