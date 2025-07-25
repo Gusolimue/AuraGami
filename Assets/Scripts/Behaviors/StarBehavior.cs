@@ -5,67 +5,53 @@ using System.Collections;
 public class StarBehavior : MonoBehaviour
 {
     [SerializeField] Image[] starPresets;
-    public float fadeSpeed = .1f;
-    public float timeBetweenCycles = 1f;
+    [SerializeField] Color[] starColors;
+    public float fadeSpeed = 200f;
 
-    private int curIndex = -1;
-    private int preIndex = -1;
+    private float count;
+    private int curIndex;
 
     private void Awake()
     {
-        curIndex = Random.Range(0, starPresets.Length);
-        preIndex = curIndex;
-
-        for (int i = 0; i < starPresets.Length; i++)
+        foreach (var stars in starPresets)
         {
-            SetAlpha(starPresets[i], i == curIndex ? 1f : 0f);
+            stars.color = starColors[0];
         }
+        StartCoroutine(ChangeStarCluster());
+    }   
 
-        StartCoroutine(StarPresetCycle());
-    }
-
-    private IEnumerator StarPresetCycle()
+    private void Update()
     {
-        while (true)
+        count += Time.deltaTime;
+        if (curIndex == 1)
         {
-            yield return new WaitForSeconds(timeBetweenCycles);
-            do
-            {
-                curIndex = Random.Range(0, starPresets.Length);
-            } while (curIndex == preIndex);
-
-            Image nextImage = starPresets[curIndex];
-            Image lastImage = starPresets[curIndex];
-
-            yield return StartCoroutine(FadeStars(lastImage, nextImage));
-
-            preIndex = curIndex;
+            starPresets[3].color = Color.Lerp(starPresets[3].color, starColors[0], count / fadeSpeed);
+            starPresets[0].color = Color.Lerp(starPresets[0].color, starColors[0], count / fadeSpeed);
+            starPresets[1].color = Color.Lerp(starPresets[1].color, starColors[1], count / fadeSpeed);
+        }
+        if (curIndex == 2)
+        {
+            starPresets[1].color = Color.Lerp(starPresets[1].color, starColors[0], count / fadeSpeed);
+            starPresets[2].color = Color.Lerp(starPresets[2].color, starColors[1], count / fadeSpeed);
+        }
+        if (curIndex == 3)
+        {
+            starPresets[2].color = Color.Lerp(starPresets[2].color, starColors[0], count / fadeSpeed);
+            starPresets[3].color = Color.Lerp(starPresets[3].color, starColors[1], count / fadeSpeed);
         }
     }
 
-    private IEnumerator FadeStars(Image lastImage, Image nextImage)
+    private IEnumerator ChangeStarCluster()
     {
-        float count = 0f;
-
-        while (count < fadeSpeed)
-        {
-            float time = count / fadeSpeed;
-
-            if (lastImage != null) SetAlpha(lastImage, 1 - time);
-            if (nextImage != null) SetAlpha(nextImage, time);
-
-            count += Time.deltaTime;
-            yield return null;
-        }
-
-        if (lastImage != null) SetAlpha(lastImage, 0);
-        if (nextImage != null) SetAlpha(nextImage, 1);
-    }
-
-    private void SetAlpha(Image image, float alpha)
-    {
-        Color color = image.color;
-        color.a = alpha;
-        image.color = color;
+        yield return new WaitForSeconds(Random.Range(10, 60));
+        curIndex = 1;
+        count = 0;
+        yield return new WaitForSeconds(Random.Range(10, 60));
+        curIndex = 2;
+        count = 0;
+        yield return new WaitForSeconds(Random.Range(10, 60));
+        curIndex = 3;
+        count = 0;
+        StartCoroutine(ChangeStarCluster());
     }
 }
