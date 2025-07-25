@@ -6,6 +6,8 @@ using System.Collections;
 public class LevelProgressManager : MonoBehaviour
 {
     public static LevelProgressManager Instance;
+
+    [SerializeField] GameObject[] toShow;
     [Header("Message")]
     [SerializeField] TextMeshProUGUI messageTXT;
     public string message;
@@ -28,6 +30,9 @@ public class LevelProgressManager : MonoBehaviour
     {
         Instance = this;
         curStage = LevelManager.currentStageIndex;
+
+        toShow[0].SetActive(true);
+        toShow[1].SetActive(true);
 
         if (curStage < 4) messageTXT.text = "Do You Continue?";
         if (curStage == 1) StartCoroutine(StarColorChange(2));
