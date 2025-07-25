@@ -28,7 +28,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-       // menuBG.SetActive(false);
+        // menuBG.SetActive(false);
 
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
@@ -187,5 +187,11 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         isCountingDown = false;
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
+    }
+
+    public void ShowLineInteractor()
+    {
+        toShow[0].SetActive(true);
+        toShow[1].SetActive(true);
     }
 }
