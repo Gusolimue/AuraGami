@@ -17,8 +17,10 @@ public class LevelSelect : MonoBehaviour
     [Header("Level Star/Button Assets")]
     [SerializeField] Image levelButton;
     [SerializeField] Image levelButtonSizeChange;
+    [SerializeField] Color[] levelStarColors;
 
     private bool isTransitioning;
+    private int isHovering;
     private float count;
 
     private void Awake()
@@ -31,6 +33,9 @@ public class LevelSelect : MonoBehaviour
     {
         count += Time.deltaTime;
         if (isTransitioning) levelButton.transform.localScale = Vector3.Lerp(levelButton.transform.localScale, levelButtonSizeChange.transform.localScale, count / 200);
+        if (isHovering == 1) levelButton.color = Color.Lerp(levelButton.color, levelStarColors[0], Time.deltaTime * 10);
+        else if (isHovering == 2) levelButton.color = Color.Lerp(levelButton.color, levelStarColors[1], Time.deltaTime * 10);
+
     }
 
     public void ChangeLevels()
@@ -39,20 +44,33 @@ public class LevelSelect : MonoBehaviour
         StartCoroutine(LevelTransition());
     }
 
+    public void OnHover()
+    {
+        isHovering = 1;
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
+    }
+
+    public void OnHoverExit()
+    {
+        isHovering = 2;
+    }
+
     private void LevelSelection(Levels levels)
     {
         switch (levels)
         {
             case Levels.tutorial:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 0);
+                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
                 break;
 
             case Levels.exploration:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 0);
+                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 1);
                 break;
 
             case Levels.freedom:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(4, 2);
+                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(4, 1);
                 break;
         }
     }
@@ -82,22 +100,20 @@ public class LevelSelect : MonoBehaviour
 
     private IEnumerator LevelTransition()
     {
-        float alpha = 0f;
+        float color = 1f;
         float fadeInDuration = .5f;
 
         Color curColor = levelButton.color;
         levelButton.color = new Color(curColor.r, curColor.g, curColor.b, 0);
 
-        while (alpha < 1f)
+        while (color > 0f)
         {
-            alpha += Time.deltaTime / fadeInDuration;
-            levelButton.color = new Color(levelButton.color.r, levelButton.color.g,
-                levelButton.color.b, alpha);
+            color -= Time.deltaTime / fadeInDuration;
+            levelButton.color = new Color(color, color, color, levelButton.color.a);
             yield return new WaitForSecondsRealtime(.01f);
         }
-        yield return new WaitForSeconds(.5f);
-        isTransitioning = true;
-        yield return new WaitForSeconds(.2f);
+        isHovering = 3;
+        yield return new WaitForSeconds(.3f);
 
         Levels curLevel = (Levels)curIndex;
         LevelSelection(curLevel);
