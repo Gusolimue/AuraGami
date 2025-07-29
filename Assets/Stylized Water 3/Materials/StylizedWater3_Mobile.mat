@@ -16,7 +16,6 @@ Material:
   - _INTERSECTION_FOAM
   - _NORMALMAP
   - _RECEIVE_SHADOWS_OFF
-  - _SURFACE_FOAM_SINGLE
   - _UNLIT
   m_InvalidKeywords:
   - ADVANCED_LIGHTING
@@ -24,7 +23,6 @@ Material:
   - _DEPTHEXP_ON
   - _DEPTH_TEX
   - _FOAM
-  - _FOAMON_ON
   - _INTERSECTIONSHARP_ON
   - _RECEIVEDYNAMICEFFECTSFOAM_ON
   - _RECEIVEDYNAMICEFFECTSHEIGHT_ON
@@ -185,7 +183,7 @@ Material:
     - _FoamClipping: 0
     - _FoamDistanceOn: 0
     - _FoamDistortion: 0.47
-    - _FoamOn: 1
+    - _FoamOn: 0
     - _FoamOpacity: 0.253
     - _FoamSize: 0.01
     - _FoamSpeed: 0.030000014
@@ -314,7 +312,7 @@ Material:
     - _ZClip: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.16451614, b: 0.34, a: 0.9647059}
+    - _BaseColor: {r: 0, g: 0, b: 0, a: 0.9647059}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _DepthMapBounds: {r: -402.3, g: -459.43, b: 0.0012693577, a: 0}
     - _Direction: {r: 1, g: 1, b: 0, a: 0}
@@ -325,10 +323,10 @@ Material:
     - _FoamCrestMinMaxHeight: {r: 1, g: 2, b: 0, a: 0}
     - _FoamTiling: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _HorizonColor: {r: 0.2352941, g: 0.9051294, b: 1, a: 1}
-    - _IntersectionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _IntersectionColor: {r: 0, g: 0.27272418, b: 0.5018867, a: 0.2509804}
     - _NormalTiling: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShallowColor: {r: 0, g: 0.8446603, b: 1, a: 0.39607844}
+    - _ShallowColor: {r: 0, g: 0, b: 0, a: 0.39607844}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _WaterColor: {r: 0.21176466, g: 0.6745098, b: 1, a: 1}
     - _WaterShallowColor: {r: 0, g: 0.9394503, b: 1, a: 1}
