@@ -31,7 +31,7 @@ public class LevelSelectManager : MonoBehaviour
         Instance = this;
         PositionStarsInstant();
 
-        levelIndexTXT.text = levelStars.Length.ToString();
+        levelIndexTXT.text = LevelSelect.Instance.levels.Length.ToString();
         UpdateCurrentLevel();
     }
 
@@ -40,11 +40,9 @@ public class LevelSelectManager : MonoBehaviour
         for (int i = 0; i < levelStars.Length; i++)
         {
             Transform targetPos = GetStarPos(i);
-
             levelStars[i].transform.position = Vector3.Lerp(levelStars[i].transform.position, targetPos.position, Time.deltaTime * moveSpeed);
          
             bool isCenter = (i == centerIndex);
-
             levelStars[i].transform.localScale = Vector2.Lerp(levelStars[i].transform.localScale, isCenter ? starSizes[0].transform.localScale : starSizes[1].transform.localScale,
                 Time.deltaTime * moveSpeed);
 
@@ -53,6 +51,19 @@ public class LevelSelectManager : MonoBehaviour
             targetColor.a = isVisible ? 1f : 0f;
 
             levelStars[i].color = Color.Lerp(levelStars[i].color, targetColor, Time.deltaTime * 15);
+
+            if (targetPos == leftPos[0] && LevelSelect.Instance.levels.Length > 0)
+            {
+                levelStars[i].color = Color.Lerp(levelStars[i].color, LevelSelect.Instance.levels[0].levelStarColor, Time.deltaTime * 10f);
+            }
+            else if (targetPos == selectPos && LevelSelect.Instance.levels.Length > 1)
+            {
+                levelStars[i].color = Color.Lerp(levelStars[i].color, LevelSelect.Instance.levels[1].levelStarColor, Time.deltaTime * 10f);
+            }
+            else if (targetPos == rightPos[0] && LevelSelect.Instance.levels.Length > 2)
+            {
+                levelStars[i].color = Color.Lerp(levelStars[i].color, LevelSelect.Instance.levels[2].levelStarColor, Time.deltaTime * 10f);
+            }
         }
     }
 
@@ -94,19 +105,23 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
-    public void MoveRight()
+    public void MoveLeft()
     {
+        LevelSelect.Instance.RotateLevelsLeft();
         centerIndex = (centerIndex + 1) % levelStars.Length;
         LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex + 1) % levelStars.Length;
+
         StartCoroutine(CurrentLevelTextTransition());
         LevelSelect.Instance.ChangeLevelName();
         UpdateCurrentLevel();
     }
 
-    public void MoveLeft()
+    public void MoveRight()
     {
+        LevelSelect.Instance.RotateLevelsRight();
         centerIndex = (centerIndex - 1 + levelStars.Length) % levelStars.Length;
         LevelSelect.Instance.curIndex = (LevelSelect.Instance.curIndex - 1 + levelStars.Length) % levelStars.Length;
+
         StartCoroutine(CurrentLevelTextTransition());
         LevelSelect.Instance.ChangeLevelName();
         UpdateCurrentLevel();
@@ -114,7 +129,8 @@ public class LevelSelectManager : MonoBehaviour
 
     private void UpdateCurrentLevel()
     {
-        int curLevel = centerIndex + 1;
+        //int curLevel = centerIndex + 1;
+        int curLevel = LevelSelect.Instance.curIndex + 1;
         curLevelTXT.text = curLevel.ToString();
     }
 

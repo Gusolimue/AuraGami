@@ -10,6 +10,9 @@ public class LevelSelect : MonoBehaviour
     public int curIndex;
     private float fadeInDuration;
 
+    [Header("Levels")]
+    public soLevelStar[] levels;
+
     [Header("Level Names")]
     [SerializeField] string[] levelNames;
     [SerializeField] TextMeshProUGUI levelNameTXT;
@@ -26,7 +29,7 @@ public class LevelSelect : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        levelNameTXT.text = levelNames[curIndex];
+        levelNameTXT.text = levels[1].levelName;
     }
 
     private void Update()
@@ -57,7 +60,33 @@ public class LevelSelect : MonoBehaviour
         isHovering = 2;
     }
 
-    private void LevelSelection(Levels levels)
+    public void RotateLevelsRight()
+    {
+        if (levels == null || levels.Length < 2)
+            return;
+
+        soLevelStar last = levels[levels.Length - 1];
+        for (int i = levels.Length - 1; i > 0; i--)
+        {
+            levels[i] = levels[i - 1];
+        }
+        levels[0] = last;
+    }
+
+    public void RotateLevelsLeft()
+    {
+        if (levels == null || levels.Length < 2)
+            return;
+
+        soLevelStar first = levels[0];
+        for (int i = 0; i < levels.Length - 1; i++)
+        {
+            levels[i] = levels[i + 1];
+        }
+        levels[levels.Length - 1] = first;
+    }
+
+    /*private void LevelSelection(Levels levels)
     {
         switch (levels)
         {
@@ -73,12 +102,13 @@ public class LevelSelect : MonoBehaviour
                 FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(4, 1);
                 break;
         }
-    }
+    }*/
 
     public void ChangeLevelName()
     {
         StartCoroutine(LevelNameTextTranstion());
-        levelNameTXT.text = levelNames[curIndex];       
+        //levelNameTXT.text = levelNames[curIndex];
+        levelNameTXT.text = levels[1].levelName;
     }
 
     public IEnumerator LevelNameTextTranstion()
@@ -115,8 +145,8 @@ public class LevelSelect : MonoBehaviour
         isHovering = 3;
         yield return new WaitForSeconds(.3f);
 
-        Levels curLevel = (Levels)curIndex;
-        LevelSelection(curLevel);
+        int curLevel = levels[1].whichLevel;
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(curLevel, 1);
     }
 
     public void OnBackButtonPressed() // When pressed, destroys Canvas_LevelSelect and instantiates Canvas_FrontEnd.
