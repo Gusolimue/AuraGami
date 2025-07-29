@@ -34,6 +34,7 @@ public class EvolveBehavior : MonoBehaviour
     }
     public bool StartEvolve(bool _tutorial = false, bool _final = false)
     {
+        APManager.Instance.lastStageAP = APManager.Instance.curAP;
         bool tmpBool = APManager.Instance.StagePassCheck();
         StartCoroutine(CoEvolve(tmpBool, _tutorial, _final));
         return tmpBool;

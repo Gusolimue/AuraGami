@@ -36,18 +36,17 @@ public class AudioSettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", .5f);
         masterAudioSlider.onValueChanged.AddListener(MasterVolumeSlider);
+        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", .5f);
         //masterAudioSlider.OnDrag();
 
         masterHandleSize = PlayerPrefs.GetFloat("masterHandle");
         //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
-
-        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", .5f);
         musicAudioSlider.onValueChanged.AddListener(MusicVolumeSlider);
+        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", .5f);
 
-        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
         sfxAudioSlider.onValueChanged.AddListener(SFXVolumeSlider);
+        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
     }
 
     private void Update()
@@ -56,7 +55,7 @@ public class AudioSettingsManager : MonoBehaviour
         if (isReset) resetFill.color = Color.Lerp(resetFill.color, fillColor[0], count / 5);
         else resetFill.color = Color.Lerp(resetFill.color, fillColor[1], count / 5);
 
-        masterAudioSlider.value = Mathf.Lerp(masterAudioSlider.value, targetMasterValue, Time.deltaTime * 5f);
+        //masterAudioSlider.value = Mathf.Lerp(masterAudioSlider.value, targetMasterValue, Time.deltaTime * 5f);
 
         if (Input.GetKeyDown(KeyCode.L)) IncreaseMasterVol();
         if (Input.GetKeyDown(KeyCode.K)) DecreaseMasterVol();
