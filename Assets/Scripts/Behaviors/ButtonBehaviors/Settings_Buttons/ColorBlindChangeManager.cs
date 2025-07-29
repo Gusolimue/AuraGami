@@ -33,14 +33,19 @@ public class ColorBlindChangeManager : MonoBehaviour
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
 
     [Space]
-    [SerializeField] TextMeshProUGUI colorOptionsTXT;  
+    [SerializeField] TextMeshProUGUI colorOptionsTXT;
+
+    private void Start()
+    {
+        SetColorPallet();
+    }
 
     private void Awake()
     {
         Instance = this;
         PlayerPrefs.GetInt("ColorModeIndex", 0);
 
-        colorOptionsTXT.text = PlayerPrefs.GetString("text");
+        colorOptionsTXT.text = PlayerPrefs.GetString("text", "Standard");
     }
 
     public void ColorOptionsCycle(bool direction)

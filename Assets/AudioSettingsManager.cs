@@ -35,17 +35,17 @@ public class AudioSettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", masterAudioSliderValue);
+        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", .5f);
         masterAudioSlider.onValueChanged.AddListener(MasterVolumeSlider);
         //masterAudioSlider.OnDrag();
 
         masterHandleSize = PlayerPrefs.GetFloat("masterHandle");
         //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
 
-        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", musicAudioSliderValue);
+        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", .5f);
         musicAudioSlider.onValueChanged.AddListener(MusicVolumeSlider);
 
-        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", musicAudioSliderValue);
+        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
         sfxAudioSlider.onValueChanged.AddListener(SFXVolumeSlider);
     }
 

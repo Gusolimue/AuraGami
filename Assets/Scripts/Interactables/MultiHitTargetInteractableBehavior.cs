@@ -52,6 +52,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
     {
         if (!isMoving) // If not moving to another target point
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
             currentPoint++;
 
             HapticsManager.Instance.TriggerSimpleVibration(side, currentPoint * (.5f / totalPoints), .1f);
@@ -62,11 +63,10 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
                 isMoving = true;
                 // Set target to be the next future point
                 UpdateMovementTarget();
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
             }
             else
             {
-                APManager.Instance.IncreaseAP();
+                APManager.Instance.IncreaseAP(totalPoints);
                 base.AvatarCollision(avatarBehavior);
             }
         }
