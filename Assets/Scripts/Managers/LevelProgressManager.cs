@@ -6,6 +6,8 @@ using System.Collections;
 public class LevelProgressManager : MonoBehaviour
 {
     public static LevelProgressManager Instance;
+    [SerializeField] Image bgFadeOut;
+    [SerializeField] Color fadeColor;
 
     [Header("Message")]
     [SerializeField] TextMeshProUGUI messageTXT;
@@ -50,6 +52,11 @@ public class LevelProgressManager : MonoBehaviour
     {
         count += Time.deltaTime;
         progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
+
+
+        Color curColor = bgFadeOut.color;
+        float newAlpha = Mathf.Lerp(curColor.a, fadeColor.a, count / 15);
+        bgFadeOut.color = new Color(curColor.r, curColor.g, curColor.b, newAlpha);
 
         if (progressConnector.value >= .34f) stars[0].color = Color.Lerp(stars[0].color, starActive, Time.deltaTime * 15f);
         if (progressConnector.value >= .68f) stars[1].color = Color.Lerp(stars[1].color, starActive, Time.deltaTime * 15f);
