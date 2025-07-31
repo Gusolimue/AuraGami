@@ -76,6 +76,7 @@ public class AudioManager : MonoBehaviour
     public EventReference sfx_frontEnd_menuHoverExitMedium;
     public EventReference sfx_frontEnd_menuHoverExitSmall;
     public EventReference sfx_frontEnd_menuTransition;
+    public EventReference sfx_frontEnd_titleIdle;
 
     [Space]
     [Header("SFX: Pause")]
