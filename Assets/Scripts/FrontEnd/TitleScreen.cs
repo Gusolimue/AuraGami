@@ -18,8 +18,8 @@ public class TitleScreen : MonoBehaviour
     private void Start()
     {
         AudioManager.idleInstance = AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_titleIdle);
-
     }
+
     private void Update()
     {
         if (isFrontEnd == true)

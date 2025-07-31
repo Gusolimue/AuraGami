@@ -129,9 +129,7 @@ public class LevelSelectManager : MonoBehaviour
 
     private void UpdateCurrentLevel()
     {
-        //int curLevel = centerIndex + 1;
-        int curLevel = LevelSelect.Instance.curIndex + 1;
-        curLevelTXT.text = curLevel.ToString();
+        curLevelTXT.text = LevelSelect.Instance.levels[1].curStar.ToString();
     }
 
     public IEnumerator CurrentLevelTextTransition()

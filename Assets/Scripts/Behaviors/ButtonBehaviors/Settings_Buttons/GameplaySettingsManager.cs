@@ -71,7 +71,7 @@ public class GameplaySettingsManager : MonoBehaviour
         if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
     }
 
@@ -89,7 +89,7 @@ public class GameplaySettingsManager : MonoBehaviour
         }
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
     }
 
@@ -115,7 +115,7 @@ public class GameplaySettingsManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
     }
 
@@ -160,13 +160,13 @@ public class GameplaySettingsManager : MonoBehaviour
         playCircleSlider[0].value = 1.25f;
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
 
         playCircleSlider[1].value = 1.25f;
         if (AvatarManager.Instance != null)
         {
-            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", 1f), PlayerPrefs.GetFloat("playCircleHeight", 1f), PlayerPrefs.GetInt("toggleCircle", 1));
+            AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
         }
 
         demoOn = false;

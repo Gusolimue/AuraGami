@@ -36,7 +36,7 @@ public class LevelProgressManager : MonoBehaviour
         PauseManager.Instance.ShowLineInteractor();
 
         if (curStage < 4) messageTXT.text = "Do You Continue?";
-        if (curStage > 4) messageTXT.text = "And We Continue...";
+        if (curStage > 3) messageTXT.text = "And We Continue...";
         if (isCheat)
         {
             curStage = 4;

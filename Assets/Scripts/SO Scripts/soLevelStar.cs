@@ -8,6 +8,7 @@ public class soLevelStar : ScriptableObject
     public Color levelStarColor;
     public string levelName;
     public int whichLevel;
+    public int curStar;
 
 }
 

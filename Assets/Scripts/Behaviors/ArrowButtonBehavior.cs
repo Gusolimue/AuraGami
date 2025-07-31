@@ -12,7 +12,7 @@ public class ArrowButtonBehavior : MonoBehaviour
     private bool isHover;
     private float count;
     private int curColor;
-    private float curSpeed;
+    public float curSpeed;
 
     private void Awake()
     {
@@ -63,13 +63,14 @@ public class ArrowButtonBehavior : MonoBehaviour
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         curSpeed = 1;
         count = 0;
+        Debug.Log("Arrow Pressed");
         StartCoroutine(ArrowPress());
     }
 
     private IEnumerator ArrowPress()
     {
         curColor = 2;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.2f);
         count = 0;
         curColor = 0;
     }
