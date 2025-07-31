@@ -50,11 +50,19 @@ public class TutorialManager : MonoBehaviour
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
         tc.FadeOutText();
-        if (AvatarManager.Instance.StartEvolve(true) || tutorialIndex >= tutorialList.Length - 1)
+        if (tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
         }
-        AvatarManager.Instance.readyMove = false;
+        else if(tutorialIndex >= tutorialList.Length - 2)
+        {
+            AvatarManager.Instance.evolveBehavior.StartEvolve(false);
+        }
+        else if (AvatarManager.Instance.evolveBehavior.StartEvolve(true))
+        {
+            tutorialIndex++;;
+        }
+            AvatarManager.Instance.evolveBehavior.readyMove = false;
         if(tutorialIndex >= tutorialList.Length) MoveOn();
         else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
@@ -82,13 +90,13 @@ public class TutorialManager : MonoBehaviour
 
         StartCoroutine(AvatarManager.Instance.COTutorialIntro());
         yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
-        AvatarManager.Instance.readyMove = true;
+        AvatarManager.Instance.evolveBehavior.readyMove = true;
         StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
     IEnumerator COPlayNextTutorial(SoTutorial _tutorial)
     {
         //if(!AvatarManager.Instance.disableAvatarMovement) yield return new WaitUntil(()=> AvatarManager.Instance.disableAvatarMovement);
-        yield return new WaitUntil(()=> AvatarManager.Instance.readyMove);
+        yield return new WaitUntil(()=> AvatarManager.Instance.evolveBehavior.readyMove);
         Debug.Log("i waitedddd");
         if (tutorialIndex < tutorialList.Length)
         {
@@ -106,6 +114,6 @@ public class TutorialManager : MonoBehaviour
     void MoveOn()
     {
         Debug.Log("doneWithTutorials");
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 1);
     }
 }

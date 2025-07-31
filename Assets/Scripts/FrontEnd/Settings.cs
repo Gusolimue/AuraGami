@@ -16,6 +16,8 @@ public class Settings : MonoBehaviour
     public void OnBackButtonPressed() // When pressed, destroys Canvas_Settings and instantiates Canvas_FrontEnd.
     {
         CanvasManager.Instance.ShowCanvasFE();
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         Destroy(this.gameObject);
     }
@@ -24,6 +26,8 @@ public class Settings : MonoBehaviour
     {
         if (LoadManager.Instance.isTutorial == false) PauseMenu.Instance.InstantiatePauseOptions();
         else PauseMenu.Instance.InstantiateTutorialPauseOptions();
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         Destroy(this.gameObject);
     }
 

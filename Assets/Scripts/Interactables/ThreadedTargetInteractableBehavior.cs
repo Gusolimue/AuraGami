@@ -24,8 +24,10 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         base.InitInteractable(_eSide, _stage, _board, _interactable);
         endTargetObject = endTargetModelSelect.SelectModel(side);
         endTargetObject.GetComponent<MeshRenderer>().sharedMaterials = interactableObject.GetComponent<MeshRenderer>().sharedMaterials;
+        tracingMat = interactableObject.GetComponent<MeshRenderer>().sharedMaterials[0];
         endTargetObject = endTargetModelSelect.gameObject;
         splineRenderer = threadSpline.GetComponent<Renderer>();
+        splineRenderer.sharedMaterial = interactableObject.GetComponent<MeshRenderer>().sharedMaterials[0];
         targetBoardIndex = boardIndex;
         currentPoint = 0;
     }
@@ -35,6 +37,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
     IEnumerator COTrace()
     {
+        StartCoroutine(COScore());
         splineRenderer.sharedMaterial = tracingMat;
         yield return new WaitUntil(() => onSpline);
         while (onSpline && count < .1f)
@@ -43,12 +46,35 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         }
         missed = true;
         splineRenderer.sharedMaterial = failedTraceMat;
-        endTargetObject.GetComponent<MeshRenderer>().sharedMaterials[0] = failedTraceMat;
+        endTargetObject.SetActive(false);
         isTracing = false;
+    }
+    IEnumerator COScore()
+    {
+        while(!missed)
+        {
+            APManager.Instance.IncreaseAP(.1f, false);
+            if (interactable.side == eSide.left)
+            {
+                APVFXManager.Instance.APVfxSpawnNagini(AvatarManager.Instance.avatarObjects[(int)eSide.left].transform.position, 1);
+            }
+            else
+            {
+                APVFXManager.Instance.APVfxSpawnYata(AvatarManager.Instance.avatarObjects[(int)eSide.right].transform.position, 1);
+            }
+            float count = 0;
+            while (count < .5f)
+            {
+                HapticsManager.Instance.TriggerSimpleVibration(interactable.side, .1f, .1f);
+                yield return new WaitForSeconds(.1f);
+                count += Time.deltaTime;
+                if (missed) break;
+            }
+        }
     }
     public override void InteractableMissed()
     {
-        if (currentPoint <= interactable.multiPoints.Length)
+        if (currentPoint <= interactable.multiPoints.Length && LevelManager.Instance.GetSpawnedBoard(targetBoardIndex, LevelManager.currentStageIndex) != null)
         {
             targetBoardIndex += interactable.multiPoints[Mathf.Clamp(currentPoint, 0, interactable.multiPoints.Length - 1)].boardsMoved;
             //Debug.Log("threaded moved");
@@ -61,7 +87,7 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         }
         else
         {
-            //Debug.Log("threadedMissed");
+            Debug.Log("threadedMissedfallback");
             base.InteractableMissed();
         }
     }

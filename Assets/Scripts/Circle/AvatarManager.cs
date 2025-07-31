@@ -108,6 +108,17 @@ public class AvatarManager : MonoBehaviour
         Vector3 tmpPos = avatarCircTransform.position;
         tmpPos += (controllerTransforms[(int)_side].transform.position - playerCircTransform.position) * scaleMult;
         tmpPos = new Vector3(tmpPos.x, tmpPos.y, avatarCircTransform.position.z);
+        switch (_side)
+        {
+            case eSide.left:
+                tmpPos.x += .15f;
+                break;
+            case eSide.right:
+                tmpPos.x -= .15f;
+                break;
+            default:
+                break;
+        }
         return tmpPos;
     }
     public void SetNewAvatars(int _index, float _scale)
@@ -129,7 +140,6 @@ public class AvatarManager : MonoBehaviour
         StartCoroutine(evolveBehavior.CoEvolve(tmpBool, _tutorial));
         return tmpBool;
     }
-    public bool readyMove = false;
     public IEnumerator COTutorialIntro()
     {
         TutorialCanvasManager tc = TutorialManager.Instance.tc;
@@ -143,7 +153,7 @@ public class AvatarManager : MonoBehaviour
         }
         float timetill = 3f;
         count = 0;
-        string[] text = { "This Is Yata" };
+        string[] text = { "This Is Yata; The Mind"};
         tc.FadeInText(text);
         while (count < timetill)
         {
@@ -153,7 +163,7 @@ public class AvatarManager : MonoBehaviour
         }
         tc.FadeOutText();
         yield return new WaitUntil(() => !tc.textChanging);
-        text[0] = "And This Is Nagini";
+        text[0] = "And This Is Nagini; The Body";
         tc.FadeInText(text);
         count = 0;
         while (count < timetill)

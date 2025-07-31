@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour
 
     [Header("Avatars/UI")]
     [SerializeField] GameObject[] toHide;
+    [SerializeField] GameObject[] toShow;
 
     [Header("Unpause Elements")]
     [SerializeField] public TextMeshProUGUI[] countdownTimer;
@@ -27,7 +28,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-       // menuBG.SetActive(false);
+        // menuBG.SetActive(false);
 
         openPauseMenuAction.action.Enable();
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
@@ -79,11 +80,15 @@ public class PauseManager : MonoBehaviour
         if (!isPaused)
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
+            toShow[0].SetActive(true);
+            toShow[1].SetActive(true);
             showPauseMenu = true;
             PauseGame(true);
         }
         else if (isPaused)
         {
+            toShow[0].SetActive(false);
+            toShow[1].SetActive(false);
             PauseGame(false);
         }
     }
@@ -182,5 +187,11 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         isCountingDown = false;
         openPauseMenuAction.action.performed += OnPauseButtonPressed;
+    }
+
+    public void ShowLineInteractor()
+    {
+        toShow[0].SetActive(true);
+        toShow[1].SetActive(true);
     }
 }

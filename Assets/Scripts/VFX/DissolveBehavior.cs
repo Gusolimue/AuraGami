@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class DissolveBehavior : MonoBehaviour
@@ -46,10 +45,7 @@ public class DissolveBehavior : MonoBehaviour
     }
     public void ResetSphereFill(float _time = 0)
     {
-        count = 0;
-        time = _time;
-        fillTarget = 0;
-        SetDissolve(0);
+        StartCoroutine(COSphereDrain(_time));
     }
     public void FillSphere(float _percentage, float _time)
     {
@@ -68,6 +64,17 @@ public class DissolveBehavior : MonoBehaviour
         while (count < _time)
         {
             SetDissolve(Mathf.Lerp(0f, _percentage, count / _time));
+            count += Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator COSphereDrain(float _time)
+    {
+        float count = 0;
+        float start = GetDissolvePercent();
+        while (count < _time)
+        {
+            SetDissolve(Mathf.Lerp(start, 0f, count / _time));
             count += Time.deltaTime;
             yield return null;
         }

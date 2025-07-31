@@ -12,25 +12,37 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject pauseOptions;
     [SerializeField] public GameObject pauseOptionsTutorial;
     [SerializeField] public GameObject settingsOptions;
+    [SerializeField] Image bgFadeOut;
+    [SerializeField] Color fadeColor;
 
     [SerializeField] GameObject bgBlur;
 
     public bool isRestarting;
+    private float count;
 
     private void Awake()
     {
         Instance = this;
         isRestarting = false;
-        if (LoadManager.Instance.isTutorial == false) 
+        if (LoadManager.Instance.isTutorial == false)
         {
             Instantiate(pauseOptions, transform);
             bgBlur.SetActive(false);
         }
-        else 
+        else
         {
             Instantiate(pauseOptionsTutorial, transform);
             bgBlur.SetActive(true);
         }
+    }
+
+    private void Update()
+    {
+        count += Time.deltaTime;
+
+        Color curColor = bgFadeOut.color;
+        float newAlpha = Mathf.Lerp(curColor.a, fadeColor.a, count / 15);
+        bgFadeOut.color = new Color(curColor.r, curColor.g, curColor.b, newAlpha);
     }
 
     public void InstantiateSettingsMenu()

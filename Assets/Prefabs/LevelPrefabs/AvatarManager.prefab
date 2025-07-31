@@ -446,9 +446,9 @@ MonoBehaviour:
   soAvatars:
   - {fileID: 11400000, guid: ed407649a5879fd40a0a9407e561b8b1, type: 2}
   - {fileID: 11400000, guid: fa1818a2c2c40274490e1dae7db98369, type: 2}
-  evolveSphereRenderer: {fileID: 138210001148948857}
   playerCircCanvas: {fileID: 2736877081743546173}
   cursorObjects: []
+  evolveBehavior: {fileID: 7804518116560140118}
   readyMove: 0
 --- !u!1 &7638767199092417856
 GameObject:
@@ -540,6 +540,14 @@ PrefabInstance:
     - target: {fileID: 3835025320555080431, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
       propertyPath: leftController
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6557541163663444502, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931833093116552857, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436021521563711846, guid: 542e54a8c51a03047be3005cb28b69bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -657,16 +665,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8743e3bcac0e6e249a269dcba860bd84, type: 3}
---- !u!23 &138210001148948857 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5382276509812138766, guid: 8743e3bcac0e6e249a269dcba860bd84, type: 3}
-  m_PrefabInstance: {fileID: 5429840023512650359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &254465315488324412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5247432852936411467, guid: 8743e3bcac0e6e249a269dcba860bd84, type: 3}
   m_PrefabInstance: {fileID: 5429840023512650359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7804518116560140118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2816330159915885857, guid: 8743e3bcac0e6e249a269dcba860bd84, type: 3}
+  m_PrefabInstance: {fileID: 5429840023512650359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c9cd39a986c384a93fa9c5fbafb9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6907006288804380772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,6 +692,14 @@ PrefabInstance:
     - target: {fileID: 907314388109661173, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_Name
       value: BirdAvatar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810331884534047471, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584789947338648607, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7988045777433049810, guid: 7c42ea6e758f69044abc88f925d8cb4c, type: 3}
       propertyPath: m_LocalPosition.z
