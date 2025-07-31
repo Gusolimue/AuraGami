@@ -32,9 +32,10 @@ public class BoardBehavior : MonoBehaviour
         //if (mycount == 0) Debug.Log(count / 60f / LevelManager.Instance.level.soTrack.bpm);
         if (currentBeat >= 0)
         {
-            transform.position = Vector3.Lerp(lastPos, targetPos, count / ( 60f / LevelManager.Instance.level.track.bpm));
+            if(TutorialManager.Instance == null) transform.position = Vector3.Lerp(lastPos, targetPos, count / LevelManager.Instance.level.track.beatLength);
+            else transform.position = Vector3.Lerp(lastPos, targetPos, count / TutorialManager.Instance.tutorialTrack.beatLength);
         }
-        if(isStopped && (count / (60f / LevelManager.Instance.level.track.bpm)) >= 1)
+        if (isStopped && (count / (60f / LevelManager.Instance.level.track.bpm)) >= 1)
         {
             StopMovement();
         }
@@ -70,7 +71,7 @@ public class BoardBehavior : MonoBehaviour
         //BeatManager.beatUpdated -= UpdateMovementTarget;
         foreach (var interactable in this.GetComponentsInChildren<BaseInteractableBehavior>())
         {
-            if(interactable.isActiveAndEnabled)
+            if(interactable.isActiveAndEnabled && interactable.gameObject.activeSelf)
             {
                 interactable.InteractableMissed();
             }

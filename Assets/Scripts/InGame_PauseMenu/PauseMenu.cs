@@ -3,57 +3,61 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine;
 using EditorAttributes;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
+    [Header("Pause Menus")]
+    [SerializeField] public GameObject pauseOptions;
+    [SerializeField] public GameObject pauseOptionsTutorial;
+    [SerializeField] public GameObject settingsOptions;
+    [SerializeField] Image bgFadeOut;
+    [SerializeField] Color fadeColor;
+
+    [SerializeField] GameObject bgBlur;
 
     public bool isRestarting;
+    private float count;
 
     private void Awake()
     {
         Instance = this;
         isRestarting = false;
-        //this.gameObject.transform.localPosition = new Vector3(-.13f, 4.15f, 5.77f);
+        if (LoadManager.Instance.isTutorial == false)
+        {
+            Instantiate(pauseOptions, transform);
+            bgBlur.SetActive(false);
+        }
+        else
+        {
+            Instantiate(pauseOptionsTutorial, transform);
+            bgBlur.SetActive(true);
+        }
     }
 
-    public void OnRestartGameButtonPressed()
+    private void Update()
     {
-        isRestarting = true;
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionRestartSplash();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
+        count += Time.deltaTime;
+
+        Color curColor = bgFadeOut.color;
+        float newAlpha = Mathf.Lerp(curColor.a, fadeColor.a, count / 15);
+        bgFadeOut.color = new Color(curColor.r, curColor.g, curColor.b, newAlpha);
     }
 
-    public void OnResumeGameButtonPressed()
+    public void InstantiateSettingsMenu()
     {
-        PauseManager.Instance.PauseGame(false);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
+        Instantiate(settingsOptions, transform);
     }
 
-    public void OnLevelsButtonPressed()
+    public void InstantiatePauseOptions()
     {
-        CanvasManager.Instance.ShowCanvasLevelSelect();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        //Destroy(this.gameObject);
+        Instantiate(pauseOptions, transform);
     }
 
-    public void OnSettingsButtonPressed()
+    public void InstantiateTutorialPauseOptions()
     {
-        CanvasManager.Instance.ShowCanvasSettings();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        Destroy(this.gameObject);
-    }
-    [Button, SerializeField]
-    public void OnMainMenuButtonPressed()
-    {
-        LevelSelectManager.Instance.whichLevel = (int)eScene.frontEnd;
-        LoadManager.Instance.isTitleScreen = 1;
-
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash();
+        Instantiate(pauseOptionsTutorial, transform);
     }
 
     public void DestroyMenu()

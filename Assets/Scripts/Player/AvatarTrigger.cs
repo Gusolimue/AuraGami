@@ -2,20 +2,35 @@ using UnityEngine;
 using UnityEngine.Splines;
 public class AvatarTrigger : MonoBehaviour
 {
-    float count;
-
-    private void Update()
-    {
-        count += Time.deltaTime;
-    }
+    public AvatarBehavior avatarBehavior;
+    bool leftTriggered;
+    bool rightTriggered;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<SplineExtrude>() != null)
+        if (other.TryGetComponent<SplineExtrude>(out SplineExtrude se))
         {
-            if(other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            if(other.transform.parent.TryGetComponent<ThreadedTargetInteractableBehavior>(out ThreadedTargetInteractableBehavior ti))
             {
-                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = true;
-                Debug.Log("threadedEnter");
+                if (avatarBehavior.side == ti.side || ti.side == eSide.any)
+                {
+                    ti.onSpline = true;
+                    Debug.Log("threadedEnter");
+                    HapticsManager.Instance.ToggleVibration(avatarBehavior.side, true, 0.3f);
+
+                    ti.count = 0;
+                }
+                else if (ti.side == eSide.both)
+                {
+                    if (avatarBehavior.side == eSide.left) leftTriggered = true;
+                    if (avatarBehavior.side == eSide.right) rightTriggered = true;
+                    if (leftTriggered == rightTriggered == true)
+                    {
+                        ti.onSpline = true;
+                        Debug.Log("threadedEnter");
+                        HapticsManager.Instance.ToggleVibration(avatarBehavior.side, true, 0.3f);
+                        ti.count = 0;
+                    }
+                }
             }
         }
     }
@@ -24,10 +39,25 @@ public class AvatarTrigger : MonoBehaviour
     {
         if (other.GetComponent<SplineExtrude>() != null)
         {
-            if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            if (other.transform.parent.TryGetComponent<ThreadedTargetInteractableBehavior>(out ThreadedTargetInteractableBehavior ti))
             {
-                other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
-                Debug.Log("threadedExit");
+                if (avatarBehavior.side == ti.side || ti.side == eSide.any)
+                {
+                    ti.onSpline = false;
+                    Debug.Log("threadedExit");
+                    HapticsManager.Instance.ToggleVibration(avatarBehavior.side, false);
+                }
+                else if (ti.side == eSide.both)
+                {
+                    if (avatarBehavior.side == eSide.left) leftTriggered = false;
+                    if (avatarBehavior.side == eSide.right) rightTriggered = false;
+                    if (leftTriggered || rightTriggered == false)
+                    {
+                        ti.onSpline = false;
+                        Debug.Log("threadedExit");
+                        HapticsManager.Instance.ToggleVibration(avatarBehavior.side, false);
+                    }
+                }
             }
         }
 
@@ -37,15 +67,21 @@ public class AvatarTrigger : MonoBehaviour
 
         if (other.GetComponent<SplineExtrude>() != null)
         {
-            if (other.GetComponentInParent<ThreadedTargetInteractableBehavior>() != null)
+            if (other.transform.parent.TryGetComponent<ThreadedTargetInteractableBehavior>(out ThreadedTargetInteractableBehavior ti))
             {
-                if (count > .1f)
+                if (avatarBehavior.side == ti.side || ti.side == eSide.any)
                 {
-                    other.GetComponentInParent<ThreadedTargetInteractableBehavior>().onSpline = false;
-                    Debug.Log("threadTimeout");
+                    ti.count = 0;
                 }
-                
-                count = 0;
+                else if (ti.side == eSide.both)
+                {
+                    if (avatarBehavior.side == eSide.left) leftTriggered = true;
+                    if (avatarBehavior.side == eSide.right) rightTriggered = true;
+                    if (leftTriggered || rightTriggered == true)
+                    {
+                        ti.count = 0;
+                    }
+                }
             }
         }
     }

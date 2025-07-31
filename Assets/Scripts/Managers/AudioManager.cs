@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
     [Header("Music: Level")]
     public EventReference music_level_Freedom;
     public EventReference music_level_Fail;
+    public EventReference music_level_Tutorial;
     public EventReference music_level_Complete;
 
     [Space]
@@ -75,12 +76,15 @@ public class AudioManager : MonoBehaviour
     public EventReference sfx_frontEnd_menuHoverExitMedium;
     public EventReference sfx_frontEnd_menuHoverExitSmall;
     public EventReference sfx_frontEnd_menuTransition;
+    public EventReference sfx_frontEnd_titleIdle;
 
     [Space]
     [Header("SFX: Pause")]
     public EventReference sfx_pause_menuOpen;
     public EventReference sfx_pause_menuClose;
     public EventReference sfx_pause_countdown;
+
+    public static FMOD.Studio.EventInstance idleInstance;
     // This will be for when the orb reaches the player's chest and the scene transitions. This sound can be for the play button too. 
 
     void Awake()

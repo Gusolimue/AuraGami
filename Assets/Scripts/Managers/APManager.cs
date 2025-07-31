@@ -31,6 +31,7 @@ public class APManager : MonoBehaviour
     [Header("To Set/Call")]
     public AuraFXBehavior[] auraFXBehaviors;
     public Slider sigil;
+    public DissolveBehavior sphere;
     public static APManager Instance;
 
     private void Awake()
@@ -42,6 +43,7 @@ public class APManager : MonoBehaviour
         stageTargetValues = new float[3];
         UpdateSigils();
         UpdateAuraFX();
+        forceSuccess = false;
     }
     float count;
     private void Update()
@@ -51,6 +53,22 @@ public class APManager : MonoBehaviour
         sigil.value = Mathf.Lerp(sigil.value, targetSigilValue, count * sigilSliderSpeed);
     }
 
+    public void SetTutorialTargetValues(SoTutorial _tutorial)
+    {
+        stageTargetTotals[0] = 0;
+        List<Board> tmpStage = _tutorial.tutorialBoards;
+        for (int i = 0; i < tmpStage.Count; i++)
+        {
+            foreach (var item in tmpStage[i].interactables)
+            {
+                if (item.interactableType != eTargetType.regularObstacle)
+                {
+                    stageTargetTotals[0]++;
+                }
+            }
+        }
+        stageTargetValues[0] = (2 - stagePassPercent[0]) / stageTargetTotals[0];
+    }
     public void SetTargetValues()
     {
         for (int c = 0; c < 3; c++)
@@ -70,18 +88,21 @@ public class APManager : MonoBehaviour
         }
     }
 
-    public void IncreaseAP()
+    public void IncreaseAP(float _amount = 1f, bool streakIncrease = true)
     {
-        Invoke(nameof(APDelay), apGainDelay);
+        StartCoroutine(APDelay(_amount, streakIncrease)); 
     }
-    void APDelay()
+    IEnumerator APDelay(float _amount, bool streakIncrease)
     {
+        int tmpStreakIncrease = 1;
+        if (!streakIncrease) tmpStreakIncrease = 0;
+        yield return new WaitForSeconds(apGainDelay);
         count = 0;
         sigilSliderSpeed = 5f;
-        curAP += stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
-            * multLevels[GetStreakIndex(1)];
-        curAP = Mathf.Clamp(curAP, 0, Mathf.Infinity);
-
+        curAP += _amount * (stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)]
+            * multLevels[GetStreakIndex(tmpStreakIncrease)]);
+        curAP = Mathf.Clamp(curAP, 0, 1.1f);
+        //HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         UpdateSigils();
         UpdateAuraFX();
 
@@ -102,8 +123,10 @@ public class APManager : MonoBehaviour
         curStreak += _change;
         if (curStreak%multIncrementStreak <= 0 && curStreak < multIncrementStreak * multLevels.Length)
         {
-            AvatarManager.Instance.rightAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
-            AvatarManager.Instance.leftAvatar.GetComponent<AvatarBehavior>().StreakEnabled();
+            foreach (var avatar in AvatarManager.Instance.avatarObjects)
+            {
+                avatar.GetComponent<AvatarBehavior>().StreakEnabled();
+            }
         }
         curStreak = Mathf.FloorToInt(Mathf.Clamp(curStreak, 0, Mathf.Infinity));
         tmpReturn = Mathf.Clamp((curStreak / multIncrementStreak), 0, multLevels.Length - 1);
@@ -132,7 +155,7 @@ public class APManager : MonoBehaviour
             {
                 SigilShieldBehavior.Instance.DecreaseShield();
             }
-
+            //HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .75f);
         }
      
     }
@@ -144,7 +167,7 @@ public class APManager : MonoBehaviour
     public bool StagePassCheck()
     {
         bool tmp = false;
-        if (curAP >= /*LevelManager.currentStageIndex*/ 1) tmp = true;
+        if (curAP >= /*LevelManager.currentStageIndex*/ 1 || forceSuccess) tmp = true;
         return tmp;
     }
     public void ResetAP()
@@ -169,20 +192,21 @@ public class APManager : MonoBehaviour
         isDraining = true;
         StartCoroutine(CODrainAP());
     }
+    public float targetVal;
     IEnumerator CODrainAP()
     {
         SigilShieldBehavior.Instance.ShieldReset();
+        float spendAmount = 2f;
+        float maxLength = 1.5f;
+        float tmpLength = maxLength / (curAP / stageTargetValues[Mathf.Clamp(LevelManager.currentStageIndex, 0, stageTargetValues.Length - 1)] * spendAmount);
+        if(TutorialManager.Instance == null) sphere.FillSphere(curAP, curAP * maxLength);
         while (curAP > 0)
         {
-            count = 0;
-            DecreaseAP(1);
+            DecreaseAP(spendAmount);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_sigils_sigilTickDown);
-            APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveSphereRenderer.gameObject.transform.position);
-            yield return new WaitForSeconds(0.01f);
-            //while(sigil.value != targetSigilValue)
-            //{
-            //    yield return null;
-            //}
+            Vector3 targetPos = AvatarManager.Instance.evolveBehavior.transform.position;
+            if (TutorialManager.Instance == null) APVFXManager.Instance.APVfxSpawnSigil(AvatarManager.Instance.evolveBehavior.transform.position);
+            yield return new WaitForSeconds(tmpLength);
         }
         isDraining = false;
     }

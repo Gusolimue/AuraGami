@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 //Base Script to source for all in game interactables (targets and hazards)
 public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
@@ -79,16 +80,23 @@ public class BaseInteractableBehavior : MonoBehaviour
     //Method called when object's trigger collides with avatar
     public virtual void AvatarCollision(AvatarBehavior avatarBehavior)
     {
+        Debug.Log("target collision");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-        if (avatarBehavior.side == eSide.left) APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
-        else APVFXManager.Instance.APVfxSpawnYata(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        HapticsManager.Instance.TriggerSimpleVibration(side, .1f, .1f);
+        if (avatarBehavior.side == eSide.left)
+        {
+            APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        }
+        else
+        {
+            APVFXManager.Instance.APVfxSpawnYata(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
+        }
         StopTarget();
     }
 
     internal void StopTarget()
     {
         gameObject.SetActive(false);
-        
     }
 
     public void FadeOutTarget()
