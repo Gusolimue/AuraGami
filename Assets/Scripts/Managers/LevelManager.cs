@@ -223,7 +223,7 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("board activated");
         if(boardIndex >= instantiatedStages[currentStageIndex].Count)
         {
-            EndStage();
+            //EndStage();
             //if (currentStageIndex >= 2)
             //{
             //    BeatManager.beatUpdated -= ActivateBoard;
