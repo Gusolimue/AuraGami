@@ -20,10 +20,9 @@ public class LevelProgressManager : MonoBehaviour
     [Header("Progress Connectors")]
     [SerializeField] Slider progressConnector;
     public float fillSpeed;
-    public bool isProgress;
-    public int curStage;
+    private int curStage;
 
-    public float targetValue;
+    private float targetValue;
     float additionvalValue;
     private float count;
     public bool isCheat;
@@ -35,8 +34,8 @@ public class LevelProgressManager : MonoBehaviour
         StartCoroutine(PlaySound());
         PauseManager.Instance.ShowLineInteractor();
 
-        if (curStage < 4) messageTXT.text = "Do You Continue?";
-        if (curStage > 3) messageTXT.text = "And We Continue...";
+        if (curStage <= 3) messageTXT.text = "Do You Continue?";
+        if (curStage >= 3) messageTXT.text = "And We Continue...";
         if (isCheat)
         {
             curStage = 4;
@@ -51,7 +50,7 @@ public class LevelProgressManager : MonoBehaviour
     private void Update()
     {
         count += Time.deltaTime;
-        progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
+        progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count/fillSpeed);
 
 
         Color curColor = bgFadeOut.color;
