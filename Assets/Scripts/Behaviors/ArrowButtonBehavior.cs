@@ -53,16 +53,16 @@ public class ArrowButtonBehavior : MonoBehaviour
         if (isDefault) curSpeed = 5f;
         else curSpeed = 5;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
     }
 
     public void OnArrowPressed()
     {
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         curSpeed = 1;
         count = 0;
         Debug.Log("Arrow Pressed");
         StartCoroutine(ArrowPress());
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_levelOrbPressed);
     }
 
     private IEnumerator ArrowPress()

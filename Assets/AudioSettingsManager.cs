@@ -115,15 +115,11 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseSFXVol()
     {
         sfxAudioSlider.value += .1f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseSFXVol()
     {
         sfxAudioSlider.value -= .1f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DefaultSettings()

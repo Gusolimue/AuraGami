@@ -34,13 +34,14 @@ public class LevelSelect : MonoBehaviour
     public void ChangeLevels()
     {
         if(AudioManager.idleInstance.isValid()) AudioManager.idleInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
         StartCoroutine(LevelSelectManager.Instance.LevelTransition());
     }
 
     public void OnHover()
     {
         LevelSelectManager.Instance.changeColor = true;
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
     }
 

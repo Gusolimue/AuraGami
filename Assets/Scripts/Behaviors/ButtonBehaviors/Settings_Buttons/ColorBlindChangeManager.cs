@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 [System.Serializable]
 public class ColorPallete
@@ -28,6 +29,8 @@ public class ColorBlindChangeManager : MonoBehaviour
     [Header("Avatars")]
     [SerializeField] SoAvatar yata;
     [SerializeField] SoAvatar nagini;
+
+    private int tmpInt;
     private enum eColorBlindOptions {none, optionOne, optionTwo};
 
     [NamedArray(typeof(eColorBlindOptions))]public ColorPallete[] colorPallete;
@@ -43,27 +46,21 @@ public class ColorBlindChangeManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        PlayerPrefs.GetInt("ColorModeIndex", 0);
+        tmpInt = PlayerPrefs.GetInt("ColorModeIndex", 0);
 
         colorOptionsTXT.text = PlayerPrefs.GetString("text", "Standard");
     }
 
-    public void ColorOptionsCycle(bool direction)
+    public void ColorOptionsCycle(bool isRight)
     {
-        int tmpInt = PlayerPrefs.GetInt("ColorModeIndex");
-        if (direction)
-        {
-            tmpInt++;
-            if ((eColorBlindOptions)tmpInt > eColorBlindOptions.optionTwo) tmpInt--;
-        }
-        else
-        {
-            tmpInt--;
-            if ((eColorBlindOptions)tmpInt < eColorBlindOptions.none) tmpInt++;
-        }
+        int enumLength = System.Enum.GetNames(typeof(eColorBlindOptions)).Length;
+
+        if (isRight) tmpInt = (tmpInt + 1) % enumLength;
+        else tmpInt = (tmpInt - 1 + enumLength) % enumLength;
+
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
-        PlayerPrefs.Save();
+        StartCoroutine(TextTransition());
         SwitchColorOptions();
         SetColorPallet();
     }
@@ -148,5 +145,31 @@ public class ColorBlindChangeManager : MonoBehaviour
 
         UpdateAvatarColors(yata, _eColorBlindOption);
         UpdateAvatarColors(nagini, _eColorBlindOption);
+    }
+
+    public void DefaultSettings()
+    {
+        tmpInt = (int)eColorBlindOptions.none;
+        PlayerPrefs.SetInt("ColorModeIndex", tmpInt);
+        StartCoroutine(TextTransition());
+        SwitchColorOptions();
+        SetColorPallet();
+    }
+
+    public IEnumerator TextTransition()
+    {
+        float alpha = 0f;
+        float fadeInDuration = 1f;
+
+        Color curColor = colorOptionsTXT.color;
+        colorOptionsTXT.color = new Color(curColor.r, curColor.g, curColor.b, 0);
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / fadeInDuration;
+            colorOptionsTXT.color = new Color(colorOptionsTXT.color.r, colorOptionsTXT.color.g,
+                colorOptionsTXT.color.b, alpha);
+            yield return new WaitForSecondsRealtime(.01f);
+        }
     }
 }
