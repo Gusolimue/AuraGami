@@ -82,7 +82,17 @@ public class BaseInteractableBehavior : MonoBehaviour
     {
         Debug.Log("target collision");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
-        HapticsManager.Instance.TriggerSimpleVibration(side, .1f, .1f);
+        switch (side)
+        {
+            case eSide.left:
+            case eSide.right:
+                HapticsManager.Instance.TriggerSimpleVibration(side, .1f, .1f);
+                break;
+            case eSide.both:
+                HapticsManager.Instance.TriggerSimpleVibration(side, .5f, .1f);
+                break;
+        }
+        
         if (avatarBehavior.side == eSide.left)
         {
             APVFXManager.Instance.APVfxSpawnNagini(this.transform.position, APManager.Instance.multLevels[APManager.Instance.GetStreakIndex()] * 1);
