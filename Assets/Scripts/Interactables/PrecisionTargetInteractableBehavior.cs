@@ -29,7 +29,7 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a normal target
             Debug.Log("Hit the target");
             APManager.Instance.IncreaseAP();
-            HapticsManager.Instance.TriggerSimpleVibration(side, .2f, .1f);
+            HapticsManager.Instance.TriggerSimpleVibration(side, .7f, .1f);
             Debug.Log("Precision Target Vibrating");
             base.AvatarCollision(avatarBehavior);
         }
@@ -38,7 +38,7 @@ public class PrecisionTargetInteractableBehavior : BaseInteractableBehavior
             // Act like a hazard
             Debug.Log("Missed the mark");
             APManager.Instance.DecreaseAP(1);
-            HapticsManager.Instance.TriggerSimpleVibration(side, .7f, .1f);
+            HapticsManager.Instance.TriggerSimpleVibration(side, .05f, .1f);
             if (avatarBehavior != null) avatarBehavior.ObstacleCollision();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_obstacle_hit);
             StopTarget();

@@ -89,7 +89,7 @@ public class BaseInteractableBehavior : MonoBehaviour
                 HapticsManager.Instance.TriggerSimpleVibration(side, .1f, .1f);
                 break;
             case eSide.both:
-                HapticsManager.Instance.TriggerSimpleVibration(side, .3f, .1f);
+                HapticsManager.Instance.TriggerSimpleVibration(side, .5f, .1f);
                 break;
         }
         
