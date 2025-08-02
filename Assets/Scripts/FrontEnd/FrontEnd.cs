@@ -67,7 +67,6 @@ public class FrontEnd : MonoBehaviour // This script handles all main menu butto
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
-        //CanvasManager.Instance.ShowCanvasFEPlaytestTutorial();
         FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 1);
         Destroy(this.gameObject);
     }
