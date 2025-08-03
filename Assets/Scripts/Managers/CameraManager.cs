@@ -6,21 +6,24 @@ public class CameraManager : MonoBehaviour
 {
     Camera[] myCams = new Camera[2];
     public float smoothing;
-
+    public bool other;
     private void Awake()
     {
 
-        //XRSettings.gameViewRenderMode = GameViewRenderMode.None;
+        XRSettings.gameViewRenderMode = GameViewRenderMode.None;
     }
     void Start()
     {
         myCams[0] = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         myCams[1] = GameObject.FindGameObjectWithTag("PresentationCamera").GetComponent<Camera>();
+        if (other)
+        {
 
-        Display.onDisplaysUpdated += OnDisplaysUpdated;
+            Display.onDisplaysUpdated += OnDisplaysUpdated;
 
-        mapCameraToDisplay();
+            mapCameraToDisplay();
+        }
     }
     void Update()
     {
@@ -31,7 +34,7 @@ public class CameraManager : MonoBehaviour
     {
         for (int i = 0; i < Display.displays.Length; i++)
         {
-            myCams[i].targetDisplay = i;
+            myCams[i].targetDisplay = 0;
             Display.displays[i].Activate();
         }
     }
