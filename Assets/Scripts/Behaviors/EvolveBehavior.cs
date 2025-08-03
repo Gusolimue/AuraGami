@@ -176,7 +176,10 @@ public class EvolveBehavior : MonoBehaviour
                 CanvasManager.Instance.ShowCanvasLevelProgress();
                 PauseManager.Instance.showPauseMenu = false;
                 PauseManager.Instance.PauseGame(true);
-                BeatManager.Instance.PauseMusicTMP(false);
+                if(_final)
+                {
+                    BeatManager.Instance.PauseMusicTMP(false);
+                }
             }
             PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
             // Give control of the avatars back to the player
