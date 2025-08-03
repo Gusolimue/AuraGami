@@ -6,6 +6,8 @@ using System.Collections;
 public class LevelProgressManager : MonoBehaviour
 {
     public static LevelProgressManager Instance;
+    [SerializeField] Image bgFadeOut;
+    [SerializeField] Color fadeColor;
 
     [Header("Message")]
     [SerializeField] TextMeshProUGUI messageTXT;
@@ -18,10 +20,10 @@ public class LevelProgressManager : MonoBehaviour
     [Header("Progress Connectors")]
     [SerializeField] Slider progressConnector;
     public float fillSpeed;
-    public bool isProgress;
-    public int curStage;
+    private int curStage;
 
-    public float targetValue;
+    private float targetValue;
+    float additionvalValue;
     private float count;
     public bool isCheat;
 
@@ -29,121 +31,46 @@ public class LevelProgressManager : MonoBehaviour
     {
         Instance = this;
         curStage = LevelManager.currentStageIndex;
-
+        StartCoroutine(PlaySound());
         PauseManager.Instance.ShowLineInteractor();
 
-        if (curStage < 4) messageTXT.text = "Do You Continue?";
-        if (curStage == 1) StartCoroutine(StarColorChange(2));
-        if (curStage == 2) StartCoroutine(StarColorChange(3));
-        if (curStage == 3) 
-        {
-            StartCoroutine(StarColorChange(4));
-            messageTXT.text = "And You Continue...";
-        }
+        if (curStage <= 3) messageTXT.text = "Do You Continue?";
+        if (curStage >= 3) messageTXT.text = "And We Continue...";
         if (isCheat)
         {
             curStage = 4;
-            StartCoroutine(StarColorChange(4));
             messageTXT.text = "And You Continue...";
         }
+        additionvalValue = APManager.Instance.lastStageAP;
+        targetValue = additionvalValue + curStage;
+        targetValue /= 3;
+        targetValue += .01f;
     }
 
     private void Update()
-    {      
-        if (curStage == 1)
-        {
-            targetValue = .34f;
-            count += Time.deltaTime;
-            progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
-        }
-
-        if (curStage == 2)
-        {
-            targetValue = .68f;
-            count += Time.deltaTime;
-            progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
-
-        }
-
-        if (curStage == 3)
-        {
-            targetValue = 1.02f;
-            count += Time.deltaTime;
-            progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
-        }
-
-        if (curStage == 4)
-        {
-            targetValue = 1.02f;
-            count += Time.deltaTime;
-            progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count / fillSpeed);
-        }
-    }
-    
-    private IEnumerator StarColorChange(int starNum)
     {
-        yield return new WaitForSeconds(.8f);
-        float alpha = 0f;
-        float colorChangeDuration = 1f;
+        count += Time.deltaTime;
+        progressConnector.value = Mathf.Lerp(progressConnector.value, targetValue, count/fillSpeed);
 
-        if (starNum == 2)
-        {
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[0].color = Color.Lerp(stars[0].color, starActive, alpha);
-                yield return null;
-            }
-            alpha = 0;
-        }
 
-        if (starNum == 3)
-        {
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[0].color = Color.Lerp(stars[0].color, starActive, alpha);
-                yield return null;
-            }
-            alpha = 0;
-            yield return new WaitForSeconds(.1f);
+        Color curColor = bgFadeOut.color;
+        float newAlpha = Mathf.Lerp(curColor.a, fadeColor.a, count / 15);
+        bgFadeOut.color = new Color(curColor.r, curColor.g, curColor.b, newAlpha);
 
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[1].color = Color.Lerp(stars[1].color, starActive, alpha);
-                yield return null;
-            }
-            alpha = 0;
-            yield return new WaitForSeconds(.1f);
-        }
+        if (progressConnector.value >= .34f) stars[0].color = Color.Lerp(stars[0].color, starActive, Time.deltaTime * 15f);
+        if (progressConnector.value >= .68f) stars[1].color = Color.Lerp(stars[1].color, starActive, Time.deltaTime * 15f);
+        if (progressConnector.value >= 1.02f) stars[2].color = Color.Lerp(stars[2].color, starActive, Time.deltaTime * 15f);
+    }
 
-        if (starNum == 4)
-        {
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[0].color = Color.Lerp(stars[0].color, starActive, alpha);
-                yield return null;
-            }
-            alpha = 0;
-            yield return new WaitForSeconds(.1f);
+    private IEnumerator PlaySound()
+    {
+        while (progressConnector.value <= .34f) yield return null;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
 
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[1].color = Color.Lerp(stars[1].color, starActive, alpha);
-                yield return null;
-            }
-            alpha = 0;
-            yield return new WaitForSeconds(.1f);
+        while (progressConnector.value <= .68f) yield return null;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
 
-            while (alpha < 1f)
-            {
-                alpha += Time.deltaTime / colorChangeDuration;
-                stars[2].color = Color.Lerp(stars[2].color, starActive, alpha);
-                yield return null;
-            }
-        }
+        while (progressConnector.value <= 1.02f) yield return null;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
     }
 }

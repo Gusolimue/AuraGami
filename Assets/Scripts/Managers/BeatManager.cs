@@ -116,7 +116,7 @@ public class BeatManager : MonoBehaviour
         musicInstance.setUserData(IntPtr.Zero);
         musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         musicInstance.release();
-        timelineHandle.Free();
+        timelineHandle.Free(); // Error when changing scenes occassionally
     }
     bool start = false;
     private void Update()

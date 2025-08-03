@@ -165,16 +165,19 @@ public class PauseManager : MonoBehaviour
 
         countdownTimer[0].color = countdownColor[0]; countdownTimer[0].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[0].gameObject.SetActive(true);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
         timerOn = 3;
         yield return new WaitForSeconds(1f);
 
         countdownTimer[1].color = countdownColor[0]; countdownTimer[1].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[1].gameObject.SetActive(true);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .3f, .1f);
         timerOn = 2;
         yield return new WaitForSeconds(1f);
 
         countdownTimer[2].color = countdownColor[0]; countdownTimer[2].transform.localScale = ogCountdownSize.transform.localScale;
         countdownTimer[2].gameObject.SetActive(true);
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         timerOn = 1;
         yield return new WaitForSeconds(1f);
 

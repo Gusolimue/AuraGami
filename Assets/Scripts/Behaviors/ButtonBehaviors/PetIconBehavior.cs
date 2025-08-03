@@ -38,7 +38,6 @@ public class PetIconBehavior : MonoBehaviour
     public void IconSizeDecrease()
     {
         isHover = false;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
         count = 0;
     }
 }

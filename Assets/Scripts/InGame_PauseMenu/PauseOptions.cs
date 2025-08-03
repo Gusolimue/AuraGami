@@ -74,7 +74,7 @@ public class PauseOptions : MonoBehaviour
 
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 0);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 1);
     }
 
     private IEnumerator FillConnectors()
