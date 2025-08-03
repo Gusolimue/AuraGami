@@ -82,6 +82,7 @@ public class TutorialManager : MonoBehaviour
     }
     IEnumerator COTutorialIntro()
     {
+        ProgressTrack();
         yield return new WaitForSeconds(3);
         ProgressTrack();
         string[] strings = { "You...", "You Sleep", "Yet, You Do Not", "Move Your Arms", "Now, Accept Your Other Halves" };
