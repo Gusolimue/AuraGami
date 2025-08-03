@@ -14,9 +14,9 @@ public class CameraManager : MonoBehaviour
     }
     void Start()
     {
-        myCams[1] = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        myCams[0] = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        myCams[0] = GameObject.FindGameObjectWithTag("PresentationCamera").GetComponent<Camera>();
+        myCams[1] = GameObject.FindGameObjectWithTag("PresentationCamera").GetComponent<Camera>();
 
         Display.onDisplaysUpdated += OnDisplaysUpdated;
 
@@ -24,7 +24,7 @@ public class CameraManager : MonoBehaviour
     }
     void Update()
     {
-        myCams[0].transform.rotation = Quaternion.Slerp(myCams[0].transform.rotation, myCams[1].transform.rotation, Time.deltaTime * smoothing);
+        myCams[1].transform.rotation = Quaternion.Slerp(myCams[1].transform.rotation, myCams[0].transform.rotation, Time.deltaTime * smoothing);
     }
 
     void mapCameraToDisplay()
