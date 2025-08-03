@@ -42,7 +42,12 @@ public class TutorialManager : MonoBehaviour
         boardIndex = 0;
         BeatManager.beatUpdated += ActivateBoard;
         isSubscribed = true;
-        trackInstance.setParameterByName("Tutorial Progress", tutorialIndex);
+        ProgressTrack();
+    }
+    void ProgressTrack()
+    {
+        trackInstance.getParameterByName("Tutorial Progress", out float param);
+        trackInstance.setParameterByName("Tutorial Progress", param+1f);
     }
     public void EndTutorial()
     {
@@ -50,21 +55,16 @@ public class TutorialManager : MonoBehaviour
         BeatManager.beatUpdated -= ActivateBoard;
         isSubscribed = false;
         tc.FadeOutText();
-        if (tutorialIndex >= tutorialList.Length - 1)
+        if (tutorialList[tutorialIndex].tutorialType == eTutorial.final) MoveOn();
+        else if (tutorialIndex >= tutorialList.Length - 1)
         {
             tutorialIndex++;
-        }
-        else if(tutorialIndex >= tutorialList.Length - 2)
-        {
-            AvatarManager.Instance.evolveBehavior.StartEvolve(false);
         }
         else if (AvatarManager.Instance.evolveBehavior.StartEvolve(true))
         {
             tutorialIndex++;;
         }
-            AvatarManager.Instance.evolveBehavior.readyMove = false;
-        if(tutorialIndex >= tutorialList.Length) MoveOn();
-        else StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
+        StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }
     void ActivateBoard()
     {
@@ -83,10 +83,12 @@ public class TutorialManager : MonoBehaviour
     IEnumerator COTutorialIntro()
     {
         yield return new WaitForSeconds(3);
+        ProgressTrack();
         string[] strings = { "You...", "You Sleep", "Yet, You Do Not", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
         tc.FadeOutText();
+        ProgressTrack();
 
         StartCoroutine(AvatarManager.Instance.COTutorialIntro());
         yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
