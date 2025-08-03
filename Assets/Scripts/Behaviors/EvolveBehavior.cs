@@ -17,6 +17,7 @@ public class EvolveBehavior : MonoBehaviour
     AudioManager audioManager;
     AvatarManager avatarManager;
     int evolutionIndex = 0;
+
     public void Start()
     {
         audioManager = AudioManager.Instance;
@@ -42,7 +43,7 @@ public class EvolveBehavior : MonoBehaviour
     public IEnumerator CoEvolve(bool _pass, bool _tutorial = false, bool _final = false)
     {
         float count = 0;
-
+        readyMove = false;
         if (!_tutorial)
         {
             if (_pass && !_tutorial) LevelManager.currentStageIndex++;
@@ -102,12 +103,17 @@ public class EvolveBehavior : MonoBehaviour
             }
 
             while (APManager.Instance.isDraining) yield return null;
-            count = 0;
             yield return new WaitForSeconds(1f); //Gus- this wait is just to give more time for the sequence.
-            sphere.ResetSphereFill(1f);
             if (_pass)//Gus A - here is where the pass animation begins. if the variable is true, all it does is fade the orb back to transparency and reset the ap meter.
             {
                 audioManager.PlaySFX(audioManager.sfx_avatar_evolveSuccess);
+                yield return new WaitForSeconds(.3f); 
+                sphere.ResetSphereFill(.5f);
+                count = 0;
+                while (count < .5f)
+                {
+                    count += Time.deltaTime;
+                }
                 if (!_tutorial)
                 {
                     evolutionIndex++;
@@ -136,6 +142,7 @@ public class EvolveBehavior : MonoBehaviour
             }
             else
             {
+                sphere.ResetSphereFill(1f);
                 count = 0;
                 while (count < 1)
                 {
@@ -176,7 +183,11 @@ public class EvolveBehavior : MonoBehaviour
                 CanvasManager.Instance.ShowCanvasLevelProgress();
                 PauseManager.Instance.showPauseMenu = false;
                 PauseManager.Instance.PauseGame(true);
-                BeatManager.Instance.PauseMusicTMP(false);
+                if(_final)
+                {
+                    BeatManager.Instance.PauseMusicTMP(false);
+                }
+                else audioManager.PlaySFX(audioManager.sfx_frontEnd_titleIdle);
             }
             PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
             // Give control of the avatars back to the player
