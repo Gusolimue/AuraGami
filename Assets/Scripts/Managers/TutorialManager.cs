@@ -83,16 +83,15 @@ public class TutorialManager : MonoBehaviour
     IEnumerator COTutorialIntro()
     {
         ProgressTrack();
-        yield return new WaitForSeconds(3);
         ProgressTrack();
+        yield return new WaitForSeconds(3);
         string[] strings = { "You...", "You Sleep", "Yet, You Do Not", "Move Your Arms", "Now, Accept Your Other Halves" };
         tc.FadeInText(strings);
         yield return new WaitUntil(() => !tc.textChanging);
         tc.FadeOutText();
         ProgressTrack();
 
-        StartCoroutine(AvatarManager.Instance.COTutorialIntro());
-        yield return new WaitUntil(() => !AvatarManager.Instance.disableAvatarMovement);
+        yield return StartCoroutine(AvatarManager.Instance.COTutorialIntro());
         AvatarManager.Instance.evolveBehavior.readyMove = true;
         StartCoroutine(COPlayNextTutorial(tutorialList[tutorialIndex]));
     }

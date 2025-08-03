@@ -26,6 +26,7 @@ public class AvatarManager : MonoBehaviour
     [SerializeField, NamedArray(typeof(eSide))] Transform[] controllerTransforms;
     [NamedArray(typeof(eSide))] public GameObject[] avatarObjects;
     [NamedArray(typeof(eSide))] public SoAvatar[] soAvatars;
+    [NamedArray(typeof(eSide))] bool[] avatarMovementDisable;
 
     public Canvas playerCircCanvas;
 
@@ -35,7 +36,7 @@ public class AvatarManager : MonoBehaviour
     [NamedArray(typeof(eSide))] AvatarBehavior[] avatarBehaviors;
 
     Vector3 playerCircStartingPos;
-
+    float slowMod = 1f;
     [Header("Variables to Call")]
     public static AvatarManager Instance;
 
@@ -47,9 +48,11 @@ public class AvatarManager : MonoBehaviour
         playerCircStartingPos = playerCircTransform.position;
         avatarBehaviors = new AvatarBehavior[2];
         cursorObjects = new GameObject[2];
+        avatarMovementDisable = new bool[2];
         for (int i = 0; i < avatarBehaviors.Length; i++)
         {
             avatarBehaviors[i] = avatarObjects[i].GetComponent<AvatarBehavior>();
+            avatarMovementDisable[i] = false;
         }
         GameObject tmpObject = Instantiate(new GameObject("Cursors"), this.transform);
         for (int i = 0; i < cursorObjects.Length; i++)
@@ -75,8 +78,11 @@ public class AvatarManager : MonoBehaviour
         {
             for (int i = 0; i < avatarObjects.Length; i++)
             {
-                avatarObjects[i].transform.position = Vector3.Lerp(avatarObjects[i].transform.position, cursorObjects[i].transform.position, Time.deltaTime * smoothing);
-                avatarObjects[i].transform.LookAt(cursorObjects[i].transform.position + new Vector3(0, 0, .3f));
+                if (!avatarMovementDisable[i])
+                {
+                    avatarObjects[i].transform.position = Vector3.Lerp(avatarObjects[i].transform.position, cursorObjects[i].transform.position, Time.deltaTime * smoothing * slowMod);
+                    avatarObjects[i].transform.LookAt(cursorObjects[i].transform.position + new Vector3(0, 0, .3f));
+                }
             }
         }
     }
@@ -142,40 +148,34 @@ public class AvatarManager : MonoBehaviour
     }
     public IEnumerator COTutorialIntro()
     {
+        slowMod = .20f;
         TutorialCanvasManager tc = TutorialManager.Instance.tc;
         PauseManager.Instance.openPauseMenuAction.action.performed -= PauseManager.Instance.OnPauseButtonPressed;
-        float count;
-        disableAvatarMovement = true;
+        avatarMovementDisable[(int)eSide.left] = true;
+        avatarMovementDisable[(int)eSide.right] = true;
+        disableAvatarMovement = false;
         Vector3[] avatarStartingPositions = new Vector3[2];
         for (int i = 0; i < avatarStartingPositions.Length; i++)
         {
             avatarStartingPositions[i] = avatarObjects[i].transform.position;
         }
         float timetill = 3f;
-        count = 0;
+
         string[] text = { "This Is Yata; The Mind"};
         tc.FadeInText(text);
-        while (count < timetill)
-        {
-            count += Time.deltaTime;
-            avatarObjects[(int)eSide.right].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.right], cursorObjects[(int)eSide.right].transform.position, count/timetill);
-            yield return null;
-        }
+        avatarMovementDisable[(int)eSide.right] = false;
+        yield return new WaitForSeconds(timetill);
         tc.FadeOutText();
         yield return new WaitUntil(() => !tc.textChanging);
+
         text[0] = "And This Is Nagini; The Body";
         tc.FadeInText(text);
-        count = 0;
-        while (count < timetill)
-        {
-            count += Time.deltaTime;
-            avatarObjects[(int)eSide.right].transform.position = Vector3.Lerp(avatarObjects[(int)eSide.right].transform.position, cursorObjects[(int)eSide.right].transform.position, count / timetill);
-            avatarObjects[(int)eSide.left].transform.position = Vector3.Lerp(avatarStartingPositions[(int)eSide.left], cursorObjects[(int)eSide.left].transform.position, count/ timetill);
-            yield return null;
-        }
+        avatarMovementDisable[(int)eSide.left] = false; 
+        yield return new WaitForSeconds(timetill);
+        slowMod = 1f;
         tc.FadeOutText();
-        disableAvatarMovement = false;
         yield return new WaitUntil(() => !tc.textChanging);
+        slowMod = 1f;
         PauseManager.Instance.openPauseMenuAction.action.performed += PauseManager.Instance.OnPauseButtonPressed;
     }
     //Gus- this is the method that shows the evolution. it accepts a bool, which is determined by wether or not the player passes the stage. it then proceeds to do the start of the evolution, as that is the same wether the player passes or fails the level. then, it plays the pass or fail animation depending on the value of the bool. see A (pass) and B (fail) comments below
