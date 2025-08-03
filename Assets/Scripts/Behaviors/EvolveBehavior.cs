@@ -42,7 +42,7 @@ public class EvolveBehavior : MonoBehaviour
     public IEnumerator CoEvolve(bool _pass, bool _tutorial = false, bool _final = false)
     {
         float count = 0;
-
+        readyMove = false;
         if (!_tutorial)
         {
             if (_pass && !_tutorial) LevelManager.currentStageIndex++;
