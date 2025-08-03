@@ -55,7 +55,7 @@ public class MultiHitTargetInteractableBehavior : BaseInteractableBehavior
             AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_hit);
             currentPoint++;
 
-            HapticsManager.Instance.TriggerSimpleVibration(side, currentPoint * (.5f / totalPoints), .1f);
+            HapticsManager.Instance.TriggerSimpleVibration(side, currentPoint * (.5f / totalPoints), .15f);
             Debug.Log("Multi Hit Target Vibrating " + currentPoint);
 
             if (currentPoint - 1 < totalPoints) // If a future point still exists
