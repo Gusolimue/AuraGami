@@ -10,6 +10,7 @@ public class AudioSettingsManager : MonoBehaviour
     [Header("Master Vol")]
     [SerializeField] public Slider masterAudioSlider;
     private float masterAudioSliderValue;
+    private float targetMasterValue;
 
     [Header("Music Vol")]
     [SerializeField] public Slider musicAudioSlider;
@@ -35,18 +36,17 @@ public class AudioSettingsManager : MonoBehaviour
 
     private void Awake()
     {
-        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", .5f);
         masterAudioSlider.onValueChanged.AddListener(MasterVolumeSlider);
+        masterAudioSlider.value = PlayerPrefs.GetFloat("saveAll", .5f);
         //masterAudioSlider.OnDrag();
 
         masterHandleSize = PlayerPrefs.GetFloat("masterHandle");
         //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
-
-        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", .5f);
         musicAudioSlider.onValueChanged.AddListener(MusicVolumeSlider);
+        musicAudioSlider.value = PlayerPrefs.GetFloat("saveMusic", .5f);
 
-        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
         sfxAudioSlider.onValueChanged.AddListener(SFXVolumeSlider);
+        sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
     }
 
     private void Update()
@@ -54,6 +54,11 @@ public class AudioSettingsManager : MonoBehaviour
         count += Time.deltaTime;
         if (isReset) resetFill.color = Color.Lerp(resetFill.color, fillColor[0], count / 5);
         else resetFill.color = Color.Lerp(resetFill.color, fillColor[1], count / 5);
+
+        //masterAudioSlider.value = Mathf.Lerp(masterAudioSlider.value, targetMasterValue, Time.deltaTime * 5f);
+
+        if (Input.GetKeyDown(KeyCode.L)) IncreaseMasterVol();
+        if (Input.GetKeyDown(KeyCode.K)) DecreaseMasterVol();
     }
 
     public void MasterVolumeSlider(float value)
@@ -67,9 +72,6 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseMasterVol()
     {
         masterAudioSlider.value += .1f;
-
-        masterHandleSize -= .005f;
-        //sliderHandle[0].transform.localScale = new Vector3(masterHandleSize, masterHandleSize, masterHandleSize);
         PlayerPrefs.SetFloat("masterHandle", masterHandleSize);
         Debug.Log("Welp");
 
@@ -113,15 +115,11 @@ public class AudioSettingsManager : MonoBehaviour
     public void IncreaseSFXVol()
     {
         sfxAudioSlider.value += .1f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DecreaseSFXVol()
     {
         sfxAudioSlider.value -= .1f;
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
-        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
     }
 
     public void DefaultSettings()

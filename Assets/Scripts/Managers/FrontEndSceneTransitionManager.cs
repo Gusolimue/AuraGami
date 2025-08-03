@@ -17,6 +17,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
     private void Awake()
     {
         Instance = this;
+        transitionSplash.color = transitionColors[1];
         SceneFadeOutTransitionSplash(); // To keep things simple, I have the fade out coroutine (which repeats until the while statement is no longer true) play on awake since there is no situation where the fadeout would not happen.
         isTransitioning = false;
     }
@@ -36,7 +37,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
 
     public void SceneFadeOutTransitionSplash() // Despite not being called by another script, I have this method just in case that would need to be the case in the future. 
     {
-        StartCoroutine(TransitionFadeOut(1));
+        StartCoroutine(TransitionFadeOut());
     }
 
     public IEnumerator TransitionFadeIn(int scene)
@@ -55,10 +56,10 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
         LoadManager.Instance.LoadScene((eScene)scene);
         isTransitioning = false;
     }
-    public IEnumerator TransitionFadeOut(float alpha)
+    public IEnumerator TransitionFadeOut()
     {
-        alpha = 1f;
-        fadeOutDuration = 1f;
+        float alpha = 1f;
+        fadeOutDuration = 5f;
 
         while (alpha > 0f)
         {

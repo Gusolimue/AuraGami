@@ -23,6 +23,7 @@ public class APManager : MonoBehaviour
     [Header("In Game Info")]
     public int curStreak;
     public float curAP;
+    public float lastStageAP = 0;
     [SerializeField] int[] stageTargetTotals;
     [SerializeField] float[] stageTargetValues;
     public bool isDraining;

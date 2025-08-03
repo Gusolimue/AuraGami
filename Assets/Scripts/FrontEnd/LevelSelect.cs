@@ -10,57 +10,75 @@ public class LevelSelect : MonoBehaviour
     public int curIndex;
     private float fadeInDuration;
 
+    [Header("Levels")]
+    public soLevelStar[] levels;
+
     [Header("Level Names")]
     [SerializeField] string[] levelNames;
     [SerializeField] TextMeshProUGUI levelNameTXT;
 
     [Header("Level Star/Button Assets")]
     [SerializeField] Image levelButton;
-    [SerializeField] Image levelButtonSizeChange;
+    [SerializeField] Color[] levelStarColors;
 
     private bool isTransitioning;
+    private int isHovering;
     private float count;
 
     private void Awake()
     {
         Instance = this;
-        levelNameTXT.text = levelNames[curIndex];
-    }
-
-    private void Update()
-    {
-        count += Time.deltaTime;
-        if (isTransitioning) levelButton.transform.localScale = Vector3.Lerp(levelButton.transform.localScale, levelButtonSizeChange.transform.localScale, count / 200);
+        levelNameTXT.text = levels[1].levelName;
     }
 
     public void ChangeLevels()
     {
         if(AudioManager.idleInstance.isValid()) AudioManager.idleInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        StartCoroutine(LevelTransition());
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_orbSelectionTransition);
+        StartCoroutine(LevelSelectManager.Instance.LevelTransition());
     }
 
-    private void LevelSelection(Levels levels)
+    public void OnHover()
     {
-        switch (levels)
-        {
-            case Levels.tutorial:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(1, 0);
-                break;
-
-            case Levels.exploration:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(3, 0);
-                break;
-
-            case Levels.freedom:
-                FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(4, 2);
-                break;
-        }
+        LevelSelectManager.Instance.changeColor = true;
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .1f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_menuHoverSmall);
     }
 
+    public void OnHoverExit()
+    {
+        LevelSelectManager.Instance.changeColor = false;
+    }
+
+    public void RotateLevelsRight()
+    {
+        if (levels == null || levels.Length < 2)
+            return;
+
+        soLevelStar last = levels[levels.Length - 1];
+        for (int i = levels.Length - 1; i > 0; i--)
+        {
+            levels[i] = levels[i - 1];
+        }
+        levels[0] = last;
+    }
+
+    public void RotateLevelsLeft()
+    {
+        if (levels == null || levels.Length < 2)
+            return;
+
+        soLevelStar first = levels[0];
+        for (int i = 0; i < levels.Length - 1; i++)
+        {
+            levels[i] = levels[i + 1];
+        }
+        levels[levels.Length - 1] = first;
+    }
     public void ChangeLevelName()
     {
         StartCoroutine(LevelNameTextTranstion());
-        levelNameTXT.text = levelNames[curIndex];       
+        levelNameTXT.text = levels[1].levelName;
     }
 
     public IEnumerator LevelNameTextTranstion()
@@ -78,29 +96,6 @@ public class LevelSelect : MonoBehaviour
                 levelNameTXT.color.b, alpha);
             yield return new WaitForSecondsRealtime(.01f);
         }
-    }
-
-    private IEnumerator LevelTransition()
-    {
-        float alpha = 0f;
-        float fadeInDuration = .5f;
-
-        Color curColor = levelButton.color;
-        levelButton.color = new Color(curColor.r, curColor.g, curColor.b, 0);
-
-        while (alpha < 1f)
-        {
-            alpha += Time.deltaTime / fadeInDuration;
-            levelButton.color = new Color(levelButton.color.r, levelButton.color.g,
-                levelButton.color.b, alpha);
-            yield return new WaitForSecondsRealtime(.01f);
-        }
-        yield return new WaitForSeconds(.5f);
-        isTransitioning = true;
-        yield return new WaitForSeconds(.2f);
-
-        Levels curLevel = (Levels)curIndex;
-        LevelSelection(curLevel);
     }
 
     public void OnBackButtonPressed() // When pressed, destroys Canvas_LevelSelect and instantiates Canvas_FrontEnd.
