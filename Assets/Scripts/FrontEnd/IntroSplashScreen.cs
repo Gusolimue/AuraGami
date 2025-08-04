@@ -43,7 +43,7 @@ public class IntroSplashScreen : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //isTutorial = PlayerPrefs.GetInt("frontEnd");
+        isTutorial = PlayerPrefs.GetInt("frontEnd", 0);
 
         if (isTutorial <= 1) 
         {
