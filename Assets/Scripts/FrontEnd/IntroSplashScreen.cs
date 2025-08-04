@@ -50,7 +50,11 @@ public class IntroSplashScreen : MonoBehaviour
             settings.SetActive(true);
             LoadManager.Instance.isTutorial = true;
         }
-        else if (isTutorial >= 1) StartCoroutine(SplashSequence());
+        else if (isTutorial >= 1) 
+        {
+            settings.SetActive(false);
+            StartCoroutine(SplashSequence());
+        }
 
         sliderFull.SetActive(false);
     }

@@ -28,6 +28,8 @@ public class AccessibilitySettingsManager : MonoBehaviour
         toggleNum = PlayerPrefs.GetInt("toggleHaptics", 1);
         if (toggleNum == 1) toggleFill.color = toggleColors[0];
         else if (toggleNum == 2) toggleFill.color = toggleColors[1];
+
+        CanvasManager.Instance.playerCircle.gameObject.SetActive(false);
     }
 
     private void Update()
