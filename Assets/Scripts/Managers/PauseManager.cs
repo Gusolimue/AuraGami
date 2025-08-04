@@ -78,19 +78,22 @@ public class PauseManager : MonoBehaviour
 
     public void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
-        if (!isPaused)
+        if (FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
-            toShow[0].SetActive(true);
-            toShow[1].SetActive(true);
-            showPauseMenu = true;
-            PauseGame(true);
-        }
-        else if (isPaused)
-        {
-            toShow[0].SetActive(false);
-            toShow[1].SetActive(false);
-            PauseGame(false);
+            if (!isPaused)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_pause_menuOpen);
+                toShow[0].SetActive(true);
+                toShow[1].SetActive(true);
+                showPauseMenu = true;
+                PauseGame(true);
+            }
+            else if (isPaused)
+            {
+                toShow[0].SetActive(false);
+                toShow[1].SetActive(false);
+                PauseGame(false);
+            }
         }
     }
 
@@ -128,7 +131,7 @@ public class PauseManager : MonoBehaviour
 
     public void PauseGame(bool paused)
     {
-        if (!isCountingDown && !FrontEndSceneTransitionManager.Instance.isTransitioning)
+        if (!isCountingDown || FrontEndSceneTransitionManager.Instance.isTransitioning == false)
         {
             if (paused)
             {
@@ -137,8 +140,7 @@ public class PauseManager : MonoBehaviour
                     CanvasManager.Instance.ShowCanvasPauseMenu();
                     //menuBG.SetActive(true);
                 }
-
-                isPaused = true;
+                isPaused = true;   
                 HideAndUnhideObjects(false);
                 BeatManager.Instance.PauseMusicTMP(true);
                 Debug.Log("Is Paused!");
