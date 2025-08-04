@@ -15,7 +15,8 @@ public class GameplaySettingsManager : MonoBehaviour
     [SerializeField] Color[] colorChanges;
     public float playCircleSizeSliderValue;
     public float playCircleHeightSliderValue;
-    private bool demoOn = false;
+    private bool demoOn;
+    private bool inGameDemoOn;
 
     [Space]
     [Header("Toggle")]
@@ -49,6 +50,9 @@ public class GameplaySettingsManager : MonoBehaviour
         if (demoOn) playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[0], Time.deltaTime * 5);
         else playCircleDemo.color = Color.Lerp(playCircleDemo.color, colorChanges[1], Time.deltaTime * 5);
 
+        if (inGameDemoOn) CanvasManager.Instance.playerCircle.color = Color.Lerp(CanvasManager.Instance.playerCircle.color, colorChanges[0], Time.deltaTime * 5);
+        else CanvasManager.Instance.playerCircle.color = Color.Lerp(CanvasManager.Instance.playerCircle.color, colorChanges[1], Time.deltaTime * 5);
+
         if (toggleNum == 1) toggleFill.color = Color.Lerp(toggleFill.color, toggleColors[0], Time.deltaTime * 5);
         else if (toggleNum == 2) toggleFill.color = Color.Lerp(toggleFill.color, toggleColors[1], Time.deltaTime * 5);
 
@@ -59,11 +63,15 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         //Debug.Log("Saving slider value: " + value);
 
-        //playCircleSizeSliderValue = value;
+        playCircleSizeSliderValue = value;
         PlayerPrefs.SetFloat("playCircleScale", value);
         PlayerPrefs.Save();
 
-        if (playCircleDemo != null) playCircleDemo.transform.localScale = Vector3.one * value;
+        if (playCircleDemo != null || CanvasManager.Instance.playerCircle != null) 
+        {
+            if (CanvasManager.Instance.isInGameDemo) CanvasManager.Instance.playerCircle.transform.localScale = Vector3.one * value;
+            else playCircleDemo.transform.localScale = Vector3.one * value;
+        }
         if (AvatarManager.Instance != null)
         {
             AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
@@ -72,16 +80,26 @@ public class GameplaySettingsManager : MonoBehaviour
 
     public void ChangePlayerCircleHeightSlider(float value)
     {
-        //playCircleHeightSliderValue = value;
+        playCircleHeightSliderValue = value;
         PlayerPrefs.SetFloat("playCircleHeight", value);
         PlayerPrefs.Save();
 
-        if (playCircleDemo != null)
+        if (playCircleDemo != null || CanvasManager.Instance.playerCircle != null)
         {
-            Vector3 newYPosition = playCircleDemo.transform.position;
-            newYPosition.y = value * 1f;
-            playCircleDemo.transform.position = newYPosition;
+            if (CanvasManager.Instance.isInGameDemo)
+            {
+                Vector3 inGameNewYPos = CanvasManager.Instance.playerCircle.transform.position;
+                inGameNewYPos.y = value * 1f;
+                CanvasManager.Instance.playerCircle.transform.position = inGameNewYPos;
+            }
+            else
+            {
+                Vector3 newYPosition = playCircleDemo.transform.position;
+                newYPosition.y = value * 1f;
+                playCircleDemo.transform.position = newYPosition;
+            }
         }
+
         if (AvatarManager.Instance != null)
         {
             AvatarManager.Instance.SetScaleHeightVis(PlayerPrefs.GetFloat("playCircleScale", .5f), PlayerPrefs.GetFloat("playCircleHeight", .5f), PlayerPrefs.GetInt("toggleCircle", 1));
@@ -131,28 +149,32 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         playCircleSlider[0].value += .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        StartCoroutine(ActivateCircleDemo());
+        if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
+        else StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleSize()
     {
         playCircleSlider[0].value -= .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        StartCoroutine(ActivateCircleDemo());
+        if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
+        else StartCoroutine(ActivateCircleDemo());
     }
 
     public void IncreasePlayerCircleHeight()
     {
         playCircleSlider[1].value += .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        StartCoroutine(ActivateCircleDemo());
+        if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
+        else StartCoroutine(ActivateCircleDemo());
     }
 
     public void DecreasePlayerCircleHeight()
     {
         playCircleSlider[1].value -= .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
-        StartCoroutine(ActivateCircleDemo());
+        if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
+        else StartCoroutine(ActivateCircleDemo());
     }
 
     IEnumerator ActivateCircleDemo()
@@ -160,6 +182,13 @@ public class GameplaySettingsManager : MonoBehaviour
         demoOn = true;
         yield return new WaitForSeconds(5);
         demoOn = false;
+    }
+
+    IEnumerator ActivateInGameCircleDemo()
+    {
+        inGameDemoOn = true;
+        yield return new WaitForSeconds(5);
+        inGameDemoOn = false;
     }
 
     public void DefaultSettings()

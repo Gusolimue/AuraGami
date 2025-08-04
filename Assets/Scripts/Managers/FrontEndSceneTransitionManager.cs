@@ -19,7 +19,6 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
         Instance = this;
         transitionSplash.color = transitionColors[1];
         SceneFadeOutTransitionSplash(); // To keep things simple, I have the fade out coroutine (which repeats until the while statement is no longer true) play on awake since there is no situation where the fadeout would not happen.
-        isTransitioning = false;
     }
 
     public void SceneFadeInTransitionSplash(int scene, int color) // This method is called by multiple scripts when a scene transition is needed. It starts the TransitionFadeIn coroutine which fades in a plain image to mask loading. 
@@ -54,13 +53,12 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
         }
         AudioManager.Instance.StopMusic();
         LoadManager.Instance.LoadScene((eScene)scene);
-        isTransitioning = false;
     }
     public IEnumerator TransitionFadeOut()
     {
+        isTransitioning = true;
         float alpha = 1f;
         fadeOutDuration = 5f;
-
         while (alpha > 0f)
         {
             alpha -= Time.deltaTime / fadeOutDuration;
@@ -76,13 +74,14 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
                 BeatManager.Instance.StartSong();
             }
         }
+        isTransitioning = false;
     }
 
     public IEnumerator TransitionFadeInRestart(float alpha)
     {
         alpha = 0f;
         fadeInDuration = 1f;
-
+        isTransitioning = true;
         while (alpha < 1f)
         {
             alpha += Time.deltaTime / fadeInDuration;
@@ -93,5 +92,4 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
