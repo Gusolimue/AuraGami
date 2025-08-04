@@ -26,6 +26,8 @@ public class FrontEnd : MonoBehaviour // This script handles all main menu butto
             slider.value = 0f;
         }
         StartCoroutine(FillConnectors());
+
+        if (LoadManager.Instance.isTitleScreen == 1) AudioManager.Instance.PlayMusic(AudioManager.Instance.music_menu_titlescreen);
     }
 
     private void Update() // To add more flare to opening the main menu, I have the connectors between each one fill in. 

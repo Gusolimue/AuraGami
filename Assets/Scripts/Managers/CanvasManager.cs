@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager Instance;
     public bool isLevelProgress;
+    [SerializeField] public Image playerCircle;
+    public bool isInGameDemo;
 
     private void Awake()
     {
