@@ -86,7 +86,7 @@ public class AvatarManager : MonoBehaviour
             }
         }
     }
-    public void SetScaleHeightVis(float playerScale = 1f, float playerHeight = 1f, int playerVis = 1)
+    public void SetScaleHeightVis(float playerScale = 1f, float playerHeight = 1f, int playerVis = 2)
     {
         scaleMult = avatarDiameter / playerScale;
         avatarCircTransform.localScale = Vector3.one * avatarDiameter;
