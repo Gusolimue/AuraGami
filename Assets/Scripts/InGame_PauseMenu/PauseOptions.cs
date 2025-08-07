@@ -28,6 +28,7 @@ public class PauseOptions : MonoBehaviour
             }
             StartCoroutine(FillConnectors());
         }
+        CanvasManager.Instance.playerCircle.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -71,6 +72,15 @@ public class PauseOptions : MonoBehaviour
     public void OnMainMenuButtonPressed()
     {
         LoadManager.Instance.isTitleScreen = 1;
+
+        HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
+        FrontEndSceneTransitionManager.Instance.SceneFadeInTransitionSplash(2, 1);
+    }
+
+    public void OnSkipButtonPressed()
+    {
+        LoadManager.Instance.isTitleScreen = 0;
 
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .5f, .1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_frontEnd_buttonPressed);
