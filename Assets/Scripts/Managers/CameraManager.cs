@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
 
-        //XRSettings.gameViewRenderMode = GameViewRenderMode.None;
+        XRSettings.gameViewRenderMode = GameViewRenderMode.None;
     }
     void Start()
     {
@@ -32,9 +32,9 @@ public class CameraManager : MonoBehaviour
 
     void mapCameraToDisplay()
     {
-        for (int i = 0; i < Display.displays.Length; i++)
+        for (int i = 0; i < myCams.Length; i++)
         {
-            myCams[i].targetDisplay = 0;
+            myCams[i].targetDisplay = i;
             Display.displays[i].Activate();
         }
     }
