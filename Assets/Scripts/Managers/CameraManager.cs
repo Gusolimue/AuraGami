@@ -9,8 +9,10 @@ public class CameraManager : MonoBehaviour
     public bool other;
     private void Awake()
     {
-
-        XRSettings.gameViewRenderMode = GameViewRenderMode.None;
+        if (other)
+        {
+            XRSettings.gameViewRenderMode = GameViewRenderMode.None;
+        }
     }
     void Start()
     {

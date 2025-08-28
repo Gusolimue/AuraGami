@@ -6,39 +6,23 @@ using UnityEngine.XR;
 public enum eSide { left, right, any, both }
 public class BaseInteractableBehavior : MonoBehaviour
 {
-    //[SerializeField] static Material leftMat;
-    //[SerializeField] static Material rightMat;
-    //[SerializeField] static Material anyMat;
-    //[SerializeField] static Material bothMat;
+    [Header("Variables to Set")]
     public Renderer interactableRenderer;
     public TargetBaseModelSelect targetBase;
-    internal GameObject interactableObject;
+    [Header("Variables to Call")]
     public eSide side;
     public eTargetType type;
-
-    [SerializeField] float fadeOutTime;
-    Color startColor;
-    Color endColor;
-    float startTime;
-    bool isFading;
-    [HideInInspector] public bool dontDestroy;
-
     public Interactable interactable;
     public int stageIndex;
     public int boardIndex;
-    int interactableIndex;
-    LevelManager lm;
-    internal virtual void Awake()
-    {
-        lm = LevelManager.Instance;
-        isFading = false;
-    }
+
+    internal GameObject interactableObject;
+
+    //called whenever the interactable is first instantiated
     public virtual void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
         stageIndex = _stage;
         boardIndex = _board;
-        //interactableIndex = _interactable;
-        //interactable = lm.level.GetStage(stageIndex)[boardIndex].interactables[interactableIndex];
         interactable = _interactable;
         side = _eSide;
 
@@ -69,9 +53,9 @@ public class BaseInteractableBehavior : MonoBehaviour
         interactableObject.GetComponent<MeshRenderer>().SetMaterials(tmpMats);
 
     }
+    //Method called when the board detects an interactable has been missed
     public virtual void InteractableMissed()
     {
-        //Debug.Log("player missed");
         APManager.Instance.DecreaseAP(1f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.sfx_target_miss);
         StopTarget();
@@ -103,28 +87,9 @@ public class BaseInteractableBehavior : MonoBehaviour
         }
         StopTarget();
     }
-
+    //Method called to permanently disable a target
     internal void StopTarget()
     {
         gameObject.SetActive(false);
-    }
-
-    public void FadeOutTarget()
-    {
-        startColor = interactableRenderer.material.color;
-        endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
-        startTime = Time.time;
-        isFading = true;
-    }
-
-    void Update()
-    {
-        if (isFading)
-        {
-            float elapsedTime = Time.time - startTime;
-            float t = Mathf.Clamp(elapsedTime / fadeOutTime, 0f, 1f);
-            Color lerpedColor = Color.Lerp(startColor, endColor, t);
-            interactableRenderer.material.color = lerpedColor;
-        }
     }
 }
