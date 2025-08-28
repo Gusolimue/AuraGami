@@ -13,11 +13,12 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     public BezierKnot[] threadKnots;
     public TargetBaseModelSelect endTargetModelSelect;
     GameObject endTargetObject;
-    [HideInInspector] public float count;
+    [HideInInspector] public float splineCount;
     int currentPoint;
     int targetBoardIndex = 0;
     bool isTracing = false;
     bool missed;
+    bool lost;
     [HideInInspector] public bool onSpline = false;
     public override void InitInteractable(eSide _eSide, int _stage, int _board, /*int*/ Interactable _interactable)
     {
@@ -27,22 +28,48 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
         tracingMat = interactableObject.GetComponent<MeshRenderer>().sharedMaterials[0];
         endTargetObject = endTargetModelSelect.gameObject;
         splineRenderer = threadSpline.GetComponent<Renderer>();
-        splineRenderer.sharedMaterial = interactableObject.GetComponent<MeshRenderer>().sharedMaterials[0];
+        //switch (_eSide)
+        //{
+        //    case eSide.left:
+        //        splineRenderer.sharedMaterial = Resources.Load("Materials/" + "SplineLeft", typeof(Material)) as Material;
+        //        break;
+        //    case eSide.right:
+        //        splineRenderer.sharedMaterial = Resources.Load("Materials/" + "SplineRight", typeof(Material)) as Material;
+        //        break;
+        //    case eSide.both:
+        //        splineRenderer.sharedMaterial = Resources.Load("Materials/" + "SplineBoth", typeof(Material)) as Material;
+        //        break;
+        //    default:
+        //        splineRenderer.sharedMaterial = Resources.Load("Materials/" + "SplineLeft", typeof(Material)) as Material;
+        //        break;
+        //}
         targetBoardIndex = boardIndex;
         currentPoint = 0;
     }
     private void Update()
     {
-        count += Time.deltaTime;
+
+        splineCount += Time.deltaTime;
+
+    }
+    private void Start()
+    {
+        StartCoroutine(COTrace());
     }
     IEnumerator COTrace()
     {
-        StartCoroutine(COScore());
         splineRenderer.sharedMaterial = tracingMat;
-        yield return new WaitUntil(() => onSpline);
-        while (onSpline && count < .1f)
+        yield return new WaitUntil(() => onSpline && splineCount < .1f);
+        StartCoroutine(COScore());
+        while (true)
         {
-            yield return null;
+            yield return new WaitUntil(() => onSpline && splineCount < .1f);
+            lost = false;
+            while (onSpline && splineCount < .1f)
+            {
+                yield return null;
+            }
+            lost = true;
         }
         missed = true;
         splineRenderer.sharedMaterial = failedTraceMat;
@@ -51,24 +78,30 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
     }
     IEnumerator COScore()
     {
-        while(!missed)
+            float count = 0;
+        while (!missed)
         {
-            APManager.Instance.IncreaseAP(.1f, false);
+            yield return new WaitUntil(()=> !lost);
+            if (count >= .49f)
+            {
+                APManager.Instance.IncreaseAP(.1f, false);
+                count = 0;
+            }
+
             if (interactable.side == eSide.left)
             {
                 APVFXManager.Instance.APVfxSpawnNagini(AvatarManager.Instance.avatarObjects[(int)eSide.left].transform.position, 1);
             }
-            else
+            else if (side == eSide.right)
             {
                 APVFXManager.Instance.APVfxSpawnYata(AvatarManager.Instance.avatarObjects[(int)eSide.right].transform.position, 1);
             }
-            float count = 0;
             while (count < .5f)
             {
                 HapticsManager.Instance.TriggerSimpleVibration(interactable.side, .1f, .1f);
                 yield return new WaitForSeconds(.1f);
-                count += Time.deltaTime;
-                if (missed) break;
+                count += .1f;
+                if (lost) break;
             }
         }
     }
@@ -110,7 +143,6 @@ public class ThreadedTargetInteractableBehavior : BaseInteractableBehavior
             {
                 Debug.Log("targetstart");
                 isTracing = true;
-                StartCoroutine(COTrace());
                 interactableRenderer.gameObject.SetActive(false);
             }
         }
