@@ -48,7 +48,7 @@ public class AudioSettingsManager : MonoBehaviour
         sfxAudioSlider.onValueChanged.AddListener(SFXVolumeSlider);
         sfxAudioSlider.value = PlayerPrefs.GetFloat("saveSFX", .5f);
 
-        CanvasManager.Instance.playerCircle.gameObject.SetActive(false);
+        //CanvasManager.Instance.playerCircle.gameObject.SetActive(false);
     }
 
     private void Update()
