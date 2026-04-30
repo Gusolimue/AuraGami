@@ -1,101 +1,86 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(ToggleGroupAttribute))]
-    public class ToggleGroupDrawer : PropertyDrawerBase
+    [CustomPropertyDrawer(typeof(ToggleGroupAttribute))]
+    public class ToggleGroupDrawer : GroupDrawer
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var toggleGroup = attribute as ToggleGroupAttribute;
-			var isFoldedSaveKey = $"{property.serializedObject.targetObject}_{property.propertyPath}_IsFolded";
-			var isToggledSaveKey = $"{property.serializedObject.targetObject}_{property.propertyPath}_IsToggled";
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var toggleGroup = attribute as ToggleGroupAttribute;
+            string foldoutSaveKey = CreatePropertySaveKey(property, "IsToggleGroupFolded");
+            string toggleSaveKey = CreatePropertySaveKey(property, "IsToggleGroupToggled");
 
-			var root = new VisualElement();
+            VisualElement root = new();
 
-			var foldout = new Foldout
-			{
-				text = toggleGroup.GroupName,
-				tooltip = property.tooltip,
-				style = { unityFontStyleAndWeight = FontStyle.Bold },
-				value = EditorPrefs.GetBool(isFoldedSaveKey)
-			};
+            Foldout foldout = new()
+            {
+                text = toggleGroup.GroupName,
+                tooltip = property.tooltip,
+                style = { unityFontStyleAndWeight = FontStyle.Bold },
+                value = EditorPrefs.GetBool(foldoutSaveKey)
+            };
 
-			var toggleBox = new Toggle()
-			{
-				text = "",
-				style = { marginRight = 10f },
-				value = EditorPrefs.GetBool(isToggledSaveKey)
-			};
+            Toggle toggleBox = new()
+            {
+                text = "",
+                style = { marginRight = 10f },
+                value = property.propertyType == SerializedPropertyType.Boolean ? property.boolValue : EditorPrefs.GetBool(toggleSaveKey)
+            };
 
-			foldout.contentContainer.SetEnabled(toggleBox.value);
+            foldout.contentContainer.SetEnabled(toggleBox.value);
 
-			if (toggleGroup.DrawInBox)
-				ApplyBoxStyle(foldout.contentContainer);
+            if (toggleGroup.DrawInBox)
+                ApplyBoxStyle(foldout.contentContainer);
 
-			root.Add(toggleBox);
+            root.Add(toggleBox);
 
-			foreach (string variableName in toggleGroup.FieldsToGroup)
-			{
-				var variableProperty = FindNestedProperty(property, GetSerializedPropertyName(variableName, property));
+            foreach (string variableName in toggleGroup.FieldsToGroup)
+            {
+                VisualElement groupProperty = CreateGroupProperty(variableName, property);
+                groupProperty.style.unityFontStyleAndWeight = FontStyle.Normal;
 
-				if (variableProperty != null)
-				{
-					var propertyField = DrawProperty(variableProperty);
+                foldout.Add(groupProperty);
+            }
 
-					if (variableProperty.propertyType == SerializedPropertyType.Generic) // Slightly move dropdowns for serialized objects
-						propertyField.style.marginLeft = 10f;
+            toggleBox.RegisterValueChangedCallback((callback) =>
+            {
+                if (property.propertyType == SerializedPropertyType.Boolean)
+                {
+                    property.boolValue = callback.newValue;
+                    property.serializedObject.ApplyModifiedProperties();
+                }
+                else
+                {
+                    EditorPrefs.SetBool(toggleSaveKey, callback.newValue); // The value is already serialized via the property, there is no point in saving it.
+                }
 
-					propertyField.style.unityFontStyleAndWeight = FontStyle.Normal;
+                foldout.contentContainer.SetEnabled(callback.newValue);
+            });
 
-					foldout.Add(propertyField);
+            root.Add(foldout);
 
-					ExecuteLater(propertyField, () =>
-					{
-						var label = propertyField.Q<Label>();
+            foldout.RegisterCallbackOnce<GeometryChangedEvent>((callback) =>
+            {
+                var toggle = foldout.Q<Toggle>();
 
-						if (label != null)
-							label.style.marginRight = toggleGroup.WidthOffset;
-					});
-				}
-				else
-				{
-					foldout.Add(new HelpBox($"{variableName} is not a valid field", HelpBoxMessageType.Error));
-					break;
-				}
-			}
+                toggle.style.backgroundColor = CanApplyGlobalColor ? EditorExtension.GLOBAL_COLOR / 3f : new Color(0.1f, 0.1f, 0.1f, 0.2f);
 
-			foldout.RegisterValueChangedCallback((callback) => EditorPrefs.SetBool(isFoldedSaveKey, callback.newValue));
-			toggleBox.RegisterValueChangedCallback((callback) =>
-			{
-				if (property.propertyType == SerializedPropertyType.Boolean)
-				{
-					property.boolValue = callback.newValue;
-					property.serializedObject.ApplyModifiedProperties();
-				}
+                var parentElement = foldout.Q<Label>().parent;
 
-				foldout.contentContainer.SetEnabled(callback.newValue);
+                parentElement.Insert(1, toggleBox);
 
-				EditorPrefs.SetBool(isFoldedSaveKey, foldout.value);
-				EditorPrefs.SetBool(isToggledSaveKey, callback.newValue);
-			});
+                // Register this callback later since value changed callbacks are called on inspector initalization and we don't want to save values on initalization
+                foldout.RegisterValueChangedCallback((callback) => EditorPrefs.SetBool(foldoutSaveKey, callback.newValue));
+            });
 
-			root.Add(foldout);
+            if (property.propertyType == SerializedPropertyType.Boolean)
+                toggleBox.TrackPropertyValue(property, (serializedProperty) => toggleBox.value = serializedProperty.boolValue);
 
-			ExecuteLater(foldout, () =>
-			{
-				var toggle = foldout.Q<Toggle>();
-
-				toggle.style.backgroundColor = CanApplyGlobalColor ? EditorExtension.GLOBAL_COLOR / 3f : new Color(0.1f, 0.1f, 0.1f, 0.2f);
-
-				var parentElement = foldout.Q<Label>().parent;
-
-				parentElement.Insert(1, toggleBox);
-			});
-
-			return root;
-		}
-	}
+            return root;
+        }
+    }
 }

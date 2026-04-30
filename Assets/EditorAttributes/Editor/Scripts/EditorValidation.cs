@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
@@ -7,269 +8,320 @@ using UnityEditor.Build.Reporting;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using EditorAttributes.Editor.Utility;
+using Object = UnityEngine.Object;
+
+#if HAS_ADDRESSABLES_PACKAGE
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
+#endif
 
 namespace EditorAttributes.Editor
 {
-	[InitializeOnLoad]
-	public class EditorValidation : IPreprocessBuildWithReport
-	{
-		private static int BUILD_KILLERS;
-		public int callbackOrder => 0;
+    [InitializeOnLoad]
+    public class EditorValidation : IPreprocessBuildWithReport
+    {
+        private static int BUILD_KILLERS;
 
-		static EditorValidation() { }
+        public int callbackOrder => 0;
 
-		public void OnPreprocessBuild(BuildReport report)
-		{
-			BUILD_KILLERS = 0;
-			ValidateAll();
+        static EditorValidation() { }
 
-			if (BUILD_KILLERS != 0)
-				throw new BuildFailedException("Validation Failed");
-		}
+        public void OnPreprocessBuild(BuildReport report)
+        {
+            BUILD_KILLERS = 0;
 
-		/// <summary>
-		/// Validates every asset and scene in the project
-		/// </summary>
-		[MenuItem("EditorValidation/Validate All", priority = 0)]
-		public static void ValidateAll()
-		{
-			ValidateAllAssets();
-			ValidateAllScenes();
-		}
+            if (!EditorAttributesSettings.instance.disableBuildValidation)
+                ValidateAll();
 
-		/// <summary>
-		/// Validates all scenes in the build
-		/// </summary>
-		[MenuItem("EditorValidation/Validate Scenes", priority = 2)]
-		public static void ValidateAllScenes()
-		{
-			int failedValidations = 0;
-			int successfulValidations = 0;
+            if (BUILD_KILLERS != 0)
+                throw new BuildFailedException("Validation Failed");
+        }
 
-			var sceneGuids = AssetDatabase.FindAssets("t:Scene");
+        /// <summary>
+        /// Validates every asset and scene in the project
+        /// </summary>
+        [MenuItem("Tools/EditorValidation/Validate All", priority = 0)]
+        public static void ValidateAll()
+        {
+            ValidateAllAssets();
+            ValidateAllScenes();
+        }
 
-			var previouslyOpenedScenes = GetAllOpenedScenes();
+        /// <summary>
+        /// Validates all scenes in the build
+        /// </summary>
+        [MenuItem("Tools/EditorValidation/Validate Scenes", priority = 2)]
+        public static void ValidateAllScenes()
+        {
+            int failedValidations = 0;
+            int successfulValidations = 0;
 
-			foreach (var sceneGuid in sceneGuids)
-			{
-				string scenePath = AssetDatabase.GUIDToAssetPath(sceneGuid);
+            string[] sceneGuids = AssetDatabase.FindAssets("t:Scene");
+            Scene[] previouslyOpenedScenes = GetAllOpenedScenes();
 
-				if (IsPackageAsset(scenePath) || SceneUtility.GetBuildIndexByScenePath(scenePath) == -1)
-					continue;
+            foreach (var sceneGuid in sceneGuids)
+            {
+                string scenePath = AssetDatabase.GUIDToAssetPath(sceneGuid);
 
-				var openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+                if (IsPackageAsset(scenePath))
+                    continue;
 
-				ValidateScene(openedScene, ref failedValidations, ref successfulValidations);
+                if (SceneUtility.GetBuildIndexByScenePath(scenePath) == -1 && !IsAddressable(sceneGuid))
+                    continue;
 
-				if (previouslyOpenedScenes.All((scene) => scene.path != scenePath))
-					EditorSceneManager.CloseScene(openedScene, true);
-			}
+                Scene openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
 
-			Debug.Log($"Scenes Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
-		}
+                ValidateScene(openedScene, ref failedValidations, ref successfulValidations);
 
-		/// <summary>
-		/// Validates all scenes currently open
-		/// </summary>
-		[MenuItem("EditorValidation/Validate Open Scenes", priority = 3)]
-		public static void ValidateOpenScenes()
-		{
-			int failedValidations = 0;
-			int successfulValidations = 0;
+                if (previouslyOpenedScenes.All((scene) => scene.path != scenePath))
+                    EditorSceneManager.CloseScene(openedScene, true);
+            }
 
-			foreach (var openedScene in GetAllOpenedScenes())
-				ValidateScene(openedScene, ref failedValidations, ref successfulValidations);
+            Debug.Log($"Scenes Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
+        }
 
-			Debug.Log($"Scenes Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
-		}
+        private static bool IsAddressable(string guid)
+        {
+#if HAS_ADDRESSABLES_PACKAGE
+            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
 
-		/// <summary>
-		/// Validates all assets in the project
-		/// </summary>
-		[MenuItem("EditorValidation/Validate Assets", priority = 1)]
-		public static void ValidateAllAssets()
-		{
-			int failedValidations = 0;
-			int successfulValidations = 0;
+            if (settings == null)
+                return false;
 
-			var prefabGuids = AssetDatabase.FindAssets("t:Prefab");
+            foreach (var group in settings.groups)
+            {
+                if (group == null || group.entries.Count == 0)
+                    continue;
 
-			foreach (var prefabGuid in prefabGuids)
-			{
-				string prefabPath = AssetDatabase.GUIDToAssetPath(prefabGuid);
+                foreach (var entry in group.entries)
+                {
+                    if (entry.guid == guid)
+                        return true;
+                }
+            }
+#endif
+            return false;
+        }
 
-				if (IsPackageAsset(prefabPath))
-					continue;
+        /// <summary>
+        /// Validates all scenes currently open
+        /// </summary>
+        [MenuItem("Tools/EditorValidation/Validate Open Scenes", priority = 3)]
+        public static void ValidateOpenScenes()
+        {
+            int failedValidations = 0;
+            int successfulValidations = 0;
 
-				var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+            foreach (var openedScene in GetAllOpenedScenes())
+                ValidateScene(openedScene, ref failedValidations, ref successfulValidations);
 
-				ValidateComponents(prefab.GetComponentsInChildren<Component>(true), ref failedValidations, ref successfulValidations);
-			}
+            Debug.Log($"Scenes Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
+        }
 
-			var scriptableObjectGuids = AssetDatabase.FindAssets("t:ScriptableObject");
+        /// <summary>
+        /// Validates all assets in the project
+        /// </summary>
+        [MenuItem("Tools/EditorValidation/Validate Assets", priority = 1)]
+        public static void ValidateAllAssets()
+        {
+            int failedValidations = 0;
+            int successfulValidations = 0;
 
-			foreach (var scriptableObjectGuid in scriptableObjectGuids)
-			{
-				string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
+            string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab");
 
-				if (IsPackageAsset(scriptableObjectPath))
-					continue;
+            foreach (var prefabGuid in prefabGuids)
+            {
+                string prefabPath = AssetDatabase.GUIDToAssetPath(prefabGuid);
 
-				var scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
+                if (IsPackageAsset(prefabPath))
+                    continue;
 
-				Validate(scriptableObject, ref failedValidations, ref successfulValidations);
-			}
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
 
-			Debug.Log($"Assets Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
-		}
+                ValidateComponents(prefab.GetComponentsInChildren<Component>(true), ref failedValidations, ref successfulValidations);
+            }
 
-		/// <summary>
-		/// Validates all fields marked for validation with an attribute
-		/// </summary>
-		/// <param name="targetObject">The target object to validate</param>
-		/// <param name="failedValidations">The amount of validations that failed</param>
-		/// <param name="successfulValidations">The amount of validations that succeded</param>
-		public static void Validate(Object targetObject, ref int failedValidations, ref int successfulValidations)
-		{
-			var type = targetObject.GetType();
-			var fields = type.GetFields(ReflectionUtility.BINDING_FLAGS);
+            string[] scriptableObjectGuids = AssetDatabase.FindAssets("t:ScriptableObject");
 
-			foreach (var field in fields)
-			{
-				string validationMessage = $"Validation failed on <b>{type.Name}.{field.Name}</b> in <b>{targetObject.name}</b>: ";
+            foreach (var scriptableObjectGuid in scriptableObjectGuids)
+            {
+                string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
 
-				var requiredAttribute = field.GetCustomAttribute<RequiredAttribute>();
+                if (IsPackageAsset(scriptableObjectPath))
+                    continue;
 
-				if (requiredAttribute != null && requiredAttribute.ThrowValidationError)
-				{
-					var fieldValue = field.GetValue(targetObject);
+                ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
 
-					if (IsNotValid(fieldValue))
-					{
-						if (requiredAttribute.BuildKiller)
-						{
-							BUILD_KILLERS++;
-							validationMessage = "<color=#FF0000><b>(Build Killer)</b></color> " + validationMessage;
-						}
+                Validate(scriptableObject, ref failedValidations, ref successfulValidations);
+            }
 
-						Debug.LogError(validationMessage + "Field not assigned", targetObject);
-						failedValidations++;
-					}
-					else
-					{
-						successfulValidations++;
-					}
-				}
+            Debug.Log($"Assets Validated: <b>(Failed: {failedValidations}, Succeeded: {successfulValidations}, Total: {failedValidations + successfulValidations})</b>");
+        }
 
-				var validateAttribute = field.GetCustomAttribute<ValidateAttribute>();
+        /// <summary>
+        /// Validates all fields marked for validation with an attribute
+        /// </summary>
+        /// <param name="targetObject">The target object to validate</param>
+        /// <param name="failedValidations">The amount of validations that failed</param>
+        /// <param name="successfulValidations">The amount of validations that succeded</param>
+        public static void Validate(Object targetObject, ref int failedValidations, ref int successfulValidations)
+        {
+            Type type = targetObject.GetType();
+            FieldInfo[] fields = type.GetFields(ReflectionUtils.BINDING_FLAGS);
 
-				if (validateAttribute != null)
-				{
-					var conditionalMember = ReflectionUtility.GetValidMemberInfo(validateAttribute.ConditionName, targetObject);
+            foreach (var field in fields)
+            {
+                string validationMessage = $"Validation failed on <b>{type.Name}.{field.Name}</b> in <b>{targetObject.name}</b>: ";
 
-					if (EvaluateCondition(conditionalMember, targetObject))
-					{
-						if (validateAttribute.BuildKiller)
-						{
-							BUILD_KILLERS++;
-							validationMessage = "<color=#FF0000><b>(Build Killer)</b></color> " + validationMessage;
-						}
+                var requiredAttribute = field.GetCustomAttribute<RequiredAttribute>();
 
-						switch (validateAttribute.Severety)
-						{
-							case MessageMode.None:
-							case MessageMode.Log:
-								Debug.Log(validationMessage + validateAttribute.ValidationMessage, targetObject);
-								break;
+                if (requiredAttribute != null && requiredAttribute.ThrowValidationError)
+                {
+                    object fieldValue = field.GetValue(targetObject);
 
-							case MessageMode.Warning:
-								Debug.LogWarning(validationMessage + validateAttribute.ValidationMessage, targetObject);
-								break;
+                    if (IsNotValid(fieldValue))
+                    {
+                        if (requiredAttribute.BuildKiller)
+                        {
+                            BUILD_KILLERS++;
+                            validationMessage = "<color=#FF0000><b>(Build Killer)</b></color> " + validationMessage;
+                        }
 
-							case MessageMode.Error:
-								Debug.LogError(validationMessage + validateAttribute.ValidationMessage, targetObject);
-								break;
-						}
+                        Debug.LogError($"{validationMessage} Field not assigned", targetObject);
+                        failedValidations++;
+                    }
+                    else
+                    {
+                        successfulValidations++;
+                    }
+                }
 
-						failedValidations++;
-					}
-					else
-					{
-						successfulValidations++;
-					}
-				}
-			}
-		}
+                var validateAttribute = field.GetCustomAttribute<ValidateAttribute>();
 
-		/// <summary>
-		/// Checks to see if an asset is inside the Packages folder
-		/// </summary>
-		/// <param name="assetPath">The path of the asset</param>
-		/// <returns>True if the asset is inside the packages folder</returns>
-		public static bool IsPackageAsset(string assetPath) => assetPath.StartsWith("Packages/");
+                if (validateAttribute != null)
+                {
+                    MemberInfo conditionalMember = ReflectionUtils.GetValidMemberInfo(validateAttribute.ConditionName, targetObject);
 
-		/// <summary>
-		/// Returns an array of all the Scenes currently open in the hierarchy
-		/// </summary>
-		/// <returns>Array of Scenes in the Hierarchy</returns>
-		public static Scene[] GetAllOpenedScenes()
-		{
-			var array = new Scene[SceneManager.sceneCount];
+                    if (EvaluateCondition(conditionalMember, targetObject, out ValidationCheck customCheck))
+                    {
+                        string customMessage = customCheck == null ? validateAttribute.ValidationMessage : customCheck.ValidationMessage;
+                        bool isBuildKiller = customCheck == null ? validateAttribute.BuildKiller : customCheck.KillBuild;
+                        MessageMode severety = customCheck == null ? validateAttribute.Severety : customCheck.Severety;
 
-			for (int i = 0; i < SceneManager.sceneCount; i++)
-				array[i] = SceneManager.GetSceneAt(i);
+                        if (isBuildKiller)
+                        {
+                            BUILD_KILLERS++;
+                            validationMessage = "<color=#FF0000><b>(Build Killer)</b></color> " + validationMessage;
+                        }
 
-			return array;
-		}
+                        switch (severety)
+                        {
+                            case MessageMode.None:
+                            case MessageMode.Log:
+                                Debug.Log(validationMessage + customMessage, targetObject);
+                                break;
 
-		private static void ValidateScene(Scene scene, ref int failedValidations, ref int successfulValidations)
-		{
-			var rootObjects = scene.GetRootGameObjects();
+                            case MessageMode.Warning:
+                                Debug.LogWarning(validationMessage + customMessage, targetObject);
+                                break;
 
-			foreach (var rootObject in rootObjects)
-			{
-				// Check all children recursively
-				var childTransforms = rootObject.GetComponentsInChildren<Transform>(true);
+                            case MessageMode.Error:
+                                Debug.LogError(validationMessage + customMessage, targetObject);
+                                break;
+                        }
 
-				foreach (var childTransform in childTransforms)
-					ValidateComponents(childTransform.gameObject.GetComponents<Component>(), ref failedValidations, ref successfulValidations);
-			}
-		}
+                        failedValidations++;
+                    }
+                    else
+                    {
+                        successfulValidations++;
+                    }
+                }
+            }
+        }
 
-		private static void ValidateComponents(Component[] components, ref int failedValidations, ref int successfulValidations)
-		{
-			foreach (var component in components)
-			{
-				if (component == null)
-					continue;
+        /// <summary>
+        /// Checks to see if an asset is inside the Packages folder
+        /// </summary>
+        /// <param name="assetPath">The path of the asset</param>
+        /// <returns>True if the asset is inside the packages folder</returns>
+        public static bool IsPackageAsset(string assetPath) => assetPath.StartsWith("Packages/");
 
-				Validate(component, ref failedValidations, ref successfulValidations);
-			}
-		}
+        /// <summary>
+        /// Returns an array of all the Scenes currently open in the hierarchy
+        /// </summary>
+        /// <returns>Array of Scenes in the Hierarchy</returns>
+        public static Scene[] GetAllOpenedScenes()
+        {
+            var scenes = new Scene[SceneManager.sceneCount];
 
-		private static bool EvaluateCondition(MemberInfo memberInfo, object targetObject)
-		{
-			var memberInfoType = ReflectionUtility.GetMemberInfoType(memberInfo);
-			string errorMessage = $"Couldn't validate condition, check for any error box messages on <b>{targetObject}</b>";
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+                scenes[i] = SceneManager.GetSceneAt(i);
 
-			if (memberInfoType == null)
-			{
-				Debug.LogError(errorMessage, (Object)targetObject);
-				return true;
-			}
+            return scenes;
+        }
 
-			if (memberInfoType == typeof(bool))
-			{
-				var memberInfoValue = ReflectionUtility.GetMemberInfoValue(memberInfo, targetObject);
+        private static void ValidateScene(Scene scene, ref int failedValidations, ref int successfulValidations)
+        {
+            GameObject[] rootObjects = scene.GetRootGameObjects();
 
-				return (bool)memberInfoValue;
-			}
+            foreach (var rootObject in rootObjects)
+            {
+                // Check all children recursively
+                Transform[] childTransforms = rootObject.GetComponentsInChildren<Transform>(true);
 
-			Debug.LogError(errorMessage, (Object)targetObject);
+                foreach (var childTransform in childTransforms)
+                    ValidateComponents(childTransform.gameObject.GetComponents<Component>(), ref failedValidations, ref successfulValidations);
+            }
+        }
 
-			return true;
-		}
+        private static void ValidateComponents(Component[] components, ref int failedValidations, ref int successfulValidations)
+        {
+            foreach (var component in components)
+            {
+                if (component == null)
+                    continue;
 
-		private static bool IsNotValid(object fieldValue) => fieldValue == null || fieldValue.Equals(null);
-	}
+                Validate(component, ref failedValidations, ref successfulValidations);
+            }
+        }
+
+        private static bool EvaluateCondition(MemberInfo memberInfo, object targetObject, out ValidationCheck customValidationCheck)
+        {
+            Type memberInfoType = ReflectionUtils.GetMemberInfoType(memberInfo);
+            string errorMessage = $"Couldn't validate condition, check for any error box messages on <b>{targetObject}</b>";
+
+            customValidationCheck = null;
+
+            if (memberInfoType == null)
+            {
+                Debug.LogError(errorMessage, (Object)targetObject);
+                return true;
+            }
+
+            if (memberInfoType == typeof(bool))
+            {
+                object memberInfoValue = ReflectionUtils.GetMemberInfoValue(memberInfo, targetObject);
+
+                if (memberInfoValue == null)
+                    return false;
+
+                return (bool)memberInfoValue;
+            }
+            else if (memberInfoType == typeof(ValidationCheck))
+            {
+                if (ReflectionUtils.GetMemberInfoValue(memberInfo, targetObject) is not ValidationCheck memberInfoValue)
+                    return false;
+
+                customValidationCheck = memberInfoValue;
+                return !memberInfoValue.PassedCheck;
+            }
+
+            Debug.LogError(errorMessage, (Object)targetObject);
+
+            return true;
+        }
+
+        private static bool IsNotValid(object fieldValue) => fieldValue == null || fieldValue.Equals(null);
+    }
 }

@@ -7,127 +7,129 @@ using EditorAttributes.Editor.Utility;
 
 namespace EditorAttributes.Editor
 {
-	public static class EditorHandles
+    internal static class EditorHandles
     {
-		internal static Dictionary<string, (SerializedProperty serializedProperty, DrawHandleAttribute drawHandleAttribute)> handleProperties = new();
-		internal static Dictionary<string, BoxBoundsHandle> boundsHandleList = new();
+        internal static Dictionary<string, (SerializedProperty serializedProperty, DrawHandleAttribute drawHandleAttribute)> handleProperties = new();
+        internal static Dictionary<string, BoxBoundsHandle> boundsHandleList = new();
 
-		internal static void DrawHandles()
-		{
-			foreach (var value in handleProperties.Values)
-			{
-				var serializedProperty = value.serializedProperty;
-				var drawHandleAttribute = value.drawHandleAttribute;
+        internal static void DrawHandles()
+        {
+            foreach (var value in handleProperties.Values)
+            {
+                SerializedProperty serializedProperty = value.serializedProperty;
+                DrawHandleAttribute drawHandleAttribute = value.drawHandleAttribute;
 
-				try
-				{
-					const float labelPostionAdd = 0.3f;
-					var target = serializedProperty.serializedObject.targetObject as Component;
+                try
+                {
+                    const float labelPostionAdd = 0.3f;
+                    var target = serializedProperty.serializedObject.targetObject as Component;
 
-					Handles.color = ColorUtils.ColorAttributeToColor(drawHandleAttribute);
+                    if (drawHandleAttribute.HandleSpace == Space.Self)
+                        Handles.matrix = target.transform.localToWorldMatrix;
 
-					switch (serializedProperty.propertyType)
-					{
-						case SerializedPropertyType.Integer:
-							serializedProperty.intValue = (int)Handles.RadiusHandle(Quaternion.identity, drawHandleAttribute.HandleSpace == Space.World ? Vector3.zero : target.transform.position, serializedProperty.intValue);
-							break;
+                    Handles.color = ColorUtils.ColorAttributeToColor(drawHandleAttribute);
 
-						case SerializedPropertyType.Float:
-							serializedProperty.floatValue = Handles.RadiusHandle(Quaternion.identity, drawHandleAttribute.HandleSpace == Space.World ? Vector3.zero : target.transform.position, serializedProperty.floatValue);
-							break;
+                    switch (serializedProperty.propertyType)
+                    {
+                        case SerializedPropertyType.Integer:
+                            serializedProperty.intValue = (int)Handles.RadiusHandle(Quaternion.identity, Vector3.zero, serializedProperty.intValue);
+                            break;
 
-						case SerializedPropertyType.Vector2:
-							var positionVector2 = serializedProperty.vector2Value;
-							var worldPositionVector2 = drawHandleAttribute.HandleSpace == Space.World ? positionVector2 : (Vector2)target.transform.TransformPoint(positionVector2);
-							var handlePositionVector2 = Handles.PositionHandle(worldPositionVector2, Quaternion.identity);
+                        case SerializedPropertyType.Float:
+                            serializedProperty.floatValue = Handles.RadiusHandle(Quaternion.identity, Vector3.zero, serializedProperty.floatValue);
+                            break;
 
-							serializedProperty.vector2Value = drawHandleAttribute.HandleSpace == Space.World ? handlePositionVector2 : target.transform.InverseTransformPoint(handlePositionVector2);
+                        case SerializedPropertyType.Vector2:
+                            Vector2 positionVector2 = serializedProperty.vector2Value;
+                            Vector3 handlePositionVector2 = Handles.PositionHandle(positionVector2, Quaternion.identity);
 
-							Handles.Label(VectorUtils.AddVector(worldPositionVector2, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
-							break;
+                            serializedProperty.vector2Value = handlePositionVector2;
 
-						case SerializedPropertyType.Vector3:
-							var positionVector3 = serializedProperty.vector3Value;
-							var worldPositionVector3 = drawHandleAttribute.HandleSpace == Space.World ? positionVector3 : target.transform.TransformPoint(positionVector3);
-							var handlePositionVector3 = Handles.PositionHandle(worldPositionVector3, Quaternion.identity);
+                            Handles.Label(VectorUtils.AddVector(positionVector2, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
+                            break;
 
-							serializedProperty.vector3Value = drawHandleAttribute.HandleSpace == Space.World ? handlePositionVector3 : target.transform.InverseTransformPoint(handlePositionVector3);
+                        case SerializedPropertyType.Vector3:
+                            Vector3 positionVector3 = serializedProperty.vector3Value;
+                            Vector3 handlePositionVector3 = Handles.PositionHandle(positionVector3, Quaternion.identity);
 
-							Handles.Label(VectorUtils.AddVector(worldPositionVector3, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
-							break;
+                            serializedProperty.vector3Value = handlePositionVector3;
 
-						case SerializedPropertyType.Vector2Int:
-							var positionVector2Int = serializedProperty.vector2IntValue;
-							var handlePositionVector2Int = Handles.PositionHandle(VectorUtils.Vector2IntToVector2(positionVector2Int), Quaternion.identity);
+                            Handles.Label(VectorUtils.AddVector(positionVector3, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
+                            break;
 
-							serializedProperty.vector2IntValue = VectorUtils.Vector2ToVector2Int(handlePositionVector2Int);
+                        case SerializedPropertyType.Vector2Int:
+                            Vector2Int positionVector2Int = serializedProperty.vector2IntValue;
+                            Vector3 handlePositionVector2Int = Handles.PositionHandle(VectorUtils.Vector2IntToVector2(positionVector2Int), Quaternion.identity);
 
-							Handles.Label(VectorUtils.AddVector(VectorUtils.Vector2IntToVector2(positionVector2Int), labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
-							break;
+                            serializedProperty.vector2IntValue = VectorUtils.Vector2ToVector2Int(handlePositionVector2Int);
 
-						case SerializedPropertyType.Vector3Int:
-							var positionVector3Int = serializedProperty.vector3IntValue;
-							var handlePositionVector3Int = Handles.PositionHandle(positionVector3Int, Quaternion.identity);
+                            Handles.Label(VectorUtils.AddVector(VectorUtils.Vector2IntToVector2(positionVector2Int), labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
+                            break;
 
-							serializedProperty.vector3IntValue = VectorUtils.Vector3ToVector3Int(handlePositionVector3Int);
+                        case SerializedPropertyType.Vector3Int:
+                            Vector3Int positionVector3Int = serializedProperty.vector3IntValue;
+                            Vector3 handlePositionVector3Int = Handles.PositionHandle(positionVector3Int, Quaternion.identity);
 
-							Handles.Label(VectorUtils.AddVector(positionVector3Int, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
-							break;
+                            serializedProperty.vector3IntValue = VectorUtils.Vector3ToVector3Int(handlePositionVector3Int);
 
-						case SerializedPropertyType.Bounds:
-							var boundsValue = serializedProperty.boundsValue;
+                            Handles.Label(VectorUtils.AddVector(positionVector3Int, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
+                            break;
 
-							boundsHandleList.TryGetValue(serializedProperty.propertyPath, out BoxBoundsHandle boundsHandle);
+                        case SerializedPropertyType.Bounds:
+                            Bounds boundsValue = serializedProperty.boundsValue;
 
-							var targetPosition = target.transform.position;
-							var targetRotation = target.transform.rotation;
+                            boundsHandleList.TryGetValue(serializedProperty.propertyPath, out BoxBoundsHandle boundsHandle);
 
-							boundsHandle.center = drawHandleAttribute.HandleSpace == Space.World ? boundsValue.center : target.transform.TransformPoint(boundsValue.center);
-							boundsHandle.size = boundsValue.size;
+                            Vector3 targetPosition = target.transform.position;
+                            Quaternion targetRotation = target.transform.rotation;
 
-							boundsHandle.DrawHandle();
+                            boundsHandle.center = boundsValue.center;
+                            boundsHandle.size = boundsValue.size;
 
-							serializedProperty.boundsValue = new Bounds(drawHandleAttribute.HandleSpace == Space.World ? boundsHandle.center : target.transform.InverseTransformPoint(boundsHandle.center), boundsHandle.size);
-							break;
+                            boundsHandle.DrawHandle();
 
-						case SerializedPropertyType.Generic: // SimpleTransform type
-							var transformValue = GetSimpleTransformValuesFromSerializedProperty(serializedProperty);
-							var positionValue = drawHandleAttribute.HandleSpace == Space.World ? transformValue.position : target.transform.TransformPoint(transformValue.position);
-							var rotationValue = drawHandleAttribute.HandleSpace == Space.World ? transformValue.QuaternionRotation : Quaternion.Inverse(transformValue.QuaternionRotation);
+                            serializedProperty.boundsValue = new Bounds(boundsHandle.center, boundsHandle.size);
+                            break;
 
-							Handles.TransformHandle(ref positionValue, ref rotationValue, ref transformValue.scale);
+                        case SerializedPropertyType.Generic: // SimpleTransform type
+                            SimpleTransform transformValue = GetSimpleTransformValuesFromSerializedProperty(serializedProperty);
+                            Vector3 positionValue = transformValue.position;
+                            Quaternion rotationValue = transformValue.QuaternionRotation;
 
-							transformValue.position = drawHandleAttribute.HandleSpace == Space.World ? positionValue : target.transform.InverseTransformPoint(positionValue);
-							transformValue.rotation = drawHandleAttribute.HandleSpace == Space.World ? rotationValue.eulerAngles : Quaternion.Inverse(rotationValue).eulerAngles;
+                            Handles.TransformHandle(ref positionValue, ref rotationValue, ref transformValue.scale);
 
-							Handles.Label(VectorUtils.AddVector(positionValue, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
+                            transformValue.position = positionValue;
+                            transformValue.rotation = rotationValue.eulerAngles;
 
-							SetSimpleTransformValueFromSerializedProperty(serializedProperty, transformValue);
-							break;
-					}
+                            Handles.Label(VectorUtils.AddVector(positionValue, labelPostionAdd), serializedProperty.displayName, EditorStyles.boldLabel);
 
-					serializedProperty.serializedObject.ApplyModifiedProperties();
-				}
-				catch (ObjectDisposedException)
-				{
-					handleProperties.Remove(serializedProperty.propertyPath);
-					break;
-				}
-			}
-		}
+                            SetSimpleTransformValueFromSerializedProperty(serializedProperty, transformValue);
+                            break;
+                    }
 
-		private static SimpleTransform GetSimpleTransformValuesFromSerializedProperty(SerializedProperty property) => new()
-		{
-			position = property.FindPropertyRelative("position").vector3Value,
-			rotation = property.FindPropertyRelative("rotation").vector3Value,
-			scale = property.FindPropertyRelative("scale").vector3Value
-		};
+                    Handles.matrix = Matrix4x4.identity;
+                    serializedProperty.serializedObject.ApplyModifiedProperties();
+                }
+                catch (ObjectDisposedException)
+                {
+                    handleProperties.Remove(serializedProperty.propertyPath);
+                    break;
+                }
+            }
+        }
 
-		private static void SetSimpleTransformValueFromSerializedProperty(SerializedProperty property, SimpleTransform value)
-		{
-			property.FindPropertyRelative("position").vector3Value = value.position;
-			property.FindPropertyRelative("rotation").vector3Value = value.rotation;
-			property.FindPropertyRelative("scale").vector3Value = value.scale;
-		}
-	}
+        private static SimpleTransform GetSimpleTransformValuesFromSerializedProperty(SerializedProperty property) => new()
+        {
+            position = property.FindPropertyRelative("position").vector3Value,
+            rotation = property.FindPropertyRelative("rotation").vector3Value,
+            scale = property.FindPropertyRelative("scale").vector3Value
+        };
+
+        private static void SetSimpleTransformValueFromSerializedProperty(SerializedProperty property, SimpleTransform value)
+        {
+            property.FindPropertyRelative("position").vector3Value = value.position;
+            property.FindPropertyRelative("rotation").vector3Value = value.rotation;
+            property.FindPropertyRelative("scale").vector3Value = value.scale;
+        }
+    }
 }

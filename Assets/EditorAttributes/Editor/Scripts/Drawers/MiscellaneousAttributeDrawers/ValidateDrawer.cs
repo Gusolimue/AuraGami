@@ -1,72 +1,86 @@
+using System;
 using UnityEditor;
-using UnityEngine.UIElements;
-using EditorAttributes.Editor.Utility;
 using System.Reflection;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+using EditorAttributes.Editor.Utility;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(ValidateAttribute))]
+    [CustomPropertyDrawer(typeof(ValidateAttribute))]
     public class ValidateDrawer : PropertyDrawerBase
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var root = new VisualElement();
-			var validateAttribute = attribute as ValidateAttribute;
-			var conditionalProperty = ReflectionUtility.GetValidMemberInfo(validateAttribute.ConditionName, property);
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var validateAttribute = attribute as ValidateAttribute;
 
-			var propertyField = DrawProperty(property);
+            VisualElement root = new();
+            PropertyField propertyField = CreatePropertyField(property);
 
-			root.Add(propertyField);
+            HelpBox errorBox = new();
+            HelpBox helpBox = new(validateAttribute.ValidationMessage, (HelpBoxMessageType)validateAttribute.Severety);
 
-			var errorBox = new HelpBox();
-			var helpBox = new HelpBox(validateAttribute.ValidationMessage, (HelpBoxMessageType)validateAttribute.Severety);
+            if (CanApplyGlobalColor)
+            {
+                helpBox.style.color = EditorExtension.GLOBAL_COLOR;
+                helpBox.style.backgroundColor = EditorExtension.GLOBAL_COLOR / 2f;
+            }
 
-			if (CanApplyGlobalColor)
-			{
-				helpBox.style.color = EditorExtension.GLOBAL_COLOR;
-				helpBox.style.backgroundColor = EditorExtension.GLOBAL_COLOR / 2f;
-			}
+            root.Add(propertyField);
+            root.Add(helpBox);
 
-			UpdateVisualElement(root, () =>
-			{
-				if (GetConditionValue(conditionalProperty, validateAttribute, property, errorBox))
-				{
-					root.Add(helpBox);
-				}
-				else
-				{
-					RemoveElement(root, helpBox);
-				}
+            MemberInfo conditionalProperty = ReflectionUtils.GetValidMemberInfo(validateAttribute.ConditionName, property);
 
-				DisplayErrorBox(root, errorBox);
-			});
+            UpdateVisualElement(root, () =>
+            {
+                helpBox.style.display = GetConditionValue(conditionalProperty, validateAttribute, property, helpBox, errorBox) ? DisplayStyle.Flex : DisplayStyle.None;
+                DisplayErrorBox(root, errorBox);
+            });
 
-			return root;
-		}
+            return root;
+        }
 
-		private bool GetConditionValue(MemberInfo memberInfo, ValidateAttribute validateAttribute, SerializedProperty serializedProperty, HelpBox errorBox)
-		{
-			var memberInfoType = ReflectionUtility.GetMemberInfoType(memberInfo);
+        private bool GetConditionValue(MemberInfo memberInfo, ValidateAttribute validateAttribute, SerializedProperty serializedProperty, HelpBox helpBox, HelpBox errorBox)
+        {
+            Type memberInfoType = ReflectionUtils.GetMemberInfoType(memberInfo);
 
-			if (memberInfoType == null)
-			{
-				errorBox.text = $"The provided condition \"{validateAttribute.ConditionName}\" could not be found";
-				return false;
-			}
+            if (memberInfoType == null)
+            {
+                errorBox.text = $"The provided condition <b>{validateAttribute.ConditionName}</b> could not be found";
+                return false;
+            }
 
-			if (memberInfoType == typeof(bool))
-			{
-				var memberInfoValue = ReflectionUtility.GetMemberInfoValue(memberInfo, serializedProperty);
+            object[] parameterValues = !validateAttribute.applyToCollection ? new object[] { GetCollectionElementIndex(serializedProperty) } : null;
 
-				if (memberInfoValue == null)
-					return false;
+            if (memberInfoType == typeof(bool))
+            {
+                object memberInfoValue = ReflectionUtils.GetMemberInfoValue(memberInfo, serializedProperty, parameterValues);
 
-				return (bool)memberInfoValue;
-			}
+                if (memberInfoValue == null)
+                    return false;
 
-			errorBox.text = $"The provided condition \"{validateAttribute.ConditionName}\" is not a valid boolean";
+                return (bool)memberInfoValue;
+            }
+            else if (memberInfoType == typeof(ValidationCheck))
+            {
+                if (ReflectionUtils.GetMemberInfoValue(memberInfo, serializedProperty, parameterValues) is not ValidationCheck memberInfoValue)
+                    return false;
 
-			return false;
-		}
-	}
+                if (validateAttribute.ValidationMessage != null)
+                {
+                    errorBox.text = "The condition uses <b>ValidationCheck</b> but the attribute still uses the constructor with the <b>validationMessage</b> parameter which will be overriden";
+                    errorBox.messageType = HelpBoxMessageType.Info;
+                }
+
+                helpBox.text = memberInfoValue.ValidationMessage;
+                helpBox.messageType = (HelpBoxMessageType)memberInfoValue.Severety;
+
+                return !memberInfoValue.PassedCheck;
+            }
+
+            errorBox.text = $"The provided condition <b>{validateAttribute.ConditionName}</b> is not a valid <b>bool</b> or <b>ValidationCheck</b> type";
+
+            return false;
+        }
+    }
 }

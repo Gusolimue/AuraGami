@@ -34,15 +34,15 @@ namespace EditorAttributesSamples
 		[SerializeField] private States states;
 
 		[MessageBox("This is a message box", nameof(states), States.State02, MessageMode.None)]
-		[SerializeField] private VoidStructure hiddenMessageBox;
+		[SerializeField] private Void hiddenMessageBox;
 
 		[MessageBox("This is a <i>log</i> box", nameof(states), States.State02, MessageMode.Log)]
-		[SerializeField] private VoidStructure hiddenLogBox;
+		[SerializeField] private Void hiddenLogBox;
 
 		[MessageBox("This is a <b>warning</b> box", nameof(states), States.State02, MessageMode.Warning)]
-		[SerializeField] private VoidStructure hiddenWarningBox;
+		[SerializeField] private Void hiddenWarningBox;
 
 		[MessageBox("This is an <color=#FF0000>error</color> box", nameof(states), States.State02, MessageMode.Error)]
-		[SerializeField] private VoidStructure hiddenErrorBox;
+		[SerializeField] private Void hiddenErrorBox;
 	}
 }

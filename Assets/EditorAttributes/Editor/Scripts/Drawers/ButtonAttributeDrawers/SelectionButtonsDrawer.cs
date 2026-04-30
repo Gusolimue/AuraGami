@@ -57,17 +57,17 @@ namespace EditorAttributes.Editor
 			else if (property.propertyType != SerializedPropertyType.Enum && !string.IsNullOrEmpty(selectionButtonsAttribute.CollectionName))
 			{
 				var memberInfo = ReflectionUtility.GetValidMemberInfo(selectionButtonsAttribute.CollectionName, property);
-				var displayNames = ConvertCollectionValuesToStrings(selectionButtonsAttribute.CollectionName, property, memberInfo, errorBox).ToArray();
+				////var displayNames = ConvertCollectionValuesToStrings(selectionButtonsAttribute.CollectionName, property, memberInfo, errorBox).ToArray();
 
-				var buttonsValue = Array.IndexOf(displayNames, GetPropertyValueAsString(property));
+				//var buttonsValue = Array.IndexOf(displayNames, GetPropertyValueAsString(property));
 
-				root.Add(DrawButtons(buttonsValue, displayNames, property, selectionButtonsAttribute, (value) =>
-				{
-					if (value >= 0 && value < displayNames.Length)
-						SetProperyValueFromString(displayNames[value], ref property, errorBox);
+				//root.Add(DrawButtons(buttonsValue, displayNames, property, selectionButtonsAttribute, (value) =>
+				//{
+				//	//if (value >= 0 && value < displayNames.Length)
+				//		//SetProperyValueFromString(displayNames[value], ref property, errorBox);
 
-					property.serializedObject.ApplyModifiedProperties();
-				}));
+				//	property.serializedObject.ApplyModifiedProperties();
+				//}));
 			}
 			else
 			{

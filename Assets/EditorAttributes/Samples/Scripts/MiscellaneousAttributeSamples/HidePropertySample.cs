@@ -7,7 +7,7 @@ namespace EditorAttributesSamples
 	public class HidePropertySample : MonoBehaviour
 	{
 		[Header("HideProperty Attribute:")]
-		[SerializeField, HelpBox("The field is hidden in the inspector but visible in debug mode", MessageMode.None)] private VoidStructure helpBoxHolder;
+		[SerializeField, HelpBox("The field is hidden in the inspector but visible in debug mode", MessageMode.None)] private Void helpBoxHolder;
 
 		[SerializeField, HideProperty] private int hiddenField;
 	}

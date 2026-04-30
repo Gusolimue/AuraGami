@@ -8,7 +8,7 @@ namespace EditorAttributesSamples
 	{
 		[Header("HideInChildren Attribute:")]
 		[HelpBox("Nothing to see here, the fields are hidden =)", MessageMode.None)] 
-		[SerializeField] private VoidStructure helpBox;
+		[SerializeField] private Void helpBox;
 	}
 
 	public class HideInChildrenSampleBase : MonoBehaviour

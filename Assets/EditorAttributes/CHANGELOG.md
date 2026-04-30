@@ -1,7 +1,143 @@
+EditorAttributes v3.0.2 Changelog:
+- Added applyToCollection parameter to the Validate Attribute
+- AnimatorParamDropdown can now be attached to an int returning the parameter hash
+- Updated deprecated API's in Unity 6.4
+
+EditorAttributes v3.0.1 Changelog:
+- Added the ability to filter TypeDropdown by certain types
+- Added makeDirty parameter to ButtonField Attribute
+- Slightly adjusted group alignments
+- DataTables can now contain serialized objects and collections
+- The editor attributes drawing of the default inspector can now be disabled
+- Fixed DataTable drawing labels in collections past the first element
+- Fixed finding property members inside serialized classes throwing an error
+- Fixed Dropdown reseting value after refreshing the inspector when using dictionaries
+- Fixed AssetPreview not displaying sliced sprites
+
+EditorAttributes v3.0.0 Changelog:
+- Project refactoring
+- Ended support for Unity 2022
+- Added LayerDropdown Attribute
+- Added ApplyMaterial Attribute
+- Added option to toggle whether an object is set to dirty or not on button press
+- Added an optional group title to the vertical group
+- Removed the TimeField Attribute
+- Removed the SelectionButtons Attribute
+- Updated the look of the tab group
+- Made the Void struct readonly
+- AssetPreview Attribute will now display the texture itself instead of its preview if the type is a texture
+- Fixed custom unit definitions throwing null error
+- Fixed Button Attribute enum parameter throwing an argument null error
+- Fixed Button Attribute duplicating from inheritance
+- Fixed Button not supporting vector parameters
+- Fixed member finding getting the member from the base object instead of the nested object if the member has the same name
+
+EditorAttributes v2.9.2 Changelog:
+- PropertyDropdown Attribute now supports any UnityEngine.Object type
+- PropertyDropdown Attribute will now draw custom editors
+- Fixed conditional fields not working inside groups
+- Fixed Button Attribute not supporting enums anymore
+- Fixed Dropdown Attribute not updating when collection becomes invalid
+- Fixed DataTable adding labels to array elements after the first one when inside a custom object
+
+EditorAttributes v2.9.1 Changelog:
+- Added char support to Button Attribute parameters and ShowInInspector Attribute
+- Added an Asset Preview Load Time setting to the project settings
+- Asset previews now load asynchronously
+- Required Attribute now has the option to add a button on the help box to auto reference the field
+- Attributes can now find private inherited members
+- Fixed HideInChildren Attribute no longer working
+- Fixed PropertyDropdown not working on child types deeper in the hierarchy
+- Fixed Button no longer supporting string parameters
+- Fixed Button throwing a stack overflow exception when attempting to use a non supported primitive type parameter
+
+EditorAttributes v2.9.0 Changelog:
+- Added checks for duplicate units and empty unit names when defining custom units
+- Added an additional parameter to ValueButtons Attribute for displaying custom labels for items
+- Added property space parameter in the HorizontalGroup Attribute
+- Added support for multiple inline buttons
+- Added percentage units
+- Added custom serialized objects support to ShowInInspector Attribute
+- Removed the widthOffset parameter from Vertical, Foldout and Toggle groups
+- Deprecated TimeField Attribute in favor of UnitField
+- HideProperty now will now hide nested properties as well
+- MinMaxSlider handles now snap when using Vector2Int
+- Fixed an issue where some attributes don't change the display value when that value is changed by script
+- Fixed null reference exception in addressables validation during build
+- Fixed object reference exception when using UnitField Attribute in a fresh project
+- Fixed HideLabel Attribute not working in horizontal groups
+- Fixed coloring issues with unit fields
+
+EditorAttributes v2.8.0 Changelog:
+- Added UnitField Attribute
+- Added TypeDropdown attribute
+- Added project settings tab
+- Moved the Disable Build Validation setting to the project settings tab
+- Handles now rotate correctly when set to local space
+- Removed the ConvertTo enum in favor of the Unit enum
+- Fixed HideLabel Attribute not removing the label from an EnumButtons marked field
+
+EditorAttributes v2.7.2 Changelog:
+- Added the ability to execute button logic from multiple selections
+- Added a warning when trying to use an attribute from an ImGUI based editor
+- Foldout states and button parameters are now saved by the object's instance ID instead of name
+- Fixed dropdown reseting to default value when the inspector is refreshed while using dictionaries
+- Fixed property dropdowns not working inside collections
+- Fixed foldout states incorrectly loading
+
+EditorAttributes v2.7.1 Changelog:
+- Unity's Space and Header attributes now work on ShowInInspector properties
+- Validating all scenes should now also include addressable scenes
+- Updated offline documentation
+
+EditorAttributes v2.7.0 Changelog:
+- Added CollectionRange Attribute
+- Added ShowInInspector Attribute
+- Removed the drawing of static and non serialized members in favor of the ShowInInspector Attribute
+- Fixed Button functions being called when selecting something
+
+EditorAttributes v2.6.1 Changelog:
+- Added option to show all non serialized members
+- Extended showing static fields to showing all static members
+- Handled an error on ButtonField Attribute when it can't find the function.
+- Fixed issue where Property Fields are sometimes not automatically binded
+
+EditorAttributes v2.6.0 Changelog:
+- Added Dictionary support for Dropdown Attribute
+- Added attribute search support for static and const members inside other types
+- Added ValidationCheck class for more advanced validation logic
+- Moved EditorValidation menu under the tools tab
+- Fixed DataTable label alignment
+- Fixed Wrap and Clamp Attributes not working with uint, long, ulong and double types
+- Fixed Dropdown Attribute throwing error when collection value is null
+- Fixed Dropdown throwing Index out of range Exception when the value collection changed is dynamically while using a custom display array
+
+EditorAttributes v2.5.4 Changelog:
+- Added an additional parameter to Dropdown Attribute for displaying custom labels for items
+- Added new CaseType.None to Rename Attribute
+- Long DataTable names should now be clipped
+- Updated how vectors look inside data tables
+- Fixed Rename Attribute not working
+- Fixed UnityEvents not displaying the property name
+- Fixed UnityEvents and collections being indented inside foldout and toggle groups
+- Fixed possible error when deleting an object using the Button Attribute
+- Fixed attributes not applying to UnityEvents when inside a group
+- Fixed message boxes not appearing back when the condition is satisfied in the editor
+
+EditorAttributes v2.5.3 Changelog:
+- Added vector and char support to Dropdown Attribute
+- Added option to disable build validation
+- Added property context menus to non property fields
+- Added ToLocalTransform function to the SimpleTransform
+- Updated the ToTransform function inside SimpleTransform
+- Realigned label on MinMaxSlider
+- Fixed Hide, Show and ConditionalField attributes flickering inside arrays
+- Fixed asset previews not loading when the inspector is selected
+
 EditorAttributes v2.5.2 Changelog:
 - Added optional parameter to the HideInChildren Attribute to specify in which children to hide the field
 - Added option to draw help boxes above the attached field
-- Added dynamic string support to help boxes
+- Added dynamic string support to the HelpBox Attribute
 - The HelpBox Attribute will now draw the helpbox under the field by default
 - Fixed tooltips not being displayed on some attributes
 - Fixed Rename Attribute not working on fields inside a horizontal group

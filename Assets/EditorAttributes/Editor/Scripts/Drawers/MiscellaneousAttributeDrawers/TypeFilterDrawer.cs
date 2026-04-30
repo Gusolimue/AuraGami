@@ -3,64 +3,61 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using Object = UnityEngine.Object;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(TypeFilterAttribute))]
+    [CustomPropertyDrawer(typeof(TypeFilterAttribute))]
     public class TypeFilterDrawer : PropertyDrawerBase
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var typeFilterAttribute = attribute as TypeFilterAttribute;
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            if (!IsSupportedPropertyType(property))
+                return new HelpBox("The attached field must derive from <b>UnityEngine.Object</b>", HelpBoxMessageType.Error);
 
-            var root = new VisualElement();
+            var typeFilterAttribute = attribute as TypeFilterAttribute;
 
-			if (property.propertyType == SerializedPropertyType.ObjectReference)
-			{
-				var propertyField = DrawProperty(property);
+            PropertyField propertyField = CreatePropertyField(property);
 
-				root.Add(propertyField);
+            propertyField.RegisterCallbackOnce<GeometryChangedEvent>((callback) =>
+            {
+                var objectField = propertyField.Q<ObjectField>();
 
-				ExecuteLater(propertyField, () =>
-				{
-					var objectField = propertyField.Q<ObjectField>();
+                objectField.objectType = property.objectReferenceValue != null ? property.objectReferenceValue.GetType() : typeFilterAttribute.TypesToFilter.FirstOrDefault();
 
-					objectField.objectType = typeFilterAttribute.TypesToFilter.FirstOrDefault();
+                objectField.RegisterCallback<DragEnterEvent>(callback =>
+                {
+                    Object draggedObject = DragAndDrop.objectReferences.FirstOrDefault();
 
-					objectField.RegisterCallback<DragEnterEvent>(callback =>
-					{					
-						var draggedObject = DragAndDrop.objectReferences.FirstOrDefault();
-					
-						if (draggedObject != null)
-						{
-							Type acceptedDraggedType = null;
+                    if (draggedObject != null)
+                    {
+                        Type acceptedDraggedType = null;
 
-							// Check if the dragged object is compatible with any of the allowed types
-							var isValidType = typeFilterAttribute.TypesToFilter.Any(type =>
-							{
-								var objectType = type;
+                        // Check if the dragged object is compatible with any of the allowed types
+                        bool isValidType = typeFilterAttribute.TypesToFilter.Any(type =>
+                        {
+                            var objectType = type;
 
-								if (objectType.IsInstanceOfType(draggedObject))
-								{
-									acceptedDraggedType = objectType;
-									return true;
-								}
+                            if (objectType.IsInstanceOfType(draggedObject))
+                            {
+                                acceptedDraggedType = objectType;
+                                return true;
+                            }
 
-								return false;
-							});
+                            return false;
+                        });
 
-							if (isValidType)
-								objectField.objectType = acceptedDraggedType;
-						}
-					});
-				}, 30);
-			}
-			else
-			{
-				root.Add(new HelpBox("The attached field must derive from <b>UnityEngine.Object</b>", HelpBoxMessageType.Error));
-			}
+                        if (isValidType)
+                            objectField.objectType = acceptedDraggedType;
+                    }
+                });
 
-			return root;
-		}
+                objectField.TrackPropertyValue(property, (trackedProperty) => objectField.objectType = trackedProperty.objectReferenceValue != null ? trackedProperty.objectReferenceValue.GetType() : typeFilterAttribute.TypesToFilter.FirstOrDefault());
+            });
+
+            return propertyField;
+        }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType == SerializedPropertyType.ObjectReference;
     }
 }
