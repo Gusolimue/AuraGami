@@ -9,18 +9,18 @@ namespace EditorAttributesSamples
 		[Header("ButtonField Attribute:")]
 
 		[ButtonField(nameof(PrintNumber), buttonHeight: 30f)]
-		[SerializeField] private VoidStructure buttonHolder;
+		[SerializeField] private Void buttonHolder;
 
 		[SerializeField] private int number;
 
 		[HorizontalGroup(true, nameof(buttonHolder01), nameof(buttonHolder02))] 
-		[SerializeField] private VoidStructure groupHolder;
+		[SerializeField] private Void groupHolder;
 
 		[ButtonField(nameof(PrintMessage))]
-		[SerializeField, HideInInspector] private VoidStructure buttonHolder01;
+		[SerializeField, HideInInspector] private Void buttonHolder01;
 
 		[ButtonField(nameof(PrintMessage), true, 60, 300, "Hold Me")] 
-		[SerializeField, HideInInspector] private VoidStructure buttonHolder02;
+		[SerializeField, HideInInspector] private Void buttonHolder02;
 
 		private void PrintNumber() => print(number);
 		private void PrintMessage() => print("Hello World!");

@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
@@ -5,112 +6,118 @@ using UnityEngine.SceneManagement;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(SceneDropdownAttribute))]
-    public class SceneDropdownDrawer : PropertyDrawerBase
+    [CustomPropertyDrawer(typeof(SceneDropdownAttribute))]
+    public class SceneDropdownDrawer : CollectionDisplayDrawer
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var root = new VisualElement();
-			var errorBox = new HelpBox();
-
-			if (property.propertyType == SerializedPropertyType.String || property.propertyType == SerializedPropertyType.Integer)
-			{
-				var sceneNames = GetSceneNames(errorBox);
-
-				var dropdownField = IsCollectionValid(sceneNames) ? new DropdownField(property.displayName, sceneNames, GetDropdownDefaultValue(sceneNames, property)) 
-					: new DropdownField(property.displayName, new List<string>() { "NULL" }, 0);
-
-				dropdownField.tooltip = property.tooltip;
-				dropdownField.AddToClassList(BaseField<VoidStructure>.alignedFieldUssClassName);
-				dropdownField.RegisterValueChangedCallback(callback => ApplyPropertyValue(property, dropdownField));
-
-				if (dropdownField.value != "NULL")
-				{
-					dropdownField.showMixedValue = property.hasMultipleDifferentValues;
-					ApplyPropertyValue(property, dropdownField);
-				}
-
-				root.Add(dropdownField);
-				DisplayErrorBox(root, errorBox);
-
-				ExecuteLater(dropdownField, () => dropdownField.Q(className: DropdownField.inputUssClassName).style.backgroundColor = EditorExtension.GLOBAL_COLOR / 2f);
-
-				UpdateVisualElement(dropdownField, () =>
-				{
-					var sceneNames = GetSceneNames(errorBox);
-
-					if (IsCollectionValid(sceneNames))
-						dropdownField.choices = sceneNames;
-				});
-
-				return root;
-			}
-			else
-			{
-				errorBox.text = "The SceneDropdown attribute can only be attached to a string or int";
-				DisplayErrorBox(root, errorBox);
-
-				return root;
-			}
-		}
-
-        private List<string> GetSceneNames(HelpBox errorBox)
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-			var sceneList = new List<string>();
-            var activeSceneList = EditorBuildSettingsScene.GetActiveSceneList(EditorBuildSettings.scenes);
+            if (!IsSupportedPropertyType(property))
+                return new HelpBox("The SceneDropdown Attribute can only be attached to a string or int", HelpBoxMessageType.Error);
+
+            HelpBox errorBox = new();
+            List<string> sceneNames = GetSceneList(errorBox);
+            DropdownField dropdownField = CreateDropdownField(sceneNames, property);
+
+            UpdateVisualElement(dropdownField, () =>
+            {
+                List<string> sceneNames = GetSceneList(errorBox);
+
+                if (IsCollectionValid(sceneNames))
+                    dropdownField.choices = sceneNames;
+            });
+
+            DisplayErrorBox(dropdownField, errorBox);
+            return dropdownField;
+        }
+
+        protected override void PasteValue(VisualElement element, SerializedProperty property, string clipboardValue)
+        {
+            var dropdown = element as DropdownField;
+
+            string sceneName = int.TryParse(clipboardValue, out int sceneIndex) ? SceneNameFromIndex(sceneIndex) : clipboardValue;
+
+            if (dropdown.choices.Contains(sceneName))
+            {
+                dropdown.value = sceneName;
+            }
+            else
+            {
+                Debug.LogWarning($"Could not paste value <b>{clipboardValue}</b> since is not availiable as an option in the dropdown");
+            }
+        }
+
+        protected override bool IsSupportedPropertyType(SerializedProperty property) => property.propertyType is SerializedPropertyType.String or SerializedPropertyType.Integer;
+
+        protected override string SetDropdownDefaultValue(List<string> collectionValues, SerializedProperty property)
+        {
+            string propertyStringValue = property.propertyType == SerializedPropertyType.String ? property.stringValue : SceneNameFromIndex(property.intValue);
+            return collectionValues.Contains(propertyStringValue) ? propertyStringValue : collectionValues[0];
+        }
+
+        protected override void SetPropertyValueFromDropdown(SerializedProperty property, DropdownField dropdown)
+        {
+            if (property.hasMultipleDifferentValues)
+                return;
+
+            if (property.propertyType == SerializedPropertyType.String)
+            {
+                property.stringValue = dropdown.value;
+            }
+            else
+            {
+                property.intValue = dropdown.index;
+            }
+
+            property.serializedObject.ApplyModifiedProperties();
+        }
+
+        protected override void SetDropdownValueFromProperty(SerializedProperty trackedProperty, DropdownField dropdownField)
+        {
+            string sceneName = trackedProperty.propertyType == SerializedPropertyType.Integer ? SceneNameFromIndex(trackedProperty.intValue) : trackedProperty.stringValue;
+
+            if (dropdownField.choices.Contains(sceneName))
+            {
+                dropdownField.SetValueWithoutNotify(sceneName);
+            }
+            else
+            {
+                Debug.LogWarning($"The value <b>{GetPropertyValueAsString(trackedProperty)}</b> set to the <b>{trackedProperty.name}</b> variable is not a valid scene identifier", trackedProperty.serializedObject.targetObject);
+            }
+        }
+
+        private List<string> GetSceneList(HelpBox errorBox)
+        {
+            List<string> sceneList = new();
+            string[] activeSceneList = EditorBuildSettingsScene.GetActiveSceneList(EditorBuildSettings.scenes);
 
             if (activeSceneList == null || activeSceneList.Length == 0)
             {
-				errorBox.text = "There are no scenes in the build settings";
+                errorBox.text = "There are no scenes in the active build settings";
                 return sceneList;
             }
 
-			foreach (var scene in activeSceneList)
-			{
-			    var sceneName = scene.Split('/')[^1].Split('.')[0]; // Remove the asset paths and file extension from the name
+            foreach (var scene in activeSceneList)
+            {
+                string sceneName = scene.Split('/')[^1].Split('.')[0]; // Remove the asset paths and file extension from the name
 
-			    sceneList.Add(sceneName);
-			}
+                sceneList.Add(sceneName);
+            }
 
-			return sceneList;
-		}
+            return sceneList;
+        }
 
-		private string SceneNameFromIndex(int BuildIndex)
-		{
-			var path = SceneUtility.GetScenePathByBuildIndex(BuildIndex);
+        private string SceneNameFromIndex(int BuildIndex)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(BuildIndex);
 
-			if (path == string.Empty)
-				return "";
+            if (path == string.Empty)
+                return "";
 
-			var slashIndex = path.LastIndexOf('/');
-			var name = path[(slashIndex + 1)..];
-			var dotIndex = name.LastIndexOf('.');
+            int slashIndex = path.LastIndexOf('/');
+            string name = path[(slashIndex + 1)..];
+            int dotIndex = name.LastIndexOf('.');
 
-			return name[..dotIndex];
-		}
-
-		private string GetDropdownDefaultValue(List<string> collectionValues, SerializedProperty property)
-		{
-			var propertyStringValue = property.propertyType == SerializedPropertyType.String ? property.stringValue : SceneNameFromIndex(property.intValue);
-
-			return collectionValues.Contains(propertyStringValue) ? propertyStringValue : collectionValues[0];
-		}
-
-		private void ApplyPropertyValue(SerializedProperty property, DropdownField dropdown)
-		{
-			if (property.hasMultipleDifferentValues)
-				return;
-
-			if (property.propertyType == SerializedPropertyType.String)
-			{
-				property.stringValue = dropdown.value;
-			}
-			else
-			{
-				property.intValue = dropdown.index;
-			}
-
-			property.serializedObject.ApplyModifiedProperties();
-		}
-	}
+            return name[..dotIndex];
+        }
+    }
 }

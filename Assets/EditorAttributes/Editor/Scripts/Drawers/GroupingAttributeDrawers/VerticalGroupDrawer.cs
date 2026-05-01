@@ -1,64 +1,38 @@
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(VerticalGroupAttribute))]
-    public class VerticalGroupDrawer : PropertyDrawerBase
+    [CustomPropertyDrawer(typeof(VerticalGroupAttribute))]
+    public class VerticalGroupDrawer : GroupDrawer
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var verticalGroup = attribute as VerticalGroupAttribute;
-			var root = new VisualElement();
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var verticalGroup = attribute as VerticalGroupAttribute;
+            GroupBox groupBox = new(verticalGroup.GroupName);
 
-			if (verticalGroup.DrawInBox)
-				ApplyBoxStyle(root);
+            if (verticalGroup.DrawInBox)
+                ApplyBoxStyle(groupBox);
 
-			foreach (string variableName in verticalGroup.FieldsToGroup)
-			{
-				var variableProperty = FindNestedProperty(property, GetSerializedPropertyName(variableName, property));
+            foreach (string variableName in verticalGroup.FieldsToGroup)
+            {
+                VisualElement groupProperty = CreateGroupProperty(variableName, property);
+                groupBox.Add(groupProperty);
+            }
 
-				if (variableProperty != null)
-				{
-					var groupBox = new VisualElement()
-					{
-						style = {
-							flexDirection = FlexDirection.Row,
-							alignItems = Align.Center
-						}
-					};
+            groupBox.RegisterCallbackOnce<GeometryChangedEvent>((callback) =>
+            {
+                var groupLabel = groupBox.Q<Label>(className: GroupBox.labelUssClassName);
 
-					var label = new Label(variableProperty.displayName) 
-					{
-						style = {
-							flexGrow = 1f,
-							flexBasis = 0.1f,
-							marginRight = verticalGroup.WidthOffset
-						}
-					};
+                if (groupLabel == null)
+                    return;
 
-					var propertyField = DrawProperty(variableProperty, new Label());
+                groupLabel.style.marginTop = 0f;
+                groupLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
+            });
 
-					propertyField.style.flexGrow = 1f;
-					propertyField.style.flexBasis = 0.1f;
-
-					if (variableProperty.propertyType == SerializedPropertyType.Generic && verticalGroup.DrawInBox) // Add an offset to serialized objects drawn in a box
-						propertyField.style.marginLeft = 10f;
-
-					if (variableProperty.propertyType != SerializedPropertyType.Generic) // Do not add labels to serialized objects else it will show twice
-						groupBox.Add(label);
-
-					groupBox.Add(propertyField);
-					root.Add(groupBox);
-				}
-				else
-				{
-					root.Add(new HelpBox($"{variableName} is not a valid field", HelpBoxMessageType.Error));
-					break;
-				}
-			}
-
-			return root;
-		}
-	}
+            return groupBox;
+        }
+    }
 }

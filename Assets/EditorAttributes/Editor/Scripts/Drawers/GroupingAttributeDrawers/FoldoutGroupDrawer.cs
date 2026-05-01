@@ -4,68 +4,43 @@ using UnityEngine.UIElements;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(FoldoutGroupAttribute))]
-    public class FoldoutGroupDrawer : PropertyDrawerBase
+    [CustomPropertyDrawer(typeof(FoldoutGroupAttribute))]
+    public class FoldoutGroupDrawer : GroupDrawer
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var foldoutGroup = attribute as FoldoutGroupAttribute;
-			var isFoldedSaveKey = $"{property.serializedObject.targetObject}_{property.propertyPath}_IsFolded";
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var foldoutGroup = attribute as FoldoutGroupAttribute;
+            string foldoutSaveKey = CreatePropertySaveKey(property, "IsFoldoutGroupFolded");
 
-			var root = new VisualElement();
+            Foldout foldout = new()
+            {
+                style = { unityFontStyleAndWeight = FontStyle.Bold },
+                text = foldoutGroup.GroupName,
+                tooltip = property.tooltip,
+                value = EditorPrefs.GetBool(foldoutSaveKey)
+            };
 
-			var foldout = new Foldout
-			{
-				style = { unityFontStyleAndWeight = FontStyle.Bold },
-				text = foldoutGroup.GroupName,
-				tooltip = property.tooltip,
-				value = EditorPrefs.GetBool(isFoldedSaveKey)
-			};
+            if (foldoutGroup.DrawInBox)
+                ApplyBoxStyle(foldout.contentContainer);
 
-			if (foldoutGroup.DrawInBox)
-				ApplyBoxStyle(foldout.contentContainer);
+            foreach (string variableName in foldoutGroup.FieldsToGroup)
+            {
+                VisualElement groupProperty = CreateGroupProperty(variableName, property);
+                groupProperty.style.unityFontStyleAndWeight = FontStyle.Normal;
 
-			foreach (string variableName in foldoutGroup.FieldsToGroup)
-			{
-				var variableProperty = FindNestedProperty(property, GetSerializedPropertyName(variableName, property));
+                foldout.Add(groupProperty);
+            }
 
-				if (variableProperty != null)
-				{
-					var propertyField = DrawProperty(variableProperty);
+            foldout.RegisterCallbackOnce<GeometryChangedEvent>((callback) =>
+            {
+                var toggle = foldout.Q<Toggle>();
+                toggle.style.backgroundColor = CanApplyGlobalColor ? EditorExtension.GLOBAL_COLOR / 3f : new Color(0.1f, 0.1f, 0.1f, 0.2f);
 
-					if (variableProperty.propertyType == SerializedPropertyType.Generic) // Slightly move dropdowns for serialized objects
-						propertyField.style.marginLeft = 10f;
+                // Register this callback later since value changed callbacks are called on inspector initalization and we don't want to save values on initalization
+                foldout.RegisterValueChangedCallback((callback) => EditorPrefs.SetBool(foldoutSaveKey, callback.newValue));
+            });
 
-					propertyField.style.unityFontStyleAndWeight = FontStyle.Normal;
-
-					foldout.Add(propertyField);
-
-					ExecuteLater(propertyField, () =>
-					{
-						var label = propertyField.Q<Label>();
-
-						if (label != null)
-							label.style.marginRight = foldoutGroup.WidthOffset;
-					});
-				}
-				else
-				{
-					foldout.Add(new HelpBox($"{variableName} is not a valid field", HelpBoxMessageType.Error));
-					break;
-				}
-			}
-
-			foldout.RegisterValueChangedCallback((callback) => EditorPrefs.SetBool(isFoldedSaveKey, callback.newValue));
-			root.Add(foldout);
-
-			ExecuteLater(foldout, () =>
-			{
-				var toggle = foldout.Q<Toggle>();
-
-				toggle.style.backgroundColor = CanApplyGlobalColor ? EditorExtension.GLOBAL_COLOR / 3f : new Color(0.1f, 0.1f, 0.1f, 0.2f);
-			});
-
-			return root;
-		}
-	}
+            return foldout;
+        }
+    }
 }

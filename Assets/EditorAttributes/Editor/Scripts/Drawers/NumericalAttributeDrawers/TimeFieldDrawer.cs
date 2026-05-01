@@ -49,13 +49,13 @@ namespace EditorAttributes.Editor
 
 				root.Add(timeField);
 
-				ExecuteLater(timeField, () =>
-				{
-					var labels = timeField.Query<Label>(className: "unity-base-text-field__label").ToList();
+				//ExecuteLater(timeField, () =>
+				//{
+				//	var labels = timeField.Query<Label>(className: "unity-base-text-field__label").ToList();
 
-					foreach (var label in labels)
-						label.text = GetFormatInitial(labels.IndexOf(label), timeFieldAttribute);
-				});
+				//	foreach (var label in labels)
+				//		label.text = GetFormatInitial(labels.IndexOf(label), timeFieldAttribute);
+				//});
 			}
 			else
             {

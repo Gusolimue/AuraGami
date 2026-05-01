@@ -1,35 +1,37 @@
+using System;
 using UnityEditor;
+using System.Reflection;
 using UnityEngine.UIElements;
 using EditorAttributes.Editor.Utility;
+using UnityEditor.UIElements;
 
 namespace EditorAttributes.Editor
 {
-	[CustomPropertyDrawer(typeof(HideInChildrenAttribute))]
+    [CustomPropertyDrawer(typeof(HideInChildrenAttribute))]
     public class HideInChildrenDrawer : PropertyDrawerBase
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property)
-		{
-			var hideInChildrenAttribute = attribute as HideInChildrenAttribute;
-			var root = new VisualElement();
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var hideInChildrenAttribute = attribute as HideInChildrenAttribute;
 
-			if (!IsPropertyInherited(property, hideInChildrenAttribute))
-				root.Add(DrawProperty(property));
+            PropertyField propertyField = CreatePropertyField(property);
+            propertyField.style.display = IsPropertyInherited(property, hideInChildrenAttribute) ? DisplayStyle.None : DisplayStyle.Flex;
 
-			return root;
-		}
+            return propertyField;
+        }
 
-		private bool IsPropertyInherited(SerializedProperty property, HideInChildrenAttribute attribute)
-		{
-			var targetObjectType = property.serializedObject.targetObject.GetType();
-			var fieldInfo = targetObjectType.GetField(property.name, ReflectionUtility.BINDING_FLAGS);
+        private bool IsPropertyInherited(SerializedProperty property, HideInChildrenAttribute attribute)
+        {
+            Type targetObjectType = property.serializedObject.targetObject.GetType();
+            FieldInfo fieldInfo = ReflectionUtils.FindField(property.name, property);
 
-			foreach (var type in attribute.ChildTypes)
-			{
-				if (targetObjectType != type)
-					return false;
-			}
+            foreach (var type in attribute.ChildTypes)
+            {
+                if (targetObjectType != type)
+                    return false;
+            }
 
-			return fieldInfo == null; // If fieldInfo is null it means that the field was not found in the target, so it must be inherited
-		}
-	}
+            return targetObjectType != fieldInfo.DeclaringType;
+        }
+    }
 }

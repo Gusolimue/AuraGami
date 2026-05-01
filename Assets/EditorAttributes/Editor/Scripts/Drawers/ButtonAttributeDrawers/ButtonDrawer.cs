@@ -6,542 +6,425 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Reflection;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using System.Collections.Generic;
 using EditorAttributes.Editor.Utility;
+using Object = UnityEngine.Object;
 
 namespace EditorAttributes.Editor
 {
-	public class ButtonDrawer
+    public class ButtonDrawer
     {
-		[Serializable]
-		private class FunctionParamData
-		{
-			public Dictionary<string, bool> foldouts = new();
-			public Dictionary<string, object[]> parameterValues = new();
-		}
+        [Serializable]
+        private class FunctionParamData
+        {
+            public Dictionary<string, bool> foldouts = new();
+            public Dictionary<string, object[]> parameterValues = new();
+        }
 
-		internal const string PARAMS_DATA_LOCATION = "ProjectSettings/EditorAttributes";
+        internal const string PARAMS_DATA_LOCATION = "ProjectSettings/EditorAttributes";
 
-		internal static VisualElement DrawButton(MethodInfo function, ButtonAttribute buttonAttribute, Dictionary<MethodInfo, bool> foldouts, Dictionary<MethodInfo, object[]> parameterValues, object target)
-		{
-			var root = new VisualElement();
+        internal static VisualElement DrawButton(MethodInfo function, ButtonAttribute buttonAttribute, Dictionary<MethodInfo, bool> foldouts, Dictionary<MethodInfo, object[]> parameterValues, Object[] targets)
+        {
+            ParameterInfo[] functionParameters = function.GetParameters();
 
-			var functionParameters = function.GetParameters();
+            if (functionParameters.Length == 0)
+            {
+                VisualElement button = MakeButton(function, buttonAttribute, () => InvokeFunctionOnAllTargets(targets, function.Name, null, buttonAttribute.MakeDirty));
 
-			if (functionParameters.Length > 0)
-			{
-				PropertyDrawerBase.ApplyBoxStyle(root);
+                if (EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR)
+                    button.style.color = EditorExtension.GLOBAL_COLOR;
 
-				if (!parameterValues.ContainsKey(function))
-				{
-					parameterValues[function] = new object[functionParameters.Length];
+                return button;
+            }
+            else
+            {
+                // Parameter default setup
+                if (!parameterValues.ContainsKey(function))
+                {
+                    parameterValues[function] = new object[functionParameters.Length];
 
-					for (int i = 0; i < functionParameters.Length; i++)
-						parameterValues[function][i] = functionParameters[i].DefaultValue;
-				}
+                    for (int i = 0; i < functionParameters.Length; i++)
+                        parameterValues[function][i] = functionParameters[i].DefaultValue;
+                }
 
-				if (!foldouts.ContainsKey(function))
-					foldouts[function] = true;
+                if (!foldouts.ContainsKey(function))
+                    foldouts[function] = true;
 
-				var button = MakeButton(function, buttonAttribute, () =>
-				{
-					var paramValueList = new object[functionParameters.Length];
+                VisualElement root = new();
 
-					for (int i = 0; i < functionParameters.Length; i++)
-						paramValueList[i] = ConvertParameterValue(functionParameters[i].ParameterType, parameterValues[function][i]);
+                // Create the button
+                VisualElement button = MakeButton(function, buttonAttribute, () =>
+                {
+                    var paramValueList = new object[functionParameters.Length];
 
-					function.Invoke(target, paramValueList);
-				});
+                    for (int i = 0; i < functionParameters.Length; i++)
+                        paramValueList[i] = ConvertParameterValue(functionParameters[i].ParameterType, parameterValues[function][i]);
 
-				var foldout = new Foldout
-				{
-					text = "Parameters",
-					value = foldouts[function]
-				};
+                    InvokeFunctionOnAllTargets(targets, function.Name, parameterValues[function], buttonAttribute.MakeDirty);
+                });
 
-				PropertyDrawerBase.ApplyBoxStyle(foldout);
+                // Styling
+                Foldout foldout = new()
+                {
+                    text = "Parameters",
+                    value = foldouts[function]
+                };
 
-				foldout.style.unityFontStyleAndWeight = FontStyle.Bold;
-				foldout.style.paddingLeft = 15f;
+                PropertyDrawerBase.ApplyBoxStyle(root);
+                PropertyDrawerBase.ApplyBoxStyle(foldout);
 
-				if (EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR)
-				{
-					button.style.color = EditorExtension.GLOBAL_COLOR;
-					foldout.style.color = EditorExtension.GLOBAL_COLOR;
-				}
+                foldout.style.unityFontStyleAndWeight = FontStyle.Bold;
+                foldout.style.paddingLeft = 15f;
 
-				foldout.RegisterValueChangedCallback((callback) => foldouts[function] = callback.newValue);
+                if (EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR)
+                {
+                    button.style.color = EditorExtension.GLOBAL_COLOR;
+                    foldout.style.color = EditorExtension.GLOBAL_COLOR;
+                }
 
-				for (int i = 0; i < functionParameters.Length; i++)
-				{
-					var parameter = functionParameters[i];
-					var field = DrawParameterField(parameter.ParameterType, parameter.Name, parameterValues[function][i]);
+                foldout.RegisterValueChangedCallback((callback) => foldouts[function] = callback.newValue);
 
-					if (EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR)
-						ColorUtils.ApplyColor(field, EditorExtension.GLOBAL_COLOR);
+                // Create parameter fields
+                for (int i = 0; i < functionParameters.Length; i++)
+                {
+                    ParameterInfo parameter = functionParameters[i];
 
-					int index = i;
-					RegisterParameterFieldValueChangedCallback(field, parameter.ParameterType, (valueCallback) => parameterValues[function][index] = valueCallback);
+                    if (!IsParameterTypeSupported(parameter.ParameterType))
+                    {
+                        foldout.Add(new HelpBox($"Parameter type <b>{parameter.ParameterType}</b> is not supported. Only Unity supported primitive types, vectors, strings and enums are supported.", HelpBoxMessageType.Error));
+                        continue;
+                    }
 
-					field.style.unityFontStyleAndWeight = FontStyle.Normal;
-					foldout.Add(field);
-				}
+                    VisualElement field = PropertyDrawerBase.CreateFieldForType(parameter.ParameterType, parameter.Name, ConvertParameterValue(parameter.ParameterType, parameterValues[function][i]));
 
-				root.Add(button);
-				root.Add(foldout);
-			}
-			else
-			{
-				var button = MakeButton(function, buttonAttribute, () => function.Invoke(target, null));
+                    if (EditorExtension.GLOBAL_COLOR != EditorExtension.DEFAULT_GLOBAL_COLOR)
+                        ColorUtils.ApplyColor(field, EditorExtension.GLOBAL_COLOR);
 
-				root.Add(button);
-			}
+                    int index = i; // Local copy for the lambda
 
-			return root;
-		}
+                    PropertyDrawerBase.RegisterValueChangedCallbackByType(parameter.ParameterType, field, (valueCallback) => parameterValues[function][index] = valueCallback);
 
-		private static VisualElement MakeButton(MethodInfo function, ButtonAttribute buttonAttribute, Action buttonLogic)
-		{
-			var buttonLabel = string.IsNullOrWhiteSpace(buttonAttribute.ButtonLabel) ? function.Name : buttonAttribute.ButtonLabel;
-			var tooltipAttribute = function?.GetCustomAttribute<TooltipAttribute>();
-			string buttonTooltip = string.Empty;
+                    field.SetEnabled(targets.Length <= 1);
+                    field.style.unityFontStyleAndWeight = FontStyle.Normal;
 
-			if (tooltipAttribute != null)
-				buttonTooltip = tooltipAttribute.tooltip;
+                    foldout.Add(field);
+                }
 
-			if (buttonAttribute.IsRepetable)
-			{
-				var repeatButton = new RepeatButton(buttonLogic, buttonAttribute.PressDelay, buttonAttribute.RepetitionInterval) 
-				{ 
-					text = buttonLabel, 
-					tooltip = buttonTooltip 
-				};
+                root.Add(button);
+                root.Add(foldout);
 
-				repeatButton.style.height = buttonAttribute.ButtonHeight;
-				repeatButton.AddToClassList(Button.ussClassName);
+                return root;
+            }
+        }
 
-				return repeatButton;
-			}
-			else
-			{
-				var button = new Button(buttonLogic)
-				{
-					text = buttonLabel, 
-					tooltip = buttonTooltip 
-				};
+        private static VisualElement MakeButton(MethodInfo function, ButtonAttribute buttonAttribute, Action buttonLogic)
+        {
+            string buttonLabel = string.IsNullOrWhiteSpace(buttonAttribute.ButtonLabel) ? function.Name : buttonAttribute.ButtonLabel;
+            string buttonTooltip = string.Empty;
 
-				button.style.height = buttonAttribute.ButtonHeight;
+            var tooltipAttribute = function?.GetCustomAttribute<TooltipAttribute>();
 
-				return button;
-			}
-		}
+            if (tooltipAttribute != null)
+                buttonTooltip = tooltipAttribute.tooltip;
 
-		#region SERIALIZATION
-		internal static void SaveParamsData(MethodInfo[] functions, object target, Dictionary<MethodInfo, bool> foldouts, Dictionary<MethodInfo, object[]> parameterValues)
-		{
-			var data = new FunctionParamData();
-			var keyToMethod = new Dictionary<string, MethodInfo>();
+            if (buttonAttribute.IsRepetable)
+            {
+                RepeatButton repeatButton = new(buttonLogic, buttonAttribute.PressDelay, buttonAttribute.RepetitionInterval)
+                {
+                    text = buttonLabel,
+                    tooltip = buttonTooltip
+                };
 
-			foreach (var function in functions)
-			{
-				if (!IsButtonFunction(function, out bool serializeParameters) || !serializeParameters)
-					continue;
+                repeatButton.style.height = buttonAttribute.ButtonHeight;
+                repeatButton.AddToClassList(Button.ussClassName);
 
-				string id = GetFunctionID(function, target);
-				keyToMethod[id] = function;
+                return repeatButton;
+            }
+            else
+            {
+                Button button = new(buttonLogic)
+                {
+                    text = buttonLabel,
+                    tooltip = buttonTooltip
+                };
 
-				if (foldouts.TryGetValue(function, out bool foldoutValue)) 
-					data.foldouts[id] = foldoutValue;
+                button.style.height = buttonAttribute.ButtonHeight;
 
-				if (parameterValues.TryGetValue(function, out object[] parameterValue)) 
-					data.parameterValues[id] = parameterValue;
-			}
+                return button;
+            }
+        }
 
-			if (data.foldouts.Count == 0 && data.parameterValues.Count == 0) 
-				return;
+        private static void InvokeFunctionOnAllTargets(Object[] targets, string functionName, object[] parameterValues, bool makeTargetDirty)
+        {
+            foreach (var target in targets)
+            {
+                MethodInfo methodInfo = ReflectionUtils.FindFunction(functionName, target);
+                ParameterInfo[] functionParameters = methodInfo.GetParameters();
 
-			JsonConvert.DefaultSettings = () => new JsonSerializerSettings { Converters = { new UnityTypeConverter() } };
+                object[] paramValueList = null;
 
-			string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
-			File.WriteAllTextAsync(Path.Combine(PARAMS_DATA_LOCATION, $"{target}ParamsData.json"), jsonData);
-		}
+                if (functionParameters.Length > 0)
+                {
+                    paramValueList = new object[functionParameters.Length];
 
-		internal static void LoadParamsData(MethodInfo[] functions, object target, ref Dictionary<MethodInfo, bool> foldouts, ref Dictionary<MethodInfo, object[]> parameterValues)
-		{
-			if (!Directory.Exists(PARAMS_DATA_LOCATION)) 
-				Directory.CreateDirectory(PARAMS_DATA_LOCATION);
+                    for (int i = 0; i < functionParameters.Length; i++)
+                        paramValueList[i] = ConvertParameterValue(functionParameters[i].ParameterType, parameterValues[i]);
+                }
 
-			try
-			{
-				var filePath = Path.Combine(PARAMS_DATA_LOCATION, $"{target}ParamsData.json");
+                Undo.RecordObject(target, $"Invoke {functionName}");
 
-				if (File.Exists(filePath))
-				{
-					string jsonData = File.ReadAllText(filePath);
+                methodInfo.Invoke(target, paramValueList);
 
-					var data = JsonConvert.DeserializeObject<FunctionParamData>(jsonData);
-					var keyToMethod = new Dictionary<string, MethodInfo>();
+                if (makeTargetDirty)
+                    EditorUtility.SetDirty(target);
+            }
+        }
 
-					foreach (var function in functions)
-					{
-						if (!IsButtonFunction(function, out bool serializeParameters) || !serializeParameters) 
-							continue;
+        internal static void SaveParamsData(MethodInfo[] functions, object target, Dictionary<MethodInfo, bool> foldouts, Dictionary<MethodInfo, object[]> parameterValues)
+        {
+            FunctionParamData data = new();
+            Dictionary<string, MethodInfo> keyToMethod = new();
 
-						string id = GetFunctionID(function, target);
+            foreach (var function in functions)
+            {
+                if (!IsButtonFunction(function, out bool serializeParameters) || !serializeParameters)
+                    continue;
 
-						keyToMethod[id] = function;
-					}
+                string id = GetFunctionID(function, target);
+                keyToMethod[id] = function;
 
-					foreach (var key in data.foldouts.Keys)
-					{
-						if (keyToMethod.TryGetValue(key, out var method))
-						{
-							foldouts[method] = data.foldouts[key];
-							parameterValues[method] = data.parameterValues[key];
-						}
-					}
-				}
-			}
-			catch (ArgumentException)
-			{
-				return;
-			}
-		}
-		
-		internal static void DeleteParamsData(string filePath)
-		{
-			if (File.Exists(filePath)) 
-				File.Delete(filePath);
-		}
+                if (foldouts.TryGetValue(function, out bool foldoutValue))
+                    data.foldouts[id] = foldoutValue;
 
-		internal static string GetFunctionID(MethodInfo function, object target) => $"{target}_{function.Name}_{string.Join("_", function.GetParameters().Select(param => param.ParameterType.Name))}";
+                if (parameterValues.TryGetValue(function, out object[] parameterValue))
+                    data.parameterValues[id] = parameterValue;
+            }
 
-		internal static bool IsButtonFunction(MethodInfo function, out bool serializeParameters)
-		{
-			var buttonAttribute = function.GetCustomAttribute<ButtonAttribute>();
+            if (data.foldouts.Count == 0 && data.parameterValues.Count == 0)
+                return;
 
-			if (buttonAttribute != null)
-			{
-				serializeParameters = buttonAttribute.SerializeParameters;
-				return true;
-			}
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings { Converters = { new UnityTypeConverter() } };
 
-			serializeParameters = false;
-			return false;
-		}
+            string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-		public static T ParseFromJson<T>(object value)
-		{
-			if (value == null)
-				return default;
+            File.WriteAllTextAsync(Path.Combine(PARAMS_DATA_LOCATION, GetFileName(target)), jsonData);
+        }
 
-			try // Try to see if we can cast the value directly
-			{
-				return (T)value;
-			}
-			catch (InvalidCastException)
-			{
-				string jsonString = value.ToString();
+        internal static void LoadParamsData(MethodInfo[] functions, object target, ref Dictionary<MethodInfo, bool> foldouts, ref Dictionary<MethodInfo, object[]> parameterValues)
+        {
+            if (!Directory.Exists(PARAMS_DATA_LOCATION))
+                Directory.CreateDirectory(PARAMS_DATA_LOCATION);
 
-				try
-				{
-					return string.IsNullOrEmpty(jsonString) ? default : JsonConvert.DeserializeObject<T>(jsonString);
-				}
-				catch (JsonReaderException)
-				{
-					return default;
-				}
-			}
-		}
-		#endregion
+            try
+            {
+                string filePath = Path.Combine(PARAMS_DATA_LOCATION, GetFileName(target));
 
-		#region ELSE_IF_CHAINS
-		internal static VisualElement DrawParameterField(Type fieldType, string fieldName, object fieldValue)
-		{
-			fieldName = ObjectNames.NicifyVariableName(fieldName);
+                if (File.Exists(filePath))
+                {
+                    string jsonData = File.ReadAllText(filePath);
 
-			if (fieldType == typeof(string))
-			{
-				return new TextField(fieldName) { value = (string)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(int))
-			{
-				return new IntegerField(fieldName) { value = (int)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(uint))
-			{
-				return new UnsignedIntegerField(fieldName) { value = (uint)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(long))
-			{
-				return new LongField(fieldName) { value = (long)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(ulong))
-			{
-				return new UnsignedLongField(fieldName) { value = (ulong)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(float))
-			{
-				return new FloatField(fieldName) { value = (float)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(double))
-			{
-				return new DoubleField(fieldName) { value = (double)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(bool))
-			{
-				return new Toggle(fieldName) { value = (bool)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType.IsEnum)
-			{
-				return new EnumField(fieldName, (Enum)ConvertParameterValue(fieldType, fieldValue));
-			}
-			else if (fieldType == typeof(Vector2))
-			{
-				return new Vector2Field(fieldName) { value = (Vector2)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Vector2Int))
-			{
-				return new Vector2IntField(fieldName) { value = (Vector2Int)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Vector3))
-			{
-				return new Vector3Field(fieldName) { value = (Vector3)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Vector3Int))
-			{
-				return new Vector3IntField(fieldName) { value = (Vector3Int)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Vector4))
-			{
-				return new Vector4Field(fieldName) { value = (Vector4)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Color))
-			{
-				return new ColorField(fieldName) { value = (Color)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Gradient))
-			{
-				return new GradientField(fieldName) { value = (Gradient)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(AnimationCurve))
-			{
-				return new CurveField(fieldName) { value = (AnimationCurve)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(LayerMask))
-			{
-				return new LayerMaskField(fieldName, (LayerMask)ConvertParameterValue(fieldType, fieldValue));
-			}
-			else if (fieldType == typeof(Rect))
-			{
-				return new RectField(fieldName) { value = (Rect)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(RectInt))
-			{
-				return new RectIntField(fieldName) { value = (RectInt)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(Bounds))
-			{
-				return new BoundsField(fieldName) { value = (Bounds)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else if (fieldType == typeof(BoundsInt))
-			{
-				return new BoundsIntField(fieldName) { value = (BoundsInt)ConvertParameterValue(fieldType, fieldValue) };
-			}
-			else
-			{
-				return new HelpBox($"The type {fieldType} is not supported", HelpBoxMessageType.Error);
-			}
-		}
+                    var data = JsonConvert.DeserializeObject<FunctionParamData>(jsonData);
+                    Dictionary<string, MethodInfo> keyToMethod = new();
 
-		private static void RegisterParameterFieldValueChangedCallback(VisualElement field, Type parameterType, Action<object> valueCallback)
-		{
-			if (parameterType == typeof(string))
-			{
-				field.RegisterCallback<ChangeEvent<string>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(int))
-			{
-				field.RegisterCallback<ChangeEvent<int>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(uint))
-			{
-				field.RegisterCallback<ChangeEvent<uint>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(long))
-			{
-				field.RegisterCallback<ChangeEvent<long>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(ulong))
-			{
-				field.RegisterCallback<ChangeEvent<ulong>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(float))
-			{
-				field.RegisterCallback<ChangeEvent<float>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(double))
-			{
-				field.RegisterCallback<ChangeEvent<double>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(bool))
-			{
-				field.RegisterCallback<ChangeEvent<bool>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType.IsEnum)
-			{
-				field.RegisterCallback<ChangeEvent<Enum>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Vector2))
-			{
-				field.RegisterCallback<ChangeEvent<Vector2>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Vector2Int))
-			{
-				field.RegisterCallback<ChangeEvent<Vector2Int>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Vector3))
-			{
-				field.RegisterCallback<ChangeEvent<Vector3>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Vector3Int))
-			{
-				field.RegisterCallback<ChangeEvent<Vector3Int>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Vector4))
-			{
-				field.RegisterCallback<ChangeEvent<Vector4>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Color))
-			{
-				field.RegisterCallback<ChangeEvent<Color>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Gradient))
-			{
-				field.RegisterCallback<ChangeEvent<Gradient>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(AnimationCurve))
-			{
-				field.RegisterCallback<ChangeEvent<AnimationCurve>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(LayerMask))
-			{
-				field.RegisterCallback<ChangeEvent<int>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Rect))
-			{
-				field.RegisterCallback<ChangeEvent<Rect>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(RectInt))
-			{
-				field.RegisterCallback<ChangeEvent<RectInt>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(Bounds))
-			{
-				field.RegisterCallback<ChangeEvent<Bounds>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-			else if (parameterType == typeof(BoundsInt))
-			{
-				field.RegisterCallback<ChangeEvent<BoundsInt>>((callback) => valueCallback.Invoke(callback.newValue));
-			}
-		}
+                    foreach (var function in functions)
+                    {
+                        if (!IsButtonFunction(function, out bool serializeParameters) || !serializeParameters)
+                            continue;
 
-		private static object ConvertParameterValue(Type parameterType, object parameterValue)
-		{
-			bool isDBNull = Convert.IsDBNull(parameterValue);
+                        string id = GetFunctionID(function, target);
 
-			if (parameterType == typeof(string))
-			{
-				return parameterValue?.ToString();
-			}
-			else if (parameterType == typeof(int))
-			{
-				return isDBNull ? 0 : Convert.ToInt32(parameterValue);
-			}
-			else if (parameterType == typeof(uint))
-			{
-				return isDBNull ? 0 : Convert.ToUInt32(parameterValue);
-			}
-			else if (parameterType == typeof(long))
-			{
-				return isDBNull ? 0 : Convert.ToInt64(parameterValue);
-			}
-			else if (parameterType == typeof(ulong))
-			{
-				return isDBNull ? 0 : Convert.ToUInt64(parameterValue);
-			}
-			else if (parameterType == typeof(float))
-			{
-				return isDBNull ? 0.0f : Convert.ToSingle(parameterValue);
-			}
-			else if (parameterType == typeof(double))
-			{
-				return isDBNull ? 0.0 : (double)parameterValue;
-			}
-			else if (parameterType == typeof(bool))
-			{
-				return !isDBNull && (bool)parameterValue;
-			}
-			else if (parameterType.IsEnum)
-			{
-				return isDBNull ? Enum.ToObject(parameterType, 0) as Enum : Enum.ToObject(parameterType, parameterValue) as Enum;
-			}
-			else if (parameterType == typeof(Vector2))
-			{
-				return isDBNull ? Vector2.zero : ParseFromJson<Vector2>(parameterValue);
-			}
-			else if (parameterType == typeof(Vector2Int))
-			{
-				return isDBNull ? Vector2Int.zero : ParseFromJson<Vector2Int>(parameterValue);
-			}
-			else if (parameterType == typeof(Vector3))
-			{
-				return isDBNull ? Vector3.zero : ParseFromJson<Vector3>(parameterValue);
-			}
-			else if (parameterType == typeof(Vector3Int))
-			{
-				return isDBNull ? Vector3Int.zero : ParseFromJson<Vector3Int>(parameterValue);
-			}
-			else if (parameterType == typeof(Vector4))
-			{
-				return isDBNull ? Vector4.zero : ParseFromJson<Vector4>(parameterValue);
-			}
-			else if (parameterType == typeof(Color))
-			{
-				return isDBNull ? Color.black : ParseFromJson<Color>(parameterValue);
-			}
-			else if (parameterType == typeof(Gradient))
-			{
-				return isDBNull ? new Gradient() : ParseFromJson<Gradient>(parameterValue);
-			}
-			else if (parameterType == typeof(AnimationCurve))
-			{
-				return isDBNull ? AnimationCurve.Linear(0f, 0f, 1f, 1f) : ParseFromJson<AnimationCurve>(parameterValue);
-			}
-			else if (parameterType == typeof(LayerMask))
-			{
-				return isDBNull ? (LayerMask)0 : (LayerMask)Convert.ToInt32(parameterValue);
-			}
-			else if (parameterType == typeof(Rect))
-			{
-				return isDBNull ? new Rect(0f, 0f, 0f, 0f) : ParseFromJson<Rect>(parameterValue);
-			}
-			else if (parameterType == typeof(RectInt))
-			{
-				return isDBNull ? new RectInt(0, 0, 0, 0) : ParseFromJson<RectInt>(parameterValue);
-			}
-			else if (parameterType == typeof(Bounds))
-			{
-				return isDBNull ? new Bounds(new(0, 0), new(0, 0)) : ParseFromJson<Bounds>(parameterValue);
-			}
-			else if (parameterType == typeof(BoundsInt))
-			{
-				return isDBNull ? new BoundsInt(new(0, 0), new(0, 0)) : ParseFromJson<BoundsInt>(parameterValue);
-			}
+                        keyToMethod[id] = function;
+                    }
 
-			return null;
-		}
-		#endregion
-	}
+                    foreach (var key in data.foldouts.Keys)
+                    {
+                        if (keyToMethod.TryGetValue(key, out var method))
+                        {
+                            foldouts[method] = data.foldouts[key];
+                            parameterValues[method] = data.parameterValues[key];
+                        }
+                    }
+                }
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+        }
+
+        internal static void DeleteParamsData(string filePath)
+        {
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+        }
+
+        internal static void ClearAllParamsData()
+        {
+            if (Directory.Exists(PARAMS_DATA_LOCATION))
+            {
+                int fileCount = 0;
+
+                foreach (var file in Directory.GetFiles(PARAMS_DATA_LOCATION, "*_ButtonParameterData.json"))
+                {
+                    File.Delete(file);
+                    fileCount++;
+                }
+
+                Debug.Log($"<b>{fileCount}</b> files were deleted");
+            }
+        }
+
+#if UNITY_6000_4_OR_NEWER
+        internal static string GetFileName(object target) => $"{(target as Object).GetEntityId()}_{target}_ButtonParameterData.json";
+
+        internal static string GetFunctionID(MethodInfo function, object target) => $"{(target as Object).GetEntityId()}_{target}_{function.Name}_{string.Join("_", function.GetParameters().Select(param => param.ParameterType.Name))}";
+#else
+        internal static string GetFileName(object target) => $"{(target as Object).GetInstanceID()}_{target}_ButtonParameterData.json";
+
+        internal static string GetFunctionID(MethodInfo function, object target) => $"{(target as Object).GetInstanceID()}_{target}_{function.Name}_{string.Join("_", function.GetParameters().Select(param => param.ParameterType.Name))}";
+#endif
+
+        internal static bool IsButtonFunction(MethodInfo function, out bool serializeParameters)
+        {
+            var buttonAttribute = function.GetCustomAttribute<ButtonAttribute>();
+
+            if (buttonAttribute != null)
+            {
+                serializeParameters = buttonAttribute.SerializeParameters;
+                return true;
+            }
+
+            serializeParameters = false;
+            return false;
+        }
+
+        private static bool IsParameterTypeSupported(Type parameterType) => parameterType.IsPrimitive || parameterType.IsEnum || parameterType == typeof(string) || parameterType == typeof(Vector2) || parameterType == typeof(Vector2Int)
+            || parameterType == typeof(Vector3) || parameterType == typeof(Vector3Int) || parameterType == typeof(Vector4) || parameterType == typeof(Color) || parameterType == typeof(Rect) || parameterType == typeof(RectInt);
+
+        private static T ParseFromJson<T>(object value)
+        {
+            if (value == null)
+                return default;
+
+            try // Try to see if we can cast the value directly
+            {
+                return (T)value;
+            }
+            catch (InvalidCastException)
+            {
+                string jsonString = value.ToString();
+
+                try
+                {
+                    return string.IsNullOrEmpty(jsonString) ? default : JsonConvert.DeserializeObject<T>(jsonString);
+                }
+                catch (JsonReaderException)
+                {
+                    return default;
+                }
+            }
+        }
+
+        private static object ConvertParameterValue(Type parameterType, object parameterValue)
+        {
+            bool isNull = Convert.IsDBNull(parameterValue) || parameterValue == null;
+
+            if (parameterType == typeof(string))
+            {
+                return parameterValue?.ToString();
+            }
+            else if (parameterType == typeof(char))
+            {
+                string stringParamValue = parameterValue.ToString();
+
+                return isNull || stringParamValue.Length != 1 ? '\0' : Convert.ToChar(parameterValue);
+            }
+            else if (parameterType == typeof(int))
+            {
+                return isNull ? 0 : Convert.ToInt32(parameterValue);
+            }
+            else if (parameterType == typeof(uint))
+            {
+                return isNull ? 0 : Convert.ToUInt32(parameterValue);
+            }
+            else if (parameterType == typeof(long))
+            {
+                return isNull ? 0 : Convert.ToInt64(parameterValue);
+            }
+            else if (parameterType == typeof(ulong))
+            {
+                return isNull ? 0 : Convert.ToUInt64(parameterValue);
+            }
+            else if (parameterType == typeof(float))
+            {
+                return isNull ? 0.0f : Convert.ToSingle(parameterValue);
+            }
+            else if (parameterType == typeof(double))
+            {
+                return isNull ? 0.0 : (double)parameterValue;
+            }
+            else if (parameterType == typeof(bool))
+            {
+                return !isNull && (bool)parameterValue;
+            }
+            else if (parameterType.IsEnum)
+            {
+                return isNull ? Enum.ToObject(parameterType, 0) as Enum : Enum.ToObject(parameterType, parameterValue) as Enum;
+            }
+            else if (parameterType == typeof(Vector2))
+            {
+                return isNull ? Vector2.zero : ParseFromJson<Vector2>(parameterValue);
+            }
+            else if (parameterType == typeof(Vector2Int))
+            {
+                return isNull ? Vector2Int.zero : ParseFromJson<Vector2Int>(parameterValue);
+            }
+            else if (parameterType == typeof(Vector3))
+            {
+                return isNull ? Vector3.zero : ParseFromJson<Vector3>(parameterValue);
+            }
+            else if (parameterType == typeof(Vector3Int))
+            {
+                return isNull ? Vector3Int.zero : ParseFromJson<Vector3Int>(parameterValue);
+            }
+            else if (parameterType == typeof(Vector4))
+            {
+                return isNull ? Vector4.zero : ParseFromJson<Vector4>(parameterValue);
+            }
+            else if (parameterType == typeof(Color))
+            {
+                return isNull ? Color.black : ParseFromJson<Color>(parameterValue);
+            }
+            else if (parameterType == typeof(Gradient))
+            {
+                return isNull ? new Gradient() : ParseFromJson<Gradient>(parameterValue);
+            }
+            else if (parameterType == typeof(AnimationCurve))
+            {
+                return isNull ? AnimationCurve.Linear(0f, 0f, 1f, 1f) : ParseFromJson<AnimationCurve>(parameterValue);
+            }
+            else if (parameterType == typeof(LayerMask))
+            {
+                return isNull ? (LayerMask)0 : (LayerMask)Convert.ToInt32(parameterValue);
+            }
+            else if (parameterType == typeof(Rect))
+            {
+                return isNull ? new Rect(0f, 0f, 0f, 0f) : ParseFromJson<Rect>(parameterValue);
+            }
+            else if (parameterType == typeof(RectInt))
+            {
+                return isNull ? new RectInt(0, 0, 0, 0) : ParseFromJson<RectInt>(parameterValue);
+            }
+            else if (parameterType == typeof(Bounds))
+            {
+                return isNull ? new Bounds(new(0, 0), new(0, 0)) : ParseFromJson<Bounds>(parameterValue);
+            }
+            else if (parameterType == typeof(BoundsInt))
+            {
+                return isNull ? new BoundsInt(new(0, 0), new(0, 0)) : ParseFromJson<BoundsInt>(parameterValue);
+            }
+
+            return null;
+        }
+    }
 }

@@ -3,9 +3,9 @@ using UnityEngine.UIElements;
 
 namespace EditorAttributes.Editor
 {
-    [CustomPropertyDrawer(typeof(VoidStructure))]
-    public class VoidDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(Void))]
+    public class VoidDrawer : PropertyDrawerBase
     {
-		public override VisualElement CreatePropertyGUI(SerializedProperty property) => new();
-	}
+        public override VisualElement CreatePropertyGUI(SerializedProperty property) => new();
+    }
 }
