@@ -57631,6 +57631,20 @@ MonoBehaviour:
   currentBeat: 0
   movementSpeed: 3
   mycount: 0
+--- !u!114 &738304184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: XRI UI/Menu
+  m_EditorClassIdentifier: 
+  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_ActionId: 2619f6ea-273d-488d-9f5e-ea64b6cc6630
 --- !u!1 &738862380
 GameObject:
   m_ObjectHideFlags: 0
@@ -114942,20 +114956,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521145959}
   m_Mesh: {fileID: 1852682636575141667, guid: 371c4d10c8114944d8b24496de0561ae, type: 3}
---- !u!114 &1521201988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: XRI Left Interaction/Menu
-  m_EditorClassIdentifier: 
-  m_Asset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_ActionId: 93e5592c-bdf2-420a-b604-00343870d3d3
 --- !u!1 &1521692675
 GameObject:
   m_ObjectHideFlags: 0
@@ -134759,7 +134759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcafea4a806f9c4b9992443ab536c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openPauseMenuAction: {fileID: 1521201988}
+  openPauseMenuAction: {fileID: 738304184}
   isPaused: 0
   showPauseMenu: 0
   isCountingDown: 0

@@ -84,6 +84,7 @@ public class FrontEndSceneTransitionManager : MonoBehaviour // This is an earlie
         isTransitioning = true;
         while (alpha < 1f)
         {
+            Debug.Log("Is Transitioning");
             alpha += Time.deltaTime / fadeInDuration;
             transitionSplash.color = new Color(transitionSplash.color.r, transitionSplash.color.g,
                 transitionSplash.color.b, alpha); 
