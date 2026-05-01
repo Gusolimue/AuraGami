@@ -7620,6 +7620,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -20834,6 +20835,108 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &258197394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 258197395}
+  - component: {fileID: 258197398}
+  - component: {fileID: 258197397}
+  - component: {fileID: 258197396}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &258197395
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258197394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1668781437}
+  m_Father: {fileID: 1498354657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &258197396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258197394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &258197397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258197394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &258197398
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258197394}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &258855291
 GameObject:
   m_ObjectHideFlags: 0
@@ -21362,6 +21465,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -25416,7 +25520,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 90543c944067d504f8fbe8794ad7ec70, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!114 &308506140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25430,6 +25534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 308506144}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -25438,6 +25543,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223639
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223639
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!23 &308506141
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25485,12 +25600,12 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &308506142
 MeshFilter:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308506137}
-  m_Mesh: {fileID: 4300000, guid: 90543c944067d504f8fbe8794ad7ec70, type: 2}
+  m_Mesh: {fileID: 0}
 --- !u!114 &308506143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36482,6 +36597,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1199906239}
+    - targetCorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 258197395}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
 --- !u!114 &441087507 stripped
@@ -58368,7 +58486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be5687402cac5543a49807adf07117d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionSplash: {fileID: 1593954680}
+  transitionSplash: {fileID: 1668781438}
   transitionColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
@@ -86937,6 +87055,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -93036,6 +93155,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -109589,6 +109709,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -113212,6 +113333,11 @@ MonoBehaviour:
 --- !u!1 &1498354652 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1498354657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1499473116
@@ -121539,17 +121665,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593120763}
   m_Mesh: {fileID: 1852682636575141667, guid: 371c4d10c8114944d8b24496de0561ae, type: 3}
---- !u!114 &1593954680 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8643468695406512624, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 441087506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1595114769
 GameObject:
   m_ObjectHideFlags: 0
@@ -127436,6 +127551,81 @@ MonoBehaviour:
   currentBeat: 0
   movementSpeed: 3
   mycount: 0
+--- !u!1 &1668781436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1668781437}
+  - component: {fileID: 1668781439}
+  - component: {fileID: 1668781438}
+  m_Layer: 5
+  m_Name: TransitionSplash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1668781437
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668781436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 22.515, y: 22.515, z: 22.515}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 258197395}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1668781438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668781436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1668781439
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668781436}
+  m_CullTransparentMesh: 1
 --- !u!1 &1669314784
 GameObject:
   m_ObjectHideFlags: 0
@@ -164541,6 +164731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8268479846082264546}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -164549,6 +164740,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223601
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223601
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &207086858054706693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165476,6 +165677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 588070232341696942}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -165484,6 +165686,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223597
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223597
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &534915030437797229
 GameObject:
   m_ObjectHideFlags: 0
@@ -165894,6 +166106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 5783962481565940460}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -165902,6 +166115,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223625
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223625
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &675210810492056975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166886,6 +167109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 7921004842641427587}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -166894,6 +167118,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223589
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223589
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &1140520877195728119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167176,6 +167410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3331165540123091451}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -167184,6 +167419,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223608
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223608
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &1206876362348955932
 GameObject:
   m_ObjectHideFlags: 0
@@ -167360,6 +167605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 755942593275083485}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -167368,6 +167614,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223611
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223611
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &1265187435354648035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172024,6 +172280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8521821589181306148}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -172032,6 +172289,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223615
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223615
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!64 &1968013914821195841
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -172310,6 +172577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3115045490988301509}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -172318,6 +172586,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223633
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223633
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &2010809125102973670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172595,6 +172873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 704493226432273812}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -172603,6 +172882,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223603
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223603
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &2068304902889883517
 GameObject:
   m_ObjectHideFlags: 0
@@ -172890,6 +173179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4298832674447393713}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -172898,6 +173188,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223621
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223621
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &2198547582654930629
 GameObject:
   m_ObjectHideFlags: 0
@@ -173115,6 +173415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6477052921710107354}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -173123,6 +173424,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223613
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223613
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &2330346876159862679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173251,6 +173562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 1273694326129256355}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -173259,6 +173571,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223627
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223627
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!33 &2371420792461580122
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -173734,6 +174056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 1376832966635765126}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -173742,6 +174065,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223586
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223586
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!64 &2675897130689467657
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -173957,6 +174290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6259197308178380566}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -173965,6 +174299,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223588
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223588
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &2745845944655789772
 GameObject:
   m_ObjectHideFlags: 0
@@ -174845,6 +175189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 2858733072931832642}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -174853,6 +175198,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223605
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223605
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!4 &3035156347140713402
 Transform:
   m_ObjectHideFlags: 0
@@ -175186,6 +175541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8198373071452951529}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -175194,6 +175550,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223622
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223622
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &3115045490988301509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175393,6 +175759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4681501224407825997}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -175401,6 +175768,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223631
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223631
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &3155559177739169557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175517,6 +175894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 2915491214875013047}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -175525,6 +175903,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223634
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223634
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &3190601005922017583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176255,6 +176643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 1883768954064799919}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -176263,6 +176652,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223590
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223590
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!33 &3699533615877102955
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -176597,6 +176996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6188189261912571119}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -176605,6 +177005,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223610
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223610
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!23 &3834623758044061093
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -176679,6 +177089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 2847117262990159973}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -176687,6 +177098,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223635
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223635
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &3871968541177922799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177192,6 +177613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3547026852308523214}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -177200,6 +177622,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223599
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223599
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &4019595515774290608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177678,6 +178110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 7289848585795075313}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -177686,6 +178119,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223636
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223636
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &4273780004063886478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178143,6 +178586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6694469659664069748}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -178151,6 +178595,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223598
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223598
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &4410863741679550952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178199,6 +178653,10 @@ PrefabInstance:
     - target: {fileID: 648731357494714087, guid: d223a3b5c6a0b98479e593760ff8d445, type: 3}
       propertyPath: m_Name
       value: Pres Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 648731357494714087, guid: d223a3b5c6a0b98479e593760ff8d445, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8506390613781872783, guid: d223a3b5c6a0b98479e593760ff8d445, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178587,6 +179045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 1664328586744634012}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -178595,6 +179054,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223628
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223628
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &4554556214831026450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178719,6 +179188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 2467953811588943115}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -178727,6 +179197,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223619
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223619
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!64 &4655103537449559779
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -179040,6 +179520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4554556214831026450}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -179048,6 +179529,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223592
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223592
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &4724439547589356230
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -179244,6 +179735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4802383118398183681}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -179252,6 +179744,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223624
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223624
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &4856868217625852213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179265,6 +179767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3473832032807391456}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -179273,6 +179776,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223637
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223637
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &4861261670532979017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179533,6 +180046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4031089544504151087}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -179541,6 +180055,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223595
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223595
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &5081939649865382381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180015,6 +180539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3082825531896678859}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -180023,6 +180548,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223600
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223600
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &5334371163389715287
 GameObject:
   m_ObjectHideFlags: 0
@@ -180752,6 +181287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 5263873074205313759}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -180760,6 +181296,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223623
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223623
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &5651078047420887104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181418,6 +181964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4242084909699250130}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -181426,6 +181973,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223604
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223604
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &5901154419573229803
 GameObject:
   m_ObjectHideFlags: 0
@@ -181664,6 +182221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6909988949980428031}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -181672,6 +182230,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223630
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223630
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!33 &6023696809248751345
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -181860,6 +182428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 657922865567310935}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -181868,6 +182437,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223606
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223606
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &6158711264008541712
 GameObject:
   m_ObjectHideFlags: 0
@@ -182866,6 +183445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3103278122913494617}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -182874,6 +183454,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223609
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223609
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &6477052921710107354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182953,6 +183543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3629389738211467012}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -182961,6 +183552,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223593
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223593
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &6520502125815674571
 GameObject:
   m_ObjectHideFlags: 0
@@ -184220,6 +184821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 4308562212119856897}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -184228,6 +184830,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223618
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223618
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &6931378009045400832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184682,6 +185294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3871968541177922799}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -184690,6 +185303,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223632
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223632
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!4 &7073592829035189772
 Transform:
   m_ObjectHideFlags: 0
@@ -185153,6 +185776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 6418057001465855928}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -185161,6 +185785,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223602
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223602
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &7175288177883549488
 GameObject:
   m_ObjectHideFlags: 0
@@ -185890,6 +186524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 10081120615807727}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -185898,6 +186533,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223638
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223638
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &7530738073763227478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186254,6 +186899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8098805613674540086}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -186262,6 +186908,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223612
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223612
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!33 &7781978501174919217
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -186465,6 +187121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8569400495761649071}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -186473,6 +187130,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223594
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223594
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &7867657373223437881
 GameObject:
   m_ObjectHideFlags: 0
@@ -188212,6 +188879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 3584745663232906272}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -188220,6 +188888,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223607
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223607
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!23 &8430612258832872553
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -188413,6 +189091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 255614831111320438}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -188421,6 +189100,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223596
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223596
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &8522966842212782638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188644,6 +189333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 9075249035533136487}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -188652,6 +189342,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223587
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223587
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &8610092264489558743
 GameObject:
   m_ObjectHideFlags: 0
@@ -188874,6 +189574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 570240219075514310}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -188882,6 +189583,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223614
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223614
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!4 &8676808292285139566
 Transform:
   m_ObjectHideFlags: 0
@@ -189424,6 +190135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8128302344234791890}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -189432,6 +190144,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223626
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223626
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!4 &8875308423592707479
 Transform:
   m_ObjectHideFlags: 0
@@ -189633,6 +190355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 1146806941739451146}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -189641,6 +190364,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223616
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223616
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1001 &8955400611679479321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189844,6 +190577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 5926126745070633400}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -189852,6 +190586,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223620
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223620
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!1 &9027438060447375035
 GameObject:
   m_ObjectHideFlags: 0
@@ -190176,6 +190920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 8805768565405481101}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -190184,6 +190929,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223591
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223591
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!4 &9100061792899072407
 Transform:
   m_ObjectHideFlags: 0
@@ -190215,6 +190970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 7598365762628674034}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -190223,6 +190979,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223617
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223617
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &9121542003024427881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190507,6 +191273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Container: {fileID: 5081939649865382381}
+  m_TargetMesh: {fileID: 0}
   m_RebuildOnSplineChange: 1
   m_RebuildFrequency: 30
   m_UpdateColliders: 1
@@ -190515,6 +191282,16 @@ MonoBehaviour:
   m_Capped: 1
   m_Radius: 0.07
   m_Range: {x: 0, y: 1}
+  m_FlipNormals: 0
+  m_Shape:
+    rid: 8190941651580223629
+  references:
+    version: 2
+    RefIds:
+    - rid: 8190941651580223629
+      type: {class: Circle, ns: UnityEngine.Splines.ExtrusionShapes, asm: Unity.Splines}
+      data:
+        m_Sides: 8
 --- !u!114 &9187084581974001962
 MonoBehaviour:
   m_ObjectHideFlags: 0
