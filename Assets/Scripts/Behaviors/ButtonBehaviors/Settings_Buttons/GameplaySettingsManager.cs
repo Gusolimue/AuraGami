@@ -29,6 +29,7 @@ public class GameplaySettingsManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        //CanvasManager.Instance.isInGameDemo = true;
 
         //TogglePlayerCircle();
 
@@ -76,8 +77,16 @@ public class GameplaySettingsManager : MonoBehaviour
 
         if (playCircleDemo != null || CanvasManager.Instance.playerCircle != null) 
         {
-            if (CanvasManager.Instance.isInGameDemo) CanvasManager.Instance.playerCircle.transform.localScale = Vector3.one * value;
-            else playCircleDemo.transform.localScale = Vector3.one * value;
+            if (CanvasManager.Instance.isInGameDemo) 
+            {
+                CanvasManager.Instance.playerCircle.transform.localScale = Vector3.one * value;
+                Debug.Log(CanvasManager.Instance.playerCircle.transform.localScale);
+            }
+            else 
+            {
+                playCircleDemo.transform.localScale = Vector3.one * value;
+                Debug.Log(playCircleDemo.transform.localScale);
+            }
         }
         if (AvatarManager.Instance != null)
         {
@@ -159,7 +168,6 @@ public class GameplaySettingsManager : MonoBehaviour
     public void IncreasePlayerCircleSize()
     {
         playCircleSlider[0].value += .1f;
-        playCircleSlider[1].value += .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
         else StartCoroutine(ActivateCircleDemo());
@@ -168,7 +176,6 @@ public class GameplaySettingsManager : MonoBehaviour
     public void DecreasePlayerCircleSize()
     {
         playCircleSlider[0].value -= .1f;
-        playCircleSlider[1].value -= .1f;
         HapticsManager.Instance.TriggerSimpleVibration(eSide.both, .2f, .1f);
         if (CanvasManager.Instance.isInGameDemo) StartCoroutine(ActivateInGameCircleDemo());
         else StartCoroutine(ActivateCircleDemo());
@@ -235,6 +242,7 @@ public class GameplaySettingsManager : MonoBehaviour
         demoOn = false;
         inGameDemoOn = false;
         CanvasManager.Instance.playerCircle.color = colorChanges[1];
+       // CanvasManager.Instance.isInGameDemo = false;
         //playCircleDemo.color = colorChanges[1];
         //toggleFill.color = toggleColors[1];
     }
